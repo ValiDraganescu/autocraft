@@ -1,0 +1,47 @@
+{
+  "about": "INVENTORY (2026-10-06) of what the Peregrine needs to stop borrowing (AcAudioDirector, AcNewKinds, AcConsoleInfo): weapon seekers (own, in the game); driven pull-away peregrinepass (own, in the game: the shriek is also its in-ear engine, so no separate peregrinemove is made); report-in vperegrine and death peregrinedeath (BLOCKED, see below); HUD icon peregrine (made 2026-10-06: Content-src/icons/peregrine.png from the peregrine_blue model, art/models/peregrine/previews/icon.png); no lock-on, bury or footfall sound applies. VOICE BLOCKED (2026-10-06): the ElevenLabs account has 10 of 10 custom voice slots used, so a new Voice Design voice cannot be saved (POST /v1/text-to-voice answers voice_limit_reached) and an unsaved preview cannot speak. Until a slot is freed the Peregrine pilot's spoken lines (vperegrine, peregrinedeath) borrow the Kestrel's's through AcNewKinds::StandIn. The previews are designed and kept in art/models/peregrine/sounds/voice/ (vperegrine_1..3.mp3 with their generated_voice_ids tlqR03nLTizdK0NlDWcT, mJl2ro0hZu4rLI9xiUuL, L2fakhGRLAxq8HKtSDeH); chosen by spectral numbers (no listening possible): vperegrine_3 (L2fakhGRLAxq8HKtSDeH): the lowest-weighted of the three, distinct from the Kestrel's bright jock. Description used: \"A cool, precise, terse interceptor ace in his thirties, a calm baritone with a flat, controlled delivery and no swagger. Speaks in short clipped words on a cockpit radio, quiet and focused, a hint of dry steel. Lower and slower than a cocky young jock.\". To finish: free a slot (delete an unused custom voice in the ElevenLabs account), run `uv run Tools/AudioGen/design_voice.py save \"Autocraft Peregrine\" \"<description>\" <generated_voice_id>` (previews expire, so design again if it fails: `design_voice.py design`), add `\"voices\": {\"peregrine\": \"<voice_id>\"}` and 4 report lines (vperegrine_1..4) and 4 death lines (peregrinedeath_1..4), kind say, fx comm, to this manifest, run elevenlabs.sh manifest, copy the picked takes to unreal/Resources/Sounds/sfx, import_sounds.py, then drop the kind from AcNewKinds::StandIn and update AcPoseNewKindsTests.cpp and AcAudioDirectorTests.cpp.",
+  "entries": [
+    {
+      "id": "peregrinepass_1",
+      "kind": "sfx",
+      "prompt": "alien fighter craft screams past overhead: an eerie, rising, almost organic shriek like a hunting bird mixed with a whining engine, sharp doppler pass, fading quickly, sci-fi",
+      "seconds": 2.5,
+      "influence": 0.6
+    },
+    {
+      "id": "peregrinepass_2",
+      "kind": "sfx",
+      "prompt": "small sleek alien interceptor dives past: a piercing, wavering, otherworldly scream that rises in pitch then drops with doppler, hollow resonant whistle, unsettling, sci-fi",
+      "seconds": 2.5,
+      "influence": 0.6
+    },
+    {
+      "id": "peregrinepass_3",
+      "kind": "sfx",
+      "prompt": "fast sci-fi fighter makes a strafing pass: an eerie high-pitched howling whine with a living, animal shriek in it, sweeping left to right with doppler shift, menacing",
+      "seconds": 2.5,
+      "influence": 0.6
+    },
+    {
+      "id": "peregrinepass_4",
+      "kind": "sfx",
+      "prompt": "swarm fighter flies by fast and low: a chilling, warbling, banshee-like electronic shriek rising to a peak and falling away, airy hiss of thrust underneath, sci-fi",
+      "seconds": 2.5,
+      "influence": 0.6
+    },
+    {
+      "id": "seekers_1",
+      "kind": "sfx",
+      "prompt": "two small air-to-air seeker missiles launch in quick succession from under a fighter's wings: sharp fssh-fssh of tiny rocket motors streaking away, thin whistle, close up",
+      "seconds": 1.0,
+      "influence": 0.5
+    },
+    {
+      "id": "seekers_2",
+      "kind": "sfx",
+      "prompt": "pair of homing missiles fired from a jet fighter: quick crisp hiss-hiss launch and a rising whistle as they zip off, light and fast, close up",
+      "seconds": 1.0,
+      "influence": 0.5
+    }
+  ]
+}

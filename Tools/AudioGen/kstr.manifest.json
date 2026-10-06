@@ -1,0 +1,99 @@
+{
+  "about": "KSTR 88.7 Stardust, the frontier's radio station (docs/music.md): ads and a station ident, one of which plays after a song ends on its own, never after a skip. The voice (\"Autocraft KSTR Announcer\", made with Voice Design, eleven_ttv_v3, the brightest of three previews) is a bright, glossy radio-commercial announcer, a woman in her early thirties, smiling and fast, the fine print read at speed. Every line goes through radio.py (the broadcast band, a station compressor, the music's level); the Ministry of Regrowth's gets a distant blast in its pause. The ads say Metallic Hydrogen in full, never MH, so players learn what MH stands for. Titles are in unreal/Resources/Sounds/ads/titles.json.",
+  "voices": {
+    "announcer": "sM0OsGgRUQMd8tCIWOCm"
+  },
+  "entries": [
+    {
+      "id": "quicksilver_cola",
+      "kind": "say",
+      "voice": "announcer",
+      "text": "[bright, upbeat radio ad] Thirsty, Prospector? Crack open an ice-cold Quicksilver Cola, pumped fresh from the finest Metallic Hydrogen wells on Ashfall Reach. It's silver. It's heavy. It sloshes. Quicksilver Cola: taste the element! [very fast, flat legal disclaimer] Quicksilver Cola is not a beverage. Do not drink Quicksilver Cola.",
+      "fx": "radio"
+    },
+    {
+      "id": "opal_glow",
+      "kind": "say",
+      "voice": "announcer",
+      "text": "[glossy, dreamy] Want skin that shimmers teal, violet and gold? New Opal Glow face scrub, made with real Stardust Ore. Glow in the dark. Glow in the light. Glow forever. [very fast, flat legal disclaimer] Side effects include mild levitation and being mined by a Prospector.",
+      "fx": "radio"
+    },
+    {
+      "id": "hab_dome_deluxe",
+      "kind": "say",
+      "voice": "announcer",
+      "text": "[warm, upbeat radio ad] Tired of breathing ash? Move up to the Hab Dome Deluxe, now with walls on every side, and a roof on top. Your family deserves air. [very fast, flat legal disclaimer] Air sold separately. Supply capped at fifteen.",
+      "fx": "radio"
+    },
+    {
+      "id": "dropride",
+      "kind": "say",
+      "voice": "announcer",
+      "text": "[cheerful, upbeat] Need a lift across the frontier? Book a DropRide! Our friendly flight medics heal you on the way, whether you're hurt or not. [very fast, flat legal disclaimer] DropRide is not responsible for landings near enemy Bastions.",
+      "fx": "radio"
+    },
+    {
+      "id": "citadel_timeshares",
+      "kind": "say",
+      "voice": "announcer",
+      "text": "[excited, salesy] Own a piece of the frontier with a Citadel Timeshare in beautiful Ashfall Reach! Ash view: guaranteed. Any other view: not guaranteed. Act now, before the red team does! [very fast, flat legal disclaimer] Your Citadel may be demolished during your stay.",
+      "fx": "radio"
+    },
+    {
+      "id": "comet_jump_academy",
+      "kind": "say",
+      "voice": "announcer",
+      "text": "[energetic, upbeat] Why walk around a cliff when you can fly over it? Comet Jump Academy teaches you to clear any ridge in one lesson. Most of our graduates land! [very fast, flat legal disclaimer] Jet pack, helmet and landing not included.",
+      "fx": "radio"
+    },
+    {
+      "id": "ash_away",
+      "kind": "say",
+      "voice": "announcer",
+      "text": "[bright, upbeat radio ad] Ash in your hair? Ash in your coffee? Ash in your ash? Try Ash-Away, the only spray that removes ash, now with forty percent less ash! [very fast, flat legal disclaimer] Contains ash.",
+      "fx": "radio"
+    },
+    {
+      "id": "longbow_life",
+      "kind": "say",
+      "voice": "announcer",
+      "text": "[concerned] You anchored your Longbow. You can't move. Who protects you now? [warm, reassuring] Longbow Life Insurance covers everything, except artillery. [very fast, flat legal disclaimer] Longbow Life considers all Longbows artillery.",
+      "fx": "radio"
+    },
+    {
+      "id": "night_shift_singles",
+      "kind": "say",
+      "voice": "announcer",
+      "text": "[sultry, playful] Lonely on the night shift? Meet single Prospectors in your ore line tonight! Night Shift Singles: love is closer than your next deposit. [very fast, flat legal disclaimer] Matches within three cells guaranteed. Drills must stay holstered.",
+      "fx": "radio"
+    },
+    {
+      "id": "oracle_premium",
+      "kind": "say",
+      "voice": "announcer",
+      "text": "[smooth, upbeat] Tired of hearing 'The base is taking fire' in the same old voice? Upgrade to Oracle Premium: forty soothing voices, and smooth jazz while your base burns. [very fast, flat legal disclaimer] Oracle Premium does not put out fires.",
+      "fx": "radio"
+    },
+    {
+      "id": "ministry_of_regrowth",
+      "kind": "say",
+      "voice": "announcer",
+      "text": "[calm, official public notice] A message from the Ministry of Regrowth. Ore fields grow back five minutes after they run dry. There is enough for everyone. Please stop fighting over them. [long pause] ... ... [tired, sighs] Thank you.",
+      "fx": "radio --boom unreal/Resources/Sounds/sfx/boom_2.wav"
+    },
+    {
+      "id": "firefly_drivers_ed",
+      "kind": "say",
+      "voice": "announcer",
+      "text": "[bright, upbeat radio ad] Learn to drive a Firefly the safe way, at Firefly Driver's Ed. Lesson one: the flamethrower is not the horn. [very fast, flat legal disclaimer] Firefly Driver's Ed has never passed a student.",
+      "fx": "radio"
+    },
+    {
+      "id": "kstr_ident",
+      "kind": "say",
+      "voice": "announcer",
+      "text": "[smooth, proud station ident] K S T R, eighty-eight point seven, Stardust: the only station on Ashfall Reach. [short pause] [dry] Mostly because the others got shelled.",
+      "fx": "radio"
+    }
+  ]
+}

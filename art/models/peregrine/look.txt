@@ -1,0 +1,13 @@
+The flyer: a fast, light sci-fi one-seat interceptor (the Peregrine), stylised like a hand-painted RTS unit. The pilot is sealed inside, out of sight: no person or face is visible anywhere.
+- Nose: a very long, thin, tapering needle nose of worn silver-grey metal, chipped at the edges, with crisp dark panel lines and rivets; a thin dark gunmetal pitot spike at the very tip.
+- Canopy: a small teardrop canopy of dark smoked glass on top of the body behind the nose, in a thin dark gunmetal frame.
+- Body: a slim silver-grey fuselage behind the canopy with deep blue team paint on the upper panels, thin glowing cyan-blue light strips along the flanks, small dark intake slots at the wing roots, a dark gunmetal keel underneath.
+- Wings: short swept-back wings, deep blue on top with a silver leading edge and a worn white star on each, dark panel lines; each wing tip ends in a small gunmetal tip block with a small red beacon light.
+- Flaps: a deep blue flap along the rear edge of each wing.
+- Missiles: under each wing a short dark gunmetal rail carrying two slim silver missiles with dark tips and small dark fins, pointing forward.
+- Engines: two round dark gunmetal engine nacelles side by side at the back of the body, steel rings round them, chrome exhaust rims, glowing cold blue-white exhaust discs at the back.
+- Tail: two tall, thin tail fins canted outward, deep blue with a silver edge and a dark gunmetal base.
+
+Colour palette: worn silver-grey, deep blue, dark gunmetal, charcoal, chrome, dark smoked glass, glowing cyan-blue strips, glowing cold blue-white exhausts, small red lights.
+
+The views, as stencil.png draws them: FRONT is the fighter head-on, the needle nose pointing straight at the viewer; RIGHT SIDE is a flat side-on profile with the nose on the right; BACK is the rear head-on, the two exhausts facing the viewer; LEFT SIDE is a flat side-on profile with the nose on the left; TOP looks straight down with the nose at the top. These five are flat orthographic views with no perspective. Only the last panel, 3/4, shows the fighter at an angle.

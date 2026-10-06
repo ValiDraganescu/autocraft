@@ -1,0 +1,16 @@
+{
+  "_note": "Flat designed faces unwarped from the painting into their own texture (model.sh decal ranger). Geometry from Models.slab: a face texel (u, v) sits at part-local (depth/2, (0.5 - v) * height, (0.5 - u) * width); the shield plate is 0.28 wide, 0.64 high, 0.035 deep.",
+  "shield": {
+    "path": "0/4/24/3/1",
+    "view": "front",
+    "origin": [0.0175, 0.32, 0.14],
+    "u": [0, 0, -0.28],
+    "v": [0, -0.64, 0],
+    "size": [320, 640],
+    "outline": [[0.5, 1], [0.84, 0.93], [1, 0.66], [0.93, 0.18], [0.5, 0], [0.07, 0.18], [0, 0.66], [0.16, 0.93]],
+    "ring": [0.1, 0.05],
+    "centre": true,
+    "mirror": "right",
+    "texture": "ranger_shield_skin"
+  }
+}

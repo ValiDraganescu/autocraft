@@ -1,0 +1,112 @@
+{
+  "_about": [
+    "Micro simulations for scripts/record.py: one short, staged moment of the game per row, recorded hidden at a fixed step.",
+    "scene: a scene of unreal/Tools/shots/scenes.json (-AcScene=NAME, which adds that table's defaults and the scene's flags).",
+    "flags: the game's own flags, typed before the scene's (the first match wins). The staging flags are documented in their headers:",
+    "  -AcPilot/-AcPilotPath/-AcPilotThird/-AcPilotStage/-AcPilotVariant (AcPilotPawn.h), -AcStageFight/-AcCamAtArmy (AcWorldRenderer.h),",
+    "  -AcOrders/-AcQueue (AcCommandMap.h), -AcHour (AcDaylight), -AcMap, -AcZoom, -AcCamAt, -AcSelect, -AcHover.",
+    "  -AcPilotStage pauses the game after staging: a still. Moving clips use -AcPilot with -AcPilotPath.",
+    "  -AcPilotDiveAt=S takes over S seconds into the recording, so the clip shows the dive from the RTS view into the unit (-AcPilotDive=S its length, 1.2).",
+    "seconds: the clip length; warm: frames rendered before recording (lets TSR, Lumen and exposure settle); width/height/fps: per sim overrides.",
+    "sound: record the game's mix offline into the clip (default true); music: let the game's music play (default true; false adds -AcNoMusic).",
+    "camera: an RTS camera move, -AcCamPath (AcRtsPawn.h): 'T:DX,DZ,PPC;...' with T in clip seconds, DX,DZ cells from the start view, PPC the zoom (points per cell, 0 = the start zoom; about 10 is far, 40 normal, 130 the closest)."
+  ],
+  "defaults": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "seconds": 4,
+    "warm": 60,
+    "flags": [
+      "-AcNew",
+      "-AcNoSave",
+      "-AcShotUI",
+      "-AcHudScale=1",
+      "-AcNoPerfPanel"
+    ],
+    "sound": true,
+    "music": true
+  },
+  "sims": [
+    {
+      "name": "ranger-duel",
+      "flags": [
+        "-AcPilot=ranger",
+        "-AcPilotPath=act:2,w+right:1.5,w:1.5"
+      ],
+      "seconds": 5,
+      "notes": "First person: a Ranger duels the enemy Ranger ahead, loses, and the view drops back to the RTS view over the base."
+    },
+    {
+      "name": "ranger-dive",
+      "flags": [
+        "-AcPilot=ranger",
+        "-AcPilotDiveAt=1",
+        "-AcPilotPath=wait:0.6,w:2.4"
+      ],
+      "seconds": 5,
+      "notes": "The RTS view over the base, then the dive into a Ranger and a short walk in first person."
+    },
+    {
+      "name": "ranger-third-walk",
+      "flags": [
+        "-AcPilot=ranger",
+        "-AcPilotThird",
+        "-AcPilotPath=w:2,w+left:2"
+      ],
+      "seconds": 4,
+      "notes": "Third person: a Ranger walks and turns."
+    },
+    {
+      "name": "comet-drive",
+      "flags": [
+        "-AcPilot=comet",
+        "-AcPilotPath=w:2,w+right:1.5,ability:1"
+      ],
+      "seconds": 5,
+      "notes": "First person: a Comet drives out and uses its ability."
+    },
+    {
+      "name": "prospector-mining",
+      "scene": "pilot-mining",
+      "seconds": 4,
+      "notes": "First person: a Prospector drills Stardust Ore."
+    },
+    {
+      "name": "fight-12",
+      "flags": [
+        "-AcStageFight=12",
+        "-AcCamAtArmy",
+        "-AcNoFog"
+      ],
+      "seconds": 6,
+      "notes": "RTS view: two armies of 12 meet."
+    },
+    {
+      "name": "base-night",
+      "scene": "top-night",
+      "seconds": 4,
+      "notes": "RTS view: the base at night, beacons blinking."
+    },
+    {
+      "name": "fight-12-dive",
+      "flags": [
+        "-AcStageFight=12",
+        "-AcCamAtArmy",
+        "-AcNoFog"
+      ],
+      "camera": "0:-10,6,18;6:0,0,75",
+      "seconds": 6,
+      "notes": "RTS view: the camera sweeps in from afar and dives into the fight."
+    },
+    {
+      "name": "base-flyover",
+      "flags": [
+        "-AcHour=19"
+      ],
+      "camera": "0:-6,0,45;6:6,-4,45",
+      "seconds": 6,
+      "notes": "RTS view: a slow pan across the base at dusk."
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+Paint over the attached image nets.2.painted.png. It is a sheet of the armour parts of the space Ranger in the attached image painted.jpg, its painted turnaround, each part unfolded flat like a cardboard box: the middle square of each cross is the part's front, the squares to its left and right are its right side, left side and back, the square above is its top and the one below is its bottom. Squares that touch share an edge on the real part, so the paint runs on across the fold. Round parts unfold the same way into discs, rings and arcs. Some faces are already painted. All the others are blank grey clay with no detail yet, and each one needs its full paint job.
+
+The surface of each part on this sheet, row by row from the top:
+This sheet holds exactly 48 parts, no more:
+- Top row, 4 from left to right: 1) dark gunmetal plating; 2) dark gunmetal plating; 3) deep blue painted armour plating; 4) deep blue painted armour plating.
+- Second row, 5 from left to right: 1) dark gunmetal plating in horizontal bands; 2) silver armour plating; 3) silver armour plating; 4) dark gunmetal plating; 5) glowing cyan-blue light.
+- Third row, 6 from left to right: 1) glowing cyan-blue light; 2) silver armour plating, dark gunmetal on the two end squares; 3) silver armour plating; 4) gunmetal plating; 5) small silver armour plating; 6) dark gunmetal plating.
+- Fourth row, 8 from left to right: 1) silver armour plating; 2) silver armour plating; 3) silver armour plating; 4) dark gunmetal plating; 5) small dark gunmetal; 6) dark gunmetal; 7) dark gunmetal plating; 8) small glowing cyan-blue light.
+- Fifth row, 13 from left to right: 1) dark gunmetal plating; 2) small gunmetal plating; 3) small bright steel; 4) small dark gunmetal; 5) small bright steel; 6) small bright steel; 7) small silver armour plating; 8) small gunmetal plating; 9) small dark gunmetal plating; 10) small bright steel; 11) small deep blue painted armour plating; 12) tiny glowing cyan-blue light; 13) tiny dark gunmetal.
+- Bottom row, 12 from left to right: 1) tiny dark gunmetal plating; 2) small silver armour plating; 3) tiny glowing cyan-blue light; 4) tiny dark gunmetal plating; 5) small bright steel plating; 6) tiny dark gunmetal plating; 7) tiny dark gunmetal plating; 8) tiny gunmetal; 9) small dark gunmetal plating; 10) tiny glowing cyan-blue light; 11) small dark gunmetal; 12) tiny glowing cyan-blue light.
+
+Every square is one flat face of its part seen straight on, and the crosses stay flat, unfolded boxes. Paint every blank face as a close-up of its armour surface in the exact style of painted.jpg: gritty industrial sci-fi game art, hand-painted unit renders, with crisp dark outlines around every plate, panel lines, deep shading in the seams between plates, bolts, scratches, chipped edges and grime. Every face gets the same density of detail as the painted character: the sides, backs and undersides that the turnaround shows less of get as much as the fronts. Faces that already carry paint are correct: keep them exactly and carry their plates, lines, colours and wear on across the fold into the blank faces beside them. Emblems, lights and vents stay only where they are already painted.
+
+Strict rules:
+- Keep every outline, position and size exactly as drawn. Do not move, resize, add or remove any shape.
+- Paint inside the outlines only. Keep the white background and the black frame. No text, no labels, no background scenery.
+- Lighting: soft, even, diffuse light, like an overcast sky, the same on every face. Metal has a satin finish.

@@ -1,0 +1,22 @@
+# Parts of atlas, written by unreal/Tools/Editor/ac_modelkit.py from models/atlas.py (do not edit).
+# name, parent, pivot in the model frame (UE cm: x forward, y right, z up), what moves it, materials.
+# `_0` is the unit's left (UE -Y), `_1` its right.
+atlas_blue_root -              pivot (   0.0,    0.0,    0.0)  the unit or building transform: position on the ground, heading (yaw = -heading for units) | no mesh
+body           atlas_blue_root pivot (   0.0,    0.0,  160.0)  walk bob and sway of the whole body | hullMid(2),hullDark(1)
+torso          body           pivot (   0.0,    0.0,  182.0)  torso yaw toward the target (3 rad/s) | hullLight(1),team(4),hullDark(27),hullMid(8),soot(2),hazard(5),canopy(1),chrome(28),glowBlue(2)
+vents          torso          pivot ( -58.0,    0.0,  222.0)  heat vents: glow after each volley | ventGlow(14)
+smoke_0        torso          pivot ( -36.0,  -30.0,  298.0)  stack smoke socket: a thin grey plume while it walks and fires | no mesh
+smoke_1        torso          pivot ( -36.0,   30.0,  298.0)  stack smoke socket: a thin grey plume while it walks and fires | no mesh
+searchlight    torso          pivot (  60.0,    0.0,  202.0)  searchlight: on at night, swings with the torso | hullDark(2),chrome(1),floodGlow(1)
+cannons_0      torso          pivot (   0.0,  -42.0,  270.0)  cannon pitch and recoil along the barrel | hullDark(4),hullMid(16),chrome(2)
+cannons_1      torso          pivot (   0.0,   42.0,  270.0)  cannon pitch and recoil along the barrel | hullDark(4),hullMid(16),chrome(2)
+hips_0         body           pivot (   0.0,  -60.0,  150.0)  hip swing of the walk cycle | hullDark(3),hullLight(1),team(1),chrome(1)
+knees_0        hips_0         pivot (  26.0,  -60.0,   88.0)  knee bend of the walk cycle | hullDark(2),hullLight(1),team(2),chrome(1),hullMid(1)
+kneeLamps_0    knees_0        pivot (  26.0,  -78.0,   88.0)  amber knee lamps: pulse with the step and the stomp | glowOrange(2)
+ankles_0       knees_0        pivot (  -2.0,  -60.0,   24.0)  ankle counter-turn of the walk cycle | hullDark(1),hullMid(1)
+feet_0         ankles_0       pivot (  -2.0,  -60.0,   14.0)  foot lift and plant of the walk cycle | hullMid(4),hullDark(5)
+hips_1         body           pivot (   0.0,   60.0,  150.0)  hip swing of the walk cycle | hullDark(3),hullLight(1),team(1),chrome(1)
+knees_1        hips_1         pivot (  26.0,   60.0,   88.0)  knee bend of the walk cycle | hullDark(2),hullLight(1),team(2),chrome(1),hullMid(1)
+kneeLamps_1    knees_1        pivot (  26.0,   78.0,   88.0)  amber knee lamps: pulse with the step and the stomp | glowOrange(2)
+ankles_1       knees_1        pivot (  -2.0,   60.0,   24.0)  ankle counter-turn of the walk cycle | hullDark(1),hullMid(1)
+feet_1         ankles_1       pivot (  -2.0,   60.0,   14.0)  foot lift and plant of the walk cycle | hullMid(4),hullDark(5)

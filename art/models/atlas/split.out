@@ -1,0 +1,18 @@
+painted.jpg: 1248x832, stencil 1536x1024
+IoU: overlap with the stencil as painted, then with the whole figure's drift undone;
+drift: the painting's size against the stencil's (wide, tall) and its offset in model units (right, up)
+view            IoU  fitted     wide   tall  offset
+front          0.97    0.98    -0.0%  -0.2%  +0.003 -0.003
+right          0.96    0.97    -0.5%  -0.2%  -0.003 -0.003
+back           0.97    0.98    -0.7%  -0.5%  -0.000 +0.000
+left           0.97    0.97    -0.3%  +0.0%  +0.003 -0.000
+top            0.72    0.93   +13.6% +18.5%  -0.000 +0.139
+threeQuarter   0.45    0.63   +26.6% +13.3%  +0.588 -0.078
+
+views against each other, model units (stencil in brackets):
+  width (side to side)   front 2.346 (2.241)  back 2.367 (2.241)  top 2.603 (2.241)   spread 11%
+  depth (front to back)  right 2.123 (2.144)  left 2.137 (2.144)  top 2.520 (2.144)   spread 18%
+  height                 front 2.972 (2.979)  right 2.972 (2.979)  back 2.979 (2.979)  left 2.979 (2.979)   spread 0%
+
+wrote art/models/atlas/views/<view>.png, <view>.mask.png, art/models/atlas/compare.png and the texture: skin.jpg, skin_glow.jpg
+prompt: sheet-rules v5.1 (2026-10-05): the rendering line names no other game. v5 (2026-09-30): the images named by their file names ({STENCIL}, and the style reference's in {STYLE}), not by their order; otherwise v4. History and results: PROMPTS.md. — log this painting in PROMPTS.md

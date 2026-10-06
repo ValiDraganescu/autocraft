@@ -1,0 +1,52 @@
+# Parts for the nets legend (model.sh nets): a tree path, spaces, the part's name, a colon, its surface.
+# Only the surface goes to Grok (no object words, see ranger/parts.txt). Paths as in nets.json; the build
+# order is the old Swift Comet model: root 0 the body (0/0 the upper body), 1 and 2 the legs. A twin net
+# takes whichever path is listed. The first material word of the surface picks the tint.
+0/0/0       pelvis: charcoal quilted fabric with stitched seams
+0/0/1       belt: gunmetal plating with a buckle and small pouches
+0/0/2       torso: charcoal quilted fabric with stitched panels
+0/0/3       chest plate: deep blue painted armour plating, chipped edges, panel lines
+0/0/4       belly plate: deep blue painted armour plating, chipped edges
+0/0/5       lower belly plate: deep blue painted armour plating, chipped edges
+0/0/6/0     shoulder plate top: deep blue painted armour plating, chipped edges, rivets
+0/0/6/1     shoulder plate middle: deep blue painted armour plating, chipped edges, rivets
+0/0/6/2     shoulder plate bottom: deep blue painted armour plating, chipped edges, rivets
+0/0/8       neck: charcoal ribbed fabric
+0/0/9       collar: dark gunmetal plating, worn
+0/0/10/0/1  helmet front plate: dark gunmetal plating, satin, fine panel lines and scratches
+0/0/10/0/2  helmet back plate: dark gunmetal plating, satin, fine panel lines and scratches
+0/0/10/0/3  helmet crown plate: dark gunmetal plating, satin, fine panel lines and scratches
+0/0/10/0/4  helmet chin plate: dark gunmetal plating, satin, fine panel lines and scratches
+0/0/10/0/5  helmet right side plate: dark gunmetal plating, satin, fine panel lines and scratches
+0/0/10/0/6  helmet left side plate: dark gunmetal plating, satin, fine panel lines and scratches
+0/0/10/0/7/0 crest ridge: dark gunmetal plating, worn edge
+0/0/10/0/7/1 brow: dark gunmetal plating, heavy, rivets and scratches
+0/0/10/0/7/2 brow: dark gunmetal plating, heavy, rivets and scratches
+0/0/10/0/8  neck guard: dark gunmetal plating, worn
+0/0/10/2    mandible filter: black rubber with ribbed rings
+0/0/10/5    jaw plate: dark gunmetal plating with a slotted grille
+0/0/11      jetpack core: dark gunmetal plating, vents and bolts
+0/0/12      fuel cylinder: gunmetal plating, bands and a small warning stencil
+0/0/13/0    nozzle bell: dark gunmetal plating, heat-stained
+0/0/13/1    nozzle rim: gunmetal plating, scorched
+0/0/16      hinge drum: black rubber
+0/0/17/0    wing case: deep blue painted armour plating, panel lines along its length, worn edges, a thin gunmetal rim; inside dark gunmetal
+0/0/19/0    wing case: deep blue painted armour plating, panel lines along its length, worn edges, a thin gunmetal rim; inside dark gunmetal
+0/0/20/0    shoulder joint: black rubber
+0/0/20/1    upper arm: charcoal quilted fabric
+0/0/20/2    forearm guard: deep blue painted armour plating, chipped edges
+0/0/20/3    glove: black rubber
+0/0/20/4    pistol frame: dark gunmetal plating, worn
+0/0/20/5    pistol side plate: gunmetal plating with a slot
+0/0/20/6    pistol slot: black rubber
+0/0/20/7    pistol slide: gunmetal plating, worn edges
+0/0/20/8    pistol stripe: deep blue painted armour plating
+0/0/20/9    muzzle block: gunmetal plating, scorched
+0/0/20/10   bore: black rubber
+1/0         thigh: charcoal quilted fabric
+1/1         thigh plate: deep blue painted armour plating, chipped edges
+1/2/0       knee pad: deep blue painted armour plating, chipped edges
+1/2/1       shin: charcoal quilted fabric
+1/2/2       shin guard: deep blue painted armour plating, chipped edges
+1/2/3       boot: dark gunmetal plating with a ribbed sole
+1/2/4       toe cap: deep blue painted armour plating, chipped edges

@@ -1,0 +1,16 @@
+The vehicle: a sci-fi anti-air flak half-track (the Hailstorm) built like a wild boar, stylised as gritty industrial sci-fi game art. The crew is sealed inside, out of sight: no person or face is visible anywhere.
+- Armour: worn deep blue team paint on the main armour plates, chipped to bare steel at the edges, crisp panel lines, rivets and bolts, grime in the seams; dark gunmetal on the frame, belly, joints and mechanical parts.
+- Hull (the boar's body): a hunched deep blue armoured hull, wider at the bottom, its flanks sloping in to a dark gunmetal deck under the turret; a row of short dark gunmetal spikes along each upper flank, leaning back and out like bristles; a dark gunmetal belly between the tracks.
+- Snout: a deep blue wedge sloping down to the front, a dark gunmetal brow plate on top, a dark grille in the middle of the front face, and two small glowing amber headlamps at its front corners; a dark gunmetal jaw block under it.
+- Tusks: two curved tusks of pale worn steel, like old ivory, from under the snout's sides, sweeping forward, out and up, scratched and worn bright at the tips.
+- Rear: a gunmetal engine block across the back with a dark grille; two dark gunmetal spikes on the rear deck.
+- Shoulder fenders: a high deep blue armoured fender arching over each front wheel, with a gunmetal rim along its outer edge and a dark inner wall.
+- Front wheels: two big wheels with thick black rubber tyres with deep chunky treads, dark gunmetal hubs and a hexagonal steel hub cap.
+- Track units: a black rubber track loop on each side behind the front wheels, with dark steel cleats, two gunmetal sprocket wheels at its ends, four dark road wheels between them, and a gunmetal guard along its top.
+- Turret: a squat, square dark gunmetal turret on a dark turret ring, a deep blue roof plate and a deep blue armour plate on each side, a gunmetal ammunition box across its back.
+- Flak guns: a dark gunmetal cradle across the turret's front carrying two deep blue gun housings, one each side; out of each housing two gunmetal autocannon barrels stacked one over the other, each with two dark ribbed collars and a dark muzzle brake at the end.
+- Radar: a gunmetal mast at the turret's back with a round gunmetal radar dish tilted forward and up, a small glowing amber lamp at the dish's centre.
+
+Colour palette: deep blue, dark gunmetal, charcoal, black tyres and tracks, pale worn steel tusks, small amber lights.
+
+The views, as stencil.png draws them: FRONT is the vehicle head-on, the snout and tusks pointing straight at the viewer; RIGHT SIDE is a flat side-on profile with the snout on the right; BACK is the rear head-on; LEFT SIDE is a flat side-on profile with the snout on the left; TOP looks straight down with the snout at the top. These five are flat orthographic views with no perspective. Only the last panel, 3/4, shows the vehicle at an angle.

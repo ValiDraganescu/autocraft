@@ -1,0 +1,63 @@
+# Parts for the nets legend (model.sh nets): a tree path, spaces, the part's name, a colon, its surface.
+# Only the surface goes to Grok: material and finish, no object words. A name in the prompt ("rifle receiver",
+# "helmet", "boot") made Grok draw that object over the net (nets v2-v6); the names are for us and netscheck.
+# Paths as in nets.json (child indices from the model's root). A net of twins takes the line of whichever of
+# its paths is listed. The first material word of the surface picks the tint (tint.py, recolour.py).
+0/0         pelvis core: dark gunmetal plating
+0/1         groin plate: silver armour plating
+0/2         hip tasset: silver armour plating
+0/4/0       belly: dark gunmetal plating in horizontal bands
+0/4/1       chest: silver armour plating
+0/4/2       chest light strip: glowing cyan-blue light
+0/4/3       pectoral edge bar: dark gunmetal plating
+0/4/6       backpack: silver armour plating
+0/4/7       backpack light strip: glowing cyan-blue light
+0/4/9       collar base: dark gunmetal plating
+0/4/10      collar plate: silver armour plating
+0/4/17/0    helmet front: silver armour plating
+0/4/17/1    helmet back: silver armour plating
+0/4/18      shoulder ball joint: dark gunmetal plating
+0/4/19/0    left pauldron shell, lowest: deep blue painted armour plating
+0/4/21/0    right pauldron shell, lowest: deep blue painted armour plating
+0/4/19/1    left pauldron shell, middle: deep blue painted armour plating
+0/4/21/1    right pauldron shell, middle: deep blue painted armour plating
+0/4/19/2    left pauldron shell, top: deep blue painted armour plating
+0/4/21/2    right pauldron shell, top: deep blue painted armour plating
+0/4/19/3    left pauldron seam light, lower: glowing cyan-blue light
+0/4/21/3    right pauldron seam light, lower: glowing cyan-blue light
+0/4/19/4    left pauldron seam light, upper: glowing cyan-blue light
+0/4/21/4    right pauldron seam light, upper: glowing cyan-blue light
+0/4/19/5    pauldron under-dome: dark gunmetal plating
+0/4/19/6    pauldron hinge: dark gunmetal plating
+0/4/22/0    upper arm: silver armour plating
+0/4/23      elbow joint: dark gunmetal plating
+0/4/24/0    forearm: silver armour plating, dark gunmetal on the two end squares
+0/4/24/1    fist: dark gunmetal plating
+0/4/24/2    knuckle guard: bright steel plating
+0/4/24/3/0  shield strap: dark gunmetal plating
+0/4/24/3/1  combat shield: dark gunmetal plating
+0/5/2/0     rifle receiver: gunmetal plating
+0/5/2/1     rifle barrel shroud: gunmetal plating
+0/5/2/2     rifle shroud light: glowing cyan-blue light
+0/5/2/4     rifle barrel: dark gunmetal
+0/5/2/5     rifle muzzle brake: gunmetal
+0/5/2/6     rifle under-barrel tube: bright steel
+0/5/2/7     rifle top sight: gunmetal plating
+0/5/2/9     rifle magazine: dark gunmetal plating
+0/5/2/10    rifle pistol grip: dark gunmetal plating
+0/5/2/11    rifle stock: gunmetal plating
+0/5/2/12    rifle butt plate: dark gunmetal plating
+1/0         hip joint: dark gunmetal
+1/1         hip joint cap: bright steel
+1/2         thigh: silver armour plating
+1/3         knee joint: dark gunmetal
+1/4         knee joint cap: bright steel
+1/5         knee plate: deep blue painted armour plating
+1/6         shin: silver armour plating
+1/7         shin light: glowing cyan-blue light
+1/8         shin light: glowing cyan-blue light
+1/9         ankle joint: dark gunmetal
+1/10        ankle joint cap: bright steel
+1/11        boot: dark gunmetal plating
+1/12        sole: dark gunmetal plating
+1/13        sole rib: dark gunmetal

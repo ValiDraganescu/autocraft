@@ -1,0 +1,12 @@
+The crawler: a small sci-fi burrowing mine robot shaped like a scorpion (the Scorpion), stylised like a hand-painted RTS unit. It has no crew.
+- Back plates: a row of overlapping, slightly curved armoured plates down the body, deep blue team paint with worn silver-grey edges, crisp dark panel lines, rivets, scratches, chipped edges and dust; a thin glowing cyan-blue light strip across each plate.
+- Body: a low, flat dark gunmetal body under the plates.
+- Head: a small dark gunmetal head block at the front with a cluster of four small glowing red sensor eyes and two short mandible stubs below them.
+- Pincers: two short arms forward from the head, dark gunmetal, each ending in a deep blue armoured claw with two steel tips.
+- Legs: six thin jointed legs, three each side, dark gunmetal with round steel joint knobs and silver-grey pointed lower legs, dusty at the tips.
+- Tail: four chunky segments rising from the back and arching high over the body, deep blue armour plates on dark gunmetal joints, each segment banded with a thin steel ring.
+- Launcher: at the tail's tip a heavy dark gunmetal launcher tube pointing forward, a thick steel muzzle ring, one dark round bore, and a small glowing red lamp beside it.
+
+Colour palette: deep blue, dark gunmetal, worn silver-grey, charcoal, steel, dust brown, glowing cyan-blue strips, glowing red eyes and lamp.
+
+The views, as stencil.png draws them: FRONT is the crawler head-on, the pincers and eyes facing the viewer and the launcher's bore above them; RIGHT SIDE is a flat side-on profile with the head on the right; BACK is the rear head-on; LEFT SIDE is a flat side-on profile with the head on the left; TOP looks straight down with the head at the top. These five are flat orthographic views with no perspective. Only the last panel, 3/4, shows the crawler at an angle.

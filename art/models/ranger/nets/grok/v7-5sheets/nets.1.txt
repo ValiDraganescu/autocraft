@@ -1,0 +1,23 @@
+sheet 1: nets.1.jpg against nets.1.painted.png
+layout: outline IoU 0.95
+kept: painted faces changed by 14/255 on average, 6% of pixels by more than 40
+painted over: the unpainted faces changed by 64/255 on average, 62% of their pixels by more than 30
+detail (local contrast inside faces): Grok's fill 13.3; turnaround's painted faces 18.5; clay 1.8
+worst layout: left pauldron seam light, lower 0.53; right pauldron seam light, lower 0.55; right pauldron shell, lowest 0.94; rifle receiver 0.94; left pauldron shell, lowest 0.94
+tone inside the faces by the material parts.txt names (mean brightness 0-255):
+  dark gunmetal  Grok  98  turnaround  97  (2 nets, 94-102)
+  blue paint     Grok 160  turnaround  94  (1 nets, 160-160)
+  silver         Grok 174  turnaround 147  (1 nets, 174-174)
+  gunmetal       Grok 179  turnaround  74  (1 nets, 179-179)
+per net: name, material, layout IoU, brightness, local contrast, % of unpainted pixels changed by more than 30
+   4 chest                              silver        0.99   174   6.5    5%
+  14 left pauldron shell, lowest        blue paint    0.94   160   4.2    0%
+  15 left pauldron shell, middle        blue paint    0.95   nan   nan  nan%
+  17 left pauldron seam light, lower    glow          0.53   nan   nan  nan%
+  19 pauldron under-dome                dark gunmetal 0.96    94  19.5   90%
+  21 right pauldron shell, lowest       blue paint    0.94   nan   nan  nan%
+  22 right pauldron shell, middle       blue paint    0.95   nan   nan  nan%
+  24 right pauldron seam light, lower   glow          0.55   nan   nan  nan%
+  32 combat shield                      dark gunmetal 0.96   102   8.1   92%
+  33 rifle receiver                     gunmetal      0.94   179   9.4    3%
+wrote art/models/ranger/nets/grok/v7-5sheets/nets.1.check.png

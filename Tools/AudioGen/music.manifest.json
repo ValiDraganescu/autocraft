@@ -1,0 +1,42 @@
+{
+  "model": "music_v2_5",
+  "out": "unreal/Resources/Sounds/music",
+  "entries": [
+    {
+      "id": "ashfall_reach",
+      "title": "Ashfall Reach",
+      "prompt": "Instrumental, no vocals. Cinematic main theme for a frontier mining colony on a dusty, ash-swept world, where prospectors dig glittering ore and pump a liquid metal that shines like mercury. Orchestral-electronic hybrid: wide strings, warm low brass carrying a bold, memorable melody, glassy synth arpeggios, a pulsing analogue bass, and industrial percussion of hammered metal and rhythmic machinery under steady cinematic drums. Gritty but hopeful, sweeping and wide. Around 100 BPM, in a minor key that lifts toward major in the big statements. Builds from a sparse, windswept intro to the full theme, with a quieter middle section and a confident final statement. No guitars.",
+      "length_ms": 210000
+    },
+    {
+      "id": "prospecting",
+      "title": "Prospecting",
+      "prompt": "Instrumental, no vocals. Calm, slowly building working music for prospectors mining glittering ore and raising a base on a dusty, ash-swept frontier world. Orchestral-electronic hybrid: soft ambient pads, glassy plucked synths in gentle interlocking patterns, a light pulsing analogue bass, soft electronic percussion with distant hammered-metal taps and machinery rhythms, warm low strings and the occasional low brass swell. Steady, unhurried and quietly optimistic, around 90 BPM. Starts minimal and adds layers gradually, never loud or dramatic. No guitars.",
+      "length_ms": 210000
+    },
+    {
+      "id": "night_shift",
+      "title": "Night Shift",
+      "prompt": "Instrumental, no vocals. Dark ambient night music for a frontier mining colony on an ash-swept world, its machines still running in the dark. Sparse and quiet: deep low drones, distant metallic textures, faint echoing hammer strikes and slow machine hums, soft glassy synth tones, a few lonely piano notes with long reverb, and very low muted brass swells far in the background. Slow, still and spacious, with lots of silence and no steady beat. Mysterious and a little uneasy, but calm. No guitars, no drum kit.",
+      "length_ms": 210000
+    },
+    {
+      "id": "rising_pressure",
+      "title": "Rising Pressure",
+      "prompt": "Instrumental, no vocals. Tense, building suspense music for a frontier mining colony on an ash-swept world as a threat draws closer. Orchestral-electronic hybrid: a ticking, clock-like metallic percussion pattern, a pulsing analogue bass ostinato, low string ostinatos that grow and layer over time, glassy synth pulses, dark low brass swells, and industrial textures of distant machinery and hammered metal. Around 115 BPM. Tension rises steadily in waves but never reaches a big climax or release, staying restrained and uneasy throughout. No guitars.",
+      "length_ms": 210000
+    },
+    {
+      "id": "firefight",
+      "title": "Firefight",
+      "prompt": "Instrumental, no vocals. Driving, intense battle music for a frontier colony fighting for its mines on a dusty, ash-swept world. Orchestral-electronic hybrid at around 130 BPM: heavy pounding drums and big low hits, industrial percussion of hammered metal and clanging machinery, an aggressive distorted analogue bass synth, sharp low brass stabs, fast string ostinatos and glassy synth leads. Relentless, urgent and powerful, with short breakdowns that slam back into the full groove. No guitars.",
+      "length_ms": 210000
+    },
+    {
+      "id": "aftermath",
+      "title": "Aftermath",
+      "prompt": "Instrumental, no vocals. Reflective aftermath music for a frontier mining colony after a hard battle, ash drifting over quiet machines on a dusty world. Slow, warm strings and soft glassy synth pads, a gentle melody on solo cello that passes to low brass, a subtle analogue bass pulse, faint distant metallic chimes, and almost no percussion. Around 70 BPM. Begins sombre and weary, then slowly opens into a warm, hopeful resolution. No guitars.",
+      "length_ms": 210000
+    }
+  ]
+}

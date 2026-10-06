@@ -1,0 +1,44 @@
+# Parts for the nets legend (model.sh nets): a tree path, spaces, the part's name, a colon, its surface.
+# Only the surface goes to Grok. Paths as in nets.json; the build order is Models+Kestrel.swift: root 0 the
+# body. Body: 0 fuselage (0 hull, 1 nose, 2 spine, 3 keel, 4-5 intake blocks), 1 canopy (0 glass, own;
+# 1-2 frame bars), 2 wings (left 0 wing, 1 tip block, 2 beacon (own); right 3-5), 3-4 engines left, right
+# (0 nacelle, 1 intake ring, 2 exhaust ring, 3 top strip), 5-6 pods left, right (0 pylon, 1 drum, 2 front
+# collar, 3 rear band, 4-10 tubes), 7 tail (left 0 boom, 1 fin, 2 stabiliser; right 3-5; 6 tailplane).
+# A twin net takes whichever path is listed. The first material word picks the tint.
+0/0/0       hull: silver-grey armour plating with deep blue flank panels, panel lines, rivets, thin glowing cyan-blue strips
+0/0/1       nose: silver-grey armour plating, panel lines, small dark vents and sensor slits
+0/0/2       spine: silver-grey armour plating, panel lines and rivets
+0/0/3       keel: dark gunmetal plating, bolts and grime
+0/0/4       intake block: dark gunmetal plating with vent slats
+0/0/5       intake block: dark gunmetal plating with vent slats
+0/1/1       canopy frame: dark gunmetal metal
+0/1/2       canopy frame: dark gunmetal metal
+0/2/0       wing: silver-grey armour plating with a broad deep blue band, panel lines and rivets
+0/2/1       wing tip block: dark gunmetal plating
+0/2/3       wing: silver-grey armour plating with a broad deep blue band, panel lines and rivets
+0/2/4       wing tip block: dark gunmetal plating
+0/3/0       engine nacelle: dark gunmetal metal banded with steel rings, panel lines
+0/3/1       engine intake ring: steel metal, worn
+0/3/2       engine exhaust ring: dark gunmetal metal, heat-darkened
+0/3/3       engine top strip: deep blue armour plating
+0/4/0       engine nacelle: dark gunmetal metal banded with steel rings, panel lines
+0/4/1       engine intake ring: steel metal, worn
+0/4/2       engine exhaust ring: dark gunmetal metal, heat-darkened
+0/4/3       engine top strip: deep blue armour plating
+0/5/0       pylon: dark gunmetal metal, bolts
+0/5/1       rocket pod drum: dark gunmetal plating, panel lines and rivets
+0/5/2       rocket pod collar: steel metal, worn
+0/5/3       rocket pod band: deep blue armour plating
+0/5/4       rocket tube: dark gunmetal metal, a dark round bore
+0/6/0       pylon: dark gunmetal metal, bolts
+0/6/1       rocket pod drum: dark gunmetal plating, panel lines and rivets
+0/6/2       rocket pod collar: steel metal, worn
+0/6/3       rocket pod band: deep blue armour plating
+0/6/4       rocket tube: dark gunmetal metal, a dark round bore
+0/7/0       tail boom: dark gunmetal metal, panel lines
+0/7/1       fin: silver-grey armour plating with a deep blue tip, panel lines
+0/7/2       stabiliser: deep blue armour plating
+0/7/3       tail boom: dark gunmetal metal, panel lines
+0/7/4       fin: silver-grey armour plating with a deep blue tip, panel lines
+0/7/5       stabiliser: deep blue armour plating
+0/7/6       tailplane: deep blue armour plating, panel lines

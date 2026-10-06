@@ -1,0 +1,23 @@
+Paint over the attached image stencil.png. It is a character turnaround sheet for a 3D game model: six panels (FRONT, RIGHT SIDE, BACK, LEFT SIDE, TOP, 3/4) separated by thick black lines on a white background.
+The attached image style.jpg is the style reference: match its rendering, level of detail, materials, wear and colours as closely as you can. Take every shape, pose and proportion from stencil.png only.
+
+Strict rules:
+- Keep the exact same layout, panel borders, black lines and white background.
+- Keep every silhouette exactly as drawn: same pose, same size, same position, same proportions in every panel. Do not move, resize, add or remove any part. Only paint surface detail, materials and colour inside the existing outlines.
+- All panels show the same single character, so every detail must match between views (a mark on the right shoulder in FRONT must also appear in RIGHT SIDE and TOP).
+- Team colour is blue: paint every team-coloured part in the same deep blue.
+- Rendering: gritty industrial sci-fi game art, hand-painted unit renders, with crisp dark outlines around every plate, deep shading in the seams between plates, and rich wear on every surface.
+- Lighting: soft, even, diffuse light, like an overcast sky, the same in every panel. Metal has a satin finish.
+- No background scenery, no text, no labels, no guide lines: the panel names, the grey header line, the dashed height guides and the ground line are not part of the picture.
+
+The character: a massive, hunched sci-fi heavy assault trooper (the Juggernaut) built like a silverback gorilla, stylised as gritty industrial sci-fi game art. Its face is hidden: no skin or face is visible anywhere.
+- Armour: heavy worn gunmetal grey plating everywhere that is not team paint, chipped and scratched, crisp panel lines, rivets and bolts, grime in the seams.
+- Hump: a huge armoured hump over the back and the top of the head, made of five gunmetal bands arching side to side like an armadillo's, the front band raised into a thick rim over the helmet; a deep, dark hood inside it.
+- Helmet: a rounded gunmetal dome low and forward under the hump's rim, a heavy brow dipping to a V over two narrow, slanted, glowing orange eyes, a grilled face plate with dark vertical slots, and deep blue team cheek plates.
+- Chest: a deep gunmetal chest with two big deep blue team plates on its front and a deep blue curved gorget round the chin; gunmetal belly bands below, a dark pelvis and a deep blue groin plate.
+- Shoulder pads: huge domes over the shoulders in deep blue team paint, worn and chipped to bare steel at the edges, with a raised gunmetal rim along the front and the lower edge and two dark vents on the outside; dark ball joints under them.
+- Arms: long gunmetal upper arms in two segments with a deep blue plate on the outside.
+- Launchers (the forearms): two heavy Punisher grenade launcher tubes in gunmetal, each with two deep blue team sleeves with dark vents, a dark spine on top, a thick gunmetal muzzle collar and a wide black bore; a dark joint drum at the elbow.
+- Legs: short, thick and bowed: gunmetal thighs with a deep blue plate on the front, round gunmetal joint caps at the hips and knees, gunmetal knee guards, deep blue shins, big gunmetal boots with deep blue toe caps on dark ribbed soles.
+
+Colour palette: gunmetal grey, deep blue, dark charcoal, black bores, glowing orange eyes.

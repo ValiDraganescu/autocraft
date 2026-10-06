@@ -1,0 +1,18 @@
+Paint over the attached image nets.4.painted.png. Every grey face on it is blank clay: give each one its full paint job, so every part looks the way it does on the slim beetle raider in the attached image painted.jpg.
+
+nets.4.painted.png is a sheet of box nets. Each net is one armour part of that slim beetle raider, unfolded flat like a cardboard box into a cross: the middle square is the part's front, the squares to its left and right are its right side, left side and back, the square above is its top and the one below is its bottom. Squares that touch share an edge on the real part, so paint runs on across the fold. Round parts unfold into discs, rings and arcs.
+
+The painted faces are finished and set the look of their part: carry their plates, panel lines, colours and wear across each fold into the grey faces beside them, and leave them as they are.
+
+The sheet holds exactly 12 nets. Their surfaces, row by row from the top:
+- Top row, 4 from left to right: 1) large dark gunmetal plating, worn edge; 2) dark gunmetal plating, satin, fine panel lines and scratches; 3) dark gunmetal plating, satin, fine panel lines and scratches; 4) large dark gunmetal plating, satin, fine panel lines and scratches.
+- Second row, 4 from left to right: 1) large dark gunmetal plating, satin, fine panel lines and scratches; 2) dark gunmetal plating with a slotted grille; 3) dark gunmetal plating, heavy, rivets and scratches; 4) dark gunmetal plating, heavy, rivets and scratches.
+- Bottom row, 4 from left to right: 1) large dark gunmetal plating, worn; 2) dark gunmetal plating, satin, fine panel lines and scratches; 3) dark gunmetal plating, satin, fine panel lines and scratches; 4) small black rubber with ribbed rings.
+
+Paint each grey face as a close-up of its armour surface seen straight on, in the style of painted.jpg: gritty industrial sci-fi game art, hand-painted unit renders, with crisp dark outlines around every plate, panel lines, deep shading in the seams between plates, bolts, scratches, chipped edges and grime. The sides, backs and undersides carry as much detail as the fronts. Emblems and lights appear exactly where the painted faces show them.
+
+Light every face the same: soft, even, diffuse light, like an overcast sky, on satin metal.
+
+The layout stays as drawn: each net keeps its outline, position and size, the paint fills each outline exactly, and the white background and black frame stay plain.
+
+Answer with the painted sheet as one image, the same size and layout as nets.4.painted.png.

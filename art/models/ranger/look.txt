@@ -1,0 +1,11 @@
+The character: a hulking sci-fi space Ranger in heavy powered armour, stylised as gritty industrial sci-fi game art.
+- Armour: brushed silver-white metal plates with fine panel lines, small scratches and cracked chipped edges; dark gunmetal joints and under-suit at the hips, knees, elbows and ankles.
+- Helmet: rounded silver dome with a wide glowing gold visor across the front, sunk into a high armoured collar.
+- Pauldrons: huge layered shoulder pads in deep blue team paint, three overlapping plates, thin glowing cyan-blue seams between the plates, a white star on the outer face; the inside of the pads is dark gunmetal.
+- Chest: silver breastplate with a small blue star emblem and two thin glowing blue light strips.
+- Backpack: silver power pack with two vertical glowing blue vents.
+- Legs: silver thigh and shin plates, blue-painted knee plates with a small star, thin glowing blue lines on the shins, heavy dark boots with ribbed soles.
+- Rifle (right hand): chunky gunmetal assault rifle with a long barrel, muzzle brake, under-barrel tube, magazine and a glowing blue channel along the side.
+- Shield (left forearm): tall dark gunmetal elongated-hexagon combat shield with a glowing blue inset border following its outline at an even distance and a white star in the exact middle; the design is left-right symmetric and centred on the plate. The shield hangs upright beside the forearm, its face turned to the left: LEFT SIDE shows the face, FRONT and BACK show only its thin edge, a narrow vertical bar.
+
+Colour palette: silver, gunmetal, deep blue, glowing cyan-blue, gold visor.

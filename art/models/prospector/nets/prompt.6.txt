@@ -1,0 +1,18 @@
+Paint over the attached image nets.6.painted.png. Every grey face on it is blank clay: give each one its full paint job, so every part looks the way it does on the sealed mining walker in the attached image painted.jpg.
+
+nets.6.painted.png is a sheet of box nets. Each net is one armour part of that sealed mining walker, unfolded flat like a cardboard box into a cross: the middle square is the part's front, the squares to its left and right are its right side, left side and back, the square above is its top and the one below is its bottom. Squares that touch share an edge on the real part, so paint runs on across the fold. Round parts unfold into discs, rings and arcs.
+
+The painted faces are finished and set the look of their part: carry their plates, panel lines, colours and wear across each fold into the grey faces beside them, and leave them as they are.
+
+The sheet holds exactly 11 nets. Their surfaces, row by row from the top:
+- Top row, 2 from left to right: 1) large hazard yellow and black striped paint; 2) dark gunmetal.
+- Second row, 4 from left to right: 1) bright steel; 2) large glowing warm-white light; 3) hazard yellow paint; 4) large bright steel.
+- Bottom row, 5 from left to right: 1) dark gunmetal; 2) bright steel; 3) dark gunmetal; 4) glowing amber light; 5) large dark gunmetal.
+
+Paint each grey face as a close-up of its armour surface seen straight on, in the style of painted.jpg: gritty industrial sci-fi game art, hand-painted unit renders, with crisp dark outlines around every plate, panel lines, deep shading in the seams between plates, bolts, scratches, chipped edges and grime. The sides, backs and undersides carry as much detail as the fronts. Emblems and lights appear exactly where the painted faces show them.
+
+Light every face the same: soft, even, diffuse light, like an overcast sky, on satin metal.
+
+The layout stays as drawn: each net keeps its outline, position and size, the paint fills each outline exactly, and the white background and black frame stay plain.
+
+Answer with the painted sheet as one image, the same size and layout as nets.6.painted.png.

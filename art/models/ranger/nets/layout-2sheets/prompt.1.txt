@@ -1,0 +1,14 @@
+Paint over the attached image nets.1.painted.png. It is a sheet of the armour parts of the space Ranger in the attached image painted.jpg, its painted turnaround, each part unfolded flat like a cardboard box: the middle square of each cross is the part's front, the squares to its left and right are its right side, left side and back, the square above is its top and the one below is its bottom. Squares that touch share an edge on the real part, so the paint runs on across the fold. Round parts unfold the same way into discs, rings and arcs. Some faces are already painted. All the others are blank grey clay with no detail yet, and each one needs its full paint job.
+
+The surface of each part on this sheet, row by row from the top:
+This sheet holds exactly 10 parts, no more:
+- Top row, 3 from left to right: 1) large dark gunmetal plating; 2) large silver armour plating; 3) large deep blue painted armour plating.
+- Second row, 3 from left to right: 1) large deep blue painted armour plating; 2) large deep blue painted armour plating; 3) large deep blue painted armour plating.
+- Bottom row, 4 from left to right: 1) dark gunmetal plating; 2) gunmetal plating; 3) large glowing cyan-blue light; 4) large glowing cyan-blue light.
+
+Every square is one flat face of its part seen straight on, and the crosses stay flat, unfolded boxes. Paint every blank face as a close-up of its armour surface in the exact style of painted.jpg: gritty industrial sci-fi game art, hand-painted unit renders, with crisp dark outlines around every plate, panel lines, deep shading in the seams between plates, bolts, scratches, chipped edges and grime. Every face gets the same density of detail as the painted character: the sides, backs and undersides that the turnaround shows less of get as much as the fronts. Faces that already carry paint are correct: keep them exactly and carry their plates, lines, colours and wear on across the fold into the blank faces beside them. Emblems, lights and vents stay only where they are already painted.
+
+Strict rules:
+- Keep every outline, position and size exactly as drawn. Do not move, resize, add or remove any shape.
+- Paint inside the outlines only. Keep the white background and the black frame. No text, no labels, no background scenery.
+- Lighting: soft, even, diffuse light, like an overcast sky, the same on every face. Metal has a satin finish.

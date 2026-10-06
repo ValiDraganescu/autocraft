@@ -1,0 +1,1190 @@
+{
+ "_about": [
+  "F2 reference scenes: one row per Swift `windowshot` scene and its Unreal twin.",
+  "Read by Source/Autocraft/AcShotScenes.cpp (-AcScene=NAME) and Tools/shots/compare.py.",
+  "map: style-size (Swift --map/--size, Unreal -AcMap); zoom/at: Swift --zoom/--at, Unreal -AcZoom/-AcCamAt;",
+  "warm: Swift --warm, Unreal -AcWarm; still: Unreal -AcPaused after the warm (Swift's picture is a still);",
+  "frames: Unreal -AcShotFrames; env: the Swift run's environment; ue: null = no Unreal staging yet;",
+  "owners: the chunks that own what the scene shows (GAME-LAYER.md section 4)."
+ ],
+ "defaults": {
+  "map": "highlands-medium",
+  "width": 1600,
+  "height": 1000,
+  "warm": 10,
+  "still": false,
+  "frames": 90,
+  "ue": [
+   "-AcNew",
+   "-AcNoSave",
+   "-AcShotUI",
+   "-AcHudScale=1",
+   "-AcMusicSample"
+  ]
+ },
+ "scenes": [
+  {
+   "name": "top",
+   "group": "top-down",
+   "swift": [],
+   "ue": [],
+   "owners": [
+    "A2",
+    "A3",
+    "B8",
+    "B9",
+    "B10",
+    "D1",
+    "D2",
+    "D3",
+    "D7",
+    "D9"
+   ],
+   "notes": "The opening view of a new game, 10 s in.",
+   "still": true
+  },
+  {
+   "name": "top-badlands",
+   "group": "top-down",
+   "swift": [],
+   "ue": [],
+   "owners": [
+    "A2",
+    "A3",
+    "B1",
+    "B8",
+    "B10"
+   ],
+   "map": "badlands-large",
+   "zoom": 40,
+   "still": true
+  },
+  {
+   "name": "top-far",
+   "group": "top-down",
+   "swift": [],
+   "ue": [],
+   "owners": [
+    "A2",
+    "A3",
+    "B8",
+    "B10",
+    "D6"
+   ],
+   "notes": "Fully zoomed out (the zoom clamps to the map).",
+   "zoom": 1,
+   "still": true
+  },
+  {
+   "name": "top-dusk",
+   "group": "top-down",
+   "swift": [],
+   "ue": [
+    "-AcHour=19"
+   ],
+   "owners": [
+    "B9",
+    "C6"
+   ],
+   "env": {
+    "AUTOCRAFT_HOUR": "19"
+   },
+   "still": true
+  },
+  {
+   "name": "top-night",
+   "group": "top-down",
+   "swift": [],
+   "ue": [
+    "-AcHour=23"
+   ],
+   "owners": [
+    "B9",
+    "C6"
+   ],
+   "env": {
+    "AUTOCRAFT_HOUR": "23"
+   },
+   "still": true
+  },
+  {
+   "name": "top-night-beacon",
+   "group": "top-down",
+   "swift": [],
+   "ue": [
+    "-AcHour=23"
+   ],
+   "owners": [
+    "B6",
+    "C6"
+   ],
+   "notes": "The night base 9.7 s in, when every beacon is lit (fmod(t, 1.2) <= 0.25): the red beacon light on the roofs.",
+   "env": {
+    "AUTOCRAFT_HOUR": "23"
+   },
+   "warm": 9.7,
+   "still": true
+  },
+  {
+   "name": "top-nofog",
+   "group": "top-down",
+   "swift": [],
+   "ue": [
+    "-AcNoFog"
+   ],
+   "owners": [
+    "A2",
+    "B8",
+    "B10",
+    "D7"
+   ],
+   "env": {
+    "AUTOCRAFT_FOG": "off"
+   },
+   "still": true
+  },
+  {
+   "name": "top-1080",
+   "group": "top-down",
+   "swift": [],
+   "ue": [],
+   "owners": [
+    "A3"
+   ],
+   "notes": "A3 framing at 16:9.",
+   "width": 1920,
+   "height": 1080,
+   "still": true
+  },
+  {
+   "name": "top-ultrawide",
+   "group": "top-down",
+   "swift": [],
+   "ue": [],
+   "owners": [
+    "A3"
+   ],
+   "notes": "A3 framing at 5120x1378 (3.7:1).",
+   "width": 5120,
+   "height": 1378,
+   "still": true
+  },
+  {
+   "name": "select-citadel",
+   "group": "top-down",
+   "swift": [
+    "--select",
+    "citadel"
+   ],
+   "ue": [
+    "-AcSelect=citadel"
+   ],
+   "owners": [
+    "D2",
+    "D3",
+    "D4",
+    "D5"
+   ],
+   "still": true
+  },
+  {
+   "name": "hover-prospector",
+   "group": "top-down",
+   "swift": [
+    "--hover",
+    "prospector"
+   ],
+   "ue": [
+    "-AcHover=prospector"
+   ],
+   "owners": [
+    "D4"
+   ],
+   "map": "badlands-large",
+   "zoom": 40,
+   "still": true
+  },
+  {
+   "name": "hover-citadel",
+   "group": "top-down",
+   "swift": [
+    "--hover",
+    "citadel"
+   ],
+   "ue": [
+    "-AcHover=citadel"
+   ],
+   "owners": [
+    "D4"
+   ],
+   "map": "badlands-large",
+   "zoom": 40,
+   "still": true
+  },
+  {
+   "name": "click-citadel",
+   "group": "top-down",
+   "swift": [
+    "--click",
+    "citadel"
+   ],
+   "ue": [
+    "-AcClick=citadel"
+   ],
+   "owners": [
+    "D4",
+    "D5"
+   ],
+   "map": "badlands-large",
+   "zoom": 40,
+   "still": true
+  },
+  {
+   "name": "music-paused",
+   "group": "top-down",
+   "swift": [],
+   "ue": [
+    "-AcMusicSample=paused"
+   ],
+   "owners": [
+    "D9"
+   ],
+   "env": {
+    "AUTOCRAFT_MUSIC": "paused"
+   },
+   "still": true
+  },
+  {
+   "name": "music-ad",
+   "group": "top-down",
+   "swift": [],
+   "ue": [
+    "-AcMusicSample=ad"
+   ],
+   "owners": [
+    "D9"
+   ],
+   "env": {
+    "AUTOCRAFT_MUSIC": "ad"
+   },
+   "still": true
+  },
+  {
+   "name": "command-map",
+   "group": "command-map",
+   "swift": [
+    "--command-map"
+   ],
+   "ue": [
+    "-AcCommandMap"
+   ],
+   "owners": [
+    "D8"
+   ],
+   "still": true,
+   "frames": 240
+  },
+  {
+   "name": "orders",
+   "group": "command-map",
+   "swift": [
+    "--orders"
+   ],
+   "ue": [
+    "-AcOrders"
+   ],
+   "owners": [
+    "D8"
+   ],
+   "still": true,
+   "frames": 240
+  },
+  {
+   "name": "orders-site",
+   "group": "command-map",
+   "swift": [
+    "--orders",
+    "site"
+   ],
+   "ue": [
+    "-AcOrders=site"
+   ],
+   "owners": [
+    "D8"
+   ],
+   "still": true,
+   "frames": 240
+  },
+  {
+   "name": "orders-queue",
+   "group": "command-map",
+   "swift": [
+    "--orders",
+    "--queue"
+   ],
+   "ue": [
+    "-AcOrders",
+    "-AcQueue"
+   ],
+   "owners": [
+    "D8"
+   ],
+   "still": true,
+   "frames": 240
+  },
+  {
+   "name": "level-cards",
+   "group": "leveling",
+   "swift": [
+    "--pilot",
+    "ore",
+    "--level",
+    "prospector:4",
+    "--picks",
+    "1"
+   ],
+   "ue": [
+    "-AcPilot=prospector",
+    "-AcPilotStage",
+    "-AcLevel=prospector:4",
+    "-AcPicks=1"
+   ],
+   "owners": [
+    "E9",
+    "E6"
+   ]
+  },
+  {
+   "name": "level-up",
+   "group": "leveling",
+   "swift": [
+    "--pilot",
+    "ore",
+    "--level",
+    "prospector:4",
+    "--picks",
+    "1",
+    "--levelup"
+   ],
+   "ue": [
+    "-AcPilot=prospector",
+    "-AcPilotStage",
+    "-AcLevel=prospector:4",
+    "-AcPicks=1",
+    "-AcLevelUp"
+   ],
+   "owners": [
+    "E9",
+    "E6"
+   ]
+  },
+  {
+   "name": "level-map",
+   "group": "leveling",
+   "swift": [
+    "--command-map",
+    "--level",
+    "prospector:4,ranger:3",
+    "--picks",
+    "1"
+   ],
+   "ue": [
+    "-AcCommandMap",
+    "-AcLevel=prospector:4,ranger:3",
+    "-AcPicks=1"
+   ],
+   "owners": [
+    "E9",
+    "D8"
+   ],
+   "still": true,
+   "frames": 240
+  },
+  {
+   "name": "pilot-ore",
+   "group": "pilot",
+   "swift": [
+    "--pilot",
+    "ore"
+   ],
+   "ue": [
+    "-AcPilot=prospector",
+    "-AcPilotStage"
+   ],
+   "owners": [
+    "E2",
+    "E5",
+    "E6",
+    "B8"
+   ]
+  },
+  {
+   "name": "pilot-mining",
+   "group": "pilot",
+   "swift": [
+    "--pilot",
+    "mining"
+   ],
+   "ue": [
+    "-AcPilot=prospector",
+    "-AcPilotStage",
+    "-AcPilotRun=2",
+    "-AcPilotFor=3"
+   ],
+   "owners": [
+    "E2",
+    "E5",
+    "E6",
+    "C3"
+   ],
+   "notes": "Unreal drills 2 s of real play (E6's -AcPilotRun); Swift steps 60 frames at 1/30."
+  },
+  {
+   "name": "pilot-citadel",
+   "group": "pilot",
+   "swift": [
+    "--pilot",
+    "citadel"
+   ],
+   "ue": [
+    "-AcPilot=prospector",
+    "-AcPilotStage",
+    "-AcPilotVariant=citadel"
+   ],
+   "owners": [
+    "E2",
+    "E4",
+    "E5",
+    "E6"
+   ]
+  },
+  {
+   "name": "pilot-wide",
+   "group": "pilot",
+   "swift": [
+    "--pilot",
+    "wide"
+   ],
+   "ue": [
+    "-AcPilot=prospector",
+    "-AcPilotStage",
+    "-AcPilotVariant=wide"
+   ],
+   "owners": [
+    "E2",
+    "E4",
+    "E5",
+    "E6"
+   ]
+  },
+  {
+   "name": "pilot-enemy",
+   "group": "pilot",
+   "swift": [
+    "--pilot",
+    "enemy"
+   ],
+   "ue": [
+    "-AcPilot=prospector",
+    "-AcPilotStage",
+    "-AcPilotVariant=enemy"
+   ],
+   "owners": [
+    "E2",
+    "E4",
+    "E5",
+    "E6"
+   ]
+  },
+  {
+   "name": "pilot-build",
+   "group": "pilot",
+   "swift": [
+    "--pilot",
+    "build"
+   ],
+   "ue": [
+    "-AcPilot=prospector",
+    "-AcPilotPath=wait:0.5",
+    "-AcPilotFor=1.5",
+    "-AcPilotBuild=build"
+   ],
+   "owners": [
+    "E8",
+    "E6"
+   ],
+   "notes": "E8's stage: Garrison held on the Citadel's open side."
+  },
+  {
+   "name": "pilot-menu",
+   "group": "pilot",
+   "swift": [
+    "--pilot",
+    "menu"
+   ],
+   "ue": [
+    "-AcPilot=prospector",
+    "-AcPilotPath=wait:0.5",
+    "-AcPilotFor=1.5",
+    "-AcPilotBuild=menu"
+   ],
+   "owners": [
+    "E8",
+    "E6"
+   ]
+  },
+  {
+   "name": "pilot-ranger",
+   "group": "pilot",
+   "swift": [
+    "--pilot",
+    "ranger"
+   ],
+   "ue": [
+    "-AcPilot=ranger",
+    "-AcPilotStage"
+   ],
+   "owners": [
+    "E2",
+    "E4",
+    "E5",
+    "E6"
+   ]
+  },
+  {
+   "name": "pilot-comet",
+   "group": "pilot",
+   "swift": [
+    "--pilot",
+    "comet"
+   ],
+   "ue": [
+    "-AcPilot=comet",
+    "-AcPilotStage"
+   ],
+   "owners": [
+    "E2",
+    "E4",
+    "E5",
+    "E6"
+   ]
+  },
+  {
+   "name": "pilot-juggernaut",
+   "group": "pilot",
+   "swift": [
+    "--pilot",
+    "juggernaut"
+   ],
+   "ue": [
+    "-AcPilot=juggernaut",
+    "-AcPilotStage"
+   ],
+   "owners": [
+    "E2",
+    "E4",
+    "E5",
+    "E6"
+   ]
+  },
+  {
+   "name": "pilot-firefly",
+   "group": "pilot",
+   "swift": [
+    "--pilot",
+    "firefly"
+   ],
+   "ue": [
+    "-AcPilot=firefly",
+    "-AcPilotStage"
+   ],
+   "owners": [
+    "E2",
+    "E4",
+    "E5",
+    "E6"
+   ]
+  },
+  {
+   "name": "pilot-longbow",
+   "group": "pilot",
+   "swift": [
+    "--pilot",
+    "longbow"
+   ],
+   "ue": [
+    "-AcPilot=longbow",
+    "-AcPilotStage"
+   ],
+   "owners": [
+    "E2",
+    "E4",
+    "E5",
+    "E6"
+   ]
+  },
+  {
+   "name": "pilot-dropship",
+   "group": "pilot",
+   "swift": [
+    "--pilot",
+    "dropship"
+   ],
+   "ue": [
+    "-AcPilot=dropship",
+    "-AcPilotStage"
+   ],
+   "owners": [
+    "E2",
+    "E4",
+    "E5",
+    "E6"
+   ]
+  },
+  {
+   "name": "pilot-kestrel",
+   "group": "pilot",
+   "swift": [
+    "--pilot",
+    "kestrel"
+   ],
+   "ue": [
+    "-AcPilot=kestrel",
+    "-AcPilotStage"
+   ],
+   "owners": [
+    "E2",
+    "E4",
+    "E5",
+    "E6"
+   ]
+  },
+  {
+   "name": "pilot-hailstorm",
+   "group": "pilot",
+   "swift": [
+    "--pilot",
+    "hailstorm"
+   ],
+   "ue": [
+    "-AcPilot=hailstorm",
+    "-AcPilotStage"
+   ],
+   "owners": [
+    "E2",
+    "E4",
+    "E5",
+    "E6"
+   ]
+  },
+  {
+   "name": "pilot-ranger-fire",
+   "group": "pilot",
+   "swift": [
+    "--pilot",
+    "ranger-fire"
+   ],
+   "ue": [
+    "-AcPilot=ranger",
+    "-AcPilotStage",
+    "-AcPilotVariant=fire"
+   ],
+   "owners": [
+    "E2",
+    "E4",
+    "E5",
+    "E6"
+   ]
+  },
+  {
+   "name": "pilot-ranger-far",
+   "group": "pilot",
+   "swift": [
+    "--pilot",
+    "ranger-far"
+   ],
+   "ue": [
+    "-AcPilot=ranger",
+    "-AcPilotStage",
+    "-AcPilotVariant=far"
+   ],
+   "owners": [
+    "E2",
+    "E4",
+    "E5",
+    "E6"
+   ]
+  },
+  {
+   "name": "pilot-ranger-miss",
+   "group": "pilot",
+   "swift": [
+    "--pilot",
+    "ranger-miss"
+   ],
+   "ue": [
+    "-AcPilot=ranger",
+    "-AcPilotStage",
+    "-AcPilotVariant=miss"
+   ],
+   "owners": [
+    "E2",
+    "E4",
+    "E5",
+    "E6"
+   ]
+  },
+  {
+   "name": "pilot-ranger-minigun",
+   "group": "pilot",
+   "swift": [
+    "--pilot",
+    "ranger-minigun"
+   ],
+   "ue": [
+    "-AcPilot=ranger",
+    "-AcPilotStage",
+    "-AcPilotVariant=minigun"
+   ],
+   "owners": [
+    "E2",
+    "E4",
+    "E5",
+    "E6"
+   ]
+  },
+  {
+   "name": "pilot-ranger-minigun-fire",
+   "group": "pilot",
+   "swift": [
+    "--pilot",
+    "ranger-minigun+fire"
+   ],
+   "ue": [
+    "-AcPilot=ranger",
+    "-AcPilotStage",
+    "-AcPilotVariant=minigun+fire"
+   ],
+   "owners": [
+    "E2",
+    "E4",
+    "E5",
+    "E6"
+   ]
+  },
+  {
+   "name": "pilot-comet-fire",
+   "group": "pilot",
+   "swift": [
+    "--pilot",
+    "comet-fire"
+   ],
+   "ue": [
+    "-AcPilot=comet",
+    "-AcPilotStage",
+    "-AcPilotVariant=fire"
+   ],
+   "owners": [
+    "E2",
+    "E4",
+    "E5",
+    "E6"
+   ]
+  },
+  {
+   "name": "pilot-comet-jump",
+   "group": "pilot",
+   "swift": [
+    "--pilot",
+    "comet-jump"
+   ],
+   "ue": [
+    "-AcPilot=comet",
+    "-AcPilotStage",
+    "-AcPilotVariant=jump"
+   ],
+   "owners": [
+    "E2",
+    "E4",
+    "E5",
+    "E6"
+   ]
+  },
+  {
+   "name": "pilot-juggernaut-fire",
+   "group": "pilot",
+   "swift": [
+    "--pilot",
+    "juggernaut-fire"
+   ],
+   "ue": [
+    "-AcPilot=juggernaut",
+    "-AcPilotStage",
+    "-AcPilotVariant=fire"
+   ],
+   "owners": [
+    "E2",
+    "E4",
+    "E5",
+    "E6"
+   ]
+  },
+  {
+   "name": "pilot-firefly-fire",
+   "group": "pilot",
+   "swift": [
+    "--pilot",
+    "firefly-fire"
+   ],
+   "ue": [
+    "-AcPilot=firefly",
+    "-AcPilotStage",
+    "-AcPilotVariant=fire"
+   ],
+   "owners": [
+    "E2",
+    "E4",
+    "E5",
+    "E6"
+   ]
+  },
+  {
+   "name": "pilot-longbow-fire",
+   "group": "pilot",
+   "swift": [
+    "--pilot",
+    "longbow-fire"
+   ],
+   "ue": [
+    "-AcPilot=longbow",
+    "-AcPilotStage",
+    "-AcPilotVariant=fire"
+   ],
+   "owners": [
+    "E2",
+    "E4",
+    "E5",
+    "E6"
+   ]
+  },
+  {
+   "name": "pilot-longbow-anchored",
+   "group": "pilot",
+   "swift": [
+    "--pilot",
+    "longbow-anchored"
+   ],
+   "ue": [
+    "-AcPilot=longbow",
+    "-AcPilotStage",
+    "-AcPilotVariant=anchored"
+   ],
+   "owners": [
+    "E2",
+    "E4",
+    "E5",
+    "E6"
+   ]
+  },
+  {
+   "name": "pilot-longbow-anchoring",
+   "group": "pilot",
+   "swift": [
+    "--pilot",
+    "longbow-anchoring"
+   ],
+   "ue": [
+    "-AcPilot=longbow",
+    "-AcPilotStage",
+    "-AcPilotVariant=anchoring"
+   ],
+   "owners": [
+    "E2",
+    "E4",
+    "E5",
+    "E6"
+   ]
+  },
+  {
+   "name": "pilot-longbow-close",
+   "group": "pilot",
+   "swift": [
+    "--pilot",
+    "longbow-close"
+   ],
+   "ue": [
+    "-AcPilot=longbow",
+    "-AcPilotStage",
+    "-AcPilotVariant=close"
+   ],
+   "owners": [
+    "E2",
+    "E4",
+    "E5",
+    "E6"
+   ]
+  },
+  {
+   "name": "pilot-dropship-heal",
+   "group": "pilot",
+   "swift": [
+    "--pilot",
+    "dropship-heal"
+   ],
+   "ue": [
+    "-AcPilot=dropship",
+    "-AcPilotStage",
+    "-AcPilotVariant=heal"
+   ],
+   "owners": [
+    "E2",
+    "E4",
+    "E5",
+    "E6"
+   ]
+  },
+  {
+   "name": "pilot-dropship-cargo",
+   "group": "pilot",
+   "swift": [
+    "--pilot",
+    "dropship-cargo"
+   ],
+   "ue": [
+    "-AcPilot=dropship",
+    "-AcPilotStage",
+    "-AcPilotVariant=cargo"
+   ],
+   "owners": [
+    "E2",
+    "E4",
+    "E5",
+    "E6"
+   ]
+  },
+  {
+   "name": "pilot-kestrel-fire",
+   "group": "pilot",
+   "swift": [
+    "--pilot",
+    "kestrel-fire"
+   ],
+   "ue": [
+    "-AcPilot=kestrel",
+    "-AcPilotStage",
+    "-AcPilotVariant=fire"
+   ],
+   "owners": [
+    "E2",
+    "E4",
+    "E5",
+    "E6"
+   ]
+  },
+  {
+   "name": "pilot-hailstorm-fire",
+   "group": "pilot",
+   "swift": [
+    "--pilot",
+    "hailstorm-fire"
+   ],
+   "ue": [
+    "-AcPilot=hailstorm",
+    "-AcPilotStage",
+    "-AcPilotVariant=fire"
+   ],
+   "owners": [
+    "E2",
+    "E4",
+    "E5",
+    "E6"
+   ]
+  },
+  {
+   "name": "third-ore",
+   "group": "third",
+   "swift": [
+    "--pilot",
+    "ore",
+    "--third"
+   ],
+   "ue": [
+    "-AcPilot=prospector",
+    "-AcPilotStage",
+    "-AcPilotThird"
+   ],
+   "owners": [
+    "E3",
+    "E2"
+   ]
+  },
+  {
+   "name": "third-ranger",
+   "group": "third",
+   "swift": [
+    "--pilot",
+    "ranger",
+    "--third"
+   ],
+   "ue": [
+    "-AcPilot=ranger",
+    "-AcPilotStage",
+    "-AcPilotThird"
+   ],
+   "owners": [
+    "E3",
+    "E2"
+   ]
+  },
+  {
+   "name": "third-comet",
+   "group": "third",
+   "swift": [
+    "--pilot",
+    "comet",
+    "--third"
+   ],
+   "ue": [
+    "-AcPilot=comet",
+    "-AcPilotStage",
+    "-AcPilotThird"
+   ],
+   "owners": [
+    "E3",
+    "E2"
+   ]
+  },
+  {
+   "name": "third-longbow",
+   "group": "third",
+   "swift": [
+    "--pilot",
+    "longbow",
+    "--third"
+   ],
+   "ue": [
+    "-AcPilot=longbow",
+    "-AcPilotStage",
+    "-AcPilotThird"
+   ],
+   "owners": [
+    "E3",
+    "E2"
+   ]
+  },
+  {
+   "name": "third-dropship",
+   "group": "third",
+   "swift": [
+    "--pilot",
+    "dropship",
+    "--third"
+   ],
+   "ue": [
+    "-AcPilot=dropship",
+    "-AcPilotStage",
+    "-AcPilotThird"
+   ],
+   "owners": [
+    "E3",
+    "E2"
+   ]
+  },
+  {
+   "name": "playground",
+   "group": "playground",
+   "swift": [
+    "--playground"
+   ],
+   "ue": [
+    "-AcPlayground",
+    "-AcPlaygroundLayout"
+   ],
+   "owners": [
+    "F5"
+   ],
+   "playground": true,
+   "at": [
+    0,
+    0
+   ],
+   "still": true
+  },
+  {
+   "name": "playground-citadel",
+   "group": "playground",
+   "swift": [
+    "--playground",
+    "--holding",
+    "citadel"
+   ],
+   "ue": [
+    "-AcPlayground",
+    "-AcPlaygroundLayout",
+    "-AcPlaygroundHold=citadel",
+    "-AcPlaygroundAt=0,-2"
+   ],
+   "owners": [
+    "F5",
+    "E8"
+   ],
+   "playground": true,
+   "at": [
+    0,
+    0
+   ],
+   "still": true
+  },
+  {
+   "name": "playground-garrison",
+   "group": "playground",
+   "swift": [
+    "--playground",
+    "--holding",
+    "garrison"
+   ],
+   "ue": [
+    "-AcPlayground",
+    "-AcPlaygroundLayout",
+    "-AcPlaygroundHold=garrison",
+    "-AcPlaygroundAt=0,-2"
+   ],
+   "owners": [
+    "F5",
+    "E8"
+   ],
+   "notes": "Swift refuses a Garrison here (no Hab Dome nearby): red hologram.",
+   "playground": true,
+   "at": [
+    0,
+    0
+   ],
+   "still": true
+  },
+  {
+   "name": "playground-drive",
+   "group": "playground",
+   "swift": [
+    "--playground",
+    "--drive",
+    "ranger"
+   ],
+   "ue": [
+    "-AcPlayground",
+    "-AcPlaygroundLayout",
+    "-AcPilot=ranger",
+    "-AcPilotPath=wait:0.3",
+    "-AcPilotYaw=0"
+   ],
+   "owners": [
+    "F5",
+    "E2"
+   ],
+   "playground": true,
+   "at": [
+    0,
+    0
+   ]
+  }
+ ]
+}

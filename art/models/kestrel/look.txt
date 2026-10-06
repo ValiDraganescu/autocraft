@@ -1,0 +1,13 @@
+The flyer: a fast sci-fi two-seat rocket gunship (the Kestrel), stylised as gritty industrial sci-fi game art. The crew is sealed inside, out of sight: no person or face is visible anywhere.
+- Armour: worn silver-grey metal plates, chipped at the edges, crisp dark panel lines, rivets and bolts, grime in the seams; deep blue team paint in broad bands on the plates; dark gunmetal on the engines, the keel and the mechanical parts. Thin glowing cyan-blue light strips along the hull's flanks, like the space Ranger's.
+- Nose: a long tapering silver nose, a deep blue band along each side of it, small dark vents and sensor slits near the tip, a dark gunmetal chin underneath.
+- Canopy: a long tandem bubble of dark smoked glass over two seats, in a dark gunmetal frame with one cross bar.
+- Hull: a chunky faceted silver hull behind the canopy with deep blue flank panels and cyan strips, a raised silver spine down the back, a dark gunmetal keel underneath, and a dark gunmetal intake block with vent slats on each flank under the wing roots.
+- Wings: short straight wings, a little swept, silver with a broad deep blue band across each; a gunmetal tip block with a small red beacon light at its front.
+- Engines: two long dark gunmetal jet nacelles riding on the wing roots beside the hull, banded with steel rings, a steel intake ring at the front, a deep blue armour strip along the top, glowing orange exhausts at the back.
+- Rocket pods: one fat gunmetal rocket pod slung under each wing on a short pylon, a drum of seven rocket tubes, their round dark bores facing straight forward in a thick steel collar, a deep blue band round the back.
+- Tail: two thin gunmetal booms running back from under the engines to two tall silver fins canted slightly outward, joined by a deep blue tailplane between the fins, and a small deep blue stabiliser outboard at the foot of each fin.
+
+Colour palette: worn silver-grey, deep blue, dark gunmetal, charcoal, dark smoked glass, glowing cyan-blue strips, glowing orange exhausts, small red lights.
+
+The views, as stencil.png draws them: FRONT is the gunship head-on, the nose pointing straight at the viewer and the two pods' seven bores facing the viewer; RIGHT SIDE is a flat side-on profile with the nose on the right; BACK is the rear head-on, the exhausts facing the viewer; LEFT SIDE is a flat side-on profile with the nose on the left; TOP looks straight down with the nose at the top. These five are flat orthographic views with no perspective. Only the last panel, 3/4, shows the gunship at an angle.

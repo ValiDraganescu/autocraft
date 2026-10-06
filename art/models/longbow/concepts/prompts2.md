@@ -1,0 +1,25 @@
+# Longbow concept prompts (round 2, 2026-10-01)
+
+The user chose `c1-rhino.jpg`, with the gun changed to a railgun variant that shoots plasma neutron blobs. They want to see the siege mode with the pods swinging out (our model's motion), with the walking legs of round 1 as the alternative. Each prompt goes to Grok in its own new chat with `c1-rhino.jpg` and `painted.jpg` attached; results are `c2-<slug>.jpg`.
+
+## Shared text
+
+Repaint the artillery tank in the attached image c1-rhino.jpg with two changes: its gun and its siege mode. Keep its rhinoceros build: the massive, hunched armoured hull, the horn-like ram plate at the front, the overlapping armour plates like a hide, the four armoured track pods, the colours and the wear.
+
+The new gun: {GUN} It is the tank's only gun, and it has one bore. It fires glowing blobs of blue-white neutron plasma, and its bore and coils glow the same blue-white. It telescopes. In travel mode it is packed: slid in to half its length and lying flat along the turret roof, pointing forward. In siege mode it has risen, pitched up toward the sky and run out to its full length, with green lock lights along it.
+
+Siege mode: {SIEGE}
+
+The crew is sealed inside, out of sight: no face or person is visible. Keep the art style of c1-rhino.jpg and of the space Ranger in the attached image painted.jpg: worn metal, crisp dark outlines around every plate, panel lines, bolts, scratches, chipped edges and grime, painted in a gritty industrial sci-fi style, deep blue team colour on dark gunmetal.
+
+Show the same tank twice, side by side, both from a three-quarter front view, a little from above: on the left in travel mode, on the right in siege mode. A plain light grey background, in soft, even light. Answer with one image.
+
+## Guns
+
+- **rail**: a railgun built as an open frame: one bore running between heavy armoured rails, glowing coils showing through slots along it, and a bulbous plasma containment chamber at its breech.
+- **rings**: a coil gun: one thick barrel threaded through a row of heavy magnetic rings that glow where they hold the plasma, the rings bunched together when it is packed and spread out along the barrel when it runs out, and a bulbous plasma containment chamber at its breech.
+
+## Siege modes
+
+- **pods**: the four track pods have swung out wide from the hull on short arms and still sit on the ground, a heavy clawed strut has swung down from under each pod's outer end and is planted in the ground, and the hull has knelt low between them. The hull is not lifted on legs.
+- **legs**: as in c1-rhino.jpg, the hull stands on four clawed legs unfolded from the track pods.

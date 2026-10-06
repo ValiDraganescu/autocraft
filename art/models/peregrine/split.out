@@ -1,0 +1,18 @@
+painted.jpg: 1248x832, stencil 1536x1024
+IoU: overlap with the stencil as painted, then with the whole figure's drift undone;
+drift: the painting's size against the stencil's (wide, tall) and its offset in model units (right, up)
+view            IoU  fitted     wide   tall  offset
+front          0.51    0.52   +41.2%  -7.5%  +0.023 -0.019
+right          0.84    0.96    -3.2%  +0.4%  -0.046 -0.023
+back           0.47    0.54   +41.9%  +4.6%  -0.031 +0.019
+left           0.81    0.95    -5.1%  +0.4%  +0.084 +0.038
+top            0.92    0.94    +0.0%  -0.8%  +0.000 +0.031
+threeQuarter   0.21    0.65   +55.7% +100.2%  +1.882 -0.178
+
+views against each other, model units (stencil in brackets):
+  width (side to side)   front 3.311 (2.345)  back 3.311 (2.345)  top 2.345 (2.345)   spread 32%
+  depth (front to back)  right 3.096 (3.280)  left 3.096 (3.280)  top 3.127 (3.280)   spread 1%
+  height                 front 0.912 (0.966)  right 0.950 (0.966)  back 0.958 (0.966)  left 0.950 (0.966)   spread 5%
+
+wrote art/models/peregrine/views/<view>.png, <view>.mask.png, art/models/peregrine/compare.png and the texture: skin.jpg, skin_glow.jpg
+prompt: sheet-rules v5.1 (2026-10-05): the rendering line names no other game. v5 (2026-09-30): the images named by their file names ({STENCIL}, and the style reference's in {STYLE}), not by their order; otherwise v4. History and results: PROMPTS.md. — log this painting in PROMPTS.md

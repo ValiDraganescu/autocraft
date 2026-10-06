@@ -1,0 +1,14 @@
+The walker: a huge, heavy sci-fi two-legged assault walker (the Atlas), stylised like a hand-painted RTS unit. The crew is sealed inside, out of sight: no person or face is visible anywhere.
+- Torso: a squat, rounded armoured body like a riveted boiler, worn silver-grey plates with a deep blue team panel across the front and top, crisp dark panel lines, heavy rivets, scratches, chipped edges and grime; yellow-and-black hazard stripes along the top edges.
+- Cockpit: a narrow, dark smoked-glass slit across the front of the torso in a heavy dark gunmetal brow; below it a round searchlight with a warm white lens in a gunmetal ring.
+- Shoulder pods: a big round armoured pod on each side of the torso, deep blue with a worn white star and a thin glowing cyan-blue light strip round it.
+- Cannons: two long, heavy dark gunmetal siege cannons on top of the torso, side by side, pointing forward, each in a boxy gunmetal ring mount with vents, the barrels banded with steel rings and ending in a thick steel muzzle.
+- Stacks: two short dark gunmetal exhaust stacks rising behind the cannons, soot-blackened at the top.
+- Back: two square heat vents on the back of the torso with glowing orange slats.
+- Hips: a dark gunmetal hip block under the torso with thick cable bundles and pistons.
+- Legs: heavy armoured thighs and shins, silver-grey with deep blue armour plates on the front, round dark gunmetal joint discs at the hips, knees and ankles, hydraulic pistons behind; a small glowing amber warning lamp on each knee.
+- Feet: broad, flat dark gunmetal feet with three thick toes in front and one behind, scuffed and dusty.
+
+Colour palette: worn silver-grey, deep blue, dark gunmetal, charcoal, yellow-and-black hazard stripes, soot black, glowing cyan-blue strips, glowing orange vents, glowing amber knee lamps, a warm white searchlight.
+
+The views, as stencil.png draws them: FRONT is the walker head-on, the two cannons pointing straight at the viewer; RIGHT SIDE is a flat side-on profile facing right; BACK is the rear head-on, the glowing vents facing the viewer; LEFT SIDE is a flat side-on profile facing left; TOP looks straight down with the front at the top. These five are flat orthographic views with no perspective. Only the last panel, 3/4, shows the walker at an angle.

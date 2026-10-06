@@ -1,0 +1,55 @@
+{
+  "title": "Autocraft video kit",
+  "voice": "am_michael",
+  "speed": 1.0,
+  "scenes": [
+    {
+      "id": "cover",
+      "minDuration": 5,
+      "narration": "The cover opens every video.",
+      "visual": { "type": "cover", "kicker": "Devlog · Unreal Engine 5 on a Mac", "title": "Take over *any unit* mid-battle", "lead": "An RTS where every Ranger, Comet and Prospector can be driven in first person, then handed back to the AI." }
+    },
+    {
+      "id": "stats",
+      "minDuration": 5,
+      "narration": "Stats show two to four numbers.",
+      "visual": { "type": "stats", "kicker": "This week", "title": "A turnaround sheet to an *in-engine model*", "items": [ { "value": "14", "label": "minutes, sheet to mesh" }, { "value": "$1.80", "label": "of agent time" }, { "value": "6200", "label": "triangles" } ] }
+    },
+    {
+      "id": "flow",
+      "minDuration": 5,
+      "narration": "Flow shows a diagram from left to right.",
+      "visual": { "type": "flow", "kicker": "The model pipeline", "title": "From concept art to a *Geometry Script* mesh", "rows": [ ["Concept art", "Turnaround sheet", { "label": "Geometry Script", "focus": true }, "In-engine model"] ] }
+    },
+    {
+      "id": "compare",
+      "minDuration": 5,
+      "narration": "Compare shows before and after.",
+      "visual": { "type": "compare", "kicker": "Perf pass", "title": "The army draws in *one pass*", "before": { "items": ["One draw call per unit part", "41 ms a frame with 200 units"] }, "after": { "items": ["Instanced by kind, part and material", "9 ms a frame with 200 units"] } }
+    },
+    {
+      "id": "rules",
+      "minDuration": 5,
+      "narration": "Rules show a decision table.",
+      "visual": { "type": "rules", "kicker": "Building lights", "rows": [ { "when": "Producing a unit", "result": "Bay glows", "tone": "ok" }, { "when": "Waiting for Stardust Ore", "result": "Amber blink", "tone": "warn" }, { "when": "Under attack", "result": "Red strobe", "tone": "fail" }, { "when": "Idle", "result": "Steady", "tone": "info" } ] }
+    },
+    {
+      "id": "bullets",
+      "minDuration": 5,
+      "narration": "Bullets show short points.",
+      "visual": { "type": "bullets", "kicker": "Open source", "title": "What the *skill* does", "items": ["Stages a micro simulation in the real game", "Records it hidden, at a fixed thirty frames a second", "Cuts the clips into a narrated video"] }
+    },
+    {
+      "id": "image",
+      "minDuration": 5,
+      "narration": "Image shows a still from the game.",
+      "visual": { "type": "image", "src": "sample-frame.jpg", "kicker": "Micro simulation", "title": "Two armies of twelve meet" }
+    },
+    {
+      "id": "checks",
+      "minDuration": 5,
+      "narration": "Checks close the video.",
+      "visual": { "type": "checks", "kicker": "Shipped", "title": "In the build *tonight*", "items": ["Every unit can be driven", "Recorded straight from the game", "The skill is on GitHub"] }
+    }
+  ]
+}

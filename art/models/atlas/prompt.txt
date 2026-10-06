@@ -1,0 +1,26 @@
+Paint over the attached image stencil.png. It is a character turnaround sheet for a 3D game model: six panels (FRONT, RIGHT SIDE, BACK, LEFT SIDE, TOP, 3/4) separated by thick black lines on a white background.
+The attached image style.jpg is the style reference: match its rendering, level of detail, materials, wear and colours as closely as you can. Take every shape, pose and proportion from stencil.png only.
+
+Strict rules:
+- Keep the exact same layout, panel borders, black lines and white background.
+- Keep every silhouette exactly as drawn: same pose, same size, same position, same proportions in every panel. Do not move, resize, add or remove any part. Only paint surface detail, materials and colour inside the existing outlines.
+- All panels show the same single character, so every detail must match between views (a mark on the right shoulder in FRONT must also appear in RIGHT SIDE and TOP).
+- Team colour is blue: paint every team-coloured part in the same deep blue.
+- Rendering: gritty industrial sci-fi game art, hand-painted unit renders, with crisp dark outlines around every plate, deep shading in the seams between plates, and rich wear on every surface.
+- Lighting: soft, even, diffuse light, like an overcast sky, the same in every panel. Metal has a satin finish.
+- No background scenery, no text, no labels, no guide lines: the panel names, the grey header line, the dashed height guides and the ground line are not part of the picture.
+
+The walker: a huge, heavy sci-fi two-legged assault walker (the Atlas), stylised like a hand-painted RTS unit. The crew is sealed inside, out of sight: no person or face is visible anywhere.
+- Torso: a squat, rounded armoured body like a riveted boiler, worn silver-grey plates with a deep blue team panel across the front and top, crisp dark panel lines, heavy rivets, scratches, chipped edges and grime; yellow-and-black hazard stripes along the top edges.
+- Cockpit: a narrow, dark smoked-glass slit across the front of the torso in a heavy dark gunmetal brow; below it a round searchlight with a warm white lens in a gunmetal ring.
+- Shoulder pods: a big round armoured pod on each side of the torso, deep blue with a worn white star and a thin glowing cyan-blue light strip round it.
+- Cannons: two long, heavy dark gunmetal siege cannons on top of the torso, side by side, pointing forward, each in a boxy gunmetal ring mount with vents, the barrels banded with steel rings and ending in a thick steel muzzle.
+- Stacks: two short dark gunmetal exhaust stacks rising behind the cannons, soot-blackened at the top.
+- Back: two square heat vents on the back of the torso with glowing orange slats.
+- Hips: a dark gunmetal hip block under the torso with thick cable bundles and pistons.
+- Legs: heavy armoured thighs and shins, silver-grey with deep blue armour plates on the front, round dark gunmetal joint discs at the hips, knees and ankles, hydraulic pistons behind; a small glowing amber warning lamp on each knee.
+- Feet: broad, flat dark gunmetal feet with three thick toes in front and one behind, scuffed and dusty.
+
+Colour palette: worn silver-grey, deep blue, dark gunmetal, charcoal, yellow-and-black hazard stripes, soot black, glowing cyan-blue strips, glowing orange vents, glowing amber knee lamps, a warm white searchlight.
+
+The views, as stencil.png draws them: FRONT is the walker head-on, the two cannons pointing straight at the viewer; RIGHT SIDE is a flat side-on profile facing right; BACK is the rear head-on, the glowing vents facing the viewer; LEFT SIDE is a flat side-on profile facing left; TOP looks straight down with the front at the top. These five are flat orthographic views with no perspective. Only the last panel, 3/4, shows the walker at an angle.

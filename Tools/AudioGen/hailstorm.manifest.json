@@ -1,0 +1,127 @@
+{
+  "about": "The Hailstorm's own sounds. The voice is the half-track's flak gunner: a jumpy, wired young anti-air gunner, always watching the sky, on the vehicle radio; its lines go through comm.py like the others'. It is meant to be \"Autocraft Hailstorm\" (Voice Design, eleven_ttv_v3; the chosen preview was generated_voice_id GWzGO3H7fYDg7x7tLOZS), but the account was at its 10 custom voices, so for now it is the premade \"Liam\" (energetic young male); to switch, save the designed voice, set its id below and delete raw/vhailstorm_*.wav and raw/hailstormdeath_*.wav. Ids match the game's sound names (sfx/<name>_<n>): vhailstorm = reports in, hailstormdeath = his cry as it blows up (the blast plays with it), flak = one burst of the twin flak guns (every 1.0 s, heard where the Hailstorm stands), flakhit = a flak shell bursting in the air at the flyer (Rules.flight after the shot), hailstormmove = a driven Hailstorm's engine as it pulls away (at most every 2 s, in your ear).",
+  "voices": {
+    "hailstorm": "TX3LPaxmHKxFdv7VOQHJ"
+  },
+  "entries": [
+    {
+      "id": "vhailstorm_1",
+      "kind": "say",
+      "voice": "hailstorm",
+      "text": "[jumpy, fast] Hailstorm up! Eyes on the sky!",
+      "fx": "comm"
+    },
+    {
+      "id": "vhailstorm_2",
+      "kind": "say",
+      "voice": "hailstorm",
+      "text": "[wired, breathless] Guns up, guns up. Anything flies, it fries.",
+      "fx": "comm"
+    },
+    {
+      "id": "vhailstorm_3",
+      "kind": "say",
+      "voice": "hailstorm",
+      "text": "[nervous, quick] Did you hear that? Something's up there.",
+      "fx": "comm"
+    },
+    {
+      "id": "vhailstorm_4",
+      "kind": "say",
+      "voice": "hailstorm",
+      "text": "[twitchy, eager] Flak's loaded. Come on, birdie.",
+      "fx": "comm"
+    },
+    {
+      "id": "hailstormdeath_1",
+      "kind": "say",
+      "voice": "hailstorm",
+      "text": "[short sharp cry] They got me!",
+      "fx": "comm"
+    },
+    {
+      "id": "hailstormdeath_2",
+      "kind": "say",
+      "voice": "hailstorm",
+      "text": "[panicked shout] From the ground?!",
+      "fx": "comm"
+    },
+    {
+      "id": "hailstormdeath_3",
+      "kind": "say",
+      "voice": "hailstorm",
+      "text": "[quick pained shout] Track's gone!",
+      "fx": "comm"
+    },
+    {
+      "id": "hailstormdeath_4",
+      "kind": "say",
+      "voice": "hailstorm",
+      "text": "[short sharp cry] Bail out!",
+      "fx": "comm"
+    },
+    {
+      "id": "flak_1",
+      "kind": "sfx",
+      "prompt": "twin anti-aircraft autocannons fire a quick burst upward: three heavy thumping pom-pom shots, punchy and metallic, brass clinking, close up, short tail",
+      "seconds": 0.9,
+      "influence": 0.5
+    },
+    {
+      "id": "flak_2",
+      "kind": "sfx",
+      "prompt": "flak gun firing a short rapid burst at the sky, deep hollow thuds of heavy cannon rounds, mechanical clatter of the breech, close up",
+      "seconds": 0.9,
+      "influence": 0.5
+    },
+    {
+      "id": "flak_3",
+      "kind": "sfx",
+      "prompt": "vehicle-mounted 40mm anti-air cannon, two quick booming shots in a row, sharp crack and hollow thump, ejected shell casings clanging",
+      "seconds": 0.9,
+      "influence": 0.5
+    },
+    {
+      "id": "flakhit_1",
+      "kind": "sfx",
+      "prompt": "flak shell bursts in the air high overhead: a sharp cracking airburst explosion with shrapnel fizzing outward, short, at a distance",
+      "seconds": 0.8,
+      "influence": 0.5
+    },
+    {
+      "id": "flakhit_2",
+      "kind": "sfx",
+      "prompt": "anti-aircraft round detonates in the sky, a dry punchy crack-boom with a short echo, fragments whistling, heard from below",
+      "seconds": 0.8,
+      "influence": 0.5
+    },
+    {
+      "id": "flakhit_3",
+      "kind": "sfx",
+      "prompt": "proximity-fused flak explosion in midair, a hard crack and a puff, crackling shrapnel, brief rolling echo",
+      "seconds": 0.8,
+      "influence": 0.5
+    },
+    {
+      "id": "hailstormmove_1",
+      "kind": "sfx",
+      "prompt": "armored half-track pulls away: heavy diesel engine revs up and growls, tank treads clank and squeak, front tyres crunching gravel, close up",
+      "seconds": 2,
+      "influence": 0.5
+    },
+    {
+      "id": "hailstormmove_2",
+      "kind": "sfx",
+      "prompt": "military half-track accelerates from a standstill, gruff turbo-diesel roar rising through the revs, rattling tracks, heard from the driver's seat",
+      "seconds": 2,
+      "influence": 0.5
+    },
+    {
+      "id": "hailstormmove_3",
+      "kind": "sfx",
+      "prompt": "sci-fi anti-air half-track guns its engine and rolls off, deep engine snarl and turbine whine, clattering steel tracks on dirt",
+      "seconds": 2,
+      "influence": 0.5
+    }
+  ]
+}

@@ -1,0 +1,2786 @@
+{
+ "madeBy": "Tools/Editor/import_sounds.py",
+ "notes": "Variants of a sound are picked at random. Files are mono, peak-normalised to 0.8; the gains are AudioDirector's (Audio.swift) and SoundBoard.swift's. Swift matched variants by prefix, so its `flak` also played the flakhit files; this table does not.",
+ "peak": 0.8,
+ "sounds": {
+  "alert": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/alert/SW_alert_1.SW_alert_1",
+     "source": "sfx/alert_1.wav",
+     "prepared": "Content-src/sounds/sfx/alert_1.wav",
+     "seconds": 3.14,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/alert/SW_alert_2.SW_alert_2",
+     "source": "sfx/alert_2.wav",
+     "prepared": "Content-src/sounds/sfx/alert_2.wav",
+     "seconds": 3.3,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/alert/SW_alert_3.SW_alert_3",
+     "source": "sfx/alert_3.wav",
+     "prepared": "Content-src/sounds/sfx/alert_3.wav",
+     "seconds": 3.14,
+     "rate": 24000
+    }
+   ],
+   "board": [
+    {
+     "id": "alert",
+     "title": "Base under attack",
+     "gain": 0.7,
+     "gainSwift": "0.7",
+     "loop": false,
+     "driven": false
+    }
+   ],
+   "audioSwiftLines": [
+    515,
+    749
+   ]
+  },
+  "anchorhit": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/anchorhit/SW_anchorhit_1.SW_anchorhit_1",
+     "source": "sfx/anchorhit_1.wav",
+     "prepared": "Content-src/sounds/sfx/anchorhit_1.wav",
+     "seconds": 1.48,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/anchorhit/SW_anchorhit_2.SW_anchorhit_2",
+     "source": "sfx/anchorhit_2.wav",
+     "prepared": "Content-src/sounds/sfx/anchorhit_2.wav",
+     "seconds": 1.48,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/anchorhit/SW_anchorhit_3.SW_anchorhit_3",
+     "source": "sfx/anchorhit_3.wav",
+     "prepared": "Content-src/sounds/sfx/anchorhit_3.wav",
+     "seconds": 1.48,
+     "rate": 44100
+    }
+   ],
+   "board": [
+    {
+     "id": "anchorhit",
+     "title": "Shell burst",
+     "gain": 0.8,
+     "gainSwift": "AudioDirector.anchorHitGain",
+     "loop": false,
+     "driven": false
+    }
+   ],
+   "audioSwiftLines": [
+    545,
+    549,
+    760
+   ]
+  },
+  "anchorlift": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/anchorlift/SW_anchorlift_1.SW_anchorlift_1",
+     "source": "sfx/anchorlift_1.wav",
+     "prepared": "Content-src/sounds/sfx/anchorlift_1.wav",
+     "seconds": 2.48,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/anchorlift/SW_anchorlift_2.SW_anchorlift_2",
+     "source": "sfx/anchorlift_2.wav",
+     "prepared": "Content-src/sounds/sfx/anchorlift_2.wav",
+     "seconds": 2.48,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/anchorlift/SW_anchorlift_3.SW_anchorlift_3",
+     "source": "sfx/anchorlift_3.wav",
+     "prepared": "Content-src/sounds/sfx/anchorlift_3.wav",
+     "seconds": 2.48,
+     "rate": 44100
+    }
+   ],
+   "board": [
+    {
+     "id": "anchorlift",
+     "title": "Pack up",
+     "gain": 0.75,
+     "gainSwift": "AudioDirector.anchorGain",
+     "loop": false,
+     "driven": false
+    }
+   ],
+   "audioSwiftLines": [
+    622,
+    760
+   ]
+  },
+  "anchorset": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/anchorset/SW_anchorset_1.SW_anchorset_1",
+     "source": "sfx/anchorset_1.wav",
+     "prepared": "Content-src/sounds/sfx/anchorset_1.wav",
+     "seconds": 2.56,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/anchorset/SW_anchorset_2.SW_anchorset_2",
+     "source": "sfx/anchorset_2.wav",
+     "prepared": "Content-src/sounds/sfx/anchorset_2.wav",
+     "seconds": 2.48,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/anchorset/SW_anchorset_3.SW_anchorset_3",
+     "source": "sfx/anchorset_3.wav",
+     "prepared": "Content-src/sounds/sfx/anchorset_3.wav",
+     "seconds": 2.56,
+     "rate": 44100
+    }
+   ],
+   "board": [
+    {
+     "id": "anchorset",
+     "title": "Anchor up",
+     "gain": 0.75,
+     "gainSwift": "AudioDirector.anchorGain",
+     "loop": false,
+     "driven": false
+    }
+   ],
+   "audioSwiftLines": [
+    622,
+    760
+   ]
+  },
+  "anchorshot": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/anchorshot/SW_anchorshot_1.SW_anchorshot_1",
+     "source": "sfx/anchorshot_1.wav",
+     "prepared": "Content-src/sounds/sfx/anchorshot_1.wav",
+     "seconds": 2.0,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/anchorshot/SW_anchorshot_2.SW_anchorshot_2",
+     "source": "sfx/anchorshot_2.wav",
+     "prepared": "Content-src/sounds/sfx/anchorshot_2.wav",
+     "seconds": 2.0,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/anchorshot/SW_anchorshot_3.SW_anchorshot_3",
+     "source": "sfx/anchorshot_3.wav",
+     "prepared": "Content-src/sounds/sfx/anchorshot_3.wav",
+     "seconds": 2.0,
+     "rate": 44100
+    }
+   ],
+   "board": [
+    {
+     "id": "anchorshot",
+     "title": "Anchor shot",
+     "gain": 0.55,
+     "gainSwift": "0.55",
+     "loop": false,
+     "driven": false
+    }
+   ],
+   "audioSwiftLines": [
+    527,
+    756
+   ]
+  },
+  "atlasmove": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/atlasmove/SW_atlasmove_1.SW_atlasmove_1",
+     "source": "sfx/atlasmove_1.wav",
+     "prepared": "Content-src/sounds/sfx/atlasmove_1.wav",
+     "seconds": 2.0,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/atlasmove/SW_atlasmove_2.SW_atlasmove_2",
+     "source": "sfx/atlasmove_2.wav",
+     "prepared": "Content-src/sounds/sfx/atlasmove_2.wav",
+     "seconds": 2.0,
+     "rate": 44100
+    }
+   ],
+   "board": [],
+   "audioSwiftLines": []
+  },
+  "atlasshot": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/atlasshot/SW_atlasshot_1.SW_atlasshot_1",
+     "source": "sfx/atlasshot_1.wav",
+     "prepared": "Content-src/sounds/sfx/atlasshot_1.wav",
+     "seconds": 1.76,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/atlasshot/SW_atlasshot_2.SW_atlasshot_2",
+     "source": "sfx/atlasshot_2.wav",
+     "prepared": "Content-src/sounds/sfx/atlasshot_2.wav",
+     "seconds": 1.76,
+     "rate": 44100
+    }
+   ],
+   "board": [],
+   "audioSwiftLines": []
+  },
+  "atlasstep": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/atlasstep/SW_atlasstep_1.SW_atlasstep_1",
+     "source": "sfx/atlasstep_1.wav",
+     "prepared": "Content-src/sounds/sfx/atlasstep_1.wav",
+     "seconds": 1.0,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/atlasstep/SW_atlasstep_2.SW_atlasstep_2",
+     "source": "sfx/atlasstep_2.wav",
+     "prepared": "Content-src/sounds/sfx/atlasstep_2.wav",
+     "seconds": 1.0,
+     "rate": 44100
+    }
+   ],
+   "board": [],
+   "audioSwiftLines": []
+  },
+  "blast": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/blast/SW_blast_1.SW_blast_1",
+     "source": "sfx/blast_1.wav",
+     "prepared": "Content-src/sounds/sfx/blast_1.wav",
+     "seconds": 1.2,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/blast/SW_blast_2.SW_blast_2",
+     "source": "sfx/blast_2.wav",
+     "prepared": "Content-src/sounds/sfx/blast_2.wav",
+     "seconds": 1.2,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/blast/SW_blast_3.SW_blast_3",
+     "source": "sfx/blast_3.wav",
+     "prepared": "Content-src/sounds/sfx/blast_3.wav",
+     "seconds": 1.2,
+     "rate": 44100
+    }
+   ],
+   "board": [
+    {
+     "id": "blast",
+     "title": "Blast",
+     "gain": 0.5,
+     "gainSwift": "0.5",
+     "loop": false,
+     "driven": false
+    },
+    {
+     "id": "pulsemine",
+     "title": "Pulse mine",
+     "gain": 0.45,
+     "gainSwift": "0.45",
+     "loop": false,
+     "driven": true
+    }
+   ],
+   "audioSwiftLines": [
+    636,
+    637,
+    643,
+    644,
+    746
+   ]
+  },
+  "boom": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/boom/SW_boom_1.SW_boom_1",
+     "source": "sfx/boom_1.wav",
+     "prepared": "Content-src/sounds/sfx/boom_1.wav",
+     "seconds": 4.0,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/boom/SW_boom_2.SW_boom_2",
+     "source": "sfx/boom_2.wav",
+     "prepared": "Content-src/sounds/sfx/boom_2.wav",
+     "seconds": 4.0,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/boom/SW_boom_3.SW_boom_3",
+     "source": "sfx/boom_3.wav",
+     "prepared": "Content-src/sounds/sfx/boom_3.wav",
+     "seconds": 4.0,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/boom/SW_boom_4.SW_boom_4",
+     "source": "sfx/boom_4.wav",
+     "prepared": "Content-src/sounds/sfx/boom_4.wav",
+     "seconds": 4.0,
+     "rate": 44100
+    }
+   ],
+   "board": [
+    {
+     "id": "boom",
+     "title": "Explosion",
+     "gain": 1.0,
+     "gainSwift": "AudioDirector.boomGain",
+     "loop": false,
+     "driven": false
+    },
+    {
+     "id": "boom",
+     "title": "Explosion",
+     "gain": 0.7,
+     "gainSwift": "AudioDirector.habDomeBoomGain",
+     "loop": false,
+     "driven": false
+    }
+   ],
+   "audioSwiftLines": [
+    649,
+    745
+   ]
+  },
+  "breacher": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/breacher/SW_breacher_1.SW_breacher_1",
+     "source": "sfx/breacher_1.wav",
+     "prepared": "Content-src/sounds/sfx/breacher_1.wav",
+     "seconds": 1.48,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/breacher/SW_breacher_2.SW_breacher_2",
+     "source": "sfx/breacher_2.wav",
+     "prepared": "Content-src/sounds/sfx/breacher_2.wav",
+     "seconds": 1.48,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/breacher/SW_breacher_3.SW_breacher_3",
+     "source": "sfx/breacher_3.wav",
+     "prepared": "Content-src/sounds/sfx/breacher_3.wav",
+     "seconds": 1.48,
+     "rate": 44100
+    }
+   ],
+   "board": [
+    {
+     "id": "grenades",
+     "title": "Grenades",
+     "gain": 0.4,
+     "gainSwift": "0.4",
+     "loop": false,
+     "driven": false
+    }
+   ],
+   "audioSwiftLines": [
+    526,
+    754
+   ]
+  },
+  "breath": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/breath/SW_breath_1.SW_breath_1",
+     "source": "sfx/breath_1.wav",
+     "prepared": "Content-src/sounds/sfx/breath_1.wav",
+     "seconds": 4.0,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/breath/SW_breath_2.SW_breath_2",
+     "source": "sfx/breath_2.wav",
+     "prepared": "Content-src/sounds/sfx/breath_2.wav",
+     "seconds": 4.0,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/breath/SW_breath_3.SW_breath_3",
+     "source": "sfx/breath_3.wav",
+     "prepared": "Content-src/sounds/sfx/breath_3.wav",
+     "seconds": 4.0,
+     "rate": 44100
+    }
+   ],
+   "board": [
+    {
+     "id": "breath",
+     "title": "Breath",
+     "gain": 0.5,
+     "gainSwift": "AudioDirector.breathGain",
+     "loop": false,
+     "driven": true
+    }
+   ],
+   "audioSwiftLines": [
+    577,
+    758
+   ]
+  },
+  "cannon": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/cannon/SW_cannon_1.SW_cannon_1",
+     "source": "sfx/cannon_1.wav",
+     "prepared": "Content-src/sounds/sfx/cannon_1.wav",
+     "seconds": 1.0,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/cannon/SW_cannon_2.SW_cannon_2",
+     "source": "sfx/cannon_2.wav",
+     "prepared": "Content-src/sounds/sfx/cannon_2.wav",
+     "seconds": 1.0,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/cannon/SW_cannon_3.SW_cannon_3",
+     "source": "sfx/cannon_3.wav",
+     "prepared": "Content-src/sounds/sfx/cannon_3.wav",
+     "seconds": 1.0,
+     "rate": 44100
+    }
+   ],
+   "board": [
+    {
+     "id": "cannon",
+     "title": "Cannons",
+     "gain": 0.7,
+     "gainSwift": "AudioDirector.tankCannonGain",
+     "loop": false,
+     "driven": false
+    }
+   ],
+   "audioSwiftLines": [
+    527,
+    755
+   ]
+  },
+  "cometdeath": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/cometdeath/SW_cometdeath_1.SW_cometdeath_1",
+     "source": "sfx/cometdeath_1.wav",
+     "prepared": "Content-src/sounds/sfx/cometdeath_1.wav",
+     "seconds": 1.825,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/cometdeath/SW_cometdeath_2.SW_cometdeath_2",
+     "source": "sfx/cometdeath_2.wav",
+     "prepared": "Content-src/sounds/sfx/cometdeath_2.wav",
+     "seconds": 1.105,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/cometdeath/SW_cometdeath_3.SW_cometdeath_3",
+     "source": "sfx/cometdeath_3.wav",
+     "prepared": "Content-src/sounds/sfx/cometdeath_3.wav",
+     "seconds": 1.905,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/cometdeath/SW_cometdeath_4.SW_cometdeath_4",
+     "source": "sfx/cometdeath_4.wav",
+     "prepared": "Content-src/sounds/sfx/cometdeath_4.wav",
+     "seconds": 1.905,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/cometdeath/SW_cometdeath_5.SW_cometdeath_5",
+     "source": "sfx/cometdeath_5.wav",
+     "prepared": "Content-src/sounds/sfx/cometdeath_5.wav",
+     "seconds": 1.825,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/cometdeath/SW_cometdeath_6.SW_cometdeath_6",
+     "source": "sfx/cometdeath_6.wav",
+     "prepared": "Content-src/sounds/sfx/cometdeath_6.wav",
+     "seconds": 1.345,
+     "rate": 24000
+    }
+   ],
+   "board": [
+    {
+     "id": "cometdeath",
+     "title": "Death cry",
+     "gain": 0.55,
+     "gainSwift": "0.55",
+     "loop": false,
+     "driven": false
+    }
+   ],
+   "audioSwiftLines": [
+    629,
+    763
+   ]
+  },
+  "deposit": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/deposit/SW_deposit_1.SW_deposit_1",
+     "source": "sfx/deposit_1.wav",
+     "prepared": "Content-src/sounds/sfx/deposit_1.wav",
+     "seconds": 0.8,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/deposit/SW_deposit_2.SW_deposit_2",
+     "source": "sfx/deposit_2.wav",
+     "prepared": "Content-src/sounds/sfx/deposit_2.wav",
+     "seconds": 0.8,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/deposit/SW_deposit_3.SW_deposit_3",
+     "source": "sfx/deposit_3.wav",
+     "prepared": "Content-src/sounds/sfx/deposit_3.wav",
+     "seconds": 0.8,
+     "rate": 44100
+    }
+   ],
+   "board": [
+    {
+     "id": "deposit",
+     "title": "Deposit",
+     "gain": 0.45,
+     "gainSwift": "0.45",
+     "loop": false,
+     "driven": false
+    }
+   ],
+   "audioSwiftLines": [
+    489,
+    737
+   ]
+  },
+  "dirthit": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/dirthit/SW_dirthit_1.SW_dirthit_1",
+     "source": "sfx/dirthit_1.wav",
+     "prepared": "Content-src/sounds/sfx/dirthit_1.wav",
+     "seconds": 0.5,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/dirthit/SW_dirthit_2.SW_dirthit_2",
+     "source": "sfx/dirthit_2.wav",
+     "prepared": "Content-src/sounds/sfx/dirthit_2.wav",
+     "seconds": 0.5,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/dirthit/SW_dirthit_3.SW_dirthit_3",
+     "source": "sfx/dirthit_3.wav",
+     "prepared": "Content-src/sounds/sfx/dirthit_3.wav",
+     "seconds": 0.5,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/dirthit/SW_dirthit_4.SW_dirthit_4",
+     "source": "sfx/dirthit_4.wav",
+     "prepared": "Content-src/sounds/sfx/dirthit_4.wav",
+     "seconds": 0.5,
+     "rate": 44100
+    }
+   ],
+   "board": [
+    {
+     "id": "dirthit",
+     "title": "Miss",
+     "gain": 0.3,
+     "gainSwift": "0.3",
+     "loop": false,
+     "driven": true
+    }
+   ],
+   "audioSwiftLines": [
+    565,
+    566,
+    758
+   ]
+  },
+  "drill": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/drill/SW_drill_1.SW_drill_1",
+     "source": "sfx/drill_1.wav",
+     "prepared": "Content-src/sounds/sfx/drill_1.wav",
+     "seconds": 2.25,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/drill/SW_drill_2.SW_drill_2",
+     "source": "sfx/drill_2.wav",
+     "prepared": "Content-src/sounds/sfx/drill_2.wav",
+     "seconds": 2.25,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/drill/SW_drill_3.SW_drill_3",
+     "source": "sfx/drill_3.wav",
+     "prepared": "Content-src/sounds/sfx/drill_3.wav",
+     "seconds": 2.25,
+     "rate": 44100
+    }
+   ],
+   "board": [
+    {
+     "id": "drill",
+     "title": "Drill",
+     "gain": 0.25,
+     "gainSwift": "AudioDirector.drillGain",
+     "loop": true,
+     "driven": false
+    }
+   ],
+   "audioSwiftLines": [
+    376,
+    736
+   ]
+  },
+  "dropshipdeath": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/dropshipdeath/SW_dropshipdeath_1.SW_dropshipdeath_1",
+     "source": "sfx/dropshipdeath_1.wav",
+     "prepared": "Content-src/sounds/sfx/dropshipdeath_1.wav",
+     "seconds": 1.665,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/dropshipdeath/SW_dropshipdeath_2.SW_dropshipdeath_2",
+     "source": "sfx/dropshipdeath_2.wav",
+     "prepared": "Content-src/sounds/sfx/dropshipdeath_2.wav",
+     "seconds": 1.425,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/dropshipdeath/SW_dropshipdeath_3.SW_dropshipdeath_3",
+     "source": "sfx/dropshipdeath_3.wav",
+     "prepared": "Content-src/sounds/sfx/dropshipdeath_3.wav",
+     "seconds": 1.825,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/dropshipdeath/SW_dropshipdeath_4.SW_dropshipdeath_4",
+     "source": "sfx/dropshipdeath_4.wav",
+     "prepared": "Content-src/sounds/sfx/dropshipdeath_4.wav",
+     "seconds": 1.825,
+     "rate": 24000
+    }
+   ],
+   "board": [
+    {
+     "id": "dropshipdeath",
+     "title": "Death cry",
+     "gain": 0.55,
+     "gainSwift": "0.55",
+     "loop": false,
+     "driven": false
+    }
+   ],
+   "audioSwiftLines": [
+    630,
+    763
+   ]
+  },
+  "dropshipmove": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/dropshipmove/SW_dropshipmove_1.SW_dropshipmove_1",
+     "source": "sfx/dropshipmove_1.wav",
+     "prepared": "Content-src/sounds/sfx/dropshipmove_1.wav",
+     "seconds": 2.0,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/dropshipmove/SW_dropshipmove_2.SW_dropshipmove_2",
+     "source": "sfx/dropshipmove_2.wav",
+     "prepared": "Content-src/sounds/sfx/dropshipmove_2.wav",
+     "seconds": 2.0,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/dropshipmove/SW_dropshipmove_3.SW_dropshipmove_3",
+     "source": "sfx/dropshipmove_3.wav",
+     "prepared": "Content-src/sounds/sfx/dropshipmove_3.wav",
+     "seconds": 2.0,
+     "rate": 44100
+    }
+   ],
+   "board": [
+    {
+     "id": "dropshipmove",
+     "title": "Engine",
+     "gain": 0.24,
+     "gainSwift": "AudioDirector.dropshipEngineGain",
+     "loop": false,
+     "driven": true
+    }
+   ],
+   "audioSwiftLines": [
+    606,
+    761
+   ]
+  },
+  "fireflydeath": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/fireflydeath/SW_fireflydeath_1.SW_fireflydeath_1",
+     "source": "sfx/fireflydeath_1.wav",
+     "prepared": "Content-src/sounds/sfx/fireflydeath_1.wav",
+     "seconds": 1.505,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/fireflydeath/SW_fireflydeath_2.SW_fireflydeath_2",
+     "source": "sfx/fireflydeath_2.wav",
+     "prepared": "Content-src/sounds/sfx/fireflydeath_2.wav",
+     "seconds": 1.505,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/fireflydeath/SW_fireflydeath_3.SW_fireflydeath_3",
+     "source": "sfx/fireflydeath_3.wav",
+     "prepared": "Content-src/sounds/sfx/fireflydeath_3.wav",
+     "seconds": 1.825,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/fireflydeath/SW_fireflydeath_4.SW_fireflydeath_4",
+     "source": "sfx/fireflydeath_4.wav",
+     "prepared": "Content-src/sounds/sfx/fireflydeath_4.wav",
+     "seconds": 1.665,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/fireflydeath/SW_fireflydeath_5.SW_fireflydeath_5",
+     "source": "sfx/fireflydeath_5.wav",
+     "prepared": "Content-src/sounds/sfx/fireflydeath_5.wav",
+     "seconds": 1.265,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/fireflydeath/SW_fireflydeath_6.SW_fireflydeath_6",
+     "source": "sfx/fireflydeath_6.wav",
+     "prepared": "Content-src/sounds/sfx/fireflydeath_6.wav",
+     "seconds": 1.265,
+     "rate": 24000
+    }
+   ],
+   "board": [
+    {
+     "id": "fireflydeath",
+     "title": "Death cry",
+     "gain": 0.55,
+     "gainSwift": "0.55",
+     "loop": false,
+     "driven": false
+    }
+   ],
+   "audioSwiftLines": [
+    629,
+    763
+   ]
+  },
+  "fireflymove": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/fireflymove/SW_fireflymove_1.SW_fireflymove_1",
+     "source": "sfx/fireflymove_1.wav",
+     "prepared": "Content-src/sounds/sfx/fireflymove_1.wav",
+     "seconds": 2.0,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/fireflymove/SW_fireflymove_2.SW_fireflymove_2",
+     "source": "sfx/fireflymove_2.wav",
+     "prepared": "Content-src/sounds/sfx/fireflymove_2.wav",
+     "seconds": 2.0,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/fireflymove/SW_fireflymove_3.SW_fireflymove_3",
+     "source": "sfx/fireflymove_3.wav",
+     "prepared": "Content-src/sounds/sfx/fireflymove_3.wav",
+     "seconds": 2.0,
+     "rate": 44100
+    }
+   ],
+   "board": [
+    {
+     "id": "fireflymove",
+     "title": "Engine",
+     "gain": 0.22,
+     "gainSwift": "AudioDirector.fireflyEngineGain",
+     "loop": false,
+     "driven": true
+    }
+   ],
+   "audioSwiftLines": [
+    605,
+    761
+   ]
+  },
+  "flak": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/flak/SW_flak_1.SW_flak_1",
+     "source": "sfx/flak_1.wav",
+     "prepared": "Content-src/sounds/sfx/flak_1.wav",
+     "seconds": 0.88,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/flak/SW_flak_2.SW_flak_2",
+     "source": "sfx/flak_2.wav",
+     "prepared": "Content-src/sounds/sfx/flak_2.wav",
+     "seconds": 0.88,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/flak/SW_flak_3.SW_flak_3",
+     "source": "sfx/flak_3.wav",
+     "prepared": "Content-src/sounds/sfx/flak_3.wav",
+     "seconds": 0.88,
+     "rate": 44100
+    }
+   ],
+   "board": [
+    {
+     "id": "flak",
+     "title": "Flak",
+     "gain": 0.85,
+     "gainSwift": "AudioDirector.flakGain",
+     "loop": false,
+     "driven": false
+    }
+   ],
+   "audioSwiftLines": [
+    523,
+    765
+   ]
+  },
+  "flakhit": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/flakhit/SW_flakhit_1.SW_flakhit_1",
+     "source": "sfx/flakhit_1.wav",
+     "prepared": "Content-src/sounds/sfx/flakhit_1.wav",
+     "seconds": 0.8,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/flakhit/SW_flakhit_2.SW_flakhit_2",
+     "source": "sfx/flakhit_2.wav",
+     "prepared": "Content-src/sounds/sfx/flakhit_2.wav",
+     "seconds": 0.8,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/flakhit/SW_flakhit_3.SW_flakhit_3",
+     "source": "sfx/flakhit_3.wav",
+     "prepared": "Content-src/sounds/sfx/flakhit_3.wav",
+     "seconds": 0.8,
+     "rate": 44100
+    }
+   ],
+   "board": [
+    {
+     "id": "flakhit",
+     "title": "Air burst",
+     "gain": 0.7,
+     "gainSwift": "AudioDirector.flakHitGain",
+     "loop": false,
+     "driven": false
+    }
+   ],
+   "audioSwiftLines": [
+    539,
+    542,
+    767
+   ]
+  },
+  "flame": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/flame/SW_flame_1.SW_flame_1",
+     "source": "sfx/flame_1.wav",
+     "prepared": "Content-src/sounds/sfx/flame_1.wav",
+     "seconds": 1.48,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/flame/SW_flame_2.SW_flame_2",
+     "source": "sfx/flame_2.wav",
+     "prepared": "Content-src/sounds/sfx/flame_2.wav",
+     "seconds": 1.48,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/flame/SW_flame_3.SW_flame_3",
+     "source": "sfx/flame_3.wav",
+     "prepared": "Content-src/sounds/sfx/flame_3.wav",
+     "seconds": 1.48,
+     "rate": 44100
+    }
+   ],
+   "board": [
+    {
+     "id": "flame",
+     "title": "Flamethrower",
+     "gain": 0.4,
+     "gainSwift": "0.4",
+     "loop": false,
+     "driven": false
+    }
+   ],
+   "audioSwiftLines": [
+    525,
+    753
+   ]
+  },
+  "gun": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/gun/SW_gun_1.SW_gun_1",
+     "source": "sfx/gun_1.wav",
+     "prepared": "Content-src/sounds/sfx/gun_1.wav",
+     "seconds": 0.8,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/gun/SW_gun_2.SW_gun_2",
+     "source": "sfx/gun_2.wav",
+     "prepared": "Content-src/sounds/sfx/gun_2.wav",
+     "seconds": 0.8,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/gun/SW_gun_3.SW_gun_3",
+     "source": "sfx/gun_3.wav",
+     "prepared": "Content-src/sounds/sfx/gun_3.wav",
+     "seconds": 0.8,
+     "rate": 44100
+    }
+   ],
+   "board": [
+    {
+     "id": "rifle",
+     "title": "Rifle",
+     "gain": 0.32,
+     "gainSwift": "0.32",
+     "loop": false,
+     "driven": false
+    }
+   ],
+   "audioSwiftLines": [
+    528,
+    743
+   ]
+  },
+  "hailstormdeath": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/hailstormdeath/SW_hailstormdeath_1.SW_hailstormdeath_1",
+     "source": "sfx/hailstormdeath_1.wav",
+     "prepared": "Content-src/sounds/sfx/hailstormdeath_1.wav",
+     "seconds": 1.585,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/hailstormdeath/SW_hailstormdeath_2.SW_hailstormdeath_2",
+     "source": "sfx/hailstormdeath_2.wav",
+     "prepared": "Content-src/sounds/sfx/hailstormdeath_2.wav",
+     "seconds": 1.585,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/hailstormdeath/SW_hailstormdeath_3.SW_hailstormdeath_3",
+     "source": "sfx/hailstormdeath_3.wav",
+     "prepared": "Content-src/sounds/sfx/hailstormdeath_3.wav",
+     "seconds": 1.425,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/hailstormdeath/SW_hailstormdeath_4.SW_hailstormdeath_4",
+     "source": "sfx/hailstormdeath_4.wav",
+     "prepared": "Content-src/sounds/sfx/hailstormdeath_4.wav",
+     "seconds": 1.345,
+     "rate": 24000
+    }
+   ],
+   "board": [
+    {
+     "id": "hailstormdeath",
+     "title": "Death cry",
+     "gain": 0.55,
+     "gainSwift": "0.55",
+     "loop": false,
+     "driven": false
+    }
+   ],
+   "audioSwiftLines": [
+    631,
+    768
+   ]
+  },
+  "hailstormmove": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/hailstormmove/SW_hailstormmove_1.SW_hailstormmove_1",
+     "source": "sfx/hailstormmove_1.wav",
+     "prepared": "Content-src/sounds/sfx/hailstormmove_1.wav",
+     "seconds": 2.0,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/hailstormmove/SW_hailstormmove_2.SW_hailstormmove_2",
+     "source": "sfx/hailstormmove_2.wav",
+     "prepared": "Content-src/sounds/sfx/hailstormmove_2.wav",
+     "seconds": 2.0,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/hailstormmove/SW_hailstormmove_3.SW_hailstormmove_3",
+     "source": "sfx/hailstormmove_3.wav",
+     "prepared": "Content-src/sounds/sfx/hailstormmove_3.wav",
+     "seconds": 2.0,
+     "rate": 44100
+    }
+   ],
+   "board": [
+    {
+     "id": "hailstormmove",
+     "title": "Engine",
+     "gain": 0.26,
+     "gainSwift": "AudioDirector.hailstormEngineGain",
+     "loop": false,
+     "driven": true
+    }
+   ],
+   "audioSwiftLines": [
+    608,
+    767
+   ]
+  },
+  "heal": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/heal/SW_heal_1.SW_heal_1",
+     "source": "sfx/heal_1.wav",
+     "prepared": "Content-src/sounds/sfx/heal_1.wav",
+     "seconds": 6.0,
+     "rate": 44100
+    }
+   ],
+   "board": [
+    {
+     "id": "heal",
+     "title": "Heal beam",
+     "gain": 0.35,
+     "gainSwift": "AudioDirector.healGain",
+     "loop": true,
+     "driven": true
+    }
+   ],
+   "audioSwiftLines": [
+    421,
+    425,
+    761
+   ]
+  },
+  "hitclank": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/hitclank/SW_hitclank_1.SW_hitclank_1",
+     "source": "sfx/hitclank_1.wav",
+     "prepared": "Content-src/sounds/sfx/hitclank_1.wav",
+     "seconds": 0.5,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/hitclank/SW_hitclank_2.SW_hitclank_2",
+     "source": "sfx/hitclank_2.wav",
+     "prepared": "Content-src/sounds/sfx/hitclank_2.wav",
+     "seconds": 0.5,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/hitclank/SW_hitclank_3.SW_hitclank_3",
+     "source": "sfx/hitclank_3.wav",
+     "prepared": "Content-src/sounds/sfx/hitclank_3.wav",
+     "seconds": 0.5,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/hitclank/SW_hitclank_4.SW_hitclank_4",
+     "source": "sfx/hitclank_4.wav",
+     "prepared": "Content-src/sounds/sfx/hitclank_4.wav",
+     "seconds": 0.5,
+     "rate": 44100
+    }
+   ],
+   "board": [
+    {
+     "id": "hitclank",
+     "title": "Hit building",
+     "gain": 0.55,
+     "gainSwift": "AudioDirector.hitClankGain",
+     "loop": false,
+     "driven": true
+    }
+   ],
+   "audioSwiftLines": [
+    558,
+    560,
+    758
+   ]
+  },
+  "hitmark": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/hitmark/SW_hitmark_1.SW_hitmark_1",
+     "source": "sfx/hitmark_1.wav",
+     "prepared": "Content-src/sounds/sfx/hitmark_1.wav",
+     "seconds": 0.22,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/hitmark/SW_hitmark_2.SW_hitmark_2",
+     "source": "sfx/hitmark_2.wav",
+     "prepared": "Content-src/sounds/sfx/hitmark_2.wav",
+     "seconds": 0.22,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/hitmark/SW_hitmark_3.SW_hitmark_3",
+     "source": "sfx/hitmark_3.wav",
+     "prepared": "Content-src/sounds/sfx/hitmark_3.wav",
+     "seconds": 0.22,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/hitmark/SW_hitmark_4.SW_hitmark_4",
+     "source": "sfx/hitmark_4.wav",
+     "prepared": "Content-src/sounds/sfx/hitmark_4.wav",
+     "seconds": 0.22,
+     "rate": 44100
+    }
+   ],
+   "board": [
+    {
+     "id": "hitmark",
+     "title": "Hit",
+     "gain": 0.5,
+     "gainSwift": "AudioDirector.hitMarkGain",
+     "loop": false,
+     "driven": true
+    }
+   ],
+   "audioSwiftLines": [
+    558,
+    757
+   ]
+  },
+  "hum": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/hum/SW_hum_1.SW_hum_1",
+     "source": "sfx/hum_1.wav",
+     "prepared": "Content-src/sounds/sfx/hum_1.wav",
+     "seconds": 8.0,
+     "rate": 44100
+    }
+   ],
+   "board": [
+    {
+     "id": "hum",
+     "title": "Hum",
+     "gain": 0.11,
+     "gainSwift": "AudioDirector.humGain",
+     "loop": true,
+     "driven": false
+    }
+   ],
+   "audioSwiftLines": [
+    408,
+    738
+   ]
+  },
+  "jetland": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/jetland/SW_jetland_1.SW_jetland_1",
+     "source": "sfx/jetland_1.wav",
+     "prepared": "Content-src/sounds/sfx/jetland_1.wav",
+     "seconds": 0.35,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/jetland/SW_jetland_2.SW_jetland_2",
+     "source": "sfx/jetland_2.wav",
+     "prepared": "Content-src/sounds/sfx/jetland_2.wav",
+     "seconds": 0.35,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/jetland/SW_jetland_3.SW_jetland_3",
+     "source": "sfx/jetland_3.wav",
+     "prepared": "Content-src/sounds/sfx/jetland_3.wav",
+     "seconds": 0.35,
+     "rate": 44100
+    }
+   ],
+   "board": [
+    {
+     "id": "jetland",
+     "title": "Landing",
+     "gain": 0.4,
+     "gainSwift": "0.4",
+     "loop": false,
+     "driven": false
+    }
+   ],
+   "audioSwiftLines": [
+    615,
+    761
+   ]
+  },
+  "jetup": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/jetup/SW_jetup_1.SW_jetup_1",
+     "source": "sfx/jetup_1.wav",
+     "prepared": "Content-src/sounds/sfx/jetup_1.wav",
+     "seconds": 0.28,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/jetup/SW_jetup_2.SW_jetup_2",
+     "source": "sfx/jetup_2.wav",
+     "prepared": "Content-src/sounds/sfx/jetup_2.wav",
+     "seconds": 0.28,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/jetup/SW_jetup_3.SW_jetup_3",
+     "source": "sfx/jetup_3.wav",
+     "prepared": "Content-src/sounds/sfx/jetup_3.wav",
+     "seconds": 0.28,
+     "rate": 44100
+    }
+   ],
+   "board": [
+    {
+     "id": "jetup",
+     "title": "Jet pack",
+     "gain": 0.4,
+     "gainSwift": "0.4",
+     "loop": false,
+     "driven": false
+    }
+   ],
+   "audioSwiftLines": [
+    615,
+    761
+   ]
+  },
+  "juggernautdeath": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/juggernautdeath/SW_juggernautdeath_1.SW_juggernautdeath_1",
+     "source": "sfx/juggernautdeath_1.wav",
+     "prepared": "Content-src/sounds/sfx/juggernautdeath_1.wav",
+     "seconds": 1.745,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/juggernautdeath/SW_juggernautdeath_2.SW_juggernautdeath_2",
+     "source": "sfx/juggernautdeath_2.wav",
+     "prepared": "Content-src/sounds/sfx/juggernautdeath_2.wav",
+     "seconds": 1.425,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/juggernautdeath/SW_juggernautdeath_3.SW_juggernautdeath_3",
+     "source": "sfx/juggernautdeath_3.wav",
+     "prepared": "Content-src/sounds/sfx/juggernautdeath_3.wav",
+     "seconds": 1.665,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/juggernautdeath/SW_juggernautdeath_4.SW_juggernautdeath_4",
+     "source": "sfx/juggernautdeath_4.wav",
+     "prepared": "Content-src/sounds/sfx/juggernautdeath_4.wav",
+     "seconds": 1.905,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/juggernautdeath/SW_juggernautdeath_5.SW_juggernautdeath_5",
+     "source": "sfx/juggernautdeath_5.wav",
+     "prepared": "Content-src/sounds/sfx/juggernautdeath_5.wav",
+     "seconds": 1.265,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/juggernautdeath/SW_juggernautdeath_6.SW_juggernautdeath_6",
+     "source": "sfx/juggernautdeath_6.wav",
+     "prepared": "Content-src/sounds/sfx/juggernautdeath_6.wav",
+     "seconds": 1.425,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/juggernautdeath/SW_juggernautdeath_7.SW_juggernautdeath_7",
+     "source": "sfx/juggernautdeath_7.wav",
+     "prepared": "Content-src/sounds/sfx/juggernautdeath_7.wav",
+     "seconds": 1.665,
+     "rate": 24000
+    }
+   ],
+   "board": [
+    {
+     "id": "juggernautdeath",
+     "title": "Death cry",
+     "gain": 0.55,
+     "gainSwift": "0.55",
+     "loop": false,
+     "driven": false
+    }
+   ],
+   "audioSwiftLines": [
+    629,
+    763
+   ]
+  },
+  "kestreldeath": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/kestreldeath/SW_kestreldeath_1.SW_kestreldeath_1",
+     "source": "sfx/kestreldeath_1.wav",
+     "prepared": "Content-src/sounds/sfx/kestreldeath_1.wav",
+     "seconds": 2.225,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/kestreldeath/SW_kestreldeath_2.SW_kestreldeath_2",
+     "source": "sfx/kestreldeath_2.wav",
+     "prepared": "Content-src/sounds/sfx/kestreldeath_2.wav",
+     "seconds": 1.425,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/kestreldeath/SW_kestreldeath_3.SW_kestreldeath_3",
+     "source": "sfx/kestreldeath_3.wav",
+     "prepared": "Content-src/sounds/sfx/kestreldeath_3.wav",
+     "seconds": 1.185,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/kestreldeath/SW_kestreldeath_4.SW_kestreldeath_4",
+     "source": "sfx/kestreldeath_4.wav",
+     "prepared": "Content-src/sounds/sfx/kestreldeath_4.wav",
+     "seconds": 1.585,
+     "rate": 24000
+    }
+   ],
+   "board": [
+    {
+     "id": "kestreldeath",
+     "title": "Death cry",
+     "gain": 0.55,
+     "gainSwift": "0.55",
+     "loop": false,
+     "driven": false
+    }
+   ],
+   "audioSwiftLines": [
+    631,
+    768
+   ]
+  },
+  "kestrelmove": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/kestrelmove/SW_kestrelmove_1.SW_kestrelmove_1",
+     "source": "sfx/kestrelmove_1.wav",
+     "prepared": "Content-src/sounds/sfx/kestrelmove_1.wav",
+     "seconds": 2.0,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/kestrelmove/SW_kestrelmove_2.SW_kestrelmove_2",
+     "source": "sfx/kestrelmove_2.wav",
+     "prepared": "Content-src/sounds/sfx/kestrelmove_2.wav",
+     "seconds": 2.0,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/kestrelmove/SW_kestrelmove_3.SW_kestrelmove_3",
+     "source": "sfx/kestrelmove_3.wav",
+     "prepared": "Content-src/sounds/sfx/kestrelmove_3.wav",
+     "seconds": 2.0,
+     "rate": 44100
+    }
+   ],
+   "board": [
+    {
+     "id": "kestrelmove",
+     "title": "Engine",
+     "gain": 0.22,
+     "gainSwift": "AudioDirector.kestrelEngineGain",
+     "loop": false,
+     "driven": true
+    }
+   ],
+   "audioSwiftLines": [
+    607,
+    767
+   ]
+  },
+  "killmark": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/killmark/SW_killmark_1.SW_killmark_1",
+     "source": "sfx/killmark_1.wav",
+     "prepared": "Content-src/sounds/sfx/killmark_1.wav",
+     "seconds": 0.45,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/killmark/SW_killmark_2.SW_killmark_2",
+     "source": "sfx/killmark_2.wav",
+     "prepared": "Content-src/sounds/sfx/killmark_2.wav",
+     "seconds": 0.45,
+     "rate": 44100
+    }
+   ],
+   "board": [
+    {
+     "id": "killmark",
+     "title": "Kill",
+     "gain": 0.34,
+     "gainSwift": "AudioDirector.killMarkGain",
+     "loop": false,
+     "driven": true
+    }
+   ],
+   "audioSwiftLines": [
+    557,
+    757
+   ]
+  },
+  "levelup": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/levelup/SW_levelup_1.SW_levelup_1",
+     "source": "sfx/levelup_1.wav",
+     "prepared": "Content-src/sounds/sfx/levelup_1.wav",
+     "seconds": 1.6,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/levelup/SW_levelup_2.SW_levelup_2",
+     "source": "sfx/levelup_2.wav",
+     "prepared": "Content-src/sounds/sfx/levelup_2.wav",
+     "seconds": 1.6,
+     "rate": 44100
+    }
+   ],
+   "board": [
+    {
+     "id": "levelup",
+     "title": "Level up",
+     "gain": 0.5,
+     "gainSwift": "AudioDirector.levelUpGain",
+     "loop": false,
+     "driven": true
+    }
+   ],
+   "audioSwiftLines": [
+    588,
+    589,
+    759
+   ]
+  },
+  "lockon": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/lockon/SW_lockon_1.SW_lockon_1",
+     "source": "sfx/lockon_1.wav",
+     "prepared": "Content-src/sounds/sfx/lockon_1.wav",
+     "seconds": 0.35,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/lockon/SW_lockon_2.SW_lockon_2",
+     "source": "sfx/lockon_2.wav",
+     "prepared": "Content-src/sounds/sfx/lockon_2.wav",
+     "seconds": 0.35,
+     "rate": 44100
+    }
+   ],
+   "board": [
+    {
+     "id": "lockon",
+     "title": "Lock-on",
+     "gain": 0.28,
+     "gainSwift": "AudioDirector.lockOnGain",
+     "loop": false,
+     "driven": true
+    }
+   ],
+   "audioSwiftLines": [
+    582,
+    583,
+    758
+   ]
+  },
+  "longbowdeath": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/longbowdeath/SW_longbowdeath_1.SW_longbowdeath_1",
+     "source": "sfx/longbowdeath_1.wav",
+     "prepared": "Content-src/sounds/sfx/longbowdeath_1.wav",
+     "seconds": 1.665,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/longbowdeath/SW_longbowdeath_2.SW_longbowdeath_2",
+     "source": "sfx/longbowdeath_2.wav",
+     "prepared": "Content-src/sounds/sfx/longbowdeath_2.wav",
+     "seconds": 1.585,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/longbowdeath/SW_longbowdeath_3.SW_longbowdeath_3",
+     "source": "sfx/longbowdeath_3.wav",
+     "prepared": "Content-src/sounds/sfx/longbowdeath_3.wav",
+     "seconds": 1.425,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/longbowdeath/SW_longbowdeath_4.SW_longbowdeath_4",
+     "source": "sfx/longbowdeath_4.wav",
+     "prepared": "Content-src/sounds/sfx/longbowdeath_4.wav",
+     "seconds": 1.825,
+     "rate": 24000
+    }
+   ],
+   "board": [
+    {
+     "id": "longbowdeath",
+     "title": "Death cry",
+     "gain": 0.55,
+     "gainSwift": "0.55",
+     "loop": false,
+     "driven": false
+    }
+   ],
+   "audioSwiftLines": [
+    630,
+    763
+   ]
+  },
+  "minigun": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/minigun/SW_minigun_1.SW_minigun_1",
+     "source": "sfx/minigun_1.wav",
+     "prepared": "Content-src/sounds/sfx/minigun_1.wav",
+     "seconds": 2.0,
+     "rate": 48000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/minigun/SW_minigun_2.SW_minigun_2",
+     "source": "sfx/minigun_2.wav",
+     "prepared": "Content-src/sounds/sfx/minigun_2.wav",
+     "seconds": 2.0,
+     "rate": 48000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/minigun/SW_minigun_3.SW_minigun_3",
+     "source": "sfx/minigun_3.wav",
+     "prepared": "Content-src/sounds/sfx/minigun_3.wav",
+     "seconds": 2.0,
+     "rate": 48000
+    }
+   ],
+   "board": [
+    {
+     "id": "minigun",
+     "title": "Mini gun",
+     "gain": 0.3,
+     "gainSwift": "AudioDirector.minigunGain",
+     "loop": true,
+     "driven": false
+    }
+   ],
+   "audioSwiftLines": [
+    460,
+    744
+   ]
+  },
+  "missile": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/missile/SW_missile_1.SW_missile_1",
+     "source": "sfx/missile_1.wav",
+     "prepared": "Content-src/sounds/sfx/missile_1.wav",
+     "seconds": 1.0,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/missile/SW_missile_2.SW_missile_2",
+     "source": "sfx/missile_2.wav",
+     "prepared": "Content-src/sounds/sfx/missile_2.wav",
+     "seconds": 1.0,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/missile/SW_missile_3.SW_missile_3",
+     "source": "sfx/missile_3.wav",
+     "prepared": "Content-src/sounds/sfx/missile_3.wav",
+     "seconds": 1.0,
+     "rate": 44100
+    }
+   ],
+   "board": [
+    {
+     "id": "missile",
+     "title": "Missiles",
+     "gain": 0.35,
+     "gainSwift": "AudioDirector.missileGain",
+     "loop": false,
+     "driven": false
+    }
+   ],
+   "audioSwiftLines": [
+    520,
+    766
+   ]
+  },
+  "peregrinepass": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/peregrinepass/SW_peregrinepass_1.SW_peregrinepass_1",
+     "source": "sfx/peregrinepass_1.wav",
+     "prepared": "Content-src/sounds/sfx/peregrinepass_1.wav",
+     "seconds": 2.48,
+     "rate": 44100
+    }
+   ],
+   "board": [],
+   "audioSwiftLines": []
+  },
+  "pick": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/pick/SW_pick_1.SW_pick_1",
+     "source": "sfx/pick_1.wav",
+     "prepared": "Content-src/sounds/sfx/pick_1.wav",
+     "seconds": 0.68,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/pick/SW_pick_2.SW_pick_2",
+     "source": "sfx/pick_2.wav",
+     "prepared": "Content-src/sounds/sfx/pick_2.wav",
+     "seconds": 0.6,
+     "rate": 44100
+    }
+   ],
+   "board": [
+    {
+     "id": "pick",
+     "title": "Pick",
+     "gain": 0.35,
+     "gainSwift": "AudioDirector.pickGain",
+     "loop": false,
+     "driven": true
+    }
+   ],
+   "audioSwiftLines": [
+    594,
+    595,
+    759
+   ]
+  },
+  "pistol": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/pistol/SW_pistol_1.SW_pistol_1",
+     "source": "sfx/pistol_1.wav",
+     "prepared": "Content-src/sounds/sfx/pistol_1.wav",
+     "seconds": 0.68,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/pistol/SW_pistol_2.SW_pistol_2",
+     "source": "sfx/pistol_2.wav",
+     "prepared": "Content-src/sounds/sfx/pistol_2.wav",
+     "seconds": 0.68,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/pistol/SW_pistol_3.SW_pistol_3",
+     "source": "sfx/pistol_3.wav",
+     "prepared": "Content-src/sounds/sfx/pistol_3.wav",
+     "seconds": 0.68,
+     "rate": 44100
+    }
+   ],
+   "board": [
+    {
+     "id": "pistols",
+     "title": "Pistols",
+     "gain": 0.3,
+     "gainSwift": "0.3",
+     "loop": false,
+     "driven": false
+    }
+   ],
+   "audioSwiftLines": [
+    521,
+    752
+   ]
+  },
+  "prospectordeath": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/prospectordeath/SW_prospectordeath_1.SW_prospectordeath_1",
+     "source": "sfx/prospectordeath_1.wav",
+     "prepared": "Content-src/sounds/sfx/prospectordeath_1.wav",
+     "seconds": 2.065,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/prospectordeath/SW_prospectordeath_2.SW_prospectordeath_2",
+     "source": "sfx/prospectordeath_2.wav",
+     "prepared": "Content-src/sounds/sfx/prospectordeath_2.wav",
+     "seconds": 2.225,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/prospectordeath/SW_prospectordeath_3.SW_prospectordeath_3",
+     "source": "sfx/prospectordeath_3.wav",
+     "prepared": "Content-src/sounds/sfx/prospectordeath_3.wav",
+     "seconds": 1.665,
+     "rate": 24000
+    }
+   ],
+   "board": [
+    {
+     "id": "prospectordeath",
+     "title": "Death cry",
+     "gain": 0.55,
+     "gainSwift": "0.55",
+     "loop": false,
+     "driven": false
+    }
+   ],
+   "audioSwiftLines": [
+    632,
+    748
+   ]
+  },
+  "rangerdeath": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/rangerdeath/SW_rangerdeath_1.SW_rangerdeath_1",
+     "source": "sfx/rangerdeath_1.wav",
+     "prepared": "Content-src/sounds/sfx/rangerdeath_1.wav",
+     "seconds": 1.825,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/rangerdeath/SW_rangerdeath_2.SW_rangerdeath_2",
+     "source": "sfx/rangerdeath_2.wav",
+     "prepared": "Content-src/sounds/sfx/rangerdeath_2.wav",
+     "seconds": 1.425,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/rangerdeath/SW_rangerdeath_3.SW_rangerdeath_3",
+     "source": "sfx/rangerdeath_3.wav",
+     "prepared": "Content-src/sounds/sfx/rangerdeath_3.wav",
+     "seconds": 1.345,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/rangerdeath/SW_rangerdeath_4.SW_rangerdeath_4",
+     "source": "sfx/rangerdeath_4.wav",
+     "prepared": "Content-src/sounds/sfx/rangerdeath_4.wav",
+     "seconds": 1.505,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/rangerdeath/SW_rangerdeath_5.SW_rangerdeath_5",
+     "source": "sfx/rangerdeath_5.wav",
+     "prepared": "Content-src/sounds/sfx/rangerdeath_5.wav",
+     "seconds": 2.065,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/rangerdeath/SW_rangerdeath_6.SW_rangerdeath_6",
+     "source": "sfx/rangerdeath_6.wav",
+     "prepared": "Content-src/sounds/sfx/rangerdeath_6.wav",
+     "seconds": 1.345,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/rangerdeath/SW_rangerdeath_7.SW_rangerdeath_7",
+     "source": "sfx/rangerdeath_7.wav",
+     "prepared": "Content-src/sounds/sfx/rangerdeath_7.wav",
+     "seconds": 1.505,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/rangerdeath/SW_rangerdeath_8.SW_rangerdeath_8",
+     "source": "sfx/rangerdeath_8.wav",
+     "prepared": "Content-src/sounds/sfx/rangerdeath_8.wav",
+     "seconds": 1.665,
+     "rate": 24000
+    }
+   ],
+   "board": [
+    {
+     "id": "rangerdeath",
+     "title": "Death cry",
+     "gain": 0.55,
+     "gainSwift": "0.55",
+     "loop": false,
+     "driven": false
+    }
+   ],
+   "audioSwiftLines": [
+    629,
+    747
+   ]
+  },
+  "rockets": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/rockets/SW_rockets_1.SW_rockets_1",
+     "source": "sfx/rockets_1.wav",
+     "prepared": "Content-src/sounds/sfx/rockets_1.wav",
+     "seconds": 1.2,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/rockets/SW_rockets_2.SW_rockets_2",
+     "source": "sfx/rockets_2.wav",
+     "prepared": "Content-src/sounds/sfx/rockets_2.wav",
+     "seconds": 1.2,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/rockets/SW_rockets_3.SW_rockets_3",
+     "source": "sfx/rockets_3.wav",
+     "prepared": "Content-src/sounds/sfx/rockets_3.wav",
+     "seconds": 1.2,
+     "rate": 44100
+    }
+   ],
+   "board": [
+    {
+     "id": "rockets",
+     "title": "Rockets",
+     "gain": 0.45,
+     "gainSwift": "AudioDirector.rocketGain",
+     "loop": false,
+     "driven": false
+    }
+   ],
+   "audioSwiftLines": [
+    522,
+    764
+   ]
+  },
+  "scorpionbury": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/scorpionbury/SW_scorpionbury_1.SW_scorpionbury_1",
+     "source": "sfx/scorpionbury_1.wav",
+     "prepared": "Content-src/sounds/sfx/scorpionbury_1.wav",
+     "seconds": 2.0,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/scorpionbury/SW_scorpionbury_2.SW_scorpionbury_2",
+     "source": "sfx/scorpionbury_2.wav",
+     "prepared": "Content-src/sounds/sfx/scorpionbury_2.wav",
+     "seconds": 2.0,
+     "rate": 44100
+    }
+   ],
+   "board": [],
+   "audioSwiftLines": []
+  },
+  "scorpiondeath": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/scorpiondeath/SW_scorpiondeath_1.SW_scorpiondeath_1",
+     "source": "sfx/scorpiondeath_1.wav",
+     "prepared": "Content-src/sounds/sfx/scorpiondeath_1.wav",
+     "seconds": 1.48,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/scorpiondeath/SW_scorpiondeath_2.SW_scorpiondeath_2",
+     "source": "sfx/scorpiondeath_2.wav",
+     "prepared": "Content-src/sounds/sfx/scorpiondeath_2.wav",
+     "seconds": 1.48,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/scorpiondeath/SW_scorpiondeath_3.SW_scorpiondeath_3",
+     "source": "sfx/scorpiondeath_3.wav",
+     "prepared": "Content-src/sounds/sfx/scorpiondeath_3.wav",
+     "seconds": 1.48,
+     "rate": 44100
+    }
+   ],
+   "board": [],
+   "audioSwiftLines": []
+  },
+  "scorpionlock": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/scorpionlock/SW_scorpionlock_1.SW_scorpionlock_1",
+     "source": "sfx/scorpionlock_1.wav",
+     "prepared": "Content-src/sounds/sfx/scorpionlock_1.wav",
+     "seconds": 1.2,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/scorpionlock/SW_scorpionlock_2.SW_scorpionlock_2",
+     "source": "sfx/scorpionlock_2.wav",
+     "prepared": "Content-src/sounds/sfx/scorpionlock_2.wav",
+     "seconds": 1.2,
+     "rate": 44100
+    }
+   ],
+   "board": [],
+   "audioSwiftLines": []
+  },
+  "scorpionmove": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/scorpionmove/SW_scorpionmove_1.SW_scorpionmove_1",
+     "source": "sfx/scorpionmove_1.wav",
+     "prepared": "Content-src/sounds/sfx/scorpionmove_1.wav",
+     "seconds": 2.0,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/scorpionmove/SW_scorpionmove_2.SW_scorpionmove_2",
+     "source": "sfx/scorpionmove_2.wav",
+     "prepared": "Content-src/sounds/sfx/scorpionmove_2.wav",
+     "seconds": 2.0,
+     "rate": 44100
+    }
+   ],
+   "board": [],
+   "audioSwiftLines": []
+  },
+  "scorpionsting": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/scorpionsting/SW_scorpionsting_1.SW_scorpionsting_1",
+     "source": "sfx/scorpionsting_1.wav",
+     "prepared": "Content-src/sounds/sfx/scorpionsting_1.wav",
+     "seconds": 1.48,
+     "rate": 44100
+    }
+   ],
+   "board": [],
+   "audioSwiftLines": []
+  },
+  "scorpionunbury": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/scorpionunbury/SW_scorpionunbury_1.SW_scorpionunbury_1",
+     "source": "sfx/scorpionunbury_1.wav",
+     "prepared": "Content-src/sounds/sfx/scorpionunbury_1.wav",
+     "seconds": 2.0,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/scorpionunbury/SW_scorpionunbury_2.SW_scorpionunbury_2",
+     "source": "sfx/scorpionunbury_2.wav",
+     "prepared": "Content-src/sounds/sfx/scorpionunbury_2.wav",
+     "seconds": 2.0,
+     "rate": 44100
+    }
+   ],
+   "board": [],
+   "audioSwiftLines": []
+  },
+  "seekers": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/seekers/SW_seekers_1.SW_seekers_1",
+     "source": "sfx/seekers_1.wav",
+     "prepared": "Content-src/sounds/sfx/seekers_1.wav",
+     "seconds": 1.0,
+     "rate": 44100
+    }
+   ],
+   "board": [],
+   "audioSwiftLines": []
+  },
+  "sentineltrack": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/sentineltrack/SW_sentineltrack_1.SW_sentineltrack_1",
+     "source": "sfx/sentineltrack_1.wav",
+     "prepared": "Content-src/sounds/sfx/sentineltrack_1.wav",
+     "seconds": 0.6,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/sentineltrack/SW_sentineltrack_2.SW_sentineltrack_2",
+     "source": "sfx/sentineltrack_2.wav",
+     "prepared": "Content-src/sounds/sfx/sentineltrack_2.wav",
+     "seconds": 0.6,
+     "rate": 44100
+    }
+   ],
+   "board": [
+    {
+     "id": "sentineltrack",
+     "title": "Lock on",
+     "gain": 0.3,
+     "gainSwift": "AudioDirector.sentinelTrackGain",
+     "loop": false,
+     "driven": false
+    }
+   ],
+   "audioSwiftLines": [
+    533,
+    534,
+    767
+   ]
+  },
+  "step": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/step/SW_step_1.SW_step_1",
+     "source": "sfx/step_1.wav",
+     "prepared": "Content-src/sounds/sfx/step_1.wav",
+     "seconds": 0.4,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/step/SW_step_2.SW_step_2",
+     "source": "sfx/step_2.wav",
+     "prepared": "Content-src/sounds/sfx/step_2.wav",
+     "seconds": 0.4,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/step/SW_step_3.SW_step_3",
+     "source": "sfx/step_3.wav",
+     "prepared": "Content-src/sounds/sfx/step_3.wav",
+     "seconds": 0.4,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/step/SW_step_4.SW_step_4",
+     "source": "sfx/step_4.wav",
+     "prepared": "Content-src/sounds/sfx/step_4.wav",
+     "seconds": 0.4,
+     "rate": 44100
+    }
+   ],
+   "board": [
+    {
+     "id": "step",
+     "title": "Footfall",
+     "gain": 0.22,
+     "gainSwift": "0.22",
+     "loop": false,
+     "driven": true
+    }
+   ],
+   "audioSwiftLines": [
+    571,
+    572,
+    758
+   ]
+  },
+  "stomp": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/stomp/SW_stomp_1.SW_stomp_1",
+     "source": "sfx/stomp_1.wav",
+     "prepared": "Content-src/sounds/sfx/stomp_1.wav",
+     "seconds": 2.0,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/stomp/SW_stomp_2.SW_stomp_2",
+     "source": "sfx/stomp_2.wav",
+     "prepared": "Content-src/sounds/sfx/stomp_2.wav",
+     "seconds": 2.0,
+     "rate": 44100
+    }
+   ],
+   "board": [],
+   "audioSwiftLines": []
+  },
+  "vcomet": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/vcomet/SW_vcomet_1.SW_vcomet_1",
+     "source": "sfx/vcomet_1.wav",
+     "prepared": "Content-src/sounds/sfx/vcomet_1.wav",
+     "seconds": 2.625,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/vcomet/SW_vcomet_2.SW_vcomet_2",
+     "source": "sfx/vcomet_2.wav",
+     "prepared": "Content-src/sounds/sfx/vcomet_2.wav",
+     "seconds": 3.825,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/vcomet/SW_vcomet_3.SW_vcomet_3",
+     "source": "sfx/vcomet_3.wav",
+     "prepared": "Content-src/sounds/sfx/vcomet_3.wav",
+     "seconds": 2.785,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/vcomet/SW_vcomet_4.SW_vcomet_4",
+     "source": "sfx/vcomet_4.wav",
+     "prepared": "Content-src/sounds/sfx/vcomet_4.wav",
+     "seconds": 4.065,
+     "rate": 24000
+    }
+   ],
+   "board": [
+    {
+     "id": "report",
+     "title": "Report in",
+     "gain": 0.6,
+     "gainSwift": "0.6",
+     "loop": false,
+     "driven": false
+    }
+   ],
+   "audioSwiftLines": [
+    495,
+    762
+   ]
+  },
+  "vdropship": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/vdropship/SW_vdropship_1.SW_vdropship_1",
+     "source": "sfx/vdropship_1.wav",
+     "prepared": "Content-src/sounds/sfx/vdropship_1.wav",
+     "seconds": 2.225,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/vdropship/SW_vdropship_2.SW_vdropship_2",
+     "source": "sfx/vdropship_2.wav",
+     "prepared": "Content-src/sounds/sfx/vdropship_2.wav",
+     "seconds": 2.625,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/vdropship/SW_vdropship_3.SW_vdropship_3",
+     "source": "sfx/vdropship_3.wav",
+     "prepared": "Content-src/sounds/sfx/vdropship_3.wav",
+     "seconds": 3.025,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/vdropship/SW_vdropship_4.SW_vdropship_4",
+     "source": "sfx/vdropship_4.wav",
+     "prepared": "Content-src/sounds/sfx/vdropship_4.wav",
+     "seconds": 2.705,
+     "rate": 24000
+    }
+   ],
+   "board": [
+    {
+     "id": "report",
+     "title": "Report in",
+     "gain": 0.6,
+     "gainSwift": "0.6",
+     "loop": false,
+     "driven": false
+    }
+   ],
+   "audioSwiftLines": [
+    496,
+    762
+   ]
+  },
+  "vfirefly": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/vfirefly/SW_vfirefly_1.SW_vfirefly_1",
+     "source": "sfx/vfirefly_1.wav",
+     "prepared": "Content-src/sounds/sfx/vfirefly_1.wav",
+     "seconds": 2.545,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/vfirefly/SW_vfirefly_2.SW_vfirefly_2",
+     "source": "sfx/vfirefly_2.wav",
+     "prepared": "Content-src/sounds/sfx/vfirefly_2.wav",
+     "seconds": 2.625,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/vfirefly/SW_vfirefly_3.SW_vfirefly_3",
+     "source": "sfx/vfirefly_3.wav",
+     "prepared": "Content-src/sounds/sfx/vfirefly_3.wav",
+     "seconds": 1.985,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/vfirefly/SW_vfirefly_4.SW_vfirefly_4",
+     "source": "sfx/vfirefly_4.wav",
+     "prepared": "Content-src/sounds/sfx/vfirefly_4.wav",
+     "seconds": 2.545,
+     "rate": 24000
+    }
+   ],
+   "board": [
+    {
+     "id": "report",
+     "title": "Report in",
+     "gain": 0.6,
+     "gainSwift": "0.6",
+     "loop": false,
+     "driven": false
+    }
+   ],
+   "audioSwiftLines": [
+    495,
+    762
+   ]
+  },
+  "vhailstorm": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/vhailstorm/SW_vhailstorm_1.SW_vhailstorm_1",
+     "source": "sfx/vhailstorm_1.wav",
+     "prepared": "Content-src/sounds/sfx/vhailstorm_1.wav",
+     "seconds": 2.305,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/vhailstorm/SW_vhailstorm_2.SW_vhailstorm_2",
+     "source": "sfx/vhailstorm_2.wav",
+     "prepared": "Content-src/sounds/sfx/vhailstorm_2.wav",
+     "seconds": 3.665,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/vhailstorm/SW_vhailstorm_3.SW_vhailstorm_3",
+     "source": "sfx/vhailstorm_3.wav",
+     "prepared": "Content-src/sounds/sfx/vhailstorm_3.wav",
+     "seconds": 2.545,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/vhailstorm/SW_vhailstorm_4.SW_vhailstorm_4",
+     "source": "sfx/vhailstorm_4.wav",
+     "prepared": "Content-src/sounds/sfx/vhailstorm_4.wav",
+     "seconds": 2.705,
+     "rate": 24000
+    }
+   ],
+   "board": [
+    {
+     "id": "report",
+     "title": "Report in",
+     "gain": 0.6,
+     "gainSwift": "0.6",
+     "loop": false,
+     "driven": false
+    }
+   ],
+   "audioSwiftLines": [
+    497,
+    768
+   ]
+  },
+  "vjuggernaut": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/vjuggernaut/SW_vjuggernaut_1.SW_vjuggernaut_1",
+     "source": "sfx/vjuggernaut_1.wav",
+     "prepared": "Content-src/sounds/sfx/vjuggernaut_1.wav",
+     "seconds": 4.225,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/vjuggernaut/SW_vjuggernaut_2.SW_vjuggernaut_2",
+     "source": "sfx/vjuggernaut_2.wav",
+     "prepared": "Content-src/sounds/sfx/vjuggernaut_2.wav",
+     "seconds": 3.745,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/vjuggernaut/SW_vjuggernaut_3.SW_vjuggernaut_3",
+     "source": "sfx/vjuggernaut_3.wav",
+     "prepared": "Content-src/sounds/sfx/vjuggernaut_3.wav",
+     "seconds": 4.305,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/vjuggernaut/SW_vjuggernaut_4.SW_vjuggernaut_4",
+     "source": "sfx/vjuggernaut_4.wav",
+     "prepared": "Content-src/sounds/sfx/vjuggernaut_4.wav",
+     "seconds": 4.305,
+     "rate": 24000
+    }
+   ],
+   "board": [
+    {
+     "id": "report",
+     "title": "Report in",
+     "gain": 0.6,
+     "gainSwift": "0.6",
+     "loop": false,
+     "driven": false
+    }
+   ],
+   "audioSwiftLines": [
+    496,
+    762
+   ]
+  },
+  "vkestrel": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/vkestrel/SW_vkestrel_1.SW_vkestrel_1",
+     "source": "sfx/vkestrel_1.wav",
+     "prepared": "Content-src/sounds/sfx/vkestrel_1.wav",
+     "seconds": 2.865,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/vkestrel/SW_vkestrel_2.SW_vkestrel_2",
+     "source": "sfx/vkestrel_2.wav",
+     "prepared": "Content-src/sounds/sfx/vkestrel_2.wav",
+     "seconds": 3.505,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/vkestrel/SW_vkestrel_3.SW_vkestrel_3",
+     "source": "sfx/vkestrel_3.wav",
+     "prepared": "Content-src/sounds/sfx/vkestrel_3.wav",
+     "seconds": 2.225,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/vkestrel/SW_vkestrel_4.SW_vkestrel_4",
+     "source": "sfx/vkestrel_4.wav",
+     "prepared": "Content-src/sounds/sfx/vkestrel_4.wav",
+     "seconds": 3.825,
+     "rate": 24000
+    }
+   ],
+   "board": [
+    {
+     "id": "report",
+     "title": "Report in",
+     "gain": 0.6,
+     "gainSwift": "0.6",
+     "loop": false,
+     "driven": false
+    }
+   ],
+   "audioSwiftLines": [
+    497,
+    768
+   ]
+  },
+  "vlongbow": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/vlongbow/SW_vlongbow_1.SW_vlongbow_1",
+     "source": "sfx/vlongbow_1.wav",
+     "prepared": "Content-src/sounds/sfx/vlongbow_1.wav",
+     "seconds": 2.465,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/vlongbow/SW_vlongbow_2.SW_vlongbow_2",
+     "source": "sfx/vlongbow_2.wav",
+     "prepared": "Content-src/sounds/sfx/vlongbow_2.wav",
+     "seconds": 3.025,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/vlongbow/SW_vlongbow_3.SW_vlongbow_3",
+     "source": "sfx/vlongbow_3.wav",
+     "prepared": "Content-src/sounds/sfx/vlongbow_3.wav",
+     "seconds": 2.465,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/vlongbow/SW_vlongbow_4.SW_vlongbow_4",
+     "source": "sfx/vlongbow_4.wav",
+     "prepared": "Content-src/sounds/sfx/vlongbow_4.wav",
+     "seconds": 2.705,
+     "rate": 24000
+    }
+   ],
+   "board": [
+    {
+     "id": "report",
+     "title": "Report in",
+     "gain": 0.6,
+     "gainSwift": "0.6",
+     "loop": false,
+     "driven": false
+    }
+   ],
+   "audioSwiftLines": [
+    496,
+    762
+   ]
+  },
+  "vprospector": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/vprospector/SW_vprospector_1.SW_vprospector_1",
+     "source": "sfx/vprospector_1.wav",
+     "prepared": "Content-src/sounds/sfx/vprospector_1.wav",
+     "seconds": 2.465,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/vprospector/SW_vprospector_2.SW_vprospector_2",
+     "source": "sfx/vprospector_2.wav",
+     "prepared": "Content-src/sounds/sfx/vprospector_2.wav",
+     "seconds": 2.625,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/vprospector/SW_vprospector_3.SW_vprospector_3",
+     "source": "sfx/vprospector_3.wav",
+     "prepared": "Content-src/sounds/sfx/vprospector_3.wav",
+     "seconds": 3.185,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/vprospector/SW_vprospector_4.SW_vprospector_4",
+     "source": "sfx/vprospector_4.wav",
+     "prepared": "Content-src/sounds/sfx/vprospector_4.wav",
+     "seconds": 3.025,
+     "rate": 24000
+    }
+   ],
+   "board": [
+    {
+     "id": "vprospector",
+     "title": "Report in",
+     "gain": 0.6,
+     "gainSwift": "0.6",
+     "loop": false,
+     "driven": false
+    }
+   ],
+   "audioSwiftLines": [
+    495,
+    741
+   ]
+  },
+  "vranger": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/vranger/SW_vranger_1.SW_vranger_1",
+     "source": "sfx/vranger_1.wav",
+     "prepared": "Content-src/sounds/sfx/vranger_1.wav",
+     "seconds": 3.105,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/vranger/SW_vranger_2.SW_vranger_2",
+     "source": "sfx/vranger_2.wav",
+     "prepared": "Content-src/sounds/sfx/vranger_2.wav",
+     "seconds": 2.705,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/vranger/SW_vranger_3.SW_vranger_3",
+     "source": "sfx/vranger_3.wav",
+     "prepared": "Content-src/sounds/sfx/vranger_3.wav",
+     "seconds": 2.625,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/vranger/SW_vranger_4.SW_vranger_4",
+     "source": "sfx/vranger_4.wav",
+     "prepared": "Content-src/sounds/sfx/vranger_4.wav",
+     "seconds": 3.025,
+     "rate": 24000
+    }
+   ],
+   "board": [
+    {
+     "id": "report",
+     "title": "Report in",
+     "gain": 0.6,
+     "gainSwift": "0.6",
+     "loop": false,
+     "driven": false
+    }
+   ],
+   "audioSwiftLines": [
+    495,
+    498,
+    742
+   ]
+  },
+  "vscorpion": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/vscorpion/SW_vscorpion_1.SW_vscorpion_1",
+     "source": "sfx/vscorpion_1.wav",
+     "prepared": "Content-src/sounds/sfx/vscorpion_1.wav",
+     "seconds": 1.2,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/vscorpion/SW_vscorpion_2.SW_vscorpion_2",
+     "source": "sfx/vscorpion_2.wav",
+     "prepared": "Content-src/sounds/sfx/vscorpion_2.wav",
+     "seconds": 1.2,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/vscorpion/SW_vscorpion_3.SW_vscorpion_3",
+     "source": "sfx/vscorpion_3.wav",
+     "prepared": "Content-src/sounds/sfx/vscorpion_3.wav",
+     "seconds": 1.2,
+     "rate": 44100
+    }
+   ],
+   "board": [],
+   "audioSwiftLines": []
+  },
+  "weld": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/weld/SW_weld_1.SW_weld_1",
+     "source": "sfx/weld_1.wav",
+     "prepared": "Content-src/sounds/sfx/weld_1.wav",
+     "seconds": 2.25,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/weld/SW_weld_2.SW_weld_2",
+     "source": "sfx/weld_2.wav",
+     "prepared": "Content-src/sounds/sfx/weld_2.wav",
+     "seconds": 2.25,
+     "rate": 44100
+    },
+    {
+     "asset": "/Game/Audio/Sfx/weld/SW_weld_3.SW_weld_3",
+     "source": "sfx/weld_3.wav",
+     "prepared": "Content-src/sounds/sfx/weld_3.wav",
+     "seconds": 2.25,
+     "rate": 44100
+    }
+   ],
+   "board": [
+    {
+     "id": "weld",
+     "title": "Weld",
+     "gain": 0.4,
+     "gainSwift": "0.4",
+     "loop": true,
+     "driven": false
+    },
+    {
+     "id": "strike",
+     "title": "Cutter strike",
+     "gain": 0.3,
+     "gainSwift": "0.3",
+     "loop": false,
+     "driven": false
+    }
+   ],
+   "audioSwiftLines": [
+    376,
+    389,
+    524,
+    740
+   ]
+  },
+  "wind": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/wind/SW_wind_1.SW_wind_1",
+     "source": "sfx/wind_1.wav",
+     "prepared": "Content-src/sounds/sfx/wind_1.wav",
+     "seconds": 30.0,
+     "rate": 44100
+    }
+   ],
+   "board": [
+    {
+     "id": "wind",
+     "title": "Wind",
+     "gain": 0.16,
+     "gainSwift": "AudioDirector.windGain",
+     "loop": true,
+     "driven": false
+    }
+   ],
+   "audioSwiftLines": [
+    178,
+    735,
+    780
+   ]
+  }
+ },
+ "ads": {
+  "ash_away": {
+   "asset": "/Game/Audio/Ads/SW_ash_away.SW_ash_away",
+   "title": "Ash-Away",
+   "source": "ads/ash_away.wav",
+   "prepared": "Content-src/sounds/ads/ash_away.wav",
+   "seconds": 10.64
+  },
+  "citadel_timeshares": {
+   "asset": "/Game/Audio/Ads/SW_citadel_timeshares.SW_citadel_timeshares",
+   "title": "Citadel Timeshares",
+   "source": "ads/citadel_timeshares.wav",
+   "prepared": "Content-src/sounds/ads/citadel_timeshares.wav",
+   "seconds": 14.08
+  },
+  "comet_jump_academy": {
+   "asset": "/Game/Audio/Ads/SW_comet_jump_academy.SW_comet_jump_academy",
+   "title": "Comet Jump Academy",
+   "source": "ads/comet_jump_academy.wav",
+   "prepared": "Content-src/sounds/ads/comet_jump_academy.wav",
+   "seconds": 11.42
+  },
+  "dropride": {
+   "asset": "/Game/Audio/Ads/SW_dropride.SW_dropride",
+   "title": "DropRide",
+   "source": "ads/dropride.wav",
+   "prepared": "Content-src/sounds/ads/dropride.wav",
+   "seconds": 10.78
+  },
+  "firefly_drivers_ed": {
+   "asset": "/Game/Audio/Ads/SW_firefly_drivers_ed.SW_firefly_drivers_ed",
+   "title": "Firefly Driver's Ed",
+   "source": "ads/firefly_drivers_ed.wav",
+   "prepared": "Content-src/sounds/ads/firefly_drivers_ed.wav",
+   "seconds": 10.32
+  },
+  "hab_dome_deluxe": {
+   "asset": "/Game/Audio/Ads/SW_hab_dome_deluxe.SW_hab_dome_deluxe",
+   "title": "Hab Dome Deluxe",
+   "source": "ads/hab_dome_deluxe.wav",
+   "prepared": "Content-src/sounds/ads/hab_dome_deluxe.wav",
+   "seconds": 11.56
+  },
+  "kstr_ident": {
+   "asset": "/Game/Audio/Ads/SW_kstr_ident.SW_kstr_ident",
+   "title": "KSTR 88.7 Stardust",
+   "source": "ads/kstr_ident.wav",
+   "prepared": "Content-src/sounds/ads/kstr_ident.wav",
+   "seconds": 8.88
+  },
+  "longbow_life": {
+   "asset": "/Game/Audio/Ads/SW_longbow_life.SW_longbow_life",
+   "title": "Longbow Life",
+   "source": "ads/longbow_life.wav",
+   "prepared": "Content-src/sounds/ads/longbow_life.wav",
+   "seconds": 10.72
+  },
+  "ministry_of_regrowth": {
+   "asset": "/Game/Audio/Ads/SW_ministry_of_regrowth.SW_ministry_of_regrowth",
+   "title": "Ministry of Regrowth",
+   "source": "ads/ministry_of_regrowth.wav",
+   "prepared": "Content-src/sounds/ads/ministry_of_regrowth.wav",
+   "seconds": 13.82
+  },
+  "night_shift_singles": {
+   "asset": "/Game/Audio/Ads/SW_night_shift_singles.SW_night_shift_singles",
+   "title": "Night Shift Singles",
+   "source": "ads/night_shift_singles.wav",
+   "prepared": "Content-src/sounds/ads/night_shift_singles.wav",
+   "seconds": 12.78
+  },
+  "opal_glow": {
+   "asset": "/Game/Audio/Ads/SW_opal_glow.SW_opal_glow",
+   "title": "Opal Glow",
+   "source": "ads/opal_glow.wav",
+   "prepared": "Content-src/sounds/ads/opal_glow.wav",
+   "seconds": 15.28
+  },
+  "oracle_premium": {
+   "asset": "/Game/Audio/Ads/SW_oracle_premium.SW_oracle_premium",
+   "title": "Oracle Premium",
+   "source": "ads/oracle_premium.wav",
+   "prepared": "Content-src/sounds/ads/oracle_premium.wav",
+   "seconds": 13.2
+  },
+  "quicksilver_cola": {
+   "asset": "/Game/Audio/Ads/SW_quicksilver_cola.SW_quicksilver_cola",
+   "title": "Quicksilver Cola",
+   "source": "ads/quicksilver_cola.wav",
+   "prepared": "Content-src/sounds/ads/quicksilver_cola.wav",
+   "seconds": 17.76
+  }
+ },
+ "unusedInSwift": [
+  "atlasmove",
+  "atlasshot",
+  "atlasstep",
+  "peregrinepass",
+  "scorpionbury",
+  "scorpiondeath",
+  "scorpionlock",
+  "scorpionmove",
+  "scorpionsting",
+  "scorpionunbury",
+  "seekers",
+  "stomp",
+  "vscorpion"
+ ]
+}

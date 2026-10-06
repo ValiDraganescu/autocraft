@@ -1,0 +1,507 @@
+{
+  "bench" : [
+    {
+      "attackTarget" : "70,-14.08",
+      "counters" : [
+        0,
+        -1,
+        0,
+        0,
+        0,
+        2
+      ],
+      "gathered" : true,
+      "left" : [
+        -645,
+        291,
+        22
+      ],
+      "manning" : [
+        "4 163 0 0 [] 4"
+      ],
+      "militia" : [
+
+      ],
+      "mix" : [
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "objectives" : [
+        "1 Waiting for soldiers [] -",
+        "2 No soldiers to spare [] -",
+        "3 Waiting for soldiers [] -",
+        "4 Filling 0 \/ 4 · training 4 [] -"
+      ],
+      "oneBuildPerSpot" : [
+        "cancelRequest 0 10",
+        "cancelRequest 0 10"
+      ],
+      "plan" : [
+
+      ],
+      "regroup" : "-",
+      "requests" : [
+        "cancelRequest 0 10"
+      ],
+      "requestStatus" : [
+        "4 Saving: 45 ore short 0.10000000000000001",
+        "5 Lab first · Saving: 95 ore short 0",
+        "6 Saving: 245 ore short 0",
+        "7 Saving: 295 ore short 0",
+        "8 Saving: 445 ore short 0",
+        "9 Saving: 495 ore short 0",
+        "10 Done 1",
+        "11 Saving: 545 ore short 0",
+        "12 Saving: 645 ore short 0"
+      ],
+      "reserved" : [
+        650,
+        250
+      ],
+      "scouts" : [
+
+      ],
+      "sentinels" : [
+        "-79,-19",
+        "-35,4",
+        "-92,-45"
+      ],
+      "sites" : [
+        "0 -70,-14.08 0 false false",
+        "1 -50,32 - false true",
+        "2 -24.133347028782808,2.7896874251370889 0 false false",
+        "3 -81.141816187065118,-43.225228532885261 0 false false",
+        "4 70,-14.08 1 true false",
+        "5 50,32 - true false",
+        "6 24.133347028782808,2.7896874251370889 - true false",
+        "7 81.141816187065118,-43.225228532885261 - true false",
+        "8 0,-43.520000000000003 - true false",
+        "9 0,43.520000000000003 - true false",
+        "10 0,0 - true false"
+      ]
+    },
+    {
+      "attackTarget" : "-70,-14.08",
+      "counters" : [
+        0,
+        -1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "gathered" : true,
+      "left" : [
+        -1010,
+        316,
+        22
+      ],
+      "manning" : [
+        "4 164 0 0 [] 4"
+      ],
+      "militia" : [
+
+      ],
+      "mix" : [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "objectives" : [
+        "1 Waiting for soldiers [] -",
+        "2 No soldiers to spare [] -",
+        "3 Waiting for soldiers [] -",
+        "4 Filling 0 \/ 4 · training 4 [] -"
+      ],
+      "oneBuildPerSpot" : [
+
+      ],
+      "plan" : [
+
+      ],
+      "regroup" : "-",
+      "requests" : [
+
+      ],
+      "requestStatus" : [
+        "4 Saving: 10 ore short 0.80000000000000004",
+        "5 Lab first · Saving: 60 ore short 0",
+        "6 No room for a Lab 0",
+        "7 Saving: 260 ore short 0",
+        "8 Saving: 410 ore short 0",
+        "9 Saving: 460 ore short 0",
+        "10 Saving: 860 ore short 0",
+        "11 Saving: 910 ore short 0",
+        "12 Saving: 1010 ore short 0"
+      ],
+      "reserved" : [
+        1050,
+        250
+      ],
+      "scouts" : [
+
+      ],
+      "sentinels" : [
+        "79,-19",
+        "35,4",
+        "92,-45"
+      ],
+      "sites" : [
+        "0 -70,-14.08 0 true false",
+        "1 -50,32 - true false",
+        "2 -24.133347028782808,2.7896874251370889 - true false",
+        "3 -81.141816187065118,-43.225228532885261 - true false",
+        "4 70,-14.08 1 false false",
+        "5 50,32 - false true",
+        "6 24.133347028782808,2.7896874251370889 1 false false",
+        "7 81.141816187065118,-43.225228532885261 1 false false",
+        "8 0,-43.520000000000003 - true false",
+        "9 0,43.520000000000003 - true false",
+        "10 0,0 - true false"
+      ]
+    }
+  ],
+  "fresh" : [
+    {
+      "attackTarget" : "70,-14.08",
+      "counters" : [
+        0,
+        -1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "gathered" : true,
+      "left" : [
+        1000,
+        500,
+        14
+      ],
+      "manning" : [
+
+      ],
+      "militia" : [
+
+      ],
+      "mix" : [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "objectives" : [
+
+      ],
+      "oneBuildPerSpot" : [
+
+      ],
+      "plan" : [
+
+      ],
+      "regroup" : "-",
+      "requests" : [
+
+      ],
+      "requestStatus" : [
+
+      ],
+      "reserved" : [
+        0,
+        0
+      ],
+      "scouts" : [
+
+      ],
+      "sentinels" : [
+        "-79,-19"
+      ],
+      "sites" : [
+        "0 -70,-14.08 0 false false",
+        "1 -50,32 - false false",
+        "2 -24.133347028782808,2.7896874251370889 - false true",
+        "3 -81.141816187065118,-43.225228532885261 - false false",
+        "4 70,-14.08 1 true false",
+        "5 50,32 - true false",
+        "6 24.133347028782808,2.7896874251370889 - true false",
+        "7 81.141816187065118,-43.225228532885261 - true false",
+        "8 0,-43.520000000000003 - true false",
+        "9 0,43.520000000000003 - true false",
+        "10 0,0 - true false"
+      ]
+    },
+    {
+      "attackTarget" : "-70,-14.08",
+      "counters" : [
+        0,
+        -1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "gathered" : true,
+      "left" : [
+        1000,
+        500,
+        14
+      ],
+      "manning" : [
+
+      ],
+      "militia" : [
+
+      ],
+      "mix" : [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "objectives" : [
+
+      ],
+      "oneBuildPerSpot" : [
+
+      ],
+      "plan" : [
+
+      ],
+      "regroup" : "-",
+      "requests" : [
+
+      ],
+      "requestStatus" : [
+
+      ],
+      "reserved" : [
+        0,
+        0
+      ],
+      "scouts" : [
+
+      ],
+      "sentinels" : [
+        "79,-19"
+      ],
+      "sites" : [
+        "0 -70,-14.08 0 true false",
+        "1 -50,32 - true false",
+        "2 -24.133347028782808,2.7896874251370889 - true false",
+        "3 -81.141816187065118,-43.225228532885261 - true false",
+        "4 70,-14.08 1 false false",
+        "5 50,32 - false false",
+        "6 24.133347028782808,2.7896874251370889 - false true",
+        "7 81.141816187065118,-43.225228532885261 - false false",
+        "8 0,-43.520000000000003 - true false",
+        "9 0,43.520000000000003 - true false",
+        "10 0,0 - true false"
+      ]
+    }
+  ],
+  "tech" : [
+    {
+      "attackTarget" : "70,-14.08",
+      "counters" : [
+        0,
+        -1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "gathered" : true,
+      "left" : [
+        450,
+        350,
+        14
+      ],
+      "manning" : [
+        "4 111 0 0 [112,113,114,115] 0"
+      ],
+      "militia" : [
+
+      ],
+      "mix" : [
+        7,
+        0,
+        7,
+        0,
+        0,
+        7,
+        7
+      ],
+      "objectives" : [
+        "1 Waiting for soldiers [] -",
+        "2 No soldiers to spare [] -",
+        "3 Waiting for soldiers [] -",
+        "4 Filling 0 \/ 4 · 4 on the way [112,113,114,115] -70.3125,-8.9574999999999996"
+      ],
+      "oneBuildPerSpot" : [
+        "build 103 foundry -64,-7",
+        "addon 94",
+        "cancelRequest 0 10",
+        "addon 94",
+        "cancelRequest 0 10"
+      ],
+      "plan" : [
+
+      ],
+      "regroup" : "-",
+      "requests" : [
+        "build 103 foundry -64,-7",
+        "addon 94",
+        "cancelRequest 0 10"
+      ],
+      "requestStatus" : [
+        "5 Foundry first 1",
+        "6 Lab first 1",
+        "7 Waiting for the Lab 1",
+        "8 Next in line 1",
+        "9 No room for a Lab 1",
+        "10 Done 1",
+        "11 Waiting for the Lab 1",
+        "12 Next in line 1"
+      ],
+      "reserved" : [
+        350,
+        25
+      ],
+      "scouts" : [
+        "mission 103 raid 70,-14.08"
+      ],
+      "sentinels" : [
+        "-79,-19"
+      ],
+      "sites" : [
+        "0 -70,-14.08 0 false false",
+        "1 -50,32 - false false",
+        "2 -24.133347028782808,2.7896874251370889 - false true",
+        "3 -81.141816187065118,-43.225228532885261 - false false",
+        "4 70,-14.08 1 true false",
+        "5 50,32 - true false",
+        "6 24.133347028782808,2.7896874251370889 - true false",
+        "7 81.141816187065118,-43.225228532885261 - true false",
+        "8 0,-43.520000000000003 - true false",
+        "9 0,43.520000000000003 - true false",
+        "10 0,0 - true false"
+      ]
+    },
+    {
+      "attackTarget" : "-70,-14.08",
+      "counters" : [
+        0,
+        -1,
+        0,
+        0,
+        0,
+        2
+      ],
+      "gathered" : false,
+      "left" : [
+        -100,
+        225,
+        12
+      ],
+      "manning" : [
+        "4 142 0 0 [143,144,145,146] 0"
+      ],
+      "militia" : [
+
+      ],
+      "mix" : [
+        6,
+        0,
+        6,
+        0,
+        0,
+        5,
+        6
+      ],
+      "objectives" : [
+        "1 Attacking (9) [120,119,121,118,122,117,123,143,141] -39.083333333333336,-8.543333333333333",
+        "2 Guarding (4) [145,146,147,144] 70.6875,-8.9574999999999996",
+        "3 Waiting for soldiers [] -",
+        "4 Filling 0 \/ 4 · 4 on the way [143,144,145,146] 69.625,-8.6649999999999991"
+      ],
+      "oneBuildPerSpot" : [
+        "build 128 foundry 64,-7",
+        "serve 1 7 [train 125 ranger]",
+        "serve 1 7 [train 125 ranger]",
+        "serve 1 10 [build 135 citadel -50,32]",
+        "serve 1 7 [train 125 ranger]",
+        "serve 1 7 [train 125 ranger]"
+      ],
+      "plan" : [
+        "mission 145 hold 2 70,-14.08",
+        "mission 146 hold 2 70,-14.08",
+        "mission 147 hold 2 70,-14.08",
+        "mission 144 hold 2 70,-14.08",
+        "mission 120 assault 1 -70,-14.08",
+        "mission 119 assault 1 -70,-14.08",
+        "mission 121 assault 1 -70,-14.08",
+        "mission 118 assault 1 -70,-14.08",
+        "mission 122 assault 1 -70,-14.08",
+        "mission 117 assault 1 -70,-14.08",
+        "mission 123 assault 1 -70,-14.08",
+        "mission 143 assault 1 -70,-14.08",
+        "mission 141 assault 1 -70,-14.08"
+      ],
+      "regroup" : "70,-8.0800000000000001",
+      "requests" : [
+        "build 128 foundry 64,-7",
+        "serve 1 7 [train 125 ranger]",
+        "serve 1 7 [train 125 ranger]",
+        "serve 1 10 [build 135 citadel -50,32]"
+      ],
+      "requestStatus" : [
+        "5 Foundry first 1",
+        "6 No room for a Lab 1",
+        "7 Ordered 1",
+        "8 Next in line 1",
+        "9 No room for a Lab 1",
+        "10 Ordered 1",
+        "11 Waiting for a free Garrison 0",
+        "12 Next in line 0"
+      ],
+      "reserved" : [
+        450,
+        175
+      ],
+      "scouts" : [
+
+      ],
+      "sentinels" : [
+        "79,-19"
+      ],
+      "sites" : [
+        "0 -70,-14.08 0 true false",
+        "1 -50,32 - true false",
+        "2 -24.133347028782808,2.7896874251370889 - true false",
+        "3 -81.141816187065118,-43.225228532885261 - true false",
+        "4 70,-14.08 1 false false",
+        "5 50,32 - false false",
+        "6 24.133347028782808,2.7896874251370889 - false true",
+        "7 81.141816187065118,-43.225228532885261 - false false",
+        "8 0,-43.520000000000003 - true false",
+        "9 0,43.520000000000003 - true false",
+        "10 0,0 - true false"
+      ]
+    }
+  ]
+}

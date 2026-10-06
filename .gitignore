@@ -1,0 +1,33 @@
+.DS_Store
+art/raw/
+art/gen.log
+settings.local.json
+__pycache__/
+.env
+# Review renders: made again on demand.
+art/models/*/previews/
+.idea/workspace.xml
+# Unreal source assets. The models (~430 MB, exported once by the Swift game,
+# which has left the repo) and the sounds and terrain prepared from
+# unreal/Resources stay out of git. The hand-made and baked art is tracked.
+unreal/Content-src/*
+!unreal/Content-src/cursors/
+!unreal/Content-src/fonts/
+!unreal/Content-src/hud/
+!unreal/Content-src/icons/
+!unreal/Content-src/launcher/
+# The Unreal remake: core-tests objects, and what Unreal makes.
+unreal/core-tests/build/
+unreal/Binaries/
+unreal/Intermediate/
+unreal/Saved/
+unreal/DerivedDataCache/
+unreal/.vs/
+unreal/*.xcworkspace
+
+# The autocraft-video skill's workspace: node_modules, tools, projects, clips, renders.
+video/
+
+# Orchestrator's own skills and agents (orc-*): local only, never published.
+.claude/skills/orc-*/
+.claude/agents/orc-*

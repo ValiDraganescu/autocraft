@@ -1,0 +1,282 @@
+{
+  "about": "Autocraft's own shared and base sounds: what a driven unit hears (step = footfall of a unit on foot, breath = its laboured breath in the helmet below a third of its health, lockon = a target coming into reach under the sight, hitmark / hitclank / killmark = its round striking a unit / a building / killing, in your ear; levelup = the driven kind going up a level, pick = a leveling pick kept, both in your ear; dirthit = a miss striking the ground where the sight meets it), boom = a building going up, hum = the Citadel's idle loop (the game loops only the first file), wind = the ambient bed (one seamless loop; the game layers it with a copy offset by half), alert = the Oracle warning that blue's base is under attack (at most every 30 s, in your ear). The Oracle (\"Autocraft Oracle\", made with Voice Design, eleven_ttv_v3) is the base's computer: calm, even and clearly synthetic, the flattest intonation of the roster; its lines go through Oracle.py (wide band, a faint synthetic sheen, no radio squelch), not comm.py. Ids match the game's sound names (sfx/<name>_<n>); the markers and footfalls are trimmed short (trim.py) since they fire several times a second.",
+  "voices": {
+    "oracle": "Z2ItimHaBD6Wv5rNM1xE"
+  },
+  "entries": [
+    {
+      "id": "alert_1",
+      "kind": "say",
+      "voice": "oracle",
+      "text": "[calm, even] Warning. The base is taking fire.",
+      "fx": "oracle"
+    },
+    {
+      "id": "alert_2",
+      "kind": "say",
+      "voice": "oracle",
+      "text": "[flat, precise] Alert. Hostile fire on base structures.",
+      "fx": "oracle"
+    },
+    {
+      "id": "alert_3",
+      "kind": "say",
+      "voice": "oracle",
+      "text": "[calm, clinical] Attention. Our buildings are under fire.",
+      "fx": "oracle"
+    },
+    {
+      "id": "step_1",
+      "kind": "sfx",
+      "prompt": "footstep of a heavy armored soldier on gravel, one loud boot stomp with a crunch, close microphone",
+      "seconds": 0.6,
+      "influence": 0.6,
+      "fx": "trim 0.4 60"
+    },
+    {
+      "id": "step_2",
+      "kind": "sfx",
+      "prompt": "one heavy powered-armor footfall on hard dusty ground, deep thump and a crunch of grit, close up, dry",
+      "seconds": 0.5,
+      "influence": 0.5,
+      "fx": "trim 0.4 60"
+    },
+    {
+      "id": "step_3",
+      "kind": "sfx",
+      "prompt": "heavy mech-suit footstep, single loud stomp on rocky ground with metal armor clank, close",
+      "seconds": 0.6,
+      "influence": 0.6,
+      "fx": "trim 0.4 60"
+    },
+    {
+      "id": "step_4",
+      "kind": "sfx",
+      "prompt": "a soldier in heavy armor takes one step on loose gravel, loud crunchy footstep, close",
+      "seconds": 0.6,
+      "influence": 0.6,
+      "fx": "trim 0.4 60"
+    },
+    {
+      "id": "breath_1",
+      "kind": "sfx",
+      "prompt": "a wounded man's laboured breathing inside a sealed helmet, two slow ragged pained breaths in and out, exhausted, close and intimate, no voice",
+      "seconds": 4,
+      "influence": 0.5
+    },
+    {
+      "id": "breath_2",
+      "kind": "sfx",
+      "prompt": "badly hurt soldier breathing hard in a helmet, shaky strained inhale and a heavy trembling exhale, then another, close, muffled",
+      "seconds": 4,
+      "influence": 0.5
+    },
+    {
+      "id": "breath_3",
+      "kind": "sfx",
+      "prompt": "injured man gasping for air inside a space suit helmet, two heavy wheezing breaths, pained and tired, very close",
+      "seconds": 4,
+      "influence": 0.5
+    },
+    {
+      "id": "lockon_1",
+      "kind": "sfx",
+      "prompt": "short sci-fi targeting lock-on sound, two quick rising electronic beeps, clean crisp UI blip",
+      "seconds": 0.5,
+      "influence": 0.5,
+      "fx": "trim 0.35 60"
+    },
+    {
+      "id": "lockon_2",
+      "kind": "sfx",
+      "prompt": "sci-fi HUD target lock tone, one clean bright electronic beep, clear and short",
+      "seconds": 0.6,
+      "influence": 0.6,
+      "fx": "trim 0.35 60"
+    },
+    {
+      "id": "hitmark_1",
+      "kind": "sfx",
+      "prompt": "FPS hit marker sound: one tiny sharp crisp tick, a bullet snapping into armor, very short, dry",
+      "seconds": 0.5,
+      "influence": 0.5,
+      "fx": "trim 0.22 50"
+    },
+    {
+      "id": "hitmark_2",
+      "kind": "sfx",
+      "prompt": "bullet impact on a soldier's armor, sharp punchy crack with a crisp metallic tick, close, loud",
+      "seconds": 0.5,
+      "influence": 0.6,
+      "fx": "trim 0.22 50"
+    },
+    {
+      "id": "hitmark_3",
+      "kind": "sfx",
+      "prompt": "a round striking hard body armor plate, sharp loud snap and a short crisp crack, close up",
+      "seconds": 0.5,
+      "influence": 0.6,
+      "fx": "trim 0.22 50"
+    },
+    {
+      "id": "hitmark_4",
+      "kind": "sfx",
+      "prompt": "sharp bullet impact on armor, loud crisp snap with a short bright metallic ping, close up, dry",
+      "seconds": 0.5,
+      "influence": 0.6,
+      "fx": "trim 0.22 50"
+    },
+    {
+      "id": "hitclank_1",
+      "kind": "sfx",
+      "prompt": "a bullet strikes a thick steel wall: hard metallic clank with a short ring, close",
+      "seconds": 0.7,
+      "influence": 0.5,
+      "fx": "trim 0.5 80"
+    },
+    {
+      "id": "hitclank_2",
+      "kind": "sfx",
+      "prompt": "rifle round hitting the armored hull of a building, heavy metal ping and clunk, brief resonance",
+      "seconds": 0.7,
+      "influence": 0.5,
+      "fx": "trim 0.5 80"
+    },
+    {
+      "id": "hitclank_3",
+      "kind": "sfx",
+      "prompt": "gunfire impact on sheet steel plating, sharp metallic bang with a small ricochet ring",
+      "seconds": 0.7,
+      "influence": 0.5,
+      "fx": "trim 0.5 80"
+    },
+    {
+      "id": "hitclank_4",
+      "kind": "sfx",
+      "prompt": "a single slug smacks into a heavy metal bulkhead, loud clang and short rattle",
+      "seconds": 0.7,
+      "influence": 0.5,
+      "fx": "trim 0.5 80"
+    },
+    {
+      "id": "killmark_1",
+      "kind": "sfx",
+      "prompt": "kill confirmed sound in a shooter game, a bright clear two-tone electronic ping, rising, loud and clean",
+      "seconds": 0.8,
+      "influence": 0.6,
+      "fx": "trim 0.45 80"
+    },
+    {
+      "id": "killmark_2",
+      "kind": "sfx",
+      "prompt": "video game elimination sound, sharp bright synth bell ping, two quick notes, clean",
+      "seconds": 0.8,
+      "influence": 0.6,
+      "fx": "trim 0.45 80"
+    },
+    {
+      "id": "levelup_1",
+      "kind": "sfx",
+      "prompt": "sci-fi military rank-up sound, a bright rising three-note synth fanfare over a deep powered-up whoosh, triumphant, clean, short",
+      "seconds": 1.6,
+      "influence": 0.6
+    },
+    {
+      "id": "levelup_2",
+      "kind": "sfx",
+      "prompt": "video game level up sound, rising shimmering electronic chime with a low armored servo surge underneath, heroic and clean",
+      "seconds": 1.6,
+      "influence": 0.6
+    },
+    {
+      "id": "pick_1",
+      "kind": "sfx",
+      "prompt": "upgrade installed in a mech suit, a short heavy mechanical latch clunk followed by a bright electronic confirm beep, close and dry",
+      "seconds": 0.7,
+      "influence": 0.6
+    },
+    {
+      "id": "pick_2",
+      "kind": "sfx",
+      "prompt": "sci-fi HUD confirm, a solid metallic click and a quick two-note rising beep, clean, short",
+      "seconds": 0.6,
+      "influence": 0.6
+    },
+    {
+      "id": "dirthit_1",
+      "kind": "sfx",
+      "prompt": "single bullet ricochet off rocky dirt, sharp crack and debris spray, close",
+      "seconds": 0.7,
+      "influence": 0.6,
+      "fx": "trim 0.5 80"
+    },
+    {
+      "id": "dirthit_2",
+      "kind": "sfx",
+      "prompt": "loud bullet hit in the ground, dirt puff and small rocks flying, punchy, close microphone",
+      "seconds": 0.7,
+      "influence": 0.6,
+      "fx": "trim 0.5 80"
+    },
+    {
+      "id": "dirthit_3",
+      "kind": "sfx",
+      "prompt": "a heavy rock thrown hard onto dry dusty ground, sharp crunchy thump and dirt spray, close",
+      "seconds": 0.7,
+      "influence": 0.6,
+      "fx": "trim 0.5 80"
+    },
+    {
+      "id": "dirthit_4",
+      "kind": "sfx",
+      "prompt": "a round slams into hard earth, dull snap and a burst of dirt and small stones",
+      "seconds": 0.6,
+      "influence": 0.5,
+      "fx": "trim 0.5 80"
+    },
+    {
+      "id": "boom_1",
+      "kind": "sfx",
+      "prompt": "a large military building explodes: huge deep blast, steel structure tearing apart, debris crashing down, long rumbling tail",
+      "seconds": 4,
+      "influence": 0.5
+    },
+    {
+      "id": "boom_2",
+      "kind": "sfx",
+      "prompt": "massive explosion of a fortified base structure, thunderous boom, metal groaning and collapsing, rubble falling, fading rumble",
+      "seconds": 4,
+      "influence": 0.5
+    },
+    {
+      "id": "boom_3",
+      "kind": "sfx",
+      "prompt": "big industrial building blowing up, violent deep detonation, secondary blasts, twisted metal and debris raining down",
+      "seconds": 4,
+      "influence": 0.5
+    },
+    {
+      "id": "boom_4",
+      "kind": "sfx",
+      "prompt": "heavy armored Bastion destroyed in a huge explosion, powerful low boom, crackling fire and falling wreckage, long tail",
+      "seconds": 4,
+      "influence": 0.5
+    },
+    {
+      "id": "hum_1",
+      "kind": "sfx",
+      "prompt": "steady electrical buzz of a big machine room, a droning transformer hum with bright buzzy harmonics and a whirring motor, constant, mid-range",
+      "seconds": 8,
+      "loop": true,
+      "influence": 0.6
+    },
+    {
+      "id": "wind_1",
+      "kind": "sfx",
+      "prompt": "sandstorm ambience on a barren plateau, steady rushing wind with breathy gusts and blowing dust hiss, full and airy",
+      "seconds": 30,
+      "loop": true,
+      "influence": 0.6
+    }
+  ]
+}

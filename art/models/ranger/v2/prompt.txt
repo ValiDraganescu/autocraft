@@ -1,0 +1,25 @@
+Paint over the attached image. It is a character turnaround sheet for a 3D game model: six panels (FRONT, RIGHT SIDE, BACK, LEFT SIDE, TOP, 3/4) separated by thick black lines on a white background.
+
+Strict rules:
+- Keep the exact same layout, panel borders, black lines and white background.
+- Keep every silhouette exactly as drawn: same pose, same size, same position, same proportions in every panel. Do not move, resize, add or remove any part. Only paint surface detail, materials and colour inside the existing outlines.
+- All panels show the same single character, so every detail must match between views (a mark on the right shoulder in FRONT must also appear in RIGHT SIDE and TOP).
+- Team colour is blue: paint every team-coloured part in the same deep blue.
+- This is a texture sheet (albedo / base colour map), not an illustration. Paint it completely unlit: flat colour, as if every surface were matte and lit evenly from all sides at once. The game engine adds lighting, shading and reflections itself.
+- No highlights, no specular shine, no reflections, no glossy or chrome look, no rim light, no light gradients across a surface, no shading on curved parts, no ambient occlusion, no cast or contact shadows. A surface is the same colour wherever it faces.
+- Metal is shown only by its flat colour and its surface detail (panel lines, rivets, scratches, chipped edges), never by shine.
+- The same material has exactly the same colour in every panel.
+- Only the glowing parts (light strips, visor, vents) are bright. Keep them saturated and clearly brighter than everything else.
+- No background scenery, no text, no labels, no guide lines.
+
+The character: a hulking sci-fi space Ranger in heavy powered armour, stylised as gritty industrial sci-fi game art.
+- Armour: brushed silver-white metal plates with fine panel lines, small scratches and cracked chipped edges; dark gunmetal joints and under-suit at the hips, knees, elbows and ankles.
+- Helmet: rounded silver dome with a wide glowing gold visor across the front, sunk into a high armoured collar.
+- Pauldrons: huge layered shoulder pads in deep blue team paint, three overlapping plates, thin glowing cyan-blue seams between the plates, a white star on the outer face; the inside of the pads is dark gunmetal.
+- Chest: silver breastplate with a small blue star emblem and two thin glowing blue light strips.
+- Backpack: silver power pack with two vertical glowing blue vents.
+- Legs: silver thigh and shin plates, blue-painted knee plates with a small star, thin glowing blue lines on the shins, heavy dark boots with ribbed soles.
+- Rifle (right hand): chunky gunmetal assault rifle with a long barrel, muzzle brake, under-barrel tube, magazine and a glowing blue channel along the side.
+- Shield (left forearm): tall dark gunmetal elongated-hexagon combat shield with a glowing blue inset border following its outline at an even distance and a white star in the exact middle; the design is left-right symmetric and centred on the plate in every panel.
+
+Colour palette: silver, gunmetal, deep blue, glowing cyan-blue, gold visor.

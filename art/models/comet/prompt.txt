@@ -1,0 +1,23 @@
+Paint over the attached image stencil.png. It is a character turnaround sheet for a 3D game model: six panels (FRONT, RIGHT SIDE, BACK, LEFT SIDE, TOP, 3/4) separated by thick black lines on a white background.
+The attached image style.jpg is the style reference: match its rendering, level of detail, materials, wear and colours as closely as you can. Take every shape, pose and proportion from stencil.png only.
+
+Strict rules:
+- Keep the exact same layout, panel borders, black lines and white background.
+- Keep every silhouette exactly as drawn: same pose, same size, same position, same proportions in every panel. Do not move, resize, add or remove any part. Only paint surface detail, materials and colour inside the existing outlines.
+- All panels show the same single character, so every detail must match between views (a mark on the right shoulder in FRONT must also appear in RIGHT SIDE and TOP).
+- Team colour is blue: paint every team-coloured part in the same deep blue.
+- Rendering: gritty industrial sci-fi game art, hand-painted unit renders, with crisp dark outlines around every plate, deep shading in the seams between plates, and rich wear on every surface.
+- Lighting: soft, even, diffuse light, like an overcast sky, the same in every panel. Metal has a satin finish.
+- No background scenery, no text, no labels, no guide lines: the panel names, the grey header line, the dashed height guides and the ground line are not part of the picture.
+
+The character: a slim, wiry sci-fi raider (the Comet) designed like a beetle, stylised as gritty industrial sci-fi game art. Its face is hidden: no skin or face is visible anywhere.
+- Fatigues: a tight, dark charcoal suit with fine quilted seams and stitched panels on the torso, arms and legs, worn and dusty.
+- Armour plates: small segmented deep blue team plates, worn and chipped to bare steel at the edges, fine panel lines and a few bolts: the chest plate, two plates across the belly, the three layered curved plates over each shoulder, the forearm guards, a plate on the front of each thigh, the knee pads, the shin guards and the boot toe caps.
+- Helmet: a menacing dark gunmetal insect helmet, sunk in a dark armoured collar: a long, rounded skull with a low ridge from the brow over the crown, a heavy armoured brow that dips to a V over two narrow, slanted, glowing amber eye slits, a faceted dark jaw plate with a slotted respirator grille, a short mandible filter on each side, and a neck guard round the back.
+- Belt: a gunmetal belt with a buckle and small pouches.
+- Wing cases: two long curved shells over the back in deep blue team paint, hinged high on the back by the spine and meeting down the middle like a beetle's shell; panel lines along their length, worn edges and scratches, a thin gunmetal rim; the insides of the shells are dark gunmetal. Dark hinge drums at their tops.
+- Jetpack: a dark gunmetal core between the shoulder blades under the shells, two gunmetal fuel cylinders at its sides, and under each cylinder a dark thruster nozzle hanging below the shells, with a grey rim and a glowing orange throat.
+- Boots: dark, with ribbed soles.
+- Pistols (one in each hand): chunky dark gunmetal slab pistols with a grey side plate and slot, a top slide, a blue stripe on the back and a twin-bore muzzle block.
+
+Colour palette: dark charcoal, deep blue, gunmetal, glowing amber eyes, orange thruster glow.

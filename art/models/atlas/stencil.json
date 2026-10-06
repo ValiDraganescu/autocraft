@@ -1,0 +1,213 @@
+{
+  "bounds": {
+    "max": [
+      1.5115,
+      2.9755,
+      1.13
+    ],
+    "min": [
+      -0.617,
+      0,
+      -1.13
+    ]
+  },
+  "lineWidth": 8,
+  "model": "atlas",
+  "note": "rect is x, y, w, h in pixels from the top left; a model point p lands at column w/2 + dot(p - center, right) * pixelsPerUnit, row h/2 - dot(p - center, up) * pixelsPerUnit",
+  "panels": [
+    {
+      "center": [
+        0.44725000000000004,
+        1.48775,
+        0
+      ],
+      "groundRow": 469.33333333333337,
+      "orthographic": true,
+      "pixelsPerUnit": 143.39326723799923,
+      "rect": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "right": [
+        0,
+        0,
+        -1
+      ],
+      "toCamera": [
+        1,
+        0,
+        0
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "view": "front"
+    },
+    {
+      "center": [
+        0.44725000000000004,
+        1.48775,
+        0
+      ],
+      "groundRow": 469.33333333333337,
+      "orthographic": true,
+      "pixelsPerUnit": 143.39326723799923,
+      "rect": [
+        512,
+        0,
+        512,
+        512
+      ],
+      "right": [
+        1,
+        0,
+        0
+      ],
+      "toCamera": [
+        0,
+        0,
+        1
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "view": "right"
+    },
+    {
+      "center": [
+        0.44725000000000004,
+        1.48775,
+        0
+      ],
+      "groundRow": 469.33333333333337,
+      "orthographic": true,
+      "pixelsPerUnit": 143.39326723799923,
+      "rect": [
+        1024,
+        0,
+        512,
+        512
+      ],
+      "right": [
+        0,
+        0,
+        1
+      ],
+      "toCamera": [
+        -1,
+        0,
+        0
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "view": "back"
+    },
+    {
+      "center": [
+        0.44725000000000004,
+        1.48775,
+        0
+      ],
+      "groundRow": 469.33333333333337,
+      "orthographic": true,
+      "pixelsPerUnit": 143.39326723799923,
+      "rect": [
+        0,
+        512,
+        512,
+        512
+      ],
+      "right": [
+        -1,
+        0,
+        0
+      ],
+      "toCamera": [
+        0,
+        0,
+        -1
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "view": "left"
+    },
+    {
+      "center": [
+        0.44725000000000004,
+        1.48775,
+        0
+      ],
+      "orthographic": true,
+      "pixelsPerUnit": 143.39326723799923,
+      "rect": [
+        512,
+        512,
+        512,
+        512
+      ],
+      "right": [
+        0,
+        0,
+        1
+      ],
+      "toCamera": [
+        0,
+        1,
+        0
+      ],
+      "up": [
+        1,
+        0,
+        0
+      ],
+      "view": "top"
+    },
+    {
+      "center": [
+        0.44725000000000004,
+        1.48775,
+        0
+      ],
+      "orthographic": false,
+      "pixelsPerUnit": 63.761498269963056,
+      "rect": [
+        1024,
+        512,
+        512,
+        512
+      ],
+      "right": [
+        0.6476484537124634,
+        0,
+        -0.7619393467903137
+      ],
+      "toCamera": [
+        0.7027283906936646,
+        0.38650062680244446,
+        0.5973191261291504
+      ],
+      "up": [
+        -0.2944900393486023,
+        0.9222891926765442,
+        -0.2503165304660797
+      ],
+      "view": "threeQuarter"
+    }
+  ],
+  "size": [
+    1536,
+    1024
+  ]
+}

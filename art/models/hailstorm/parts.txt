@@ -1,0 +1,96 @@
+# Parts for the nets legend (model.sh nets): a tree path, spaces, the part's name, a colon, its surface.
+# Only the surface goes to Grok. Paths as in nets.json; the build order is Models+Hailstorm.swift:
+# root 0 the hull, 1 the turret. Hull: 0 body, then per side (left, right) the fender (1, 4), the wheel (2, 5),
+# the track (3, 6). Body: 0 belly, 1 hump, 2 deck, 3 engine block, 4 rear grille, 5 snout, 6 jaw, 7 brow,
+# 8 front grille, then per side a lamp (9, 19; own material), the tusk (10, 20) and eight flank spikes
+# (11-18, 21-28); 29-30 the rear deck spikes. Fender: 0-2 the arch slabs, 3 rim, 4 inner wall. Wheel: 0 tyre
+# (own material), 1 hub, 2 cap. Track: 0 loop, 1-2 sprockets, 3-6 road wheels, 7 top guard. Turret: 0 ring,
+# 1 body, 2 roof plate, 3-4 side plates, 5 ammunition box, 6 the cradle (0 trunnion, 1-2 housings, 3-6 the
+# barrels: 0 tube, 1-2 collars, 3 muzzle brake), 7 the radar (0 mast, 1/0 dish).
+# A twin net takes whichever path is listed. The first material word picks the tint.
+0/0/0       belly: dark gunmetal plating, bolts and grime
+0/0/1       hull: deep blue painted armour plating, chipped edges, rivets along the plate seams
+0/0/2       turret deck: dark gunmetal plating, bolts round the edge
+0/0/3       engine block: gunmetal steel, panel lines and grime
+0/0/4       engine grille: dark grille slats, black in the gaps
+0/0/5       snout: deep blue painted armour plating, chipped edges, rivets
+0/0/6       jaw: dark gunmetal plating, bolts and grime
+0/0/7       brow plate: gunmetal steel plate, scratched, bolts at the corners
+0/0/8       front grille: dark grille slats, black in the gaps
+0/0/10      tusk: pale worn steel like old ivory, scratched, worn bright at the tip
+0/0/20      tusk: pale worn steel like old ivory, scratched, worn bright at the tip
+0/0/11      spike: gunmetal steel, scratched, worn bright at the point
+0/0/12      spike: gunmetal steel, scratched, worn bright at the point
+0/0/13      spike: gunmetal steel, scratched, worn bright at the point
+0/0/14      spike: gunmetal steel, scratched, worn bright at the point
+0/0/15      spike: gunmetal steel, scratched, worn bright at the point
+0/0/16      spike: gunmetal steel, scratched, worn bright at the point
+0/0/17      spike: gunmetal steel, scratched, worn bright at the point
+0/0/18      spike: gunmetal steel, scratched, worn bright at the point
+0/0/21      spike: gunmetal steel, scratched, worn bright at the point
+0/0/22      spike: gunmetal steel, scratched, worn bright at the point
+0/0/23      spike: gunmetal steel, scratched, worn bright at the point
+0/0/24      spike: gunmetal steel, scratched, worn bright at the point
+0/0/25      spike: gunmetal steel, scratched, worn bright at the point
+0/0/26      spike: gunmetal steel, scratched, worn bright at the point
+0/0/27      spike: gunmetal steel, scratched, worn bright at the point
+0/0/28      spike: gunmetal steel, scratched, worn bright at the point
+0/0/29      spike: gunmetal steel, scratched, worn bright at the point
+0/0/30      spike: gunmetal steel, scratched, worn bright at the point
+0/1/0       fender: deep blue painted armour plating, chipped edges, rivets
+0/1/1       fender: deep blue painted armour plating, chipped edges, rivets
+0/1/2       fender: deep blue painted armour plating, chipped edges, rivets
+0/1/3       fender rim: gunmetal steel strip, rivets
+0/1/4       fender inner wall: dark gunmetal plating, grime
+0/4/0       fender: deep blue painted armour plating, chipped edges, rivets
+0/4/1       fender: deep blue painted armour plating, chipped edges, rivets
+0/4/2       fender: deep blue painted armour plating, chipped edges, rivets
+0/4/3       fender rim: gunmetal steel strip, rivets
+0/4/4       fender inner wall: dark gunmetal plating, grime
+0/2/1       wheel hub: dark gunmetal, bolts round it
+0/2/2       hub cap: gunmetal steel hexagon, a bolt in the middle
+0/5/1       wheel hub: dark gunmetal, bolts round it
+0/5/2       hub cap: gunmetal steel hexagon, a bolt in the middle
+0/3/0       track loop: black rubber track with dark steel cleats
+0/3/1       sprocket wheel: gunmetal steel, teeth round the rim, a bolted hub
+0/3/2       sprocket wheel: gunmetal steel, teeth round the rim, a bolted hub
+0/3/3       road wheel: dark gunmetal wheel, a bolted hub
+0/3/4       road wheel: dark gunmetal wheel, a bolted hub
+0/3/5       road wheel: dark gunmetal wheel, a bolted hub
+0/3/6       road wheel: dark gunmetal wheel, a bolted hub
+0/3/7       track guard: gunmetal steel plate, rivets
+0/6/0       track loop: black rubber track with dark steel cleats
+0/6/1       sprocket wheel: gunmetal steel, teeth round the rim, a bolted hub
+0/6/2       sprocket wheel: gunmetal steel, teeth round the rim, a bolted hub
+0/6/3       road wheel: dark gunmetal wheel, a bolted hub
+0/6/4       road wheel: dark gunmetal wheel, a bolted hub
+0/6/5       road wheel: dark gunmetal wheel, a bolted hub
+0/6/6       road wheel: dark gunmetal wheel, a bolted hub
+0/6/7       track guard: gunmetal steel plate, rivets
+1/0         turret ring: dark gunmetal, bolts round it
+1/1         turret body: gunmetal steel armour, panel lines, bolts
+1/2         turret roof plate: deep blue painted armour plating, chipped edges, rivets
+1/3         turret side plate: deep blue painted armour plating, chipped edges, rivets
+1/4         turret side plate: deep blue painted armour plating, chipped edges, rivets
+1/5         ammunition box: gunmetal steel box, latches and stencilled panels
+1/6/0       gun trunnion: dark gunmetal, bolts
+1/6/1       gun housing: deep blue painted armour plating, chipped edges, rivets
+1/6/2       gun housing: deep blue painted armour plating, chipped edges, rivets
+1/6/3/0     autocannon barrel: gunmetal steel tube, scratched
+1/6/3/1     barrel collar: dark ribbed steel ring
+1/6/3/2     barrel collar: dark ribbed steel ring
+1/6/3/3     muzzle brake: dark steel with slots, soot at the mouth
+1/6/4/0     autocannon barrel: gunmetal steel tube, scratched
+1/6/4/1     barrel collar: dark ribbed steel ring
+1/6/4/2     barrel collar: dark ribbed steel ring
+1/6/4/3     muzzle brake: dark steel with slots, soot at the mouth
+1/6/5/0     autocannon barrel: gunmetal steel tube, scratched
+1/6/5/1     barrel collar: dark ribbed steel ring
+1/6/5/2     barrel collar: dark ribbed steel ring
+1/6/5/3     muzzle brake: dark steel with slots, soot at the mouth
+1/6/6/0     autocannon barrel: gunmetal steel tube, scratched
+1/6/6/1     barrel collar: dark ribbed steel ring
+1/6/6/2     barrel collar: dark ribbed steel ring
+1/6/6/3     muzzle brake: dark steel with slots, soot at the mouth
+1/7/0       radar mast: gunmetal steel pole
+1/7/1/0     radar dish: gunmetal steel dish, worn

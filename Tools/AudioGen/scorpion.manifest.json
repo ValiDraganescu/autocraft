@@ -1,0 +1,166 @@
+{
+  "about": "The Scorpion's own sounds (2026-10-06). It is a crewless robot mine, so its \"voice\" is robot chirps and clicks made as sound effects, not speech. INVENTORY of what it needs to stop borrowing the Firefly's: report-in vscorpion (4 chirps, picked _2,_3,_4 = sfx/vscorpion_1..3; _1 is a 0.5 s blip at -22 dB); death scorpiondeath (4 breakdowns, picked _1,_2,_3 = sfx/scorpiondeath_1..3; _4 never fades, it just cuts); sting scorpionsting (the buried tail launcher's heavy shot, gain 0.3, 3 a second; picked _1 = sfx/scorpionsting_1: -6.6 dB, a clean decay; _2 is flat at -15 dB and _3 is a click then silence, the known SFX dud); bury scorpionbury (picked _2,_3 = sfx/scorpionbury_1,_2; _1 is patchy) and dig-out scorpionunbury (picked _1,_3 = sfx/scorpionunbury_1,_2; _2 is -29 dB), played when `anchored` flips (FAcAudioRules::Watch, gain 0.6); the lock-on rising chirp scorpionlock (docs/new-units.md, one second long; picked _2 (a steep rise 2.7 to 8.9 kHz) and _1 = sfx/scorpionlock_1,_2; gain 0.5, once per lock); driven pull-away scorpionmove (the legs, PullAway, gain 1.0 because the takes are quiet, -23 dB; picked _1,_3 = sfx/scorpionmove_1,_2); HUD icon scorpion (made: Content-src/icons/scorpion.png, art/models/scorpion/previews/icon.png). Ids follow the game's sound names (sfx/<name>_<n>). Every take, picked or not, is in art/models/scorpion/sounds/.",
+  "entries": [
+    {
+      "id": "vscorpion_1",
+      "kind": "sfx",
+      "prompt": "small robot mine chirps a cheerful report: two short electronic bleeps and a soft clicking trill, cute and mechanical, like a tiny droid acknowledging",
+      "seconds": 1.2,
+      "influence": 0.5
+    },
+    {
+      "id": "vscorpion_2",
+      "kind": "sfx",
+      "prompt": "tiny insect-like robot reports in: a quick rising chirp, a dry mechanical click-click, and a short warbling beep, no speech",
+      "seconds": 1.2,
+      "influence": 0.5
+    },
+    {
+      "id": "vscorpion_3",
+      "kind": "sfx",
+      "prompt": "little crawler robot acknowledges an order: three fast digital blips of rising pitch and a rattling click, synthetic, no speech",
+      "seconds": 1.2,
+      "influence": 0.5
+    },
+    {
+      "id": "vscorpion_4",
+      "kind": "sfx",
+      "prompt": "small armed robot chitters: a burst of rapid clicks and a low two-tone beep, like an alert insectoid machine, no speech",
+      "seconds": 1.2,
+      "influence": 0.5
+    },
+    {
+      "id": "scorpiondeath_1",
+      "kind": "sfx",
+      "prompt": "small robot mine breaks down: a falling electronic wail, stuttering clicks, a sparking fizz and a last dying beep, short",
+      "seconds": 1.5,
+      "influence": 0.5
+    },
+    {
+      "id": "scorpiondeath_2",
+      "kind": "sfx",
+      "prompt": "little robot dies: a panicked glitching chirp that drops in pitch, servos grinding to a stop, a crackle of sparks and a final low tone",
+      "seconds": 1.5,
+      "influence": 0.5
+    },
+    {
+      "id": "scorpiondeath_3",
+      "kind": "sfx",
+      "prompt": "insect robot short circuits: rapid distorted bleeps winding down, a metallic clatter of failing legs, a pop and a hiss",
+      "seconds": 1.5,
+      "influence": 0.5
+    },
+    {
+      "id": "scorpiondeath_4",
+      "kind": "sfx",
+      "prompt": "tiny machine's alarm squeal cuts out: a shrill rising electronic shriek, a crunch of crushed metal, a spark fizzle",
+      "seconds": 1.5,
+      "influence": 0.5
+    },
+    {
+      "id": "scorpionsting_1",
+      "kind": "sfx",
+      "prompt": "a mine robot's tail launcher fires one heavy charge: a sharp electric whine, a loud thump-crack of the launched shell and a deep reverberating bang, close up",
+      "seconds": 1.5,
+      "influence": 0.5
+    },
+    {
+      "id": "scorpionsting_2",
+      "kind": "sfx",
+      "prompt": "a scorpion-like machine stings: a tight crackling discharge, a hard percussive crack with a high zap, then a low boom rolling away",
+      "seconds": 1.5,
+      "influence": 0.5
+    },
+    {
+      "id": "scorpionsting_3",
+      "kind": "sfx",
+      "prompt": "a buried robot fires a single powerful plasma bolt from its tail: sharp zapping crack, heavy punch of air, short metallic ring, close up",
+      "seconds": 1.5,
+      "influence": 0.5
+    },
+    {
+      "id": "scorpionbury_1",
+      "kind": "sfx",
+      "prompt": "a small six-legged robot digs itself into the ground: fast scrabbling metal claws in loose soil, dirt shovelled aside, a mechanical whir slowing to a stop, earth settling",
+      "seconds": 2.0,
+      "influence": 0.5
+    },
+    {
+      "id": "scorpionbury_2",
+      "kind": "sfx",
+      "prompt": "a mechanical crawler burrows down: rapid scratching and scraping of metal legs in gravel, soil sliding, a motor winding down, dust falling",
+      "seconds": 2.0,
+      "influence": 0.5
+    },
+    {
+      "id": "scorpionbury_3",
+      "kind": "sfx",
+      "prompt": "an insect robot sinks into sand: busy digging claws, soil hissing and falling, a low servo whine descending, a soft thud as it settles",
+      "seconds": 2.0,
+      "influence": 0.5
+    },
+    {
+      "id": "scorpionunbury_1",
+      "kind": "sfx",
+      "prompt": "a small robot claws its way out of the ground: soil bursting and trickling, metal legs scraping, a motor spooling up with a rising whine, a click as it locks into place",
+      "seconds": 2.0,
+      "influence": 0.5
+    },
+    {
+      "id": "scorpionunbury_2",
+      "kind": "sfx",
+      "prompt": "a mechanical crawler digs itself out: dirt crumbling away, a scrabble of claws on rock, servo whir rising, a short mechanical clatter",
+      "seconds": 2.0,
+      "influence": 0.5
+    },
+    {
+      "id": "scorpionunbury_3",
+      "kind": "sfx",
+      "prompt": "a buried machine emerges: ground cracking and soil falling, hurried scraping of metal legs, a rising electronic whine and a final click",
+      "seconds": 2.0,
+      "influence": 0.5
+    },
+    {
+      "id": "scorpionlock_1",
+      "kind": "sfx",
+      "prompt": "a robot weapon locks onto a target: a rising electronic chirp that climbs steadily in pitch over one second, quick pulses speeding up, ending on a high ready beep",
+      "seconds": 1.2,
+      "influence": 0.5
+    },
+    {
+      "id": "scorpionlock_2",
+      "kind": "sfx",
+      "prompt": "targeting system acquiring a lock: a thin ascending whistle-chirp with accelerating ticks, sci-fi, climbing to a sharp final tone",
+      "seconds": 1.2,
+      "influence": 0.5
+    },
+    {
+      "id": "scorpionlock_3",
+      "kind": "sfx",
+      "prompt": "laser sight charging up: a rising warble that sweeps higher and higher with fast clicking pulses, ending in a bright confirmed ping",
+      "seconds": 1.2,
+      "influence": 0.5
+    },
+    {
+      "id": "scorpionmove_1",
+      "kind": "sfx",
+      "prompt": "small six-legged robot scuttles away fast: a rapid patter of metal insect legs on rock, a whirring motor, light mechanical chittering, heard from above its back",
+      "seconds": 2.0,
+      "influence": 0.5
+    },
+    {
+      "id": "scorpionmove_2",
+      "kind": "sfx",
+      "prompt": "armoured mechanical crawler skitters off: quick ticking claws on gravel, tiny servos buzzing, a rattle of back plates, close up",
+      "seconds": 2.0,
+      "influence": 0.5
+    },
+    {
+      "id": "scorpionmove_3",
+      "kind": "sfx",
+      "prompt": "insectoid robot sets off at speed: fast clattering of legs in an alternating gait, whirring joints, a short chirp, from the driver's view",
+      "seconds": 2.0,
+      "influence": 0.5
+    }
+  ]
+}

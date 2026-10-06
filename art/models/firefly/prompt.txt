@@ -1,0 +1,23 @@
+Paint over the attached image stencil.png. It is a character turnaround sheet for a 3D game model: six panels (FRONT, RIGHT SIDE, BACK, LEFT SIDE, TOP, 3/4) separated by thick black lines on a white background.
+The attached image style.jpg is the style reference: match its rendering, level of detail, materials, wear and colours as closely as you can. Take every shape, pose and proportion from stencil.png only.
+
+Strict rules:
+- Keep the exact same layout, panel borders, black lines and white background.
+- Keep every silhouette exactly as drawn: same pose, same size, same position, same proportions in every panel. Do not move, resize, add or remove any part. Only paint surface detail, materials and colour inside the existing outlines.
+- All panels show the same single character, so every detail must match between views (a mark on the right shoulder in FRONT must also appear in RIGHT SIDE and TOP).
+- Team colour is blue: paint every team-coloured part in the same deep blue.
+- Rendering: gritty industrial sci-fi game art, hand-painted unit renders, with crisp dark outlines around every plate, deep shading in the seams between plates, and rich wear on every surface.
+- Lighting: soft, even, diffuse light, like an overcast sky, the same in every panel. Metal has a satin finish.
+- No background scenery, no text, no labels, no guide lines: the panel names, the grey header line, the dashed height guides and the ground line are not part of the picture.
+
+The vehicle: a fast sci-fi flamethrower raider buggy (the Firefly) shaped like a scorpion, stylised as gritty industrial sci-fi game art. The driver is sealed inside, out of sight: no person or face is visible anywhere.
+- Armour: worn deep blue team paint on every armour plate, chipped to bare steel at the edges, crisp panel lines, rivets and bolts, grime in the seams; dark gunmetal on the frame, joints and mechanical parts.
+- Nose: a pointed deep blue armoured nose low between the front wheels, panel lines along it, over a dark gunmetal intake.
+- Cockpit: a deep blue armoured hull with dark vents on its sides; a faceted glowing amber canopy in a dark gunmetal frame on top.
+- Fuel bulb: a big rounded deep blue fuel tank behind the cockpit, made of five armour bands arching side to side like a scorpion's segments, with dark seams between the bands; two short gunmetal exhaust stacks rising from its back.
+- Tail: a jointed tail rising from the top of the bulb, arching up over the back and forward over the canopy: six deep blue armour segments, each over a dark gunmetal joint ring.
+- Stinger (the flamethrower): a gunmetal barrel at the tail's tip pointing forward, a deep blue fuel sleeve between gunmetal bands, a dark muzzle collar and a chrome feed pipe underneath.
+- Wheels: four big off-road wheels with chunky black treaded tyres and dark gunmetal hubs with a steel ring and a hex cap; each wheel under a deep blue armoured fender with dark vents on its outer side. The front fenders reach forward and down past the tyres like a scorpion's claws.
+- Suspension: bare dark gunmetal arms out to each hub and chrome shock absorbers; a dark keel and a dark rear bumper under the body.
+
+Colour palette: deep blue, dark gunmetal, charcoal, black tyres, chrome, glowing amber canopy.

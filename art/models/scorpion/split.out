@@ -1,0 +1,18 @@
+painted.jpg: 1248x832, stencil 1536x1024
+IoU: overlap with the stencil as painted, then with the whole figure's drift undone;
+drift: the painting's size against the stencil's (wide, tall) and its offset in model units (right, up)
+view            IoU  fitted     wide   tall  offset
+front          0.78    0.82    +2.3%  +5.5%  +0.014 -0.005
+right          0.79    0.82    +3.5%  +2.0%  +0.009 -0.023
+back           0.76    0.82    +1.6%  +6.2%  -0.021 -0.012
+left           0.80    0.83    +1.8%  +1.7%  +0.002 +0.012
+top            0.80    0.84    +6.2%  +1.5%  -0.005 +0.014
+threeQuarter   0.63    0.66    +4.2% +11.7%  -0.072 -0.103
+
+views against each other, model units (stencil in brackets):
+  width (side to side)   front 1.421 (1.430)  back 1.425 (1.430)  top 1.449 (1.439)   spread 2%
+  depth (front to back)  right 2.014 (1.996)  left 1.982 (1.996)  top 2.000 (2.000)   spread 2%
+  height                 front 1.383 (1.383)  right 1.383 (1.383)  back 1.379 (1.383)  left 1.379 (1.383)   spread 0%
+
+wrote art/models/scorpion/views/<view>.png, <view>.mask.png, art/models/scorpion/compare.png and the texture: skin.jpg, skin_glow.jpg
+prompt: sheet-rules v5.1 (2026-10-05): the rendering line names no other game. v5 (2026-09-30): the images named by their file names ({STENCIL}, and the style reference's in {STYLE}), not by their order; otherwise v4. History and results: PROMPTS.md. — log this painting in PROMPTS.md

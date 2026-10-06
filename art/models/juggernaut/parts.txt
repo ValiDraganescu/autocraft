@@ -1,0 +1,56 @@
+# Parts for the nets legend (model.sh nets): a tree path, spaces, the part's name, a colon, its surface.
+# Only the surface goes to Grok (no object words, see ranger/parts.txt). Paths as in nets.json; the build
+# order is the old Swift Juggernaut model: root 0 the body, 1 the left leg, 2 the right leg (sz = -1 first;
+# the right launcher, 0/22, before the left). A twin net takes whichever path is listed. The first
+# material word of the surface picks the tint.
+0/0         pelvis: dark gunmetal plating, worn, bolts
+0/1         groin plate: deep blue painted armour plating, chipped edges
+0/2         belly band: gunmetal plating, panel lines and rivets, grime in the seams
+0/3         belly band: gunmetal plating, panel lines and rivets, grime in the seams
+0/4         torso: gunmetal plating, heavy panels, rivets, scratches
+0/5         chest plate: deep blue painted armour plating, chipped edges, panel lines, bolts
+0/6         chest plate: deep blue painted armour plating, chipped edges, panel lines, bolts
+0/7         neck ring: dark gunmetal ribbed collar
+0/8         gorget: deep blue painted armour plating, chipped edges, a gunmetal rim
+0/9         back block: gunmetal plating, vents and bolts
+0/10/0      hood inside: dark gunmetal plating, shadowed
+0/10/1      hump front band: gunmetal plating, heavy and raised, worn edge, rivets along it
+0/10/2      hump band: gunmetal plating, panel lines, rivets, scratches and chips
+0/10/3      hump band: gunmetal plating, panel lines, rivets, scratches and chips
+0/10/4      hump band: gunmetal plating, panel lines, rivets, scratches and chips
+0/10/5      hump band: gunmetal plating, panel lines, rivets, scratches and chips
+0/11/0      helmet dome: gunmetal plating, satin, panel lines and scratches
+0/11/1      brow: gunmetal plating, heavy, rivets
+0/11/3      cheek plate: deep blue painted armour plating, chipped edges
+0/11/7      face plate: gunmetal plating, a grille of dark slots
+0/11/8      grille slot: dark gunmetal
+0/12        shoulder ball joint: dark gunmetal, worn
+0/13/0      pad inside: dark gunmetal plating, shadowed
+0/13/1      pad front rim: gunmetal plating, raised, worn edge, rivets
+0/13/2      pad dome: deep blue painted armour plating, chipped to bare steel at the edges, panel lines
+0/13/3      pad dome: deep blue painted armour plating, chipped to bare steel at the edges, panel lines
+0/13/4      pad lower rim: gunmetal plating, worn edge, rivets
+0/13/5      pad vent: dark gunmetal slats
+0/18/1      pad front rim: gunmetal plating, raised, worn edge, rivets
+0/18/2      pad dome: deep blue painted armour plating, chipped to bare steel at the edges, panel lines
+0/18/3      pad dome: deep blue painted armour plating, chipped to bare steel at the edges, panel lines
+0/18/4      pad lower rim: gunmetal plating, worn edge, rivets
+0/14        upper arm: gunmetal plating, segmented, bolts
+0/15        upper arm: gunmetal plating, segmented, bolts
+0/16        arm plate: deep blue painted armour plating, chipped edges
+0/22/0      elbow drum: dark gunmetal with ribs
+0/22/1      launcher tube: gunmetal plating, bands and bolts, scorched near the muzzle
+0/22/2      launcher sleeve: deep blue painted armour plating, chipped edges, panel lines
+0/22/3      sleeve vent: dark gunmetal slot
+0/22/10     launcher spine: dark gunmetal plating, rails and bolts
+0/22/11     muzzle collar: gunmetal plating, heavy, scorched and sooty
+0/22/12     bore: black soot
+1/0         thigh: gunmetal plating, panel lines, bolts
+1/1         thigh plate: deep blue painted armour plating, chipped edges
+1/2         hip cap: gunmetal plating, a round joint cap with bolts round its rim
+1/3/0       knee cap: gunmetal plating, a round joint cap with bolts round its rim
+1/3/1       knee guard: gunmetal plating, heavy, worn
+1/3/2       shin: deep blue painted armour plating, chipped edges, panel lines
+1/3/3       boot: gunmetal plating, heavy, scuffed
+1/3/4       toe cap: deep blue painted armour plating, chipped edges
+1/3/5       sole: dark gunmetal with ribbed tread

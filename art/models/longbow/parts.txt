@@ -1,0 +1,72 @@
+# Parts for the nets legend (model.sh nets): a tree path, spaces, the part's name, a colon, its surface.
+# Only the surface goes to Grok. Paths as in nets.json; the build order is Models+SiegeTankRhino.swift:
+# root 0 the hull, then per leg (FL, FR, RL, RR) the pod (1, 3, 5, 7) and its ram (2, 4, 6, 8).
+# Hull 0: 0 belly, 1 body, 2-17 the four hide plates front to back (plate, top band, two side straps),
+# 18-23 side vents, 24 nose, 25-28 brow plates and tusks, 29 horn, 30 horn mount, 31 engine block,
+# 32-35 exhausts. Hull 5 the turret: 0 its static parts, 2 the railgun (0 frame, 2 the slide, 2/2 the kick).
+# Pod: 0/0 the body (0 core, 1-6 wheels, 7-8 shell, 9-10 bands, 11 skirt, 12 skirt band, 13 inner frame,
+# 14 ram mount), 1/0 the shin, 1/1-3 the toes. Ram: 0/0 cylinder, cap, hip ball; 1/0 piston, piston ball.
+# A twin net takes whichever path is listed. The first material word picks the tint.
+0/0/0       belly: dark gunmetal plating, bolts and grime
+0/0/1       body under the hide: silver-grey steel armour, worn, panel lines
+0/0/2       rear hide plate: deep blue painted armour plating, chipped edges, rivets along the edges
+0/0/3       hide band: gunmetal steel strip, rivets
+0/0/4       hide strap: gunmetal steel strap, bolts at the ends
+0/0/6       hide plate: deep blue painted armour plating, chipped edges, rivets along the edges
+0/0/10      hide plate: deep blue painted armour plating, chipped edges, rivets along the edges
+0/0/14      front hide plate: deep blue painted armour plating, chipped edges, rivets along the edges
+0/0/18      side vent slat: dark grille slat, black in the gaps
+0/0/24      nose: silver-grey steel armour, worn edges, panel lines
+0/0/25      brow plate: deep blue painted armour plating, chipped edges
+0/0/26      tusk: silver-grey steel, scratched, worn to bright metal at the tip
+0/0/27      brow plate: deep blue painted armour plating, chipped edges
+0/0/28      tusk: silver-grey steel, scratched, worn to bright metal at the tip
+0/0/29      ram horn: gunmetal steel, scratched, worn to bright metal at the tip
+0/0/30      horn mount plate: dark gunmetal plating, bolts
+0/0/31      engine block: dark gunmetal, vents and grime
+0/0/32      exhaust pipe: gunmetal steel, soot at the mouth
+0/0/33      exhaust bore: dark soot, black inside
+0/5/0/0     turret ring: dark gunmetal, bolts round it
+0/5/0/1     turret base: silver-grey steel armour, worn, panel lines
+0/5/0/2     turret top: deep blue painted armour plating, chipped edges, a hatch outline
+0/5/0/3     trunnion cheek: gunmetal steel plate, bolts
+0/5/0/4     trunnion cheek: gunmetal steel plate, bolts
+0/5/0/5     rear bustle: silver-grey steel armour, worn, panel lines
+0/5/0/6     bustle vent slat: dark grille slat
+0/5/0/9     sensor light: glowing green light
+0/5/0/11    antenna mast: dark steel rod
+0/5/2/0/0   containment bulb: gunmetal steel dome, seams and bolts
+0/5/2/0/1   trunnion axle: dark gunmetal, worn
+0/5/2/0/2   gun rail: deep blue painted armour plating, chipped edges, rivets along it
+0/5/2/0/4   gun side bar: silver-grey steel, worn
+0/5/2/0/5   gun frame post: silver-grey steel, worn, a bolt at each end
+0/5/2/0/12  gun core tube: dark gunmetal, shadowed rings
+0/5/2/0/13  muzzle collar: gunmetal steel ring, scratched
+0/5/2/2/0/0 inner barrel: gunmetal steel tube, worn, scratches along it
+0/5/2/2/0/1 barrel ring: dark gunmetal band
+0/5/2/2/2/0/0 muzzle: gunmetal steel, soot at the mouth
+0/5/2/2/2/0/1 muzzle band: deep blue painted band, chipped
+1/0/0/0     track core: dark rubber, grime
+1/0/0/1     road wheel: dark rubber tyre, worn tread
+1/0/0/2     wheel hub: gunmetal steel, bolts round it
+1/0/0/3     hub cap: silver-grey steel cap, scratched
+1/0/0/7     pod shell: deep blue painted armour plating, chipped edges, rivets along the edges
+1/0/0/8     pod shell base: silver-grey steel armour, worn
+1/0/0/9     pod band: gunmetal steel strip, rivets
+1/0/0/11    outer skirt: deep blue painted armour plating, chipped edges, a gunmetal band across it
+3/0/0/11    outer skirt: deep blue painted armour plating, chipped edges, a gunmetal band across it
+1/0/0/12    skirt band: gunmetal steel strip, bolts
+1/0/0/13    inner frame: dark gunmetal plating, grime
+1/0/0/14    ram mount: gunmetal steel, bolts round it
+1/1/0/0     knee hinge: gunmetal steel, worn
+1/1/0/1     shin: silver-grey steel armour, worn edges, panel lines
+1/1/0/2     shin strip: deep blue painted armour strip, chipped
+1/1/0/3     shin piston: bright steel chrome, polished
+1/1/0/4     foot: gunmetal steel block, scratched
+1/1/1/0/0/0 toe claw: silver-grey steel, scratched, worn to bright metal at the tip
+1/1/1/0/0/1 toe pivot: dark gunmetal, worn
+2/0/0       hip ram: gunmetal steel cylinder, bolts at the ends
+2/0/1       ram cap: deep blue painted armour plate, chipped edges
+2/0/2       hip joint: dark gunmetal ball, worn
+2/1/0/0     piston: bright steel chrome, polished
+2/1/0/1     piston joint: gunmetal steel ball, worn

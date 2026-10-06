@@ -1,0 +1,34 @@
+@font-face { font-family: "Barlow Condensed"; font-weight: 400; font-style: normal; src: url("fonts/barlow-condensed-500.ttf") format("truetype"); }
+@font-face { font-family: "Barlow Condensed"; font-weight: 500; font-style: normal; src: url("fonts/barlow-condensed-500.ttf") format("truetype"); }
+@font-face { font-family: "Barlow Condensed"; font-weight: 600; font-style: normal; src: url("fonts/barlow-condensed-600.ttf") format("truetype"); }
+@font-face { font-family: "Barlow Condensed"; font-weight: 700; font-style: normal; src: url("fonts/barlow-condensed-700.ttf") format("truetype"); }
+@font-face { font-family: "Barlow Condensed"; font-weight: 800; font-style: normal; src: url("fonts/barlow-condensed-700.ttf") format("truetype"); }
+
+/* The game's HUD palette (unreal/Source/Autocraft/AcHudStyle.h): glass, cyan, ice, amber. */
+:root {
+  --font: "Barlow Condensed", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, monospace;
+
+  --bg: #040b13;
+  --bg-glow: #0c2a3e;
+  --surface: #0a1a29;
+  --surface-raised: #10283c;
+  --line: rgba(140, 217, 242, 0.22);
+  --text: #ebf7ff;
+  --text-soft: #a8def2;
+  --text-faint: #6f9db2;
+  --accent: #59d9ff;
+  --accent-ink: #03121c;
+
+  --ok-bg: #0f2f1f;
+  --ok: #6ee69b;
+  --warn-bg: #3a2a08;
+  --warn: #ffc24d;
+  --fail-bg: #3a1212;
+  --fail: #ff7a7a;
+  --info-bg: #0c2440;
+  --info: #8ccfff;
+
+  --radius: 20px;
+  --radius-sm: 14px;
+}

@@ -1,0 +1,96 @@
+{
+  "about": "INVENTORY (2026-10-06) of what the Atlas needs: stomp (own, in the game); cannon salvo atlasshot (new: the twin cannons, every 2.0 s, WeaponOf, gain 0.35, 3 a second); footfall atlasstep (new: played by UAcEffects::Footfall for every foot that comes down, gain 0.5, 4 a second); driven pull-away atlasmove (new: PullAway, gain 0.3, at most every 2 s); report-in vatlas and death atlasdeath (BLOCKED, see below); HUD icon atlas (made: Content-src/icons/atlas.png, art/models/atlas/previews/icon.png). Picked 2026-10-06 by the numbers (the 0.4 s loudest RMS after peak normalisation, the tail, the active length): atlasshot_1 and _2 (now sfx/atlasshot_1, _2; _3 is quiet, -16 dB, and only 0.7 s alive), atlasmove_3 and _2 (now sfx/atlasmove_1, _2; _1 dies after 1.15 s), atlasstep_1 and _2 (now sfx/atlasstep_1, _2; _3 is hiss at -27 dB). All takes stay in art/models/atlas/sounds/. VOICE BLOCKED (2026-10-06): the ElevenLabs account has 10 of 10 custom voice slots used, so a new Voice Design voice cannot be saved (POST /v1/text-to-voice answers voice_limit_reached) and an unsaved preview cannot speak. Until a slot is freed the Atlas crew's spoken lines (vatlas, atlasdeath) borrow the Juggernaut's's through AcNewKinds::StandIn. The previews are designed and kept in art/models/atlas/sounds/voice/ (vatlas_1..3.mp3 with their generated_voice_ids GumGcWvTfktvOQurtczT, 6x5tfkD48jSjkURQerSz, Ae5JpO7TPso7wT0WXMKK); chosen by spectral numbers (no listening possible): vatlas_3 (Ae5JpO7TPso7wT0WXMKK): lowest spectral centroid (1347 Hz) and the largest share of energy under 600 Hz, i.e. the deepest. Description used: \"A deep, slow, heavy-machinery operator in his fifties, a gravelly bass voice, unhurried and weary, steady like a foreman running a walking war machine. Speaks slowly with weight on each word over a rumbling cab radio. Much deeper and slower than a pilot.\". To finish: free a slot (delete an unused custom voice in the ElevenLabs account), run `uv run Tools/AudioGen/design_voice.py save \"Autocraft Atlas\" \"<description>\" <generated_voice_id>` (previews expire, so design again if it fails: `design_voice.py design`), add `\"voices\": {\"atlas\": \"<voice_id>\"}` and 4 report lines (vatlas_1..4) and 4 death lines (atlasdeath_1..4), kind say, fx comm, to this manifest, run elevenlabs.sh manifest, copy the picked takes to unreal/Resources/Sounds/sfx, import_sounds.py, then drop the kind from AcNewKinds::StandIn and update AcPoseNewKindsTests.cpp and AcAudioDirectorTests.cpp.",
+  "entries": [
+    {
+      "id": "stomp_1",
+      "kind": "sfx",
+      "prompt": "a giant war mech slams its huge metal foot into the ground: one massive deep thud, the earth shakes with a low rumbling shockwave, rocks and dirt rattle down, heavy hydraulic hiss, close up",
+      "seconds": 2.0,
+      "influence": 0.6
+    },
+    {
+      "id": "stomp_2",
+      "kind": "sfx",
+      "prompt": "colossal metal walker stomps the ground: a booming subsonic impact like a pile driver, ground cracking, a rolling rumble spreading outward, gravel scattering",
+      "seconds": 2.0,
+      "influence": 0.6
+    },
+    {
+      "id": "stomp_3",
+      "kind": "sfx",
+      "prompt": "heavy mechanical foot crashes down creating a seismic shockwave: deep bass boom, metallic clank of armour plates, dust whoosh rushing outward, distant rumble",
+      "seconds": 2.0,
+      "influence": 0.6
+    },
+    {
+      "id": "stomp_4",
+      "kind": "sfx",
+      "prompt": "earthquake stomp of a two-legged tank: servo whine rising as the leg lifts, then a thunderous ground impact with a deep echoing thump and rumbling aftershock",
+      "seconds": 2.5,
+      "influence": 0.6
+    },
+    {
+      "id": "atlasshot_1",
+      "kind": "sfx",
+      "prompt": "two heavy siege cannons mounted on a giant walker fire together: a deep booming double blast, a thunderous muzzle crack with a shockwave thump and a metallic ring, close up",
+      "seconds": 1.8,
+      "influence": 0.5
+    },
+    {
+      "id": "atlasshot_2",
+      "kind": "sfx",
+      "prompt": "massive artillery cannons of a walking war machine fire a salvo: a low roaring boom and a sharp crack, hydraulic recoil clunk, echoing rumble, close up",
+      "seconds": 1.8,
+      "influence": 0.5
+    },
+    {
+      "id": "atlasshot_3",
+      "kind": "sfx",
+      "prompt": "a pair of long heavy tank guns fire one after another: two deep concussive booms, brassy crack, smoke hiss, heavy recoil, close up",
+      "seconds": 1.8,
+      "influence": 0.5
+    },
+    {
+      "id": "atlasmove_1",
+      "kind": "sfx",
+      "prompt": "giant two-legged walker lurches into motion: heavy hydraulic servos whine, steam hiss, a deep mechanical groan and the first slow thudding step, heard from inside the cab",
+      "seconds": 2.0,
+      "influence": 0.5
+    },
+    {
+      "id": "atlasmove_2",
+      "kind": "sfx",
+      "prompt": "enormous mech powers up its legs and starts to walk: deep engine rumble, pistons and gears grinding, metal joints creaking, a ponderous heavy thump, from the cockpit",
+      "seconds": 2.0,
+      "influence": 0.5
+    },
+    {
+      "id": "atlasmove_3",
+      "kind": "sfx",
+      "prompt": "colossal walking machine's boilers roar and its servos strain as it steps off: low growling engine, hydraulic whine rising, slow booming stride, from the cab",
+      "seconds": 2.0,
+      "influence": 0.5
+    },
+    {
+      "id": "atlasstep_1",
+      "kind": "sfx",
+      "prompt": "one heavy footfall of a giant metal walker: a deep dull thud with a clank of armour plate and a gravelly crunch, short, close up",
+      "seconds": 1.0,
+      "influence": 0.5
+    },
+    {
+      "id": "atlasstep_2",
+      "kind": "sfx",
+      "prompt": "a huge mechanical foot plants on rocky ground: muffled low boom, metal clang, dust and gravel crunch, short",
+      "seconds": 1.0,
+      "influence": 0.5
+    },
+    {
+      "id": "atlasstep_3",
+      "kind": "sfx",
+      "prompt": "single stride of a colossal robot: heavy thump that shakes the ground, a servo clunk, scattering pebbles, short",
+      "seconds": 1.0,
+      "influence": 0.5
+    }
+  ]
+}

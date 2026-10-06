@@ -1,0 +1,88 @@
+# Parts for the nets legend (model.sh nets): a tree path, spaces, the part's name, a colon, its surface.
+# Only the surface goes to Grok. Paths as in nets.json; the build order is the old Swift Firefly model:
+# root 0 the body, 1-4 the wheel mounts FL, FR, RL, RR (left, -Z, first). Body: 0 keel, 1-12 the
+# suspension (left front, left rear, right front, right rear; each upper arm, lower arm, shock), 13 nose,
+# 14 intake, 15 cockpit hull, 16 canopy frame, 17 canopy (own), 18 fuel bulb (0 core, 1-5 bands front
+# to back), 19 bumper, 20-23 stacks and their glow (own), 25-30 tail segments (0 core, 1 shell, 2 ring),
+# 31 the stinger. A twin net takes whichever path is listed. The first material word picks the tint.
+0/0         keel: dark gunmetal plating, bolts and grime
+0/1         upper suspension arm: gunmetal steel, worn, bolts at the ends
+0/2         lower suspension arm: dark gunmetal steel, worn
+0/3         shock absorber: bright steel chrome, a spring coil
+0/4         upper suspension arm: gunmetal steel, worn, bolts at the ends
+0/5         lower suspension arm: dark gunmetal steel, worn
+0/6         shock absorber: bright steel chrome, a spring coil
+0/7         upper suspension arm: gunmetal steel, worn, bolts at the ends
+0/8         lower suspension arm: dark gunmetal steel, worn
+0/9         shock absorber: bright steel chrome, a spring coil
+0/10        upper suspension arm: gunmetal steel, worn, bolts at the ends
+0/11        lower suspension arm: dark gunmetal steel, worn
+0/12        shock absorber: bright steel chrome, a spring coil
+0/13        nose: deep blue painted armour plating, chipped edges, panel lines along it
+0/14        intake: dark gunmetal grille, slots and grime
+0/15        cockpit hull: deep blue painted armour plating, chipped edges, panel lines, dark vents on the sides
+0/16        canopy frame: dark gunmetal plating, rivets
+0/18/0      fuel bulb core: dark gunmetal, shadowed seams
+0/18/1      fuel bulb front band: deep blue painted armour plating, chipped edges, rivets along the edges
+0/18/2      fuel bulb band: deep blue painted armour plating, chipped edges, rivets along the edges
+0/18/3      fuel bulb band: deep blue painted armour plating, chipped edges, rivets along the edges
+0/18/4      fuel bulb band: deep blue painted armour plating, chipped edges, rivets along the edges
+0/18/5      fuel bulb rear band: deep blue painted armour plating, chipped edges, rivets along the edges
+0/19        rear bumper: dark gunmetal plating, worn and scratched
+0/20        exhaust stack: gunmetal steel pipe, soot-blackened at the top
+0/22        exhaust stack: gunmetal steel pipe, soot-blackened at the top
+0/25/0      tail joint core: dark gunmetal, ribbed
+0/25/1      tail segment: deep blue painted armour plating, chipped edges, panel lines
+0/25/2      tail joint ring: gunmetal steel, worn
+0/26/0      tail joint core: dark gunmetal, ribbed
+0/26/1      tail segment: deep blue painted armour plating, chipped edges, panel lines
+0/26/2      tail joint ring: gunmetal steel, worn
+0/27/0      tail joint core: dark gunmetal, ribbed
+0/27/1      tail segment: deep blue painted armour plating, chipped edges, panel lines
+0/27/2      tail joint ring: gunmetal steel, worn
+0/28/0      tail joint core: dark gunmetal, ribbed
+0/28/1      tail segment: deep blue painted armour plating, chipped edges, panel lines
+0/28/2      tail joint ring: gunmetal steel, worn
+0/29/0      tail joint core: dark gunmetal, ribbed
+0/29/1      tail segment: deep blue painted armour plating, chipped edges, panel lines
+0/29/2      tail joint ring: gunmetal steel, worn
+0/30/0      tail joint core: dark gunmetal, ribbed
+0/30/1      tail segment: deep blue painted armour plating, chipped edges, panel lines
+0/30/2      tail joint ring: gunmetal steel, worn
+0/31/0      stinger collar: dark gunmetal, worn
+0/31/1      stinger fuel sleeve: deep blue painted armour plating, chipped edges, a hazard stencil
+0/31/2      stinger band: gunmetal steel, worn
+0/31/3      stinger band: gunmetal steel, worn
+0/31/4      flamethrower barrel: gunmetal steel, heat-stained toward the muzzle
+0/31/5      muzzle collar: dark gunmetal, scorched
+0/31/7      feed pipe: bright steel chrome, worn
+1/0         steering knuckle: dark gunmetal, bolts
+1/1         fender rear lip: deep blue painted armour plating, chipped edges
+1/2         fender top: deep blue painted armour plating, chipped edges, dark vents on the outer side
+1/3         fender front lip: deep blue painted armour plating, chipped edges
+1/4         fender claw: deep blue painted armour plating, chipped to bare steel at the tip, panel lines
+1/5/1       wheel hub: dark gunmetal, bolts
+1/5/2       hub ring: gunmetal steel, worn
+1/5/3       hub cap: gunmetal steel, hexagonal, worn
+2/0         steering knuckle: dark gunmetal, bolts
+2/1         fender rear lip: deep blue painted armour plating, chipped edges
+2/2         fender top: deep blue painted armour plating, chipped edges, dark vents on the outer side
+2/3         fender front lip: deep blue painted armour plating, chipped edges
+2/4         fender claw: deep blue painted armour plating, chipped to bare steel at the tip, panel lines
+2/5/1       wheel hub: dark gunmetal, bolts
+2/5/2       hub ring: gunmetal steel, worn
+2/5/3       hub cap: gunmetal steel, hexagonal, worn
+3/0         knuckle: dark gunmetal, bolts
+3/1         fender rear lip: deep blue painted armour plating, chipped edges
+3/2         fender top: deep blue painted armour plating, chipped edges, dark vents on the outer side
+3/3         fender front lip: deep blue painted armour plating, chipped edges
+3/4/1       wheel hub: dark gunmetal, bolts
+3/4/2       hub ring: gunmetal steel, worn
+3/4/3       hub cap: gunmetal steel, hexagonal, worn
+4/0         knuckle: dark gunmetal, bolts
+4/1         fender rear lip: deep blue painted armour plating, chipped edges
+4/2         fender top: deep blue painted armour plating, chipped edges, dark vents on the outer side
+4/3         fender front lip: deep blue painted armour plating, chipped edges
+4/4/1       wheel hub: dark gunmetal, bolts
+4/4/2       hub ring: gunmetal steel, worn
+4/4/3       hub cap: gunmetal steel, hexagonal, worn

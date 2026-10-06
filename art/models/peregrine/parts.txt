@@ -1,0 +1,21 @@
+# Parts of peregrine, written by unreal/Tools/Editor/ac_modelkit.py from models/peregrine.py (do not edit).
+# name, parent, pivot in the model frame (UE cm: x forward, y right, z up), what moves it, materials.
+# `_0` is the unit's left (UE -Y), `_1` its right.
+peregrine_blue_root -              pivot (   0.0,    0.0,    0.0)  the unit or building transform: position on the ground, heading (yaw = -heading for units) | no mesh
+body           peregrine_blue_root pivot (   0.0,    0.0,   50.0)  bank, pitch and bob of the airframe | hullLight(3),hullDark(40),canopy(1),hullMid(10),glowBlue(4),team(6)
+flaps_0        body           pivot ( -78.0,  -60.0,   46.0)  wing flap: pitch with the bank and the turn | team(1),hullLight(1),hullDark(1)
+flaps_1        body           pivot ( -78.0,   60.0,   46.0)  wing flap: pitch with the bank and the turn | team(1),hullLight(1),hullDark(1)
+fins_0         body           pivot ( -78.0,  -30.0,   62.0)  tail fin: rudder swing with the turn | team(1),hullLight(1),hullDark(1)
+fins_1         body           pivot ( -78.0,   30.0,   62.0)  tail fin: rudder swing with the turn | team(1),hullLight(1),hullDark(1)
+engines_0      body           pivot ( -80.0,  -22.0,   50.0)  engine nacelle: shake and gimbal with the thrust | hullMid(2),hullDark(3),chrome(1),hullLight(3)
+glow           engines_0      pivot (-129.0,  -22.0,   50.0)  exhaust glow: scale and brightness with speed | glowCold(1)
+emitter_1      engines_0      pivot (-132.0,  -22.0,   50.0)  vapour trail and exhaust particles socket | no mesh
+engines_1      body           pivot ( -80.0,   22.0,   50.0)  engine nacelle: shake and gimbal with the thrust | hullMid(2),hullDark(3),chrome(1),hullLight(3)
+glow_2         engines_1      pivot (-129.0,   22.0,   50.0)  exhaust glow: scale and brightness with speed | glowCold(1)
+emitter_2      engines_1      pivot (-132.0,   22.0,   50.0)  vapour trail and exhaust particles socket | no mesh
+missiles_0     body           pivot ( -50.0,  -74.0,   33.0)  seeker missile: hides on launch, returns when reloaded | hullLight(2),hullDark(7)
+missiles_1     body           pivot ( -50.0,  -56.0,   33.0)  seeker missile: hides on launch, returns when reloaded | hullLight(2),hullDark(7)
+missiles_2     body           pivot ( -50.0,   56.0,   33.0)  seeker missile: hides on launch, returns when reloaded | hullLight(2),hullDark(7)
+missiles_3     body           pivot ( -50.0,   74.0,   33.0)  seeker missile: hides on launch, returns when reloaded | hullLight(2),hullDark(7)
+beacon_0       body           pivot ( -52.0, -112.0,   46.0)  red wing-tip beacon: blinks | glowRed(1)
+beacon_1       body           pivot ( -52.0,  112.0,   46.0)  red wing-tip beacon: blinks | glowRed(1)

@@ -1,0 +1,42 @@
+{
+  "about": "The Sentinel's own sounds (the anti-air missile tower). missile = one launch from its pods (every 1.0 s, heard where the tower stands), sentineltrack = its head swinging onto a new flyer and locking on (a servo and a tone, when it opens fire after a quiet spell). Ids match the game's sound names (sfx/<name>_<n>).",
+  "entries": [
+    {
+      "id": "missile_1",
+      "kind": "sfx",
+      "prompt": "surface-to-air missile launches from a tower pod: sharp ignition bang, a fast rising rocket roar that whooshes up and away, close up",
+      "seconds": 1.0,
+      "influence": 0.5
+    },
+    {
+      "id": "missile_2",
+      "kind": "sfx",
+      "prompt": "small anti-aircraft missile fired from a launcher, quick pop of the ejection charge then a hissing rocket motor screaming off into the sky",
+      "seconds": 1.0,
+      "influence": 0.5
+    },
+    {
+      "id": "missile_3",
+      "kind": "sfx",
+      "prompt": "two homing missiles leave their launch tubes a split second apart, punchy whoosh-whoosh of rocket motors streaking upward, smoky hiss",
+      "seconds": 1.0,
+      "influence": 0.5
+    },
+    {
+      "id": "sentineltrack_1",
+      "kind": "sfx",
+      "prompt": "short electric servo whir of a missile turret swinging around, ending with two quick electronic lock-on beeps",
+      "seconds": 0.7,
+      "influence": 0.5,
+      "fx": "trim 0.6 60"
+    },
+    {
+      "id": "sentineltrack_2",
+      "kind": "sfx",
+      "prompt": "missile launcher head slews on its motor with a whining servo, a mechanical clunk and a rising electronic targeting tone",
+      "seconds": 0.7,
+      "influence": 0.5,
+      "fx": "trim 0.6 60"
+    }
+  ]
+}

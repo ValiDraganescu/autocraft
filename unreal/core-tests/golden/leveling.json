@@ -1,0 +1,3570 @@
+{
+  "balance" : "prospectorQuickDrill|prospector|2|one|Quick drill|Nearby Prospectors drill 10% faster.|[GameCore.Effect.stat(GameCore.Stat.drill, GameCore.Scope.nearby, GameCore.Change.percent(0.1))]\nprospectorLightFrame|prospector|2|other|Light frame|Every Prospector walks 50% faster.|[GameCore.Effect.stat(GameCore.Stat.speed, GameCore.Scope.every, GameCore.Change.percent(0.5))]\nprospectorRigMaster|prospector|3|one|Rig master|Every Prospector pumps MH 20% faster.|[GameCore.Effect.stat(GameCore.Stat.hydrogen, GameCore.Scope.every, GameCore.Change.percent(0.2))]\nprospectorPlating|prospector|3|other|Plating|+20 hp and +1 armor.|[GameCore.Effect.stat(GameCore.Stat.hp, GameCore.Scope.driven, GameCore.Change.plus(20.0)), GameCore.Effect.stat(GameCore.Stat.armor, GameCore.Scope.driven, GameCore.Change.plus(1.0))]\nprospectorBigHaul|prospector|4|one|Big haul|Carries 35 ore or 28 MH a trip; nearby Prospectors carry 7 or 6.|[GameCore.Effect.stat(GameCore.Stat.oreCarry, GameCore.Scope.driven, GameCore.Change.atLeast(35.0)), GameCore.Effect.stat(GameCore.Stat.hydrogenCarry, GameCore.Scope.driven, GameCore.Change.atLeast(28.0)), GameCore.Effect.stat(GameCore.Stat.oreCarry, GameCore.Scope.nearby, GameCore.Change.atLeast(7.0)), GameCore.Effect.stat(GameCore.Stat.hydrogenCarry, GameCore.Scope.nearby, GameCore.Change.atLeast(6.0))]\nprospectorFastWelder|prospector|4|other|Fast welder|Builds and repairs at ×3, up from ×2.|[GameCore.Effect.stat(GameCore.Stat.build, GameCore.Scope.driven, GameCore.Change.times(3.0)), GameCore.Effect.stat(GameCore.Stat.repair, GameCore.Scope.driven, GameCore.Change.times(3.0))]\nprospectorFieldWelder|prospector|5|one|Field welder|Repairs machines: a full repair takes half their training time.|[GameCore.Effect.machineRepair(share: 0.5)]\nprospectorGroupRepair|prospector|5|other|Group repair|Friendly machines within 6 cells mend 1 hp a second.|[GameCore.Effect.aura(GameCore.Aura(hpPerSecond: 1.0, radius: 6.0, filter: GameCore.Filter.machines))]\nprospectorForeman|prospector|6|one|Foreman|Nearby Prospectors drill 50% faster.|[GameCore.Effect.stat(GameCore.Stat.drill, GameCore.Scope.nearby, GameCore.Change.percent(0.5))]\nprospectorSiteBoss|prospector|6|other|Site boss|Every Prospector builds 30% faster.|[GameCore.Effect.stat(GameCore.Stat.build, GameCore.Scope.every, GameCore.Change.percent(0.3))]\nprospectorRichVein|prospector|7|one|Rich vein|Every third ore trip carries double.|[GameCore.Effect.everyThird(GameCore.Action.oreTrip)]\nprospectorCuttingTorch|prospector|7|other|Cutting torch|Its weapon does double damage.|[GameCore.Effect.stat(GameCore.Stat.damage, GameCore.Scope.driven, GameCore.Change.percent(1.0))]\nprospectorOvertime|prospector|8|one|Overtime|Every Prospector drills 10% faster.|[GameCore.Effect.stat(GameCore.Stat.drill, GameCore.Scope.every, GameCore.Change.percent(0.1))]\nprospectorPrefab|prospector|8|other|Prefab|Buildings it places cost 10% less.|[GameCore.Effect.stat(GameCore.Stat.buildingCost, GameCore.Scope.driven, GameCore.Change.percent(-0.1))]\nprospectorCliffHop|prospector|9|one|Cliff hop|Jumps up and down cliffs like a Comet.|[GameCore.Effect.cliffJump]\nprospectorSupplyChief|prospector|9|other|Supply chief|The team's Hab Domes give 10 supply, up from 8.|[GameCore.Effect.stat(GameCore.Stat.supplyPerHabDome, GameCore.Scope.team, GameCore.Change.atLeast(10.0))]\nprospectorUnionCrew|prospector|10|one|Union crew|Nearby Prospectors carry 10 ore or 8 MH, up from 5 and 4.|[GameCore.Effect.stat(GameCore.Stat.oreCarry, GameCore.Scope.nearby, GameCore.Change.atLeast(10.0)), GameCore.Effect.stat(GameCore.Stat.hydrogenCarry, GameCore.Scope.nearby, GameCore.Change.atLeast(8.0))]\nprospectorShield|prospector|10|other|Shield|A 20 hp shield takes hits first; it refills 2 a second after 7 s without a hit.|[GameCore.Effect.shield(GameCore.Shield(hp: 20.0, delay: 7.0, refill: 10.0))]\nrangerDrillSergeant|ranger|2|one|Drill sergeant|Nearby Rangers fire 10% faster.|[GameCore.Effect.stat(GameCore.Stat.fireRate, GameCore.Scope.nearby, GameCore.Change.percent(0.1))]\nrangerLightKit|ranger|2|other|Light kit|Every Ranger walks 20% faster.|[GameCore.Effect.stat(GameCore.Stat.speed, GameCore.Scope.every, GameCore.Change.percent(0.2))]\nrangerCombatDrill|ranger|3|one|Combat drill|Every Ranger gets +10 hp.|[GameCore.Effect.stat(GameCore.Stat.hp, GameCore.Scope.every, GameCore.Change.plus(10.0))]\nrangerFlakVest|ranger|3|other|Flak vest|+20 hp and +1 armor.|[GameCore.Effect.stat(GameCore.Stat.hp, GameCore.Scope.driven, GameCore.Change.plus(20.0)), GameCore.Effect.stat(GameCore.Stat.armor, GameCore.Scope.driven, GameCore.Change.plus(1.0))]\nrangerHollowPoints|ranger|4|one|Hollow points|+40% damage, and nearby Rangers +15%.|[GameCore.Effect.stat(GameCore.Stat.damage, GameCore.Scope.driven, GameCore.Change.percent(0.25)), GameCore.Effect.stat(GameCore.Stat.damage, GameCore.Scope.nearby, GameCore.Change.percent(0.15))]\nrangerLongBarrel|ranger|4|other|Long barrel|+2 range.|[GameCore.Effect.stat(GameCore.Stat.range, GameCore.Scope.driven, GameCore.Change.plus(2.0))]\nrangerSurge|ranger|5|one|Surge|The ability key gives 8 s of +50% fire rate and speed, for 10 hp, every 15 s.|[GameCore.Effect.burst(GameCore.Burst(seconds: 8.0, cooldown: 15.0, speed: 0.5, fireRate: 0.5, hpCost: 10.0))]\nrangerFieldMedic|ranger|5|other|Field medic|Friendly bio units within 6 cells mend 1 hp a second.|[GameCore.Effect.aura(GameCore.Aura(hpPerSecond: 1.0, radius: 6.0, filter: GameCore.Filter.bio))]\nrangerSquadLeader|ranger|6|one|Squad leader|Nearby Rangers fire 25% faster.|[GameCore.Effect.stat(GameCore.Stat.fireRate, GameCore.Scope.nearby, GameCore.Change.percent(0.25))]\nrangerQuartermaster|ranger|6|other|Quartermaster|The team's Garrisons train Rangers 30% faster.|[GameCore.Effect.stat(GameCore.Stat.training(GameCore.Unit.Kind.ranger), GameCore.Scope.team, GameCore.Change.percent(0.3))]\nrangerBurstFire|ranger|7|one|Burst fire|Every third shot does double damage.|[GameCore.Effect.everyThird(GameCore.Action.attack)]\nrangerArmorPiercing|ranger|7|other|Armor-piercing|Shots ignore armor and do +5 against armored.|[GameCore.Effect.stat(GameCore.Stat.ignoresArmor, GameCore.Scope.driven, GameCore.Change.plus(1.0)), GameCore.Effect.stat(GameCore.Stat.damageVs(GameCore.TargetClass.armored), GameCore.Scope.driven, GameCore.Change.plus(5.0))]\nrangerEspritDeCorps|ranger|8|one|Esprit de corps|Every Ranger fires 10% faster.|[GameCore.Effect.stat(GameCore.Stat.fireRate, GameCore.Scope.every, GameCore.Change.percent(0.1))]\nrangerRecruitment|ranger|8|other|Recruitment|Rangers cost 10% less.|[GameCore.Effect.stat(GameCore.Stat.unitCost(GameCore.Unit.Kind.ranger), GameCore.Scope.team, GameCore.Change.percent(-0.1))]\nrangerJumpPack|ranger|9|one|Jump pack|Jumps up and down cliffs like a Comet.|[GameCore.Effect.cliffJump]\nrangerBastionDrill|ranger|9|other|Bastion drill|The team's Bastions hold 6, up from 4.|[GameCore.Effect.stat(GameCore.Stat.bastionSize, GameCore.Scope.team, GameCore.Change.atLeast(6.0))]\nrangerBandOfBrothers|ranger|10|one|Band of brothers|Nearby Rangers do 50% more damage.|[GameCore.Effect.stat(GameCore.Stat.damage, GameCore.Scope.nearby, GameCore.Change.percent(0.5))]\nrangerShield|ranger|10|other|Shield|A 20 hp shield takes hits first; it refills over 10 s after 7 s without a hit.|[GameCore.Effect.shield(GameCore.Shield(hp: 20.0, delay: 7.0, refill: 10.0))]\ncometPackTactics|comet|2|one|Pack tactics|Nearby Comets fire 10% faster.|[GameCore.Effect.stat(GameCore.Stat.fireRate, GameCore.Scope.nearby, GameCore.Change.percent(0.1))]\ncometFleetFoot|comet|2|other|Fleet foot|Every Comet runs 15% faster.|[GameCore.Effect.stat(GameCore.Stat.speed, GameCore.Scope.every, GameCore.Change.percent(0.15))]\ncometNanomeds|comet|3|one|Nanomeds|Every Comet heals out of combat 20% faster.|[GameCore.Effect.stat(GameCore.Stat.regen, GameCore.Scope.every, GameCore.Change.percent(0.2))]\ncometPaddedSuit|comet|3|other|Padded suit|+25 hp and +1 armor.|[GameCore.Effect.stat(GameCore.Stat.hp, GameCore.Scope.driven, GameCore.Change.plus(25.0)), GameCore.Effect.stat(GameCore.Stat.armor, GameCore.Scope.driven, GameCore.Change.plus(1.0))]\ncometTwinMagnums|comet|4|one|Twin magnums|+40% damage, and nearby Comets +15%.|[GameCore.Effect.stat(GameCore.Stat.damage, GameCore.Scope.driven, GameCore.Change.percent(0.25)), GameCore.Effect.stat(GameCore.Stat.damage, GameCore.Scope.nearby, GameCore.Change.percent(0.15))]\ncometLongJump|comet|4|other|Long jump|Jumps reach 50% farther.|[GameCore.Effect.stat(GameCore.Stat.jumpReach, GameCore.Scope.driven, GameCore.Change.percent(0.5))]\ncometPulseMine|comet|5|one|Pulse mine|The ability key throws a grenade at the crosshair: 20 damage within 1.5 cells, every 14 s.|[GameCore.Effect.grenade(GameCore.Grenade(damage: 20.0, radius: 1.5, cooldown: 14.0))]\ncometSpotter|comet|5|other|Spotter|Sees 50% farther, for the whole team.|[GameCore.Effect.stat(GameCore.Stat.sight, GameCore.Scope.driven, GameCore.Change.percent(0.5))]\ncometRaidParty|comet|6|one|Raid party|Nearby Comets fire 25% faster.|[GameCore.Effect.stat(GameCore.Stat.fireRate, GameCore.Scope.nearby, GameCore.Change.percent(0.25))]\ncometDemolition|comet|6|other|Demolition|Every Comet does 30% more damage to buildings.|[GameCore.Effect.stat(GameCore.Stat.damageVs(GameCore.TargetClass.building), GameCore.Scope.every, GameCore.Change.percent(0.3))]\ncometDoubleTap|comet|7|one|Double tap|Every third volley does double damage.|[GameCore.Effect.everyThird(GameCore.Action.attack)]\ncometLightKiller|comet|7|other|Light killer|+5 more against light, so +10 in all.|[GameCore.Effect.stat(GameCore.Stat.damageVs(GameCore.TargetClass.light), GameCore.Scope.driven, GameCore.Change.plus(5.0))]\ncometHitAndRun|comet|8|one|Hit and run|Every Comet fires 10% faster.|[GameCore.Effect.stat(GameCore.Stat.fireRate, GameCore.Scope.every, GameCore.Change.percent(0.1))]\ncometCheapKit|comet|8|other|Cheap kit|Comets cost 10% less.|[GameCore.Effect.stat(GameCore.Stat.unitCost(GameCore.Unit.Kind.comet), GameCore.Scope.team, GameCore.Change.percent(-0.1))]\ncometBooster|comet|9|one|Booster|3 s at +50% speed after each jump.|[GameCore.Effect.afterJump(GameCore.Rush(seconds: 3.0, speed: 0.5, fireRate: 0.0))]\ncometBounty|comet|9|other|Bounty|Each of its kills gives the team 10% of the victim's cost.|[GameCore.Effect.stat(GameCore.Stat.bounty, GameCore.Scope.driven, GameCore.Change.plus(0.1))]\ncometDeathSquad|comet|10|one|Death squad|Nearby Comets do 50% more damage.|[GameCore.Effect.stat(GameCore.Stat.damage, GameCore.Scope.nearby, GameCore.Change.percent(0.5))]\ncometShield|comet|10|other|Shield|A 25 hp shield takes hits first; it refills over 10 s after 7 s without a hit.|[GameCore.Effect.shield(GameCore.Shield(hp: 25.0, delay: 7.0, refill: 10.0))]\nfireflyHotBurners|firefly|2|one|Hot burners|Nearby Fireflies fire 10% faster.|[GameCore.Effect.stat(GameCore.Stat.fireRate, GameCore.Scope.nearby, GameCore.Change.percent(0.1))]\nfireflyTurbo|firefly|2|other|Turbo|Every Firefly drives 15% faster.|[GameCore.Effect.stat(GameCore.Stat.speed, GameCore.Scope.every, GameCore.Change.percent(0.15))]\nfireflyFuelLine|firefly|3|one|Fuel line|Every Firefly's flame reaches 20% farther.|[GameCore.Effect.stat(GameCore.Stat.flameReach, GameCore.Scope.every, GameCore.Change.percent(0.2))]\nfireflyArmorPlates|firefly|3|other|Armor plates|+40 hp and +1 armor.|[GameCore.Effect.stat(GameCore.Stat.hp, GameCore.Scope.driven, GameCore.Change.plus(40.0)), GameCore.Effect.stat(GameCore.Stat.armor, GameCore.Scope.driven, GameCore.Change.plus(1.0))]\nfireflyNapalm|firefly|4|one|Napalm|+40% damage, and nearby Fireflies +15%.|[GameCore.Effect.stat(GameCore.Stat.damage, GameCore.Scope.driven, GameCore.Change.percent(0.25)), GameCore.Effect.stat(GameCore.Stat.damage, GameCore.Scope.nearby, GameCore.Change.percent(0.15))]\nfireflyWideNozzle|firefly|4|other|Wide nozzle|Its flame is 50% wider.|[GameCore.Effect.stat(GameCore.Stat.flameWidth, GameCore.Scope.driven, GameCore.Change.percent(0.5))]\nfireflyBurn|firefly|5|one|Burn|What its flame hits burns for 3 s, 4 damage a second.|[GameCore.Effect.burn(perSecond: 4.0, seconds: 3.0)]\nfireflyMechanic|firefly|5|other|Mechanic|Friendly machines within 6 cells mend 1 hp a second.|[GameCore.Effect.aura(GameCore.Aura(hpPerSecond: 1.0, radius: 6.0, filter: GameCore.Filter.machines))]\nfireflyPack|firefly|6|one|Pack|Nearby Fireflies fire 25% faster.|[GameCore.Effect.stat(GameCore.Stat.fireRate, GameCore.Scope.nearby, GameCore.Change.percent(0.25))]\nfireflySpread|firefly|6|other|Spread|Every Firefly's flame is 30% wider.|[GameCore.Effect.stat(GameCore.Stat.flameWidth, GameCore.Scope.every, GameCore.Change.percent(0.3))]\nfireflyFlashpoint|firefly|7|one|Flashpoint|Every third flame does double damage.|[GameCore.Effect.everyThird(GameCore.Action.attack)]\nfireflyHotCore|firefly|7|other|Hot core|Its flame ignores armor and does +8 against bio.|[GameCore.Effect.stat(GameCore.Stat.ignoresArmor, GameCore.Scope.driven, GameCore.Change.plus(1.0)), GameCore.Effect.stat(GameCore.Stat.damageVs(GameCore.TargetClass.bio), GameCore.Scope.driven, GameCore.Change.plus(8.0))]\nfireflyOverdrive|firefly|8|one|Overdrive|Every Firefly fires 10% faster.|[GameCore.Effect.stat(GameCore.Stat.fireRate, GameCore.Scope.every, GameCore.Change.percent(0.1))]\nfireflyCheapChassis|firefly|8|other|Cheap chassis|Fireflies cost 10% less.|[GameCore.Effect.stat(GameCore.Stat.unitCost(GameCore.Unit.Kind.firefly), GameCore.Scope.team, GameCore.Change.percent(-0.1))]\nfireflyBoost|firefly|9|one|Boost|The ability key gives 2 s at double speed, every 15 s.|[GameCore.Effect.burst(GameCore.Burst(seconds: 2.0, cooldown: 15.0, speed: 1.0, fireRate: 0.0, hpCost: 0.0))]\nfireflyScrap|firefly|9|other|Scrap|Every Firefly the team loses refunds 25% of its cost.|[GameCore.Effect.stat(GameCore.Stat.refund(GameCore.Unit.Kind.firefly), GameCore.Scope.team, GameCore.Change.plus(0.25))]\nfireflyFirestorm|firefly|10|one|Firestorm|Nearby Fireflies do 50% more damage.|[GameCore.Effect.stat(GameCore.Stat.damage, GameCore.Scope.nearby, GameCore.Change.percent(0.5))]\nfireflyShield|firefly|10|other|Shield|A 40 hp shield takes hits first; it refills over 10 s after 7 s without a hit.|[GameCore.Effect.shield(GameCore.Shield(hp: 40.0, delay: 7.0, refill: 10.0))]\njuggernautShellDrill|juggernaut|2|one|Shell drill|Nearby Juggernauts fire 10% faster.|[GameCore.Effect.stat(GameCore.Stat.fireRate, GameCore.Scope.nearby, GameCore.Change.percent(0.1))]\njuggernautLongStride|juggernaut|2|other|Long stride|Every Juggernaut walks 20% faster.|[GameCore.Effect.stat(GameCore.Stat.speed, GameCore.Scope.every, GameCore.Change.percent(0.2))]\njuggernautShockRounds|juggernaut|3|one|Shock rounds|Every Juggernaut's slow lasts 20% longer.|[GameCore.Effect.stat(GameCore.Stat.slowTime, GameCore.Scope.every, GameCore.Change.percent(0.2))]\njuggernautHeavyPlate|juggernaut|3|other|Heavy plate|+55 hp and +1 armor.|[GameCore.Effect.stat(GameCore.Stat.hp, GameCore.Scope.driven, GameCore.Change.plus(55.0)), GameCore.Effect.stat(GameCore.Stat.armor, GameCore.Scope.driven, GameCore.Change.plus(1.0))]\njuggernautBreacher|juggernaut|4|one|Breacher|+40% damage, and nearby Juggernauts +15%.|[GameCore.Effect.stat(GameCore.Stat.damage, GameCore.Scope.driven, GameCore.Change.percent(0.25)), GameCore.Effect.stat(GameCore.Stat.damage, GameCore.Scope.nearby, GameCore.Change.percent(0.15))]\njuggernautDeepSlow|juggernaut|4|other|Deep slow|Its slow drops a target to a third of its speed, not half.|[GameCore.Effect.stat(GameCore.Stat.slow, GameCore.Scope.driven, GameCore.Change.atLeast(0.6666666666666666))]\njuggernautSurge|juggernaut|5|one|Surge|The ability key gives 8 s of +50% fire rate and speed, for 20 hp, every 15 s.|[GameCore.Effect.burst(GameCore.Burst(seconds: 8.0, cooldown: 15.0, speed: 0.5, fireRate: 0.5, hpCost: 20.0))]\njuggernautBulwark|juggernaut|5|other|Bulwark|Friendly units within 6 cells take 10% less damage.|[GameCore.Effect.stat(GameCore.Stat.damageTaken, GameCore.Scope.around(GameCore.Filter.all), GameCore.Change.percent(-0.1))]\njuggernautSiegeBreakers|juggernaut|6|one|Siege breakers|Nearby Juggernauts fire 25% faster.|[GameCore.Effect.stat(GameCore.Stat.fireRate, GameCore.Scope.nearby, GameCore.Change.percent(0.25))]\njuggernautBehemoth|juggernaut|6|other|Behemoth|Every Juggernaut gets +40 hp.|[GameCore.Effect.stat(GameCore.Stat.hp, GameCore.Scope.every, GameCore.Change.plus(40.0))]\njuggernautHeavyVolley|juggernaut|7|one|Heavy volley|Every third grenade does double damage.|[GameCore.Effect.everyThird(GameCore.Action.attack)]\njuggernautFragment|juggernaut|7|other|Fragment|Its grenades splash 1 cell around for half damage.|[GameCore.Effect.fragment(radius: 1.0, share: 0.5)]\njuggernautShockTroops|juggernaut|8|one|Shock troops|Every Juggernaut fires 10% faster.|[GameCore.Effect.stat(GameCore.Stat.fireRate, GameCore.Scope.every, GameCore.Change.percent(0.1))]\njuggernautFieldKit|juggernaut|8|other|Field kit|Juggernauts cost 10% less.|[GameCore.Effect.stat(GameCore.Stat.unitCost(GameCore.Unit.Kind.juggernaut), GameCore.Scope.team, GameCore.Change.percent(-0.1))]\njuggernautJumpPack|juggernaut|9|one|Jump pack|Jumps up and down cliffs like a Comet.|[GameCore.Effect.cliffJump]\njuggernautFieldResearch|juggernaut|9|other|Field research|Garrison upgrades cost 25% less and finish 25% sooner.|[GameCore.Effect.stat(GameCore.Stat.upgradeCost(GameCore.Structure.Kind.garrison), GameCore.Scope.team, GameCore.Change.percent(-0.25)), GameCore.Effect.stat(GameCore.Stat.research(GameCore.Structure.Kind.garrison), GameCore.Scope.team, GameCore.Change.percent(0.3333333333333333))]\njuggernautWreckingCrew|juggernaut|10|one|Wrecking crew|Nearby Juggernauts do 50% more damage.|[GameCore.Effect.stat(GameCore.Stat.damage, GameCore.Scope.nearby, GameCore.Change.percent(0.5))]\njuggernautShield|juggernaut|10|other|Shield|A 55 hp shield takes hits first; it refills over 10 s after 7 s without a hit.|[GameCore.Effect.shield(GameCore.Shield(hp: 55.0, delay: 7.0, refill: 10.0))]\ndropshipTriage|dropship|2|one|Triage|Nearby Dropships heal 10% faster.|[GameCore.Effect.stat(GameCore.Stat.heal, GameCore.Scope.nearby, GameCore.Change.percent(0.1))]\ndropshipBoosters|dropship|2|other|Boosters|Every Dropship flies 20% faster.|[GameCore.Effect.stat(GameCore.Stat.speed, GameCore.Scope.every, GameCore.Change.percent(0.2))]\ndropshipLifeline|dropship|3|one|Lifeline|Every Dropship regains energy 20% faster.|[GameCore.Effect.stat(GameCore.Stat.energy, GameCore.Scope.every, GameCore.Change.percent(0.2))]\ndropshipArmorPlates|dropship|3|other|Armor plates|+65 hp and +1 armor.|[GameCore.Effect.stat(GameCore.Stat.hp, GameCore.Scope.driven, GameCore.Change.plus(65.0)), GameCore.Effect.stat(GameCore.Stat.armor, GameCore.Scope.driven, GameCore.Change.plus(1.0))]\ndropshipSurgeon|dropship|4|one|Surgeon|Heals 40% faster, and nearby Dropships 15% faster.|[GameCore.Effect.stat(GameCore.Stat.heal, GameCore.Scope.driven, GameCore.Change.percent(0.25)), GameCore.Effect.stat(GameCore.Stat.heal, GameCore.Scope.nearby, GameCore.Change.percent(0.15))]\ndropshipCargoBay|dropship|4|other|Cargo bay|Carries 12 slots, up from 8.|[GameCore.Effect.stat(GameCore.Stat.cargo, GameCore.Scope.driven, GameCore.Change.atLeast(12.0))]\ndropshipNaniteBeam|dropship|5|one|Nanite beam|Heals machines too, at the same rate.|[GameCore.Effect.naniteBeam]\ndropshipHealingField|dropship|5|other|Healing field|Friendly bio units within 6 cells mend 1 hp a second.|[GameCore.Effect.aura(GameCore.Aura(hpPerSecond: 1.0, radius: 6.0, filter: GameCore.Filter.bio))]\ndropshipMedicalTeam|dropship|6|one|Medical team|Nearby Dropships heal 25% faster.|[GameCore.Effect.stat(GameCore.Stat.heal, GameCore.Scope.nearby, GameCore.Change.percent(0.25))]\ndropshipEfficient|dropship|6|other|Efficient|Every Dropship spends 30% less energy healing.|[GameCore.Effect.stat(GameCore.Stat.healEnergy, GameCore.Scope.every, GameCore.Change.times(1.4285714285714286))]\ndropshipDoubleBeam|dropship|7|one|Double beam|Heals two units at once.|[GameCore.Effect.doubleBeam]\ndropshipCombatDrop|dropship|7|other|Combat drop|Units it drops get 4 s of +30% speed and fire rate.|[GameCore.Effect.dropRush(GameCore.Rush(seconds: 4.0, speed: 0.3, fireRate: 0.3))]\ndropshipFieldHospital|dropship|8|one|Field hospital|Every Dropship heals 10% faster.|[GameCore.Effect.stat(GameCore.Stat.heal, GameCore.Scope.every, GameCore.Change.percent(0.1))]\ndropshipCheapHull|dropship|8|other|Cheap hull|Dropships cost 10% less.|[GameCore.Effect.stat(GameCore.Stat.unitCost(GameCore.Unit.Kind.dropship), GameCore.Scope.team, GameCore.Change.percent(-0.1))]\ndropshipCruise|dropship|9|one|Cruise|Flies 50% faster while not healing.|[GameCore.Effect.cruise(speed: 0.5)]\ndropshipSpacedockRefit|dropship|9|other|Spacedock refit|The team's Spacedocks build Dropships 25% faster.|[GameCore.Effect.stat(GameCore.Stat.production(GameCore.Structure.Kind.spacedock), GameCore.Scope.team, GameCore.Change.percent(0.25))]\ndropshipMedicalCorps|dropship|10|one|Medical corps|Nearby Dropships heal 50% faster.|[GameCore.Effect.stat(GameCore.Stat.heal, GameCore.Scope.nearby, GameCore.Change.percent(0.5))]\ndropshipShield|dropship|10|other|Shield|A 65 hp shield takes hits first; it refills over 10 s after 7 s without a hit.|[GameCore.Effect.shield(GameCore.Shield(hp: 65.0, delay: 7.0, refill: 10.0))]\nlongbowSpotter|longbow|2|one|Spotter|Nearby Longbows fire 10% faster.|[GameCore.Effect.stat(GameCore.Stat.fireRate, GameCore.Scope.nearby, GameCore.Change.percent(0.1))]\nlongbowTreads|longbow|2|other|Treads|Every Longbow drives 15% faster.|[GameCore.Effect.stat(GameCore.Stat.speed, GameCore.Scope.every, GameCore.Change.percent(0.15))]\nlongbowQuickAnchor|longbow|3|one|Quick anchor|Every Longbow anchors and unanchors 20% faster.|[GameCore.Effect.stat(GameCore.Stat.anchor, GameCore.Scope.every, GameCore.Change.percent(0.2))]\nlongbowReactiveArmor|longbow|3|other|Reactive armor|+80 hp and +1 armor.|[GameCore.Effect.stat(GameCore.Stat.hp, GameCore.Scope.driven, GameCore.Change.plus(80.0)), GameCore.Effect.stat(GameCore.Stat.armor, GameCore.Scope.driven, GameCore.Change.plus(1.0))]\nlongbowShapedCharge|longbow|4|one|Shaped charge|+40% damage, and nearby Longbows +15%.|[GameCore.Effect.stat(GameCore.Stat.damage, GameCore.Scope.driven, GameCore.Change.percent(0.25)), GameCore.Effect.stat(GameCore.Stat.damage, GameCore.Scope.nearby, GameCore.Change.percent(0.15))]\nlongbowLongGun|longbow|4|other|Long gun|+2 range anchored.|[GameCore.Effect.stat(GameCore.Stat.anchorRange, GameCore.Scope.driven, GameCore.Change.plus(2.0))]\nlongbowCrewMechanic|longbow|5|one|Crew mechanic|Mends itself 3 hp a second after 5 s without a hit.|[GameCore.Effect.selfMend(hpPerSecond: 3.0, delay: 5.0)]\nlongbowMechanic|longbow|5|other|Mechanic|Friendly machines within 6 cells mend 1 hp a second.|[GameCore.Effect.aura(GameCore.Aura(hpPerSecond: 1.0, radius: 6.0, filter: GameCore.Filter.machines))]\nlongbowBattery|longbow|6|one|Battery|Nearby Longbows fire 25% faster.|[GameCore.Effect.stat(GameCore.Stat.fireRate, GameCore.Scope.nearby, GameCore.Change.percent(0.25))]\nlongbowHeavyShells|longbow|6|other|Heavy shells|Every Longbow's splash reaches 30% wider.|[GameCore.Effect.stat(GameCore.Stat.splash, GameCore.Scope.every, GameCore.Change.percent(0.3))]\nlongbowDoubleShot|longbow|7|one|Double shot|Every third shell does double damage.|[GameCore.Effect.everyThird(GameCore.Action.attack)]\nlongbowAPShells|longbow|7|other|AP shells|Its shells ignore armor and do +10 against armored.|[GameCore.Effect.stat(GameCore.Stat.ignoresArmor, GameCore.Scope.driven, GameCore.Change.plus(1.0)), GameCore.Effect.stat(GameCore.Stat.damageVs(GameCore.TargetClass.armored), GameCore.Scope.driven, GameCore.Change.plus(10.0))]\nlongbowDrilledCrews|longbow|8|one|Drilled crews|Every Longbow fires 10% faster.|[GameCore.Effect.stat(GameCore.Stat.fireRate, GameCore.Scope.every, GameCore.Change.percent(0.1))]\nlongbowCheapHull|longbow|8|other|Cheap hull|Longbows cost 10% less.|[GameCore.Effect.stat(GameCore.Stat.unitCost(GameCore.Unit.Kind.longbow), GameCore.Scope.team, GameCore.Change.percent(-0.1))]\nlongbowHullDown|longbow|9|one|Hull down|Anchors and unanchors at once.|[GameCore.Effect.stat(GameCore.Stat.anchor, GameCore.Scope.driven, GameCore.Change.times(inf))]\nlongbowHeavyIndustry|longbow|9|other|Heavy industry|The team's Foundries build 20% faster.|[GameCore.Effect.stat(GameCore.Stat.production(GameCore.Structure.Kind.foundry), GameCore.Scope.team, GameCore.Change.percent(0.2))]\nlongbowArtilleryPark|longbow|10|one|Artillery park|Nearby Longbows do 50% more damage.|[GameCore.Effect.stat(GameCore.Stat.damage, GameCore.Scope.nearby, GameCore.Change.percent(0.5))]\nlongbowShield|longbow|10|other|Shield|An 80 hp shield takes hits first; it refills over 10 s after 7 s without a hit.|[GameCore.Effect.shield(GameCore.Shield(hp: 80.0, delay: 7.0, refill: 10.0))]\nkestrelWingman|kestrel|2|one|Wingman|Nearby Kestrels fire 10% faster.|[GameCore.Effect.stat(GameCore.Stat.fireRate, GameCore.Scope.nearby, GameCore.Change.percent(0.1))]\nkestrelAfterburners|kestrel|2|other|Afterburners|Every Kestrel flies 15% faster.|[GameCore.Effect.stat(GameCore.Stat.speed, GameCore.Scope.every, GameCore.Change.percent(0.15))]\nkestrelKeenOptics|kestrel|3|one|Keen optics|Every Kestrel sees 20% farther.|[GameCore.Effect.stat(GameCore.Stat.sight, GameCore.Scope.every, GameCore.Change.percent(0.2))]\nkestrelArmorPlates|kestrel|3|other|Armor plates|+60 hp and +1 armor.|[GameCore.Effect.stat(GameCore.Stat.hp, GameCore.Scope.driven, GameCore.Change.plus(60.0)), GameCore.Effect.stat(GameCore.Stat.armor, GameCore.Scope.driven, GameCore.Change.plus(1.0))]\nkestrelHellfire|kestrel|4|one|Hellfire|+40% damage, and nearby Kestrels +15%.|[GameCore.Effect.stat(GameCore.Stat.damage, GameCore.Scope.driven, GameCore.Change.percent(0.25)), GameCore.Effect.stat(GameCore.Stat.damage, GameCore.Scope.nearby, GameCore.Change.percent(0.15))]\nkestrelLongRails|kestrel|4|other|Long rails|+1 range.|[GameCore.Effect.stat(GameCore.Stat.range, GameCore.Scope.driven, GameCore.Change.plus(1.0))]\nkestrelFieldRepairs|kestrel|5|one|Field repairs|Mends itself 3 hp a second after 5 s without a hit.|[GameCore.Effect.selfMend(hpPerSecond: 3.0, delay: 5.0)]\nkestrelMechanic|kestrel|5|other|Mechanic|Friendly machines within 6 cells mend 1 hp a second.|[GameCore.Effect.aura(GameCore.Aura(hpPerSecond: 1.0, radius: 6.0, filter: GameCore.Filter.machines))]\nkestrelSquadron|kestrel|6|one|Squadron|Nearby Kestrels fire 25% faster.|[GameCore.Effect.stat(GameCore.Stat.fireRate, GameCore.Scope.nearby, GameCore.Change.percent(0.25))]\nkestrelWorkerHunter|kestrel|6|other|Worker hunter|Every Kestrel does 30% more damage to light units.|[GameCore.Effect.stat(GameCore.Stat.damageVs(GameCore.TargetClass.light), GameCore.Scope.every, GameCore.Change.percent(0.3))]\nkestrelDoubleSalvo|kestrel|7|one|Double salvo|Every third salvo does double damage.|[GameCore.Effect.everyThird(GameCore.Action.attack)]\nkestrelAPRockets|kestrel|7|other|AP rockets|Its rockets ignore armor and do +4 against armored.|[GameCore.Effect.stat(GameCore.Stat.ignoresArmor, GameCore.Scope.driven, GameCore.Change.plus(1.0)), GameCore.Effect.stat(GameCore.Stat.damageVs(GameCore.TargetClass.armored), GameCore.Scope.driven, GameCore.Change.plus(4.0))]\nkestrelFlightDrill|kestrel|8|one|Flight drill|Every Kestrel fires 10% faster.|[GameCore.Effect.stat(GameCore.Stat.fireRate, GameCore.Scope.every, GameCore.Change.percent(0.1))]\nkestrelCheapAirframe|kestrel|8|other|Cheap airframe|Kestrels cost 10% less.|[GameCore.Effect.stat(GameCore.Stat.unitCost(GameCore.Unit.Kind.kestrel), GameCore.Scope.team, GameCore.Change.percent(-0.1))]\nkestrelAfterburn|kestrel|9|one|Afterburn|The ability key gives 2 s at double speed, every 15 s.|[GameCore.Effect.burst(GameCore.Burst(seconds: 2.0, cooldown: 15.0, speed: 1.0, fireRate: 0.0, hpCost: 0.0))]\nkestrelBountyHunter|kestrel|9|other|Bounty hunter|Each of its kills gives the team 10% of the victim's cost.|[GameCore.Effect.stat(GameCore.Stat.bounty, GameCore.Scope.driven, GameCore.Change.plus(0.1))]\nkestrelStrikeWing|kestrel|10|one|Strike wing|Nearby Kestrels do 50% more damage.|[GameCore.Effect.stat(GameCore.Stat.damage, GameCore.Scope.nearby, GameCore.Change.percent(0.5))]\nkestrelShield|kestrel|10|other|Shield|A 60 hp shield takes hits first; it refills over 10 s after 7 s without a hit.|[GameCore.Effect.shield(GameCore.Shield(hp: 60.0, delay: 7.0, refill: 10.0))]\nhailstormLoaders|hailstorm|2|one|Loaders|Nearby Hailstorms fire 10% faster.|[GameCore.Effect.stat(GameCore.Stat.fireRate, GameCore.Scope.nearby, GameCore.Change.percent(0.1))]\nhailstormTracks|hailstorm|2|other|Tracks|Every Hailstorm drives 15% faster.|[GameCore.Effect.stat(GameCore.Stat.speed, GameCore.Scope.every, GameCore.Change.percent(0.15))]\nhailstormWideBurst|hailstorm|3|one|Wide burst|Every Hailstorm's flak splashes 20% wider.|[GameCore.Effect.stat(GameCore.Stat.splash, GameCore.Scope.every, GameCore.Change.percent(0.2))]\nhailstormArmorPlates|hailstorm|3|other|Armor plates|+60 hp and +1 armor.|[GameCore.Effect.stat(GameCore.Stat.hp, GameCore.Scope.driven, GameCore.Change.plus(60.0)), GameCore.Effect.stat(GameCore.Stat.armor, GameCore.Scope.driven, GameCore.Change.plus(1.0))]\nhailstormProximityFuse|hailstorm|4|one|Proximity fuse|+40% damage, and nearby Hailstorms +15%.|[GameCore.Effect.stat(GameCore.Stat.damage, GameCore.Scope.driven, GameCore.Change.percent(0.25)), GameCore.Effect.stat(GameCore.Stat.damage, GameCore.Scope.nearby, GameCore.Change.percent(0.15))]\nhailstormLongBarrels|hailstorm|4|other|Long barrels|+1 range.|[GameCore.Effect.stat(GameCore.Stat.range, GameCore.Scope.driven, GameCore.Change.plus(1.0))]\nhailstormCrewMechanic|hailstorm|5|one|Crew mechanic|Mends itself 3 hp a second after 5 s without a hit.|[GameCore.Effect.selfMend(hpPerSecond: 3.0, delay: 5.0)]\nhailstormMechanic|hailstorm|5|other|Mechanic|Friendly machines within 6 cells mend 1 hp a second.|[GameCore.Effect.aura(GameCore.Aura(hpPerSecond: 1.0, radius: 6.0, filter: GameCore.Filter.machines))]\nhailstormFlakBattery|hailstorm|6|one|Flak battery|Nearby Hailstorms fire 25% faster.|[GameCore.Effect.stat(GameCore.Stat.fireRate, GameCore.Scope.nearby, GameCore.Change.percent(0.25))]\nhailstormSkyWatch|hailstorm|6|other|Sky watch|Every Hailstorm sees 30% farther.|[GameCore.Effect.stat(GameCore.Stat.sight, GameCore.Scope.every, GameCore.Change.percent(0.3))]\nhailstormDoubleBurst|hailstorm|7|one|Double burst|Every third burst does double damage.|[GameCore.Effect.everyThird(GameCore.Action.attack)]\nhailstormAPFlak|hailstorm|7|other|AP flak|Its flak ignores armor and does +4 against armored.|[GameCore.Effect.stat(GameCore.Stat.ignoresArmor, GameCore.Scope.driven, GameCore.Change.plus(1.0)), GameCore.Effect.stat(GameCore.Stat.damageVs(GameCore.TargetClass.armored), GameCore.Scope.driven, GameCore.Change.plus(4.0))]\nhailstormDrilledGunners|hailstorm|8|one|Drilled gunners|Every Hailstorm fires 10% faster.|[GameCore.Effect.stat(GameCore.Stat.fireRate, GameCore.Scope.every, GameCore.Change.percent(0.1))]\nhailstormCheapChassis|hailstorm|8|other|Cheap chassis|Hailstorms cost 10% less.|[GameCore.Effect.stat(GameCore.Stat.unitCost(GameCore.Unit.Kind.hailstorm), GameCore.Scope.team, GameCore.Change.percent(-0.1))]\nhailstormWalkerLegs|hailstorm|9|one|Walker legs|Climbs up and down cliffs like a Comet.|[GameCore.Effect.cliffJump]\nhailstormHeavyIndustry|hailstorm|9|other|Heavy industry|The team's Foundries build 20% faster.|[GameCore.Effect.stat(GameCore.Stat.production(GameCore.Structure.Kind.foundry), GameCore.Scope.team, GameCore.Change.percent(0.2))]\nhailstormFlakWall|hailstorm|10|one|Flak wall|Nearby Hailstorms do 50% more damage.|[GameCore.Effect.stat(GameCore.Stat.damage, GameCore.Scope.nearby, GameCore.Change.percent(0.5))]\nhailstormShield|hailstorm|10|other|Shield|A 60 hp shield takes hits first; it refills over 10 s after 7 s without a hit.|[GameCore.Effect.shield(GameCore.Shield(hp: 60.0, delay: 7.0, refill: 10.0))]\nperegrineWingmen|peregrine|2|one|Wingmen|Nearby Peregrines fire 10% faster.|[GameCore.Effect.stat(GameCore.Stat.fireRate, GameCore.Scope.nearby, GameCore.Change.percent(0.1))]\nperegrineThrusters|peregrine|2|other|Thrusters|Every Peregrine flies 15% faster.|[GameCore.Effect.stat(GameCore.Stat.speed, GameCore.Scope.every, GameCore.Change.percent(0.15))]\nperegrineLongRangeRadar|peregrine|3|one|Long-range radar|Every Peregrine sees 20% farther.|[GameCore.Effect.stat(GameCore.Stat.sight, GameCore.Scope.every, GameCore.Change.percent(0.2))]\nperegrineArmorPlates|peregrine|3|other|Armor plates|+40 hp and +1 armor.|[GameCore.Effect.stat(GameCore.Stat.hp, GameCore.Scope.driven, GameCore.Change.plus(40.0)), GameCore.Effect.stat(GameCore.Stat.armor, GameCore.Scope.driven, GameCore.Change.plus(1.0))]\nperegrineSeekerHeads|peregrine|4|one|Seeker heads|+25% damage, and nearby Peregrines +15%.|[GameCore.Effect.stat(GameCore.Stat.damage, GameCore.Scope.driven, GameCore.Change.percent(0.25)), GameCore.Effect.stat(GameCore.Stat.damage, GameCore.Scope.nearby, GameCore.Change.percent(0.15))]\nperegrineLongRails|peregrine|4|other|Long rails|+1 range.|[GameCore.Effect.stat(GameCore.Stat.range, GameCore.Scope.driven, GameCore.Change.plus(1.0))]\nperegrineFieldRepairs|peregrine|5|one|Field repairs|Mends itself 3 hp a second after 5 s without a hit.|[GameCore.Effect.selfMend(hpPerSecond: 3.0, delay: 5.0)]\nperegrineEscort|peregrine|5|other|Escort|Friendly flyers within 6 cells take 10% less damage.|[GameCore.Effect.stat(GameCore.Stat.damageTaken, GameCore.Scope.around(GameCore.Filter.air), GameCore.Change.percent(-0.1))]\nperegrinePackHunters|peregrine|6|one|Pack hunters|Nearby Peregrines fire 25% faster.|[GameCore.Effect.stat(GameCore.Stat.fireRate, GameCore.Scope.nearby, GameCore.Change.percent(0.25))]\nperegrineGunshipKiller|peregrine|6|other|Gunship killer|Every Peregrine does 30% more damage to armored units.|[GameCore.Effect.stat(GameCore.Stat.damageVs(GameCore.TargetClass.armored), GameCore.Scope.every, GameCore.Change.percent(0.3))]\nperegrineDoubleVolley|peregrine|7|one|Double volley|Every third volley does double damage.|[GameCore.Effect.everyThird(GameCore.Action.attack)]\nperegrineAPMissiles|peregrine|7|other|AP missiles|Its missiles ignore armor and do +4 against armored.|[GameCore.Effect.stat(GameCore.Stat.ignoresArmor, GameCore.Scope.driven, GameCore.Change.plus(1.0)), GameCore.Effect.stat(GameCore.Stat.damageVs(GameCore.TargetClass.armored), GameCore.Scope.driven, GameCore.Change.plus(4.0))]\nperegrineFlightSchool|peregrine|8|one|Flight school|Every Peregrine fires 10% faster.|[GameCore.Effect.stat(GameCore.Stat.fireRate, GameCore.Scope.every, GameCore.Change.percent(0.1))]\nperegrineCheapAirframe|peregrine|8|other|Cheap airframe|Peregrines cost 10% less.|[GameCore.Effect.stat(GameCore.Stat.unitCost(GameCore.Unit.Kind.peregrine), GameCore.Scope.team, GameCore.Change.percent(-0.1))]\nperegrineAfterburn|peregrine|9|one|Afterburn|The ability key gives 2 s at double speed, every 15 s.|[GameCore.Effect.burst(GameCore.Burst(seconds: 2.0, cooldown: 15.0, speed: 1.0, fireRate: 0.0, hpCost: 0.0))]\nperegrineBountyHunter|peregrine|9|other|Bounty hunter|Each of its kills gives the team 10% of the victim's cost.|[GameCore.Effect.stat(GameCore.Stat.bounty, GameCore.Scope.driven, GameCore.Change.plus(0.1))]\nperegrineAirSuperiority|peregrine|10|one|Air superiority|Nearby Peregrines do 50% more damage.|[GameCore.Effect.stat(GameCore.Stat.damage, GameCore.Scope.nearby, GameCore.Change.percent(0.5))]\nperegrineShield|peregrine|10|other|Shield|A 40 hp shield takes hits first; it refills over 10 s after 7 s without a hit.|[GameCore.Effect.shield(GameCore.Shield(hp: 40.0, delay: 7.0, refill: 10.0))]\natlasAutoloader|atlas|2|one|Autoloader|Fires 15% faster.|[GameCore.Effect.stat(GameCore.Stat.fireRate, GameCore.Scope.driven, GameCore.Change.percent(0.15))]\natlasServoLegs|atlas|2|other|Servo legs|Every Atlas walks 15% faster.|[GameCore.Effect.stat(GameCore.Stat.speed, GameCore.Scope.every, GameCore.Change.percent(0.15))]\natlasRangefinder|atlas|3|one|Rangefinder|Every Atlas sees 20% farther.|[GameCore.Effect.stat(GameCore.Stat.sight, GameCore.Scope.every, GameCore.Change.percent(0.2))]\natlasArmorPlates|atlas|3|other|Armor plates|+100 hp and +1 armor.|[GameCore.Effect.stat(GameCore.Stat.hp, GameCore.Scope.driven, GameCore.Change.plus(100.0)), GameCore.Effect.stat(GameCore.Stat.armor, GameCore.Scope.driven, GameCore.Change.plus(1.0))]\natlasHeavyShells|atlas|4|one|Heavy shells|+25% damage.|[GameCore.Effect.stat(GameCore.Stat.damage, GameCore.Scope.driven, GameCore.Change.percent(0.25))]\natlasLongBarrels|atlas|4|other|Long barrels|+1 range.|[GameCore.Effect.stat(GameCore.Stat.range, GameCore.Scope.driven, GameCore.Change.plus(1.0))]\natlasCrewMechanic|atlas|5|one|Crew mechanic|Mends itself 5 hp a second after 5 s without a hit.|[GameCore.Effect.selfMend(hpPerSecond: 5.0, delay: 5.0)]\natlasMechanic|atlas|5|other|Mechanic|Friendly machines within 6 cells mend 2 hp a second.|[GameCore.Effect.aura(GameCore.Aura(hpPerSecond: 2.0, radius: 6.0, filter: GameCore.Filter.machines))]\natlasBulwark|atlas|6|one|Bulwark|Friendly units within 6 cells take 10% less damage.|[GameCore.Effect.stat(GameCore.Stat.damageTaken, GameCore.Scope.around(GameCore.Filter.all), GameCore.Change.percent(-0.1))]\natlasWideShells|atlas|6|other|Wide shells|Every Atlas's splash reaches 25% wider.|[GameCore.Effect.stat(GameCore.Stat.splash, GameCore.Scope.every, GameCore.Change.percent(0.25))]\natlasDoubleVolley|atlas|7|one|Double volley|Every third volley does double damage.|[GameCore.Effect.everyThird(GameCore.Action.attack)]\natlasAPShells|atlas|7|other|AP shells|Its shells ignore armor and do +6 against armored.|[GameCore.Effect.stat(GameCore.Stat.ignoresArmor, GameCore.Scope.driven, GameCore.Change.plus(1.0)), GameCore.Effect.stat(GameCore.Stat.damageVs(GameCore.TargetClass.armored), GameCore.Scope.driven, GameCore.Change.plus(6.0))]\natlasAftershock|atlas|8|one|Aftershock|Its Quake stomp does 50% more damage and reaches 1 cell farther.|[GameCore.Effect.stat(GameCore.Stat.stomp, GameCore.Scope.driven, GameCore.Change.percent(0.5)), GameCore.Effect.stat(GameCore.Stat.stomp, GameCore.Scope.driven, GameCore.Change.plus(1.0))]\natlasCheapFrame|atlas|8|other|Cheap frame|Atlases cost 10% less.|[GameCore.Effect.stat(GameCore.Stat.unitCost(GameCore.Unit.Kind.atlas), GameCore.Scope.team, GameCore.Change.percent(-0.1))]\natlasHeavyIndustry|atlas|9|one|Heavy industry|The team's Foundries build 20% faster.|[GameCore.Effect.stat(GameCore.Stat.production(GameCore.Structure.Kind.foundry), GameCore.Scope.team, GameCore.Change.percent(0.2))]\natlasFlakMount|atlas|9|other|Flak mount|Its cannons also fire at flyers, at half damage.|[GameCore.Effect.hitsAir(share: 0.5)]\natlasWarMarch|atlas|10|one|War march|Friendly units within 6 cells move 15% faster.|[GameCore.Effect.stat(GameCore.Stat.speed, GameCore.Scope.around(GameCore.Filter.all), GameCore.Change.percent(0.15))]\natlasShield|atlas|10|other|Shield|A 150 hp shield takes hits first; it refills over 10 s after 7 s without a hit.|[GameCore.Effect.shield(GameCore.Shield(hp: 150.0, delay: 7.0, refill: 10.0))]\nscorpionQuickDig|scorpion|2|one|Quick dig|Every Scorpion buries and digs out 50% faster.|[GameCore.Effect.stat(GameCore.Stat.buryTime, GameCore.Scope.every, GameCore.Change.percent(0.5))]\nscorpionLightFrame|scorpion|2|other|Light frame|Every Scorpion crawls 15% faster.|[GameCore.Effect.stat(GameCore.Stat.speed, GameCore.Scope.every, GameCore.Change.percent(0.15))]\nscorpionSeismicSense|scorpion|3|one|Seismic sense|Every Scorpion sees 20% farther.|[GameCore.Effect.stat(GameCore.Stat.sight, GameCore.Scope.every, GameCore.Change.percent(0.2))]\nscorpionArmorPlates|scorpion|3|other|Armor plates|+40 hp and +1 armor.|[GameCore.Effect.stat(GameCore.Stat.hp, GameCore.Scope.driven, GameCore.Change.plus(40.0)), GameCore.Effect.stat(GameCore.Stat.armor, GameCore.Scope.driven, GameCore.Change.plus(1.0))]\nscorpionHeavyCharge|scorpion|4|one|Heavy charge|+25% damage, and nearby Scorpions +15%.|[GameCore.Effect.stat(GameCore.Stat.damage, GameCore.Scope.driven, GameCore.Change.percent(0.25)), GameCore.Effect.stat(GameCore.Stat.damage, GameCore.Scope.nearby, GameCore.Change.percent(0.15))]\nscorpionLongTail|scorpion|4|other|Long tail|+1 range.|[GameCore.Effect.stat(GameCore.Stat.range, GameCore.Scope.driven, GameCore.Change.plus(1.0))]\nscorpionFieldRepairs|scorpion|5|one|Field repairs|Mends itself 3 hp a second after 5 s without a hit.|[GameCore.Effect.selfMend(hpPerSecond: 3.0, delay: 5.0)]\nscorpionDeepBurrow|scorpion|5|other|Deep burrow|Buried, enemies see it only within 1 cell.|[GameCore.Effect.stat(GameCore.Stat.revealRange, GameCore.Scope.driven, GameCore.Change.plus(-1.0))]\nscorpionQuickReload|scorpion|6|one|Quick reload|Every Scorpion reloads 20% faster.|[GameCore.Effect.stat(GameCore.Stat.fireRate, GameCore.Scope.every, GameCore.Change.percent(0.2))]\nscorpionWorkerHunter|scorpion|6|other|Worker hunter|Every Scorpion does 30% more damage to light units.|[GameCore.Effect.stat(GameCore.Stat.damageVs(GameCore.TargetClass.light), GameCore.Scope.every, GameCore.Change.percent(0.3))]\nscorpionShapedCharge|scorpion|7|one|Shaped charge|Its sting ignores armor and does +10 against armored.|[GameCore.Effect.stat(GameCore.Stat.ignoresArmor, GameCore.Scope.driven, GameCore.Change.plus(1.0)), GameCore.Effect.stat(GameCore.Stat.damageVs(GameCore.TargetClass.armored), GameCore.Scope.driven, GameCore.Change.plus(10.0))]\nscorpionTwinSting|scorpion|7|other|Twin sting|Its strike hits a second target within 2 cells of the first.|[GameCore.Effect.secondTarget(radius: 2.0)]\nscorpionMinefieldDrill|scorpion|8|one|Minefield drill|Every Scorpion reloads 10% faster.|[GameCore.Effect.stat(GameCore.Stat.fireRate, GameCore.Scope.every, GameCore.Change.percent(0.1))]\nscorpionCheapShell|scorpion|8|other|Cheap shell|Scorpions cost 10% less.|[GameCore.Effect.stat(GameCore.Stat.unitCost(GameCore.Unit.Kind.scorpion), GameCore.Scope.team, GameCore.Change.percent(-0.1))]\nscorpionSapper|scorpion|9|one|Sapper|Its sting also hits buildings, at half damage.|[GameCore.Effect.hitsBuildings(share: 0.5)]\nscorpionBountyHunter|scorpion|9|other|Bounty hunter|Each of its kills gives the team 10% of the victim's cost.|[GameCore.Effect.stat(GameCore.Stat.bounty, GameCore.Scope.driven, GameCore.Change.plus(0.1))]\nscorpionNest|scorpion|10|one|Nest|Nearby Scorpions do 50% more damage.|[GameCore.Effect.stat(GameCore.Stat.damage, GameCore.Scope.nearby, GameCore.Change.percent(0.5))]\nscorpionShield|scorpion|10|other|Shield|A 40 hp shield takes hits first; it refills over 10 s after 7 s without a hit.|[GameCore.Effect.shield(GameCore.Shield(hp: 40.0, delay: 7.0, refill: 10.0))]\nxp 2 60.0\nxp 3 180.0\nxp 4 360.0\nxp 5 600.0\nxp 6 900.0\nxp 7 1260.0\nxp 8 1680.0\nxp 9 2160.0\nxp 10 2700.0\nleveling 10 6.0 1.0 1.25 0.5 0.5 10.0 0.1 0.25\nhero 1.5 1.25 1.2 25 20 2.0\n",
+  "levels" : [
+    {
+      "level" : 1,
+      "xp" : 0
+    },
+    {
+      "level" : 1,
+      "xp" : 7.5
+    },
+    {
+      "level" : 1,
+      "xp" : 15
+    },
+    {
+      "level" : 1,
+      "xp" : 22.5
+    },
+    {
+      "level" : 1,
+      "xp" : 30
+    },
+    {
+      "level" : 1,
+      "xp" : 37.5
+    },
+    {
+      "level" : 1,
+      "xp" : 45
+    },
+    {
+      "level" : 1,
+      "xp" : 52.5
+    },
+    {
+      "level" : 2,
+      "xp" : 60
+    },
+    {
+      "level" : 2,
+      "xp" : 67.5
+    },
+    {
+      "level" : 2,
+      "xp" : 75
+    },
+    {
+      "level" : 2,
+      "xp" : 82.5
+    },
+    {
+      "level" : 2,
+      "xp" : 90
+    },
+    {
+      "level" : 2,
+      "xp" : 97.5
+    },
+    {
+      "level" : 2,
+      "xp" : 105
+    },
+    {
+      "level" : 2,
+      "xp" : 112.5
+    },
+    {
+      "level" : 2,
+      "xp" : 120
+    },
+    {
+      "level" : 2,
+      "xp" : 127.5
+    },
+    {
+      "level" : 2,
+      "xp" : 135
+    },
+    {
+      "level" : 2,
+      "xp" : 142.5
+    },
+    {
+      "level" : 2,
+      "xp" : 150
+    },
+    {
+      "level" : 2,
+      "xp" : 157.5
+    },
+    {
+      "level" : 2,
+      "xp" : 165
+    },
+    {
+      "level" : 2,
+      "xp" : 172.5
+    },
+    {
+      "level" : 3,
+      "xp" : 180
+    },
+    {
+      "level" : 3,
+      "xp" : 187.5
+    },
+    {
+      "level" : 3,
+      "xp" : 195
+    },
+    {
+      "level" : 3,
+      "xp" : 202.5
+    },
+    {
+      "level" : 3,
+      "xp" : 210
+    },
+    {
+      "level" : 3,
+      "xp" : 217.5
+    },
+    {
+      "level" : 3,
+      "xp" : 225
+    },
+    {
+      "level" : 3,
+      "xp" : 232.5
+    },
+    {
+      "level" : 3,
+      "xp" : 240
+    },
+    {
+      "level" : 3,
+      "xp" : 247.5
+    },
+    {
+      "level" : 3,
+      "xp" : 255
+    },
+    {
+      "level" : 3,
+      "xp" : 262.5
+    },
+    {
+      "level" : 3,
+      "xp" : 270
+    },
+    {
+      "level" : 3,
+      "xp" : 277.5
+    },
+    {
+      "level" : 3,
+      "xp" : 285
+    },
+    {
+      "level" : 3,
+      "xp" : 292.5
+    },
+    {
+      "level" : 3,
+      "xp" : 300
+    },
+    {
+      "level" : 3,
+      "xp" : 307.5
+    },
+    {
+      "level" : 3,
+      "xp" : 315
+    },
+    {
+      "level" : 3,
+      "xp" : 322.5
+    },
+    {
+      "level" : 3,
+      "xp" : 330
+    },
+    {
+      "level" : 3,
+      "xp" : 337.5
+    },
+    {
+      "level" : 3,
+      "xp" : 345
+    },
+    {
+      "level" : 3,
+      "xp" : 352.5
+    },
+    {
+      "level" : 4,
+      "xp" : 360
+    },
+    {
+      "level" : 4,
+      "xp" : 367.5
+    },
+    {
+      "level" : 4,
+      "xp" : 375
+    },
+    {
+      "level" : 4,
+      "xp" : 382.5
+    },
+    {
+      "level" : 4,
+      "xp" : 390
+    },
+    {
+      "level" : 4,
+      "xp" : 397.5
+    },
+    {
+      "level" : 4,
+      "xp" : 405
+    },
+    {
+      "level" : 4,
+      "xp" : 412.5
+    },
+    {
+      "level" : 4,
+      "xp" : 420
+    },
+    {
+      "level" : 4,
+      "xp" : 427.5
+    },
+    {
+      "level" : 4,
+      "xp" : 435
+    },
+    {
+      "level" : 4,
+      "xp" : 442.5
+    },
+    {
+      "level" : 4,
+      "xp" : 450
+    },
+    {
+      "level" : 4,
+      "xp" : 457.5
+    },
+    {
+      "level" : 4,
+      "xp" : 465
+    },
+    {
+      "level" : 4,
+      "xp" : 472.5
+    },
+    {
+      "level" : 4,
+      "xp" : 480
+    },
+    {
+      "level" : 4,
+      "xp" : 487.5
+    },
+    {
+      "level" : 4,
+      "xp" : 495
+    },
+    {
+      "level" : 4,
+      "xp" : 502.5
+    },
+    {
+      "level" : 4,
+      "xp" : 510
+    },
+    {
+      "level" : 4,
+      "xp" : 517.5
+    },
+    {
+      "level" : 4,
+      "xp" : 525
+    },
+    {
+      "level" : 4,
+      "xp" : 532.5
+    },
+    {
+      "level" : 4,
+      "xp" : 540
+    },
+    {
+      "level" : 4,
+      "xp" : 547.5
+    },
+    {
+      "level" : 4,
+      "xp" : 555
+    },
+    {
+      "level" : 4,
+      "xp" : 562.5
+    },
+    {
+      "level" : 4,
+      "xp" : 570
+    },
+    {
+      "level" : 4,
+      "xp" : 577.5
+    },
+    {
+      "level" : 4,
+      "xp" : 585
+    },
+    {
+      "level" : 4,
+      "xp" : 592.5
+    },
+    {
+      "level" : 5,
+      "xp" : 600
+    },
+    {
+      "level" : 5,
+      "xp" : 607.5
+    },
+    {
+      "level" : 5,
+      "xp" : 615
+    },
+    {
+      "level" : 5,
+      "xp" : 622.5
+    },
+    {
+      "level" : 5,
+      "xp" : 630
+    },
+    {
+      "level" : 5,
+      "xp" : 637.5
+    },
+    {
+      "level" : 5,
+      "xp" : 645
+    },
+    {
+      "level" : 5,
+      "xp" : 652.5
+    },
+    {
+      "level" : 5,
+      "xp" : 660
+    },
+    {
+      "level" : 5,
+      "xp" : 667.5
+    },
+    {
+      "level" : 5,
+      "xp" : 675
+    },
+    {
+      "level" : 5,
+      "xp" : 682.5
+    },
+    {
+      "level" : 5,
+      "xp" : 690
+    },
+    {
+      "level" : 5,
+      "xp" : 697.5
+    },
+    {
+      "level" : 5,
+      "xp" : 705
+    },
+    {
+      "level" : 5,
+      "xp" : 712.5
+    },
+    {
+      "level" : 5,
+      "xp" : 720
+    },
+    {
+      "level" : 5,
+      "xp" : 727.5
+    },
+    {
+      "level" : 5,
+      "xp" : 735
+    },
+    {
+      "level" : 5,
+      "xp" : 742.5
+    },
+    {
+      "level" : 5,
+      "xp" : 750
+    },
+    {
+      "level" : 5,
+      "xp" : 757.5
+    },
+    {
+      "level" : 5,
+      "xp" : 765
+    },
+    {
+      "level" : 5,
+      "xp" : 772.5
+    },
+    {
+      "level" : 5,
+      "xp" : 780
+    },
+    {
+      "level" : 5,
+      "xp" : 787.5
+    },
+    {
+      "level" : 5,
+      "xp" : 795
+    },
+    {
+      "level" : 5,
+      "xp" : 802.5
+    },
+    {
+      "level" : 5,
+      "xp" : 810
+    },
+    {
+      "level" : 5,
+      "xp" : 817.5
+    },
+    {
+      "level" : 5,
+      "xp" : 825
+    },
+    {
+      "level" : 5,
+      "xp" : 832.5
+    },
+    {
+      "level" : 5,
+      "xp" : 840
+    },
+    {
+      "level" : 5,
+      "xp" : 847.5
+    },
+    {
+      "level" : 5,
+      "xp" : 855
+    },
+    {
+      "level" : 5,
+      "xp" : 862.5
+    },
+    {
+      "level" : 5,
+      "xp" : 870
+    },
+    {
+      "level" : 5,
+      "xp" : 877.5
+    },
+    {
+      "level" : 5,
+      "xp" : 885
+    },
+    {
+      "level" : 5,
+      "xp" : 892.5
+    },
+    {
+      "level" : 6,
+      "xp" : 900
+    },
+    {
+      "level" : 6,
+      "xp" : 907.5
+    },
+    {
+      "level" : 6,
+      "xp" : 915
+    },
+    {
+      "level" : 6,
+      "xp" : 922.5
+    },
+    {
+      "level" : 6,
+      "xp" : 930
+    },
+    {
+      "level" : 6,
+      "xp" : 937.5
+    },
+    {
+      "level" : 6,
+      "xp" : 945
+    },
+    {
+      "level" : 6,
+      "xp" : 952.5
+    },
+    {
+      "level" : 6,
+      "xp" : 960
+    },
+    {
+      "level" : 6,
+      "xp" : 967.5
+    },
+    {
+      "level" : 6,
+      "xp" : 975
+    },
+    {
+      "level" : 6,
+      "xp" : 982.5
+    },
+    {
+      "level" : 6,
+      "xp" : 990
+    },
+    {
+      "level" : 6,
+      "xp" : 997.5
+    },
+    {
+      "level" : 6,
+      "xp" : 1005
+    },
+    {
+      "level" : 6,
+      "xp" : 1012.5
+    },
+    {
+      "level" : 6,
+      "xp" : 1020
+    },
+    {
+      "level" : 6,
+      "xp" : 1027.5
+    },
+    {
+      "level" : 6,
+      "xp" : 1035
+    },
+    {
+      "level" : 6,
+      "xp" : 1042.5
+    },
+    {
+      "level" : 6,
+      "xp" : 1050
+    },
+    {
+      "level" : 6,
+      "xp" : 1057.5
+    },
+    {
+      "level" : 6,
+      "xp" : 1065
+    },
+    {
+      "level" : 6,
+      "xp" : 1072.5
+    },
+    {
+      "level" : 6,
+      "xp" : 1080
+    },
+    {
+      "level" : 6,
+      "xp" : 1087.5
+    },
+    {
+      "level" : 6,
+      "xp" : 1095
+    },
+    {
+      "level" : 6,
+      "xp" : 1102.5
+    },
+    {
+      "level" : 6,
+      "xp" : 1110
+    },
+    {
+      "level" : 6,
+      "xp" : 1117.5
+    },
+    {
+      "level" : 6,
+      "xp" : 1125
+    },
+    {
+      "level" : 6,
+      "xp" : 1132.5
+    },
+    {
+      "level" : 6,
+      "xp" : 1140
+    },
+    {
+      "level" : 6,
+      "xp" : 1147.5
+    },
+    {
+      "level" : 6,
+      "xp" : 1155
+    },
+    {
+      "level" : 6,
+      "xp" : 1162.5
+    },
+    {
+      "level" : 6,
+      "xp" : 1170
+    },
+    {
+      "level" : 6,
+      "xp" : 1177.5
+    },
+    {
+      "level" : 6,
+      "xp" : 1185
+    },
+    {
+      "level" : 6,
+      "xp" : 1192.5
+    },
+    {
+      "level" : 6,
+      "xp" : 1200
+    },
+    {
+      "level" : 6,
+      "xp" : 1207.5
+    },
+    {
+      "level" : 6,
+      "xp" : 1215
+    },
+    {
+      "level" : 6,
+      "xp" : 1222.5
+    },
+    {
+      "level" : 6,
+      "xp" : 1230
+    },
+    {
+      "level" : 6,
+      "xp" : 1237.5
+    },
+    {
+      "level" : 6,
+      "xp" : 1245
+    },
+    {
+      "level" : 6,
+      "xp" : 1252.5
+    },
+    {
+      "level" : 7,
+      "xp" : 1260
+    },
+    {
+      "level" : 7,
+      "xp" : 1267.5
+    },
+    {
+      "level" : 7,
+      "xp" : 1275
+    },
+    {
+      "level" : 7,
+      "xp" : 1282.5
+    },
+    {
+      "level" : 7,
+      "xp" : 1290
+    },
+    {
+      "level" : 7,
+      "xp" : 1297.5
+    },
+    {
+      "level" : 7,
+      "xp" : 1305
+    },
+    {
+      "level" : 7,
+      "xp" : 1312.5
+    },
+    {
+      "level" : 7,
+      "xp" : 1320
+    },
+    {
+      "level" : 7,
+      "xp" : 1327.5
+    },
+    {
+      "level" : 7,
+      "xp" : 1335
+    },
+    {
+      "level" : 7,
+      "xp" : 1342.5
+    },
+    {
+      "level" : 7,
+      "xp" : 1350
+    },
+    {
+      "level" : 7,
+      "xp" : 1357.5
+    },
+    {
+      "level" : 7,
+      "xp" : 1365
+    },
+    {
+      "level" : 7,
+      "xp" : 1372.5
+    },
+    {
+      "level" : 7,
+      "xp" : 1380
+    },
+    {
+      "level" : 7,
+      "xp" : 1387.5
+    },
+    {
+      "level" : 7,
+      "xp" : 1395
+    },
+    {
+      "level" : 7,
+      "xp" : 1402.5
+    },
+    {
+      "level" : 7,
+      "xp" : 1410
+    },
+    {
+      "level" : 7,
+      "xp" : 1417.5
+    },
+    {
+      "level" : 7,
+      "xp" : 1425
+    },
+    {
+      "level" : 7,
+      "xp" : 1432.5
+    },
+    {
+      "level" : 7,
+      "xp" : 1440
+    },
+    {
+      "level" : 7,
+      "xp" : 1447.5
+    },
+    {
+      "level" : 7,
+      "xp" : 1455
+    },
+    {
+      "level" : 7,
+      "xp" : 1462.5
+    },
+    {
+      "level" : 7,
+      "xp" : 1470
+    },
+    {
+      "level" : 7,
+      "xp" : 1477.5
+    },
+    {
+      "level" : 7,
+      "xp" : 1485
+    },
+    {
+      "level" : 7,
+      "xp" : 1492.5
+    },
+    {
+      "level" : 7,
+      "xp" : 1500
+    },
+    {
+      "level" : 7,
+      "xp" : 1507.5
+    },
+    {
+      "level" : 7,
+      "xp" : 1515
+    },
+    {
+      "level" : 7,
+      "xp" : 1522.5
+    },
+    {
+      "level" : 7,
+      "xp" : 1530
+    },
+    {
+      "level" : 7,
+      "xp" : 1537.5
+    },
+    {
+      "level" : 7,
+      "xp" : 1545
+    },
+    {
+      "level" : 7,
+      "xp" : 1552.5
+    },
+    {
+      "level" : 7,
+      "xp" : 1560
+    },
+    {
+      "level" : 7,
+      "xp" : 1567.5
+    },
+    {
+      "level" : 7,
+      "xp" : 1575
+    },
+    {
+      "level" : 7,
+      "xp" : 1582.5
+    },
+    {
+      "level" : 7,
+      "xp" : 1590
+    },
+    {
+      "level" : 7,
+      "xp" : 1597.5
+    },
+    {
+      "level" : 7,
+      "xp" : 1605
+    },
+    {
+      "level" : 7,
+      "xp" : 1612.5
+    },
+    {
+      "level" : 7,
+      "xp" : 1620
+    },
+    {
+      "level" : 7,
+      "xp" : 1627.5
+    },
+    {
+      "level" : 7,
+      "xp" : 1635
+    },
+    {
+      "level" : 7,
+      "xp" : 1642.5
+    },
+    {
+      "level" : 7,
+      "xp" : 1650
+    },
+    {
+      "level" : 7,
+      "xp" : 1657.5
+    },
+    {
+      "level" : 7,
+      "xp" : 1665
+    },
+    {
+      "level" : 7,
+      "xp" : 1672.5
+    },
+    {
+      "level" : 8,
+      "xp" : 1680
+    },
+    {
+      "level" : 8,
+      "xp" : 1687.5
+    },
+    {
+      "level" : 8,
+      "xp" : 1695
+    },
+    {
+      "level" : 8,
+      "xp" : 1702.5
+    },
+    {
+      "level" : 8,
+      "xp" : 1710
+    },
+    {
+      "level" : 8,
+      "xp" : 1717.5
+    },
+    {
+      "level" : 8,
+      "xp" : 1725
+    },
+    {
+      "level" : 8,
+      "xp" : 1732.5
+    },
+    {
+      "level" : 8,
+      "xp" : 1740
+    },
+    {
+      "level" : 8,
+      "xp" : 1747.5
+    },
+    {
+      "level" : 8,
+      "xp" : 1755
+    },
+    {
+      "level" : 8,
+      "xp" : 1762.5
+    },
+    {
+      "level" : 8,
+      "xp" : 1770
+    },
+    {
+      "level" : 8,
+      "xp" : 1777.5
+    },
+    {
+      "level" : 8,
+      "xp" : 1785
+    },
+    {
+      "level" : 8,
+      "xp" : 1792.5
+    },
+    {
+      "level" : 8,
+      "xp" : 1800
+    },
+    {
+      "level" : 8,
+      "xp" : 1807.5
+    },
+    {
+      "level" : 8,
+      "xp" : 1815
+    },
+    {
+      "level" : 8,
+      "xp" : 1822.5
+    },
+    {
+      "level" : 8,
+      "xp" : 1830
+    },
+    {
+      "level" : 8,
+      "xp" : 1837.5
+    },
+    {
+      "level" : 8,
+      "xp" : 1845
+    },
+    {
+      "level" : 8,
+      "xp" : 1852.5
+    },
+    {
+      "level" : 8,
+      "xp" : 1860
+    },
+    {
+      "level" : 8,
+      "xp" : 1867.5
+    },
+    {
+      "level" : 8,
+      "xp" : 1875
+    },
+    {
+      "level" : 8,
+      "xp" : 1882.5
+    },
+    {
+      "level" : 8,
+      "xp" : 1890
+    },
+    {
+      "level" : 8,
+      "xp" : 1897.5
+    },
+    {
+      "level" : 8,
+      "xp" : 1905
+    },
+    {
+      "level" : 8,
+      "xp" : 1912.5
+    },
+    {
+      "level" : 8,
+      "xp" : 1920
+    },
+    {
+      "level" : 8,
+      "xp" : 1927.5
+    },
+    {
+      "level" : 8,
+      "xp" : 1935
+    },
+    {
+      "level" : 8,
+      "xp" : 1942.5
+    },
+    {
+      "level" : 8,
+      "xp" : 1950
+    },
+    {
+      "level" : 8,
+      "xp" : 1957.5
+    },
+    {
+      "level" : 8,
+      "xp" : 1965
+    },
+    {
+      "level" : 8,
+      "xp" : 1972.5
+    },
+    {
+      "level" : 8,
+      "xp" : 1980
+    },
+    {
+      "level" : 8,
+      "xp" : 1987.5
+    },
+    {
+      "level" : 8,
+      "xp" : 1995
+    },
+    {
+      "level" : 8,
+      "xp" : 2002.5
+    },
+    {
+      "level" : 8,
+      "xp" : 2010
+    },
+    {
+      "level" : 8,
+      "xp" : 2017.5
+    },
+    {
+      "level" : 8,
+      "xp" : 2025
+    },
+    {
+      "level" : 8,
+      "xp" : 2032.5
+    },
+    {
+      "level" : 8,
+      "xp" : 2040
+    },
+    {
+      "level" : 8,
+      "xp" : 2047.5
+    },
+    {
+      "level" : 8,
+      "xp" : 2055
+    },
+    {
+      "level" : 8,
+      "xp" : 2062.5
+    },
+    {
+      "level" : 8,
+      "xp" : 2070
+    },
+    {
+      "level" : 8,
+      "xp" : 2077.5
+    },
+    {
+      "level" : 8,
+      "xp" : 2085
+    },
+    {
+      "level" : 8,
+      "xp" : 2092.5
+    },
+    {
+      "level" : 8,
+      "xp" : 2100
+    },
+    {
+      "level" : 8,
+      "xp" : 2107.5
+    },
+    {
+      "level" : 8,
+      "xp" : 2115
+    },
+    {
+      "level" : 8,
+      "xp" : 2122.5
+    },
+    {
+      "level" : 8,
+      "xp" : 2130
+    },
+    {
+      "level" : 8,
+      "xp" : 2137.5
+    },
+    {
+      "level" : 8,
+      "xp" : 2145
+    },
+    {
+      "level" : 8,
+      "xp" : 2152.5
+    },
+    {
+      "level" : 9,
+      "xp" : 2160
+    },
+    {
+      "level" : 9,
+      "xp" : 2167.5
+    },
+    {
+      "level" : 9,
+      "xp" : 2175
+    },
+    {
+      "level" : 9,
+      "xp" : 2182.5
+    },
+    {
+      "level" : 9,
+      "xp" : 2190
+    },
+    {
+      "level" : 9,
+      "xp" : 2197.5
+    },
+    {
+      "level" : 9,
+      "xp" : 2205
+    },
+    {
+      "level" : 9,
+      "xp" : 2212.5
+    },
+    {
+      "level" : 9,
+      "xp" : 2220
+    },
+    {
+      "level" : 9,
+      "xp" : 2227.5
+    },
+    {
+      "level" : 9,
+      "xp" : 2235
+    },
+    {
+      "level" : 9,
+      "xp" : 2242.5
+    },
+    {
+      "level" : 9,
+      "xp" : 2250
+    },
+    {
+      "level" : 9,
+      "xp" : 2257.5
+    },
+    {
+      "level" : 9,
+      "xp" : 2265
+    },
+    {
+      "level" : 9,
+      "xp" : 2272.5
+    },
+    {
+      "level" : 9,
+      "xp" : 2280
+    },
+    {
+      "level" : 9,
+      "xp" : 2287.5
+    },
+    {
+      "level" : 9,
+      "xp" : 2295
+    },
+    {
+      "level" : 9,
+      "xp" : 2302.5
+    },
+    {
+      "level" : 9,
+      "xp" : 2310
+    },
+    {
+      "level" : 9,
+      "xp" : 2317.5
+    },
+    {
+      "level" : 9,
+      "xp" : 2325
+    },
+    {
+      "level" : 9,
+      "xp" : 2332.5
+    },
+    {
+      "level" : 9,
+      "xp" : 2340
+    },
+    {
+      "level" : 9,
+      "xp" : 2347.5
+    },
+    {
+      "level" : 9,
+      "xp" : 2355
+    },
+    {
+      "level" : 9,
+      "xp" : 2362.5
+    },
+    {
+      "level" : 9,
+      "xp" : 2370
+    },
+    {
+      "level" : 9,
+      "xp" : 2377.5
+    },
+    {
+      "level" : 9,
+      "xp" : 2385
+    },
+    {
+      "level" : 9,
+      "xp" : 2392.5
+    },
+    {
+      "level" : 9,
+      "xp" : 2400
+    },
+    {
+      "level" : 9,
+      "xp" : 2407.5
+    },
+    {
+      "level" : 9,
+      "xp" : 2415
+    },
+    {
+      "level" : 9,
+      "xp" : 2422.5
+    },
+    {
+      "level" : 9,
+      "xp" : 2430
+    },
+    {
+      "level" : 9,
+      "xp" : 2437.5
+    },
+    {
+      "level" : 9,
+      "xp" : 2445
+    },
+    {
+      "level" : 9,
+      "xp" : 2452.5
+    },
+    {
+      "level" : 9,
+      "xp" : 2460
+    },
+    {
+      "level" : 9,
+      "xp" : 2467.5
+    },
+    {
+      "level" : 9,
+      "xp" : 2475
+    },
+    {
+      "level" : 9,
+      "xp" : 2482.5
+    },
+    {
+      "level" : 9,
+      "xp" : 2490
+    },
+    {
+      "level" : 9,
+      "xp" : 2497.5
+    },
+    {
+      "level" : 9,
+      "xp" : 2505
+    },
+    {
+      "level" : 9,
+      "xp" : 2512.5
+    },
+    {
+      "level" : 9,
+      "xp" : 2520
+    },
+    {
+      "level" : 9,
+      "xp" : 2527.5
+    },
+    {
+      "level" : 9,
+      "xp" : 2535
+    },
+    {
+      "level" : 9,
+      "xp" : 2542.5
+    },
+    {
+      "level" : 9,
+      "xp" : 2550
+    },
+    {
+      "level" : 9,
+      "xp" : 2557.5
+    },
+    {
+      "level" : 9,
+      "xp" : 2565
+    },
+    {
+      "level" : 9,
+      "xp" : 2572.5
+    },
+    {
+      "level" : 9,
+      "xp" : 2580
+    },
+    {
+      "level" : 9,
+      "xp" : 2587.5
+    },
+    {
+      "level" : 9,
+      "xp" : 2595
+    },
+    {
+      "level" : 9,
+      "xp" : 2602.5
+    },
+    {
+      "level" : 9,
+      "xp" : 2610
+    },
+    {
+      "level" : 9,
+      "xp" : 2617.5
+    },
+    {
+      "level" : 9,
+      "xp" : 2625
+    },
+    {
+      "level" : 9,
+      "xp" : 2632.5
+    },
+    {
+      "level" : 9,
+      "xp" : 2640
+    },
+    {
+      "level" : 9,
+      "xp" : 2647.5
+    },
+    {
+      "level" : 9,
+      "xp" : 2655
+    },
+    {
+      "level" : 9,
+      "xp" : 2662.5
+    },
+    {
+      "level" : 9,
+      "xp" : 2670
+    },
+    {
+      "level" : 9,
+      "xp" : 2677.5
+    },
+    {
+      "level" : 9,
+      "xp" : 2685
+    },
+    {
+      "level" : 9,
+      "xp" : 2692.5
+    },
+    {
+      "level" : 10,
+      "xp" : 2700
+    },
+    {
+      "level" : 10,
+      "xp" : 2707.5
+    },
+    {
+      "level" : 10,
+      "xp" : 2715
+    },
+    {
+      "level" : 10,
+      "xp" : 2722.5
+    },
+    {
+      "level" : 10,
+      "xp" : 2730
+    },
+    {
+      "level" : 10,
+      "xp" : 2737.5
+    },
+    {
+      "level" : 10,
+      "xp" : 2745
+    },
+    {
+      "level" : 10,
+      "xp" : 2752.5
+    },
+    {
+      "level" : 10,
+      "xp" : 2760
+    },
+    {
+      "level" : 10,
+      "xp" : 2767.5
+    },
+    {
+      "level" : 10,
+      "xp" : 2775
+    },
+    {
+      "level" : 10,
+      "xp" : 2782.5
+    },
+    {
+      "level" : 10,
+      "xp" : 2790
+    },
+    {
+      "level" : 10,
+      "xp" : 2797.5
+    },
+    {
+      "level" : 10,
+      "xp" : 2805
+    },
+    {
+      "level" : 10,
+      "xp" : 2812.5
+    },
+    {
+      "level" : 10,
+      "xp" : 2820
+    },
+    {
+      "level" : 10,
+      "xp" : 2827.5
+    },
+    {
+      "level" : 10,
+      "xp" : 2835
+    },
+    {
+      "level" : 10,
+      "xp" : 2842.5
+    },
+    {
+      "level" : 10,
+      "xp" : 2850
+    },
+    {
+      "level" : 10,
+      "xp" : 2857.5
+    },
+    {
+      "level" : 10,
+      "xp" : 2865
+    },
+    {
+      "level" : 10,
+      "xp" : 2872.5
+    },
+    {
+      "level" : 10,
+      "xp" : 2880
+    },
+    {
+      "level" : 10,
+      "xp" : 2887.5
+    },
+    {
+      "level" : 10,
+      "xp" : 2895
+    },
+    {
+      "level" : 10,
+      "xp" : 2902.5
+    },
+    {
+      "level" : 10,
+      "xp" : 2910
+    },
+    {
+      "level" : 10,
+      "xp" : 2917.5
+    },
+    {
+      "level" : 10,
+      "xp" : 2925
+    },
+    {
+      "level" : 10,
+      "xp" : 2932.5
+    },
+    {
+      "level" : 10,
+      "xp" : 2940
+    },
+    {
+      "level" : 10,
+      "xp" : 2947.5
+    },
+    {
+      "level" : 10,
+      "xp" : 2955
+    },
+    {
+      "level" : 10,
+      "xp" : 2962.5
+    },
+    {
+      "level" : 10,
+      "xp" : 2970
+    },
+    {
+      "level" : 10,
+      "xp" : 2977.5
+    },
+    {
+      "level" : 10,
+      "xp" : 2985
+    },
+    {
+      "level" : 10,
+      "xp" : 2992.5
+    },
+    {
+      "level" : 10,
+      "xp" : 3000
+    }
+  ],
+  "perks" : [
+    {
+      "effect" : "Nearby Prospectors drill 10% faster.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.drill, GameCore.Scope.nearby, GameCore.Change.percent(0.1))]",
+      "kind" : "prospector",
+      "level" : 2,
+      "perk" : "prospectorQuickDrill",
+      "slot" : "one",
+      "title" : "Quick drill"
+    },
+    {
+      "effect" : "Every Prospector walks 50% faster.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.speed, GameCore.Scope.every, GameCore.Change.percent(0.5))]",
+      "kind" : "prospector",
+      "level" : 2,
+      "perk" : "prospectorLightFrame",
+      "slot" : "other",
+      "title" : "Light frame"
+    },
+    {
+      "effect" : "Every Prospector pumps MH 20% faster.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.hydrogen, GameCore.Scope.every, GameCore.Change.percent(0.2))]",
+      "kind" : "prospector",
+      "level" : 3,
+      "perk" : "prospectorRigMaster",
+      "slot" : "one",
+      "title" : "Rig master"
+    },
+    {
+      "effect" : "+20 hp and +1 armor.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.hp, GameCore.Scope.driven, GameCore.Change.plus(20.0)), GameCore.Effect.stat(GameCore.Stat.armor, GameCore.Scope.driven, GameCore.Change.plus(1.0))]",
+      "kind" : "prospector",
+      "level" : 3,
+      "perk" : "prospectorPlating",
+      "slot" : "other",
+      "title" : "Plating"
+    },
+    {
+      "effect" : "Carries 35 ore or 28 MH a trip; nearby Prospectors carry 7 or 6.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.oreCarry, GameCore.Scope.driven, GameCore.Change.atLeast(35.0)), GameCore.Effect.stat(GameCore.Stat.hydrogenCarry, GameCore.Scope.driven, GameCore.Change.atLeast(28.0)), GameCore.Effect.stat(GameCore.Stat.oreCarry, GameCore.Scope.nearby, GameCore.Change.atLeast(7.0)), GameCore.Effect.stat(GameCore.Stat.hydrogenCarry, GameCore.Scope.nearby, GameCore.Change.atLeast(6.0))]",
+      "kind" : "prospector",
+      "level" : 4,
+      "perk" : "prospectorBigHaul",
+      "slot" : "one",
+      "title" : "Big haul"
+    },
+    {
+      "effect" : "Builds and repairs at ×3, up from ×2.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.build, GameCore.Scope.driven, GameCore.Change.times(3.0)), GameCore.Effect.stat(GameCore.Stat.repair, GameCore.Scope.driven, GameCore.Change.times(3.0))]",
+      "kind" : "prospector",
+      "level" : 4,
+      "perk" : "prospectorFastWelder",
+      "slot" : "other",
+      "title" : "Fast welder"
+    },
+    {
+      "effect" : "Repairs machines: a full repair takes half their training time.",
+      "effects" : "[GameCore.Effect.machineRepair(share: 0.5)]",
+      "kind" : "prospector",
+      "level" : 5,
+      "perk" : "prospectorFieldWelder",
+      "slot" : "one",
+      "title" : "Field welder"
+    },
+    {
+      "effect" : "Friendly machines within 6 cells mend 1 hp a second.",
+      "effects" : "[GameCore.Effect.aura(GameCore.Aura(hpPerSecond: 1.0, radius: 6.0, filter: GameCore.Filter.machines))]",
+      "kind" : "prospector",
+      "level" : 5,
+      "perk" : "prospectorGroupRepair",
+      "slot" : "other",
+      "title" : "Group repair"
+    },
+    {
+      "effect" : "Nearby Prospectors drill 50% faster.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.drill, GameCore.Scope.nearby, GameCore.Change.percent(0.5))]",
+      "kind" : "prospector",
+      "level" : 6,
+      "perk" : "prospectorForeman",
+      "slot" : "one",
+      "title" : "Foreman"
+    },
+    {
+      "effect" : "Every Prospector builds 30% faster.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.build, GameCore.Scope.every, GameCore.Change.percent(0.3))]",
+      "kind" : "prospector",
+      "level" : 6,
+      "perk" : "prospectorSiteBoss",
+      "slot" : "other",
+      "title" : "Site boss"
+    },
+    {
+      "effect" : "Every third ore trip carries double.",
+      "effects" : "[GameCore.Effect.everyThird(GameCore.Action.oreTrip)]",
+      "kind" : "prospector",
+      "level" : 7,
+      "perk" : "prospectorRichVein",
+      "slot" : "one",
+      "title" : "Rich vein"
+    },
+    {
+      "effect" : "Its weapon does double damage.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.damage, GameCore.Scope.driven, GameCore.Change.percent(1.0))]",
+      "kind" : "prospector",
+      "level" : 7,
+      "perk" : "prospectorCuttingTorch",
+      "slot" : "other",
+      "title" : "Cutting torch"
+    },
+    {
+      "effect" : "Every Prospector drills 10% faster.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.drill, GameCore.Scope.every, GameCore.Change.percent(0.1))]",
+      "kind" : "prospector",
+      "level" : 8,
+      "perk" : "prospectorOvertime",
+      "slot" : "one",
+      "title" : "Overtime"
+    },
+    {
+      "effect" : "Buildings it places cost 10% less.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.buildingCost, GameCore.Scope.driven, GameCore.Change.percent(-0.1))]",
+      "kind" : "prospector",
+      "level" : 8,
+      "perk" : "prospectorPrefab",
+      "slot" : "other",
+      "title" : "Prefab"
+    },
+    {
+      "effect" : "Jumps up and down cliffs like a Comet.",
+      "effects" : "[GameCore.Effect.cliffJump]",
+      "kind" : "prospector",
+      "level" : 9,
+      "perk" : "prospectorCliffHop",
+      "slot" : "one",
+      "title" : "Cliff hop"
+    },
+    {
+      "effect" : "The team's Hab Domes give 10 supply, up from 8.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.supplyPerHabDome, GameCore.Scope.team, GameCore.Change.atLeast(10.0))]",
+      "kind" : "prospector",
+      "level" : 9,
+      "perk" : "prospectorSupplyChief",
+      "slot" : "other",
+      "title" : "Supply chief"
+    },
+    {
+      "effect" : "Nearby Prospectors carry 10 ore or 8 MH, up from 5 and 4.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.oreCarry, GameCore.Scope.nearby, GameCore.Change.atLeast(10.0)), GameCore.Effect.stat(GameCore.Stat.hydrogenCarry, GameCore.Scope.nearby, GameCore.Change.atLeast(8.0))]",
+      "kind" : "prospector",
+      "level" : 10,
+      "perk" : "prospectorUnionCrew",
+      "slot" : "one",
+      "title" : "Union crew"
+    },
+    {
+      "effect" : "A 20 hp shield takes hits first; it refills 2 a second after 7 s without a hit.",
+      "effects" : "[GameCore.Effect.shield(GameCore.Shield(hp: 20.0, delay: 7.0, refill: 10.0))]",
+      "kind" : "prospector",
+      "level" : 10,
+      "perk" : "prospectorShield",
+      "slot" : "other",
+      "title" : "Shield"
+    },
+    {
+      "effect" : "Nearby Rangers fire 10% faster.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.fireRate, GameCore.Scope.nearby, GameCore.Change.percent(0.1))]",
+      "kind" : "ranger",
+      "level" : 2,
+      "perk" : "rangerDrillSergeant",
+      "slot" : "one",
+      "title" : "Drill sergeant"
+    },
+    {
+      "effect" : "Every Ranger walks 20% faster.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.speed, GameCore.Scope.every, GameCore.Change.percent(0.2))]",
+      "kind" : "ranger",
+      "level" : 2,
+      "perk" : "rangerLightKit",
+      "slot" : "other",
+      "title" : "Light kit"
+    },
+    {
+      "effect" : "Every Ranger gets +10 hp.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.hp, GameCore.Scope.every, GameCore.Change.plus(10.0))]",
+      "kind" : "ranger",
+      "level" : 3,
+      "perk" : "rangerCombatDrill",
+      "slot" : "one",
+      "title" : "Combat drill"
+    },
+    {
+      "effect" : "+20 hp and +1 armor.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.hp, GameCore.Scope.driven, GameCore.Change.plus(20.0)), GameCore.Effect.stat(GameCore.Stat.armor, GameCore.Scope.driven, GameCore.Change.plus(1.0))]",
+      "kind" : "ranger",
+      "level" : 3,
+      "perk" : "rangerFlakVest",
+      "slot" : "other",
+      "title" : "Flak vest"
+    },
+    {
+      "effect" : "+40% damage, and nearby Rangers +15%.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.damage, GameCore.Scope.driven, GameCore.Change.percent(0.25)), GameCore.Effect.stat(GameCore.Stat.damage, GameCore.Scope.nearby, GameCore.Change.percent(0.15))]",
+      "kind" : "ranger",
+      "level" : 4,
+      "perk" : "rangerHollowPoints",
+      "slot" : "one",
+      "title" : "Hollow points"
+    },
+    {
+      "effect" : "+2 range.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.range, GameCore.Scope.driven, GameCore.Change.plus(2.0))]",
+      "kind" : "ranger",
+      "level" : 4,
+      "perk" : "rangerLongBarrel",
+      "slot" : "other",
+      "title" : "Long barrel"
+    },
+    {
+      "effect" : "The ability key gives 8 s of +50% fire rate and speed, for 10 hp, every 15 s.",
+      "effects" : "[GameCore.Effect.burst(GameCore.Burst(seconds: 8.0, cooldown: 15.0, speed: 0.5, fireRate: 0.5, hpCost: 10.0))]",
+      "kind" : "ranger",
+      "level" : 5,
+      "perk" : "rangerSurge",
+      "slot" : "one",
+      "title" : "Surge"
+    },
+    {
+      "effect" : "Friendly bio units within 6 cells mend 1 hp a second.",
+      "effects" : "[GameCore.Effect.aura(GameCore.Aura(hpPerSecond: 1.0, radius: 6.0, filter: GameCore.Filter.bio))]",
+      "kind" : "ranger",
+      "level" : 5,
+      "perk" : "rangerFieldMedic",
+      "slot" : "other",
+      "title" : "Field medic"
+    },
+    {
+      "effect" : "Nearby Rangers fire 25% faster.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.fireRate, GameCore.Scope.nearby, GameCore.Change.percent(0.25))]",
+      "kind" : "ranger",
+      "level" : 6,
+      "perk" : "rangerSquadLeader",
+      "slot" : "one",
+      "title" : "Squad leader"
+    },
+    {
+      "effect" : "The team's Garrisons train Rangers 30% faster.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.training(GameCore.Unit.Kind.ranger), GameCore.Scope.team, GameCore.Change.percent(0.3))]",
+      "kind" : "ranger",
+      "level" : 6,
+      "perk" : "rangerQuartermaster",
+      "slot" : "other",
+      "title" : "Quartermaster"
+    },
+    {
+      "effect" : "Every third shot does double damage.",
+      "effects" : "[GameCore.Effect.everyThird(GameCore.Action.attack)]",
+      "kind" : "ranger",
+      "level" : 7,
+      "perk" : "rangerBurstFire",
+      "slot" : "one",
+      "title" : "Burst fire"
+    },
+    {
+      "effect" : "Shots ignore armor and do +5 against armored.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.ignoresArmor, GameCore.Scope.driven, GameCore.Change.plus(1.0)), GameCore.Effect.stat(GameCore.Stat.damageVs(GameCore.TargetClass.armored), GameCore.Scope.driven, GameCore.Change.plus(5.0))]",
+      "kind" : "ranger",
+      "level" : 7,
+      "perk" : "rangerArmorPiercing",
+      "slot" : "other",
+      "title" : "Armor-piercing"
+    },
+    {
+      "effect" : "Every Ranger fires 10% faster.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.fireRate, GameCore.Scope.every, GameCore.Change.percent(0.1))]",
+      "kind" : "ranger",
+      "level" : 8,
+      "perk" : "rangerEspritDeCorps",
+      "slot" : "one",
+      "title" : "Esprit de corps"
+    },
+    {
+      "effect" : "Rangers cost 10% less.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.unitCost(GameCore.Unit.Kind.ranger), GameCore.Scope.team, GameCore.Change.percent(-0.1))]",
+      "kind" : "ranger",
+      "level" : 8,
+      "perk" : "rangerRecruitment",
+      "slot" : "other",
+      "title" : "Recruitment"
+    },
+    {
+      "effect" : "Jumps up and down cliffs like a Comet.",
+      "effects" : "[GameCore.Effect.cliffJump]",
+      "kind" : "ranger",
+      "level" : 9,
+      "perk" : "rangerJumpPack",
+      "slot" : "one",
+      "title" : "Jump pack"
+    },
+    {
+      "effect" : "The team's Bastions hold 6, up from 4.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.bastionSize, GameCore.Scope.team, GameCore.Change.atLeast(6.0))]",
+      "kind" : "ranger",
+      "level" : 9,
+      "perk" : "rangerBastionDrill",
+      "slot" : "other",
+      "title" : "Bastion drill"
+    },
+    {
+      "effect" : "Nearby Rangers do 50% more damage.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.damage, GameCore.Scope.nearby, GameCore.Change.percent(0.5))]",
+      "kind" : "ranger",
+      "level" : 10,
+      "perk" : "rangerBandOfBrothers",
+      "slot" : "one",
+      "title" : "Band of brothers"
+    },
+    {
+      "effect" : "A 20 hp shield takes hits first; it refills over 10 s after 7 s without a hit.",
+      "effects" : "[GameCore.Effect.shield(GameCore.Shield(hp: 20.0, delay: 7.0, refill: 10.0))]",
+      "kind" : "ranger",
+      "level" : 10,
+      "perk" : "rangerShield",
+      "slot" : "other",
+      "title" : "Shield"
+    },
+    {
+      "effect" : "Nearby Comets fire 10% faster.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.fireRate, GameCore.Scope.nearby, GameCore.Change.percent(0.1))]",
+      "kind" : "comet",
+      "level" : 2,
+      "perk" : "cometPackTactics",
+      "slot" : "one",
+      "title" : "Pack tactics"
+    },
+    {
+      "effect" : "Every Comet runs 15% faster.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.speed, GameCore.Scope.every, GameCore.Change.percent(0.15))]",
+      "kind" : "comet",
+      "level" : 2,
+      "perk" : "cometFleetFoot",
+      "slot" : "other",
+      "title" : "Fleet foot"
+    },
+    {
+      "effect" : "Every Comet heals out of combat 20% faster.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.regen, GameCore.Scope.every, GameCore.Change.percent(0.2))]",
+      "kind" : "comet",
+      "level" : 3,
+      "perk" : "cometNanomeds",
+      "slot" : "one",
+      "title" : "Nanomeds"
+    },
+    {
+      "effect" : "+25 hp and +1 armor.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.hp, GameCore.Scope.driven, GameCore.Change.plus(25.0)), GameCore.Effect.stat(GameCore.Stat.armor, GameCore.Scope.driven, GameCore.Change.plus(1.0))]",
+      "kind" : "comet",
+      "level" : 3,
+      "perk" : "cometPaddedSuit",
+      "slot" : "other",
+      "title" : "Padded suit"
+    },
+    {
+      "effect" : "+40% damage, and nearby Comets +15%.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.damage, GameCore.Scope.driven, GameCore.Change.percent(0.25)), GameCore.Effect.stat(GameCore.Stat.damage, GameCore.Scope.nearby, GameCore.Change.percent(0.15))]",
+      "kind" : "comet",
+      "level" : 4,
+      "perk" : "cometTwinMagnums",
+      "slot" : "one",
+      "title" : "Twin magnums"
+    },
+    {
+      "effect" : "Jumps reach 50% farther.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.jumpReach, GameCore.Scope.driven, GameCore.Change.percent(0.5))]",
+      "kind" : "comet",
+      "level" : 4,
+      "perk" : "cometLongJump",
+      "slot" : "other",
+      "title" : "Long jump"
+    },
+    {
+      "effect" : "The ability key throws a grenade at the crosshair: 20 damage within 1.5 cells, every 14 s.",
+      "effects" : "[GameCore.Effect.grenade(GameCore.Grenade(damage: 20.0, radius: 1.5, cooldown: 14.0))]",
+      "kind" : "comet",
+      "level" : 5,
+      "perk" : "cometPulseMine",
+      "slot" : "one",
+      "title" : "Pulse mine"
+    },
+    {
+      "effect" : "Sees 50% farther, for the whole team.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.sight, GameCore.Scope.driven, GameCore.Change.percent(0.5))]",
+      "kind" : "comet",
+      "level" : 5,
+      "perk" : "cometSpotter",
+      "slot" : "other",
+      "title" : "Spotter"
+    },
+    {
+      "effect" : "Nearby Comets fire 25% faster.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.fireRate, GameCore.Scope.nearby, GameCore.Change.percent(0.25))]",
+      "kind" : "comet",
+      "level" : 6,
+      "perk" : "cometRaidParty",
+      "slot" : "one",
+      "title" : "Raid party"
+    },
+    {
+      "effect" : "Every Comet does 30% more damage to buildings.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.damageVs(GameCore.TargetClass.building), GameCore.Scope.every, GameCore.Change.percent(0.3))]",
+      "kind" : "comet",
+      "level" : 6,
+      "perk" : "cometDemolition",
+      "slot" : "other",
+      "title" : "Demolition"
+    },
+    {
+      "effect" : "Every third volley does double damage.",
+      "effects" : "[GameCore.Effect.everyThird(GameCore.Action.attack)]",
+      "kind" : "comet",
+      "level" : 7,
+      "perk" : "cometDoubleTap",
+      "slot" : "one",
+      "title" : "Double tap"
+    },
+    {
+      "effect" : "+5 more against light, so +10 in all.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.damageVs(GameCore.TargetClass.light), GameCore.Scope.driven, GameCore.Change.plus(5.0))]",
+      "kind" : "comet",
+      "level" : 7,
+      "perk" : "cometLightKiller",
+      "slot" : "other",
+      "title" : "Light killer"
+    },
+    {
+      "effect" : "Every Comet fires 10% faster.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.fireRate, GameCore.Scope.every, GameCore.Change.percent(0.1))]",
+      "kind" : "comet",
+      "level" : 8,
+      "perk" : "cometHitAndRun",
+      "slot" : "one",
+      "title" : "Hit and run"
+    },
+    {
+      "effect" : "Comets cost 10% less.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.unitCost(GameCore.Unit.Kind.comet), GameCore.Scope.team, GameCore.Change.percent(-0.1))]",
+      "kind" : "comet",
+      "level" : 8,
+      "perk" : "cometCheapKit",
+      "slot" : "other",
+      "title" : "Cheap kit"
+    },
+    {
+      "effect" : "3 s at +50% speed after each jump.",
+      "effects" : "[GameCore.Effect.afterJump(GameCore.Rush(seconds: 3.0, speed: 0.5, fireRate: 0.0))]",
+      "kind" : "comet",
+      "level" : 9,
+      "perk" : "cometBooster",
+      "slot" : "one",
+      "title" : "Booster"
+    },
+    {
+      "effect" : "Each of its kills gives the team 10% of the victim's cost.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.bounty, GameCore.Scope.driven, GameCore.Change.plus(0.1))]",
+      "kind" : "comet",
+      "level" : 9,
+      "perk" : "cometBounty",
+      "slot" : "other",
+      "title" : "Bounty"
+    },
+    {
+      "effect" : "Nearby Comets do 50% more damage.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.damage, GameCore.Scope.nearby, GameCore.Change.percent(0.5))]",
+      "kind" : "comet",
+      "level" : 10,
+      "perk" : "cometDeathSquad",
+      "slot" : "one",
+      "title" : "Death squad"
+    },
+    {
+      "effect" : "A 25 hp shield takes hits first; it refills over 10 s after 7 s without a hit.",
+      "effects" : "[GameCore.Effect.shield(GameCore.Shield(hp: 25.0, delay: 7.0, refill: 10.0))]",
+      "kind" : "comet",
+      "level" : 10,
+      "perk" : "cometShield",
+      "slot" : "other",
+      "title" : "Shield"
+    },
+    {
+      "effect" : "Nearby Fireflies fire 10% faster.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.fireRate, GameCore.Scope.nearby, GameCore.Change.percent(0.1))]",
+      "kind" : "firefly",
+      "level" : 2,
+      "perk" : "fireflyHotBurners",
+      "slot" : "one",
+      "title" : "Hot burners"
+    },
+    {
+      "effect" : "Every Firefly drives 15% faster.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.speed, GameCore.Scope.every, GameCore.Change.percent(0.15))]",
+      "kind" : "firefly",
+      "level" : 2,
+      "perk" : "fireflyTurbo",
+      "slot" : "other",
+      "title" : "Turbo"
+    },
+    {
+      "effect" : "Every Firefly's flame reaches 20% farther.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.flameReach, GameCore.Scope.every, GameCore.Change.percent(0.2))]",
+      "kind" : "firefly",
+      "level" : 3,
+      "perk" : "fireflyFuelLine",
+      "slot" : "one",
+      "title" : "Fuel line"
+    },
+    {
+      "effect" : "+40 hp and +1 armor.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.hp, GameCore.Scope.driven, GameCore.Change.plus(40.0)), GameCore.Effect.stat(GameCore.Stat.armor, GameCore.Scope.driven, GameCore.Change.plus(1.0))]",
+      "kind" : "firefly",
+      "level" : 3,
+      "perk" : "fireflyArmorPlates",
+      "slot" : "other",
+      "title" : "Armor plates"
+    },
+    {
+      "effect" : "+40% damage, and nearby Fireflies +15%.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.damage, GameCore.Scope.driven, GameCore.Change.percent(0.25)), GameCore.Effect.stat(GameCore.Stat.damage, GameCore.Scope.nearby, GameCore.Change.percent(0.15))]",
+      "kind" : "firefly",
+      "level" : 4,
+      "perk" : "fireflyNapalm",
+      "slot" : "one",
+      "title" : "Napalm"
+    },
+    {
+      "effect" : "Its flame is 50% wider.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.flameWidth, GameCore.Scope.driven, GameCore.Change.percent(0.5))]",
+      "kind" : "firefly",
+      "level" : 4,
+      "perk" : "fireflyWideNozzle",
+      "slot" : "other",
+      "title" : "Wide nozzle"
+    },
+    {
+      "effect" : "What its flame hits burns for 3 s, 4 damage a second.",
+      "effects" : "[GameCore.Effect.burn(perSecond: 4.0, seconds: 3.0)]",
+      "kind" : "firefly",
+      "level" : 5,
+      "perk" : "fireflyBurn",
+      "slot" : "one",
+      "title" : "Burn"
+    },
+    {
+      "effect" : "Friendly machines within 6 cells mend 1 hp a second.",
+      "effects" : "[GameCore.Effect.aura(GameCore.Aura(hpPerSecond: 1.0, radius: 6.0, filter: GameCore.Filter.machines))]",
+      "kind" : "firefly",
+      "level" : 5,
+      "perk" : "fireflyMechanic",
+      "slot" : "other",
+      "title" : "Mechanic"
+    },
+    {
+      "effect" : "Nearby Fireflies fire 25% faster.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.fireRate, GameCore.Scope.nearby, GameCore.Change.percent(0.25))]",
+      "kind" : "firefly",
+      "level" : 6,
+      "perk" : "fireflyPack",
+      "slot" : "one",
+      "title" : "Pack"
+    },
+    {
+      "effect" : "Every Firefly's flame is 30% wider.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.flameWidth, GameCore.Scope.every, GameCore.Change.percent(0.3))]",
+      "kind" : "firefly",
+      "level" : 6,
+      "perk" : "fireflySpread",
+      "slot" : "other",
+      "title" : "Spread"
+    },
+    {
+      "effect" : "Every third flame does double damage.",
+      "effects" : "[GameCore.Effect.everyThird(GameCore.Action.attack)]",
+      "kind" : "firefly",
+      "level" : 7,
+      "perk" : "fireflyFlashpoint",
+      "slot" : "one",
+      "title" : "Flashpoint"
+    },
+    {
+      "effect" : "Its flame ignores armor and does +8 against bio.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.ignoresArmor, GameCore.Scope.driven, GameCore.Change.plus(1.0)), GameCore.Effect.stat(GameCore.Stat.damageVs(GameCore.TargetClass.bio), GameCore.Scope.driven, GameCore.Change.plus(8.0))]",
+      "kind" : "firefly",
+      "level" : 7,
+      "perk" : "fireflyHotCore",
+      "slot" : "other",
+      "title" : "Hot core"
+    },
+    {
+      "effect" : "Every Firefly fires 10% faster.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.fireRate, GameCore.Scope.every, GameCore.Change.percent(0.1))]",
+      "kind" : "firefly",
+      "level" : 8,
+      "perk" : "fireflyOverdrive",
+      "slot" : "one",
+      "title" : "Overdrive"
+    },
+    {
+      "effect" : "Fireflies cost 10% less.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.unitCost(GameCore.Unit.Kind.firefly), GameCore.Scope.team, GameCore.Change.percent(-0.1))]",
+      "kind" : "firefly",
+      "level" : 8,
+      "perk" : "fireflyCheapChassis",
+      "slot" : "other",
+      "title" : "Cheap chassis"
+    },
+    {
+      "effect" : "The ability key gives 2 s at double speed, every 15 s.",
+      "effects" : "[GameCore.Effect.burst(GameCore.Burst(seconds: 2.0, cooldown: 15.0, speed: 1.0, fireRate: 0.0, hpCost: 0.0))]",
+      "kind" : "firefly",
+      "level" : 9,
+      "perk" : "fireflyBoost",
+      "slot" : "one",
+      "title" : "Boost"
+    },
+    {
+      "effect" : "Every Firefly the team loses refunds 25% of its cost.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.refund(GameCore.Unit.Kind.firefly), GameCore.Scope.team, GameCore.Change.plus(0.25))]",
+      "kind" : "firefly",
+      "level" : 9,
+      "perk" : "fireflyScrap",
+      "slot" : "other",
+      "title" : "Scrap"
+    },
+    {
+      "effect" : "Nearby Fireflies do 50% more damage.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.damage, GameCore.Scope.nearby, GameCore.Change.percent(0.5))]",
+      "kind" : "firefly",
+      "level" : 10,
+      "perk" : "fireflyFirestorm",
+      "slot" : "one",
+      "title" : "Firestorm"
+    },
+    {
+      "effect" : "A 40 hp shield takes hits first; it refills over 10 s after 7 s without a hit.",
+      "effects" : "[GameCore.Effect.shield(GameCore.Shield(hp: 40.0, delay: 7.0, refill: 10.0))]",
+      "kind" : "firefly",
+      "level" : 10,
+      "perk" : "fireflyShield",
+      "slot" : "other",
+      "title" : "Shield"
+    },
+    {
+      "effect" : "Nearby Juggernauts fire 10% faster.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.fireRate, GameCore.Scope.nearby, GameCore.Change.percent(0.1))]",
+      "kind" : "juggernaut",
+      "level" : 2,
+      "perk" : "juggernautShellDrill",
+      "slot" : "one",
+      "title" : "Shell drill"
+    },
+    {
+      "effect" : "Every Juggernaut walks 20% faster.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.speed, GameCore.Scope.every, GameCore.Change.percent(0.2))]",
+      "kind" : "juggernaut",
+      "level" : 2,
+      "perk" : "juggernautLongStride",
+      "slot" : "other",
+      "title" : "Long stride"
+    },
+    {
+      "effect" : "Every Juggernaut's slow lasts 20% longer.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.slowTime, GameCore.Scope.every, GameCore.Change.percent(0.2))]",
+      "kind" : "juggernaut",
+      "level" : 3,
+      "perk" : "juggernautShockRounds",
+      "slot" : "one",
+      "title" : "Shock rounds"
+    },
+    {
+      "effect" : "+55 hp and +1 armor.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.hp, GameCore.Scope.driven, GameCore.Change.plus(55.0)), GameCore.Effect.stat(GameCore.Stat.armor, GameCore.Scope.driven, GameCore.Change.plus(1.0))]",
+      "kind" : "juggernaut",
+      "level" : 3,
+      "perk" : "juggernautHeavyPlate",
+      "slot" : "other",
+      "title" : "Heavy plate"
+    },
+    {
+      "effect" : "+40% damage, and nearby Juggernauts +15%.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.damage, GameCore.Scope.driven, GameCore.Change.percent(0.25)), GameCore.Effect.stat(GameCore.Stat.damage, GameCore.Scope.nearby, GameCore.Change.percent(0.15))]",
+      "kind" : "juggernaut",
+      "level" : 4,
+      "perk" : "juggernautBreacher",
+      "slot" : "one",
+      "title" : "Breacher"
+    },
+    {
+      "effect" : "Its slow drops a target to a third of its speed, not half.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.slow, GameCore.Scope.driven, GameCore.Change.atLeast(0.6666666666666666))]",
+      "kind" : "juggernaut",
+      "level" : 4,
+      "perk" : "juggernautDeepSlow",
+      "slot" : "other",
+      "title" : "Deep slow"
+    },
+    {
+      "effect" : "The ability key gives 8 s of +50% fire rate and speed, for 20 hp, every 15 s.",
+      "effects" : "[GameCore.Effect.burst(GameCore.Burst(seconds: 8.0, cooldown: 15.0, speed: 0.5, fireRate: 0.5, hpCost: 20.0))]",
+      "kind" : "juggernaut",
+      "level" : 5,
+      "perk" : "juggernautSurge",
+      "slot" : "one",
+      "title" : "Surge"
+    },
+    {
+      "effect" : "Friendly units within 6 cells take 10% less damage.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.damageTaken, GameCore.Scope.around(GameCore.Filter.all), GameCore.Change.percent(-0.1))]",
+      "kind" : "juggernaut",
+      "level" : 5,
+      "perk" : "juggernautBulwark",
+      "slot" : "other",
+      "title" : "Bulwark"
+    },
+    {
+      "effect" : "Nearby Juggernauts fire 25% faster.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.fireRate, GameCore.Scope.nearby, GameCore.Change.percent(0.25))]",
+      "kind" : "juggernaut",
+      "level" : 6,
+      "perk" : "juggernautSiegeBreakers",
+      "slot" : "one",
+      "title" : "Siege breakers"
+    },
+    {
+      "effect" : "Every Juggernaut gets +40 hp.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.hp, GameCore.Scope.every, GameCore.Change.plus(40.0))]",
+      "kind" : "juggernaut",
+      "level" : 6,
+      "perk" : "juggernautBehemoth",
+      "slot" : "other",
+      "title" : "Behemoth"
+    },
+    {
+      "effect" : "Every third grenade does double damage.",
+      "effects" : "[GameCore.Effect.everyThird(GameCore.Action.attack)]",
+      "kind" : "juggernaut",
+      "level" : 7,
+      "perk" : "juggernautHeavyVolley",
+      "slot" : "one",
+      "title" : "Heavy volley"
+    },
+    {
+      "effect" : "Its grenades splash 1 cell around for half damage.",
+      "effects" : "[GameCore.Effect.fragment(radius: 1.0, share: 0.5)]",
+      "kind" : "juggernaut",
+      "level" : 7,
+      "perk" : "juggernautFragment",
+      "slot" : "other",
+      "title" : "Fragment"
+    },
+    {
+      "effect" : "Every Juggernaut fires 10% faster.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.fireRate, GameCore.Scope.every, GameCore.Change.percent(0.1))]",
+      "kind" : "juggernaut",
+      "level" : 8,
+      "perk" : "juggernautShockTroops",
+      "slot" : "one",
+      "title" : "Shock troops"
+    },
+    {
+      "effect" : "Juggernauts cost 10% less.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.unitCost(GameCore.Unit.Kind.juggernaut), GameCore.Scope.team, GameCore.Change.percent(-0.1))]",
+      "kind" : "juggernaut",
+      "level" : 8,
+      "perk" : "juggernautFieldKit",
+      "slot" : "other",
+      "title" : "Field kit"
+    },
+    {
+      "effect" : "Jumps up and down cliffs like a Comet.",
+      "effects" : "[GameCore.Effect.cliffJump]",
+      "kind" : "juggernaut",
+      "level" : 9,
+      "perk" : "juggernautJumpPack",
+      "slot" : "one",
+      "title" : "Jump pack"
+    },
+    {
+      "effect" : "Garrison upgrades cost 25% less and finish 25% sooner.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.upgradeCost(GameCore.Structure.Kind.garrison), GameCore.Scope.team, GameCore.Change.percent(-0.25)), GameCore.Effect.stat(GameCore.Stat.research(GameCore.Structure.Kind.garrison), GameCore.Scope.team, GameCore.Change.percent(0.3333333333333333))]",
+      "kind" : "juggernaut",
+      "level" : 9,
+      "perk" : "juggernautFieldResearch",
+      "slot" : "other",
+      "title" : "Field research"
+    },
+    {
+      "effect" : "Nearby Juggernauts do 50% more damage.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.damage, GameCore.Scope.nearby, GameCore.Change.percent(0.5))]",
+      "kind" : "juggernaut",
+      "level" : 10,
+      "perk" : "juggernautWreckingCrew",
+      "slot" : "one",
+      "title" : "Wrecking crew"
+    },
+    {
+      "effect" : "A 55 hp shield takes hits first; it refills over 10 s after 7 s without a hit.",
+      "effects" : "[GameCore.Effect.shield(GameCore.Shield(hp: 55.0, delay: 7.0, refill: 10.0))]",
+      "kind" : "juggernaut",
+      "level" : 10,
+      "perk" : "juggernautShield",
+      "slot" : "other",
+      "title" : "Shield"
+    },
+    {
+      "effect" : "Nearby Dropships heal 10% faster.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.heal, GameCore.Scope.nearby, GameCore.Change.percent(0.1))]",
+      "kind" : "dropship",
+      "level" : 2,
+      "perk" : "dropshipTriage",
+      "slot" : "one",
+      "title" : "Triage"
+    },
+    {
+      "effect" : "Every Dropship flies 20% faster.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.speed, GameCore.Scope.every, GameCore.Change.percent(0.2))]",
+      "kind" : "dropship",
+      "level" : 2,
+      "perk" : "dropshipBoosters",
+      "slot" : "other",
+      "title" : "Boosters"
+    },
+    {
+      "effect" : "Every Dropship regains energy 20% faster.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.energy, GameCore.Scope.every, GameCore.Change.percent(0.2))]",
+      "kind" : "dropship",
+      "level" : 3,
+      "perk" : "dropshipLifeline",
+      "slot" : "one",
+      "title" : "Lifeline"
+    },
+    {
+      "effect" : "+65 hp and +1 armor.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.hp, GameCore.Scope.driven, GameCore.Change.plus(65.0)), GameCore.Effect.stat(GameCore.Stat.armor, GameCore.Scope.driven, GameCore.Change.plus(1.0))]",
+      "kind" : "dropship",
+      "level" : 3,
+      "perk" : "dropshipArmorPlates",
+      "slot" : "other",
+      "title" : "Armor plates"
+    },
+    {
+      "effect" : "Heals 40% faster, and nearby Dropships 15% faster.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.heal, GameCore.Scope.driven, GameCore.Change.percent(0.25)), GameCore.Effect.stat(GameCore.Stat.heal, GameCore.Scope.nearby, GameCore.Change.percent(0.15))]",
+      "kind" : "dropship",
+      "level" : 4,
+      "perk" : "dropshipSurgeon",
+      "slot" : "one",
+      "title" : "Surgeon"
+    },
+    {
+      "effect" : "Carries 12 slots, up from 8.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.cargo, GameCore.Scope.driven, GameCore.Change.atLeast(12.0))]",
+      "kind" : "dropship",
+      "level" : 4,
+      "perk" : "dropshipCargoBay",
+      "slot" : "other",
+      "title" : "Cargo bay"
+    },
+    {
+      "effect" : "Heals machines too, at the same rate.",
+      "effects" : "[GameCore.Effect.naniteBeam]",
+      "kind" : "dropship",
+      "level" : 5,
+      "perk" : "dropshipNaniteBeam",
+      "slot" : "one",
+      "title" : "Nanite beam"
+    },
+    {
+      "effect" : "Friendly bio units within 6 cells mend 1 hp a second.",
+      "effects" : "[GameCore.Effect.aura(GameCore.Aura(hpPerSecond: 1.0, radius: 6.0, filter: GameCore.Filter.bio))]",
+      "kind" : "dropship",
+      "level" : 5,
+      "perk" : "dropshipHealingField",
+      "slot" : "other",
+      "title" : "Healing field"
+    },
+    {
+      "effect" : "Nearby Dropships heal 25% faster.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.heal, GameCore.Scope.nearby, GameCore.Change.percent(0.25))]",
+      "kind" : "dropship",
+      "level" : 6,
+      "perk" : "dropshipMedicalTeam",
+      "slot" : "one",
+      "title" : "Medical team"
+    },
+    {
+      "effect" : "Every Dropship spends 30% less energy healing.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.healEnergy, GameCore.Scope.every, GameCore.Change.times(1.4285714285714286))]",
+      "kind" : "dropship",
+      "level" : 6,
+      "perk" : "dropshipEfficient",
+      "slot" : "other",
+      "title" : "Efficient"
+    },
+    {
+      "effect" : "Heals two units at once.",
+      "effects" : "[GameCore.Effect.doubleBeam]",
+      "kind" : "dropship",
+      "level" : 7,
+      "perk" : "dropshipDoubleBeam",
+      "slot" : "one",
+      "title" : "Double beam"
+    },
+    {
+      "effect" : "Units it drops get 4 s of +30% speed and fire rate.",
+      "effects" : "[GameCore.Effect.dropRush(GameCore.Rush(seconds: 4.0, speed: 0.3, fireRate: 0.3))]",
+      "kind" : "dropship",
+      "level" : 7,
+      "perk" : "dropshipCombatDrop",
+      "slot" : "other",
+      "title" : "Combat drop"
+    },
+    {
+      "effect" : "Every Dropship heals 10% faster.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.heal, GameCore.Scope.every, GameCore.Change.percent(0.1))]",
+      "kind" : "dropship",
+      "level" : 8,
+      "perk" : "dropshipFieldHospital",
+      "slot" : "one",
+      "title" : "Field hospital"
+    },
+    {
+      "effect" : "Dropships cost 10% less.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.unitCost(GameCore.Unit.Kind.dropship), GameCore.Scope.team, GameCore.Change.percent(-0.1))]",
+      "kind" : "dropship",
+      "level" : 8,
+      "perk" : "dropshipCheapHull",
+      "slot" : "other",
+      "title" : "Cheap hull"
+    },
+    {
+      "effect" : "Flies 50% faster while not healing.",
+      "effects" : "[GameCore.Effect.cruise(speed: 0.5)]",
+      "kind" : "dropship",
+      "level" : 9,
+      "perk" : "dropshipCruise",
+      "slot" : "one",
+      "title" : "Cruise"
+    },
+    {
+      "effect" : "The team's Spacedocks build Dropships 25% faster.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.production(GameCore.Structure.Kind.spacedock), GameCore.Scope.team, GameCore.Change.percent(0.25))]",
+      "kind" : "dropship",
+      "level" : 9,
+      "perk" : "dropshipSpacedockRefit",
+      "slot" : "other",
+      "title" : "Spacedock refit"
+    },
+    {
+      "effect" : "Nearby Dropships heal 50% faster.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.heal, GameCore.Scope.nearby, GameCore.Change.percent(0.5))]",
+      "kind" : "dropship",
+      "level" : 10,
+      "perk" : "dropshipMedicalCorps",
+      "slot" : "one",
+      "title" : "Medical corps"
+    },
+    {
+      "effect" : "A 65 hp shield takes hits first; it refills over 10 s after 7 s without a hit.",
+      "effects" : "[GameCore.Effect.shield(GameCore.Shield(hp: 65.0, delay: 7.0, refill: 10.0))]",
+      "kind" : "dropship",
+      "level" : 10,
+      "perk" : "dropshipShield",
+      "slot" : "other",
+      "title" : "Shield"
+    },
+    {
+      "effect" : "Nearby Longbows fire 10% faster.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.fireRate, GameCore.Scope.nearby, GameCore.Change.percent(0.1))]",
+      "kind" : "longbow",
+      "level" : 2,
+      "perk" : "longbowSpotter",
+      "slot" : "one",
+      "title" : "Spotter"
+    },
+    {
+      "effect" : "Every Longbow drives 15% faster.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.speed, GameCore.Scope.every, GameCore.Change.percent(0.15))]",
+      "kind" : "longbow",
+      "level" : 2,
+      "perk" : "longbowTreads",
+      "slot" : "other",
+      "title" : "Treads"
+    },
+    {
+      "effect" : "Every Longbow anchors and unanchors 20% faster.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.anchor, GameCore.Scope.every, GameCore.Change.percent(0.2))]",
+      "kind" : "longbow",
+      "level" : 3,
+      "perk" : "longbowQuickAnchor",
+      "slot" : "one",
+      "title" : "Quick anchor"
+    },
+    {
+      "effect" : "+80 hp and +1 armor.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.hp, GameCore.Scope.driven, GameCore.Change.plus(80.0)), GameCore.Effect.stat(GameCore.Stat.armor, GameCore.Scope.driven, GameCore.Change.plus(1.0))]",
+      "kind" : "longbow",
+      "level" : 3,
+      "perk" : "longbowReactiveArmor",
+      "slot" : "other",
+      "title" : "Reactive armor"
+    },
+    {
+      "effect" : "+40% damage, and nearby Longbows +15%.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.damage, GameCore.Scope.driven, GameCore.Change.percent(0.25)), GameCore.Effect.stat(GameCore.Stat.damage, GameCore.Scope.nearby, GameCore.Change.percent(0.15))]",
+      "kind" : "longbow",
+      "level" : 4,
+      "perk" : "longbowShapedCharge",
+      "slot" : "one",
+      "title" : "Shaped charge"
+    },
+    {
+      "effect" : "+2 range anchored.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.anchorRange, GameCore.Scope.driven, GameCore.Change.plus(2.0))]",
+      "kind" : "longbow",
+      "level" : 4,
+      "perk" : "longbowLongGun",
+      "slot" : "other",
+      "title" : "Long gun"
+    },
+    {
+      "effect" : "Mends itself 3 hp a second after 5 s without a hit.",
+      "effects" : "[GameCore.Effect.selfMend(hpPerSecond: 3.0, delay: 5.0)]",
+      "kind" : "longbow",
+      "level" : 5,
+      "perk" : "longbowCrewMechanic",
+      "slot" : "one",
+      "title" : "Crew mechanic"
+    },
+    {
+      "effect" : "Friendly machines within 6 cells mend 1 hp a second.",
+      "effects" : "[GameCore.Effect.aura(GameCore.Aura(hpPerSecond: 1.0, radius: 6.0, filter: GameCore.Filter.machines))]",
+      "kind" : "longbow",
+      "level" : 5,
+      "perk" : "longbowMechanic",
+      "slot" : "other",
+      "title" : "Mechanic"
+    },
+    {
+      "effect" : "Nearby Longbows fire 25% faster.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.fireRate, GameCore.Scope.nearby, GameCore.Change.percent(0.25))]",
+      "kind" : "longbow",
+      "level" : 6,
+      "perk" : "longbowBattery",
+      "slot" : "one",
+      "title" : "Battery"
+    },
+    {
+      "effect" : "Every Longbow's splash reaches 30% wider.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.splash, GameCore.Scope.every, GameCore.Change.percent(0.3))]",
+      "kind" : "longbow",
+      "level" : 6,
+      "perk" : "longbowHeavyShells",
+      "slot" : "other",
+      "title" : "Heavy shells"
+    },
+    {
+      "effect" : "Every third shell does double damage.",
+      "effects" : "[GameCore.Effect.everyThird(GameCore.Action.attack)]",
+      "kind" : "longbow",
+      "level" : 7,
+      "perk" : "longbowDoubleShot",
+      "slot" : "one",
+      "title" : "Double shot"
+    },
+    {
+      "effect" : "Its shells ignore armor and do +10 against armored.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.ignoresArmor, GameCore.Scope.driven, GameCore.Change.plus(1.0)), GameCore.Effect.stat(GameCore.Stat.damageVs(GameCore.TargetClass.armored), GameCore.Scope.driven, GameCore.Change.plus(10.0))]",
+      "kind" : "longbow",
+      "level" : 7,
+      "perk" : "longbowAPShells",
+      "slot" : "other",
+      "title" : "AP shells"
+    },
+    {
+      "effect" : "Every Longbow fires 10% faster.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.fireRate, GameCore.Scope.every, GameCore.Change.percent(0.1))]",
+      "kind" : "longbow",
+      "level" : 8,
+      "perk" : "longbowDrilledCrews",
+      "slot" : "one",
+      "title" : "Drilled crews"
+    },
+    {
+      "effect" : "Longbows cost 10% less.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.unitCost(GameCore.Unit.Kind.longbow), GameCore.Scope.team, GameCore.Change.percent(-0.1))]",
+      "kind" : "longbow",
+      "level" : 8,
+      "perk" : "longbowCheapHull",
+      "slot" : "other",
+      "title" : "Cheap hull"
+    },
+    {
+      "effect" : "Anchors and unanchors at once.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.anchor, GameCore.Scope.driven, GameCore.Change.times(inf))]",
+      "kind" : "longbow",
+      "level" : 9,
+      "perk" : "longbowHullDown",
+      "slot" : "one",
+      "title" : "Hull down"
+    },
+    {
+      "effect" : "The team's Foundries build 20% faster.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.production(GameCore.Structure.Kind.foundry), GameCore.Scope.team, GameCore.Change.percent(0.2))]",
+      "kind" : "longbow",
+      "level" : 9,
+      "perk" : "longbowHeavyIndustry",
+      "slot" : "other",
+      "title" : "Heavy industry"
+    },
+    {
+      "effect" : "Nearby Longbows do 50% more damage.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.damage, GameCore.Scope.nearby, GameCore.Change.percent(0.5))]",
+      "kind" : "longbow",
+      "level" : 10,
+      "perk" : "longbowArtilleryPark",
+      "slot" : "one",
+      "title" : "Artillery park"
+    },
+    {
+      "effect" : "An 80 hp shield takes hits first; it refills over 10 s after 7 s without a hit.",
+      "effects" : "[GameCore.Effect.shield(GameCore.Shield(hp: 80.0, delay: 7.0, refill: 10.0))]",
+      "kind" : "longbow",
+      "level" : 10,
+      "perk" : "longbowShield",
+      "slot" : "other",
+      "title" : "Shield"
+    },
+    {
+      "effect" : "Nearby Kestrels fire 10% faster.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.fireRate, GameCore.Scope.nearby, GameCore.Change.percent(0.1))]",
+      "kind" : "kestrel",
+      "level" : 2,
+      "perk" : "kestrelWingman",
+      "slot" : "one",
+      "title" : "Wingman"
+    },
+    {
+      "effect" : "Every Kestrel flies 15% faster.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.speed, GameCore.Scope.every, GameCore.Change.percent(0.15))]",
+      "kind" : "kestrel",
+      "level" : 2,
+      "perk" : "kestrelAfterburners",
+      "slot" : "other",
+      "title" : "Afterburners"
+    },
+    {
+      "effect" : "Every Kestrel sees 20% farther.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.sight, GameCore.Scope.every, GameCore.Change.percent(0.2))]",
+      "kind" : "kestrel",
+      "level" : 3,
+      "perk" : "kestrelKeenOptics",
+      "slot" : "one",
+      "title" : "Keen optics"
+    },
+    {
+      "effect" : "+60 hp and +1 armor.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.hp, GameCore.Scope.driven, GameCore.Change.plus(60.0)), GameCore.Effect.stat(GameCore.Stat.armor, GameCore.Scope.driven, GameCore.Change.plus(1.0))]",
+      "kind" : "kestrel",
+      "level" : 3,
+      "perk" : "kestrelArmorPlates",
+      "slot" : "other",
+      "title" : "Armor plates"
+    },
+    {
+      "effect" : "+40% damage, and nearby Kestrels +15%.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.damage, GameCore.Scope.driven, GameCore.Change.percent(0.25)), GameCore.Effect.stat(GameCore.Stat.damage, GameCore.Scope.nearby, GameCore.Change.percent(0.15))]",
+      "kind" : "kestrel",
+      "level" : 4,
+      "perk" : "kestrelHellfire",
+      "slot" : "one",
+      "title" : "Hellfire"
+    },
+    {
+      "effect" : "+1 range.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.range, GameCore.Scope.driven, GameCore.Change.plus(1.0))]",
+      "kind" : "kestrel",
+      "level" : 4,
+      "perk" : "kestrelLongRails",
+      "slot" : "other",
+      "title" : "Long rails"
+    },
+    {
+      "effect" : "Mends itself 3 hp a second after 5 s without a hit.",
+      "effects" : "[GameCore.Effect.selfMend(hpPerSecond: 3.0, delay: 5.0)]",
+      "kind" : "kestrel",
+      "level" : 5,
+      "perk" : "kestrelFieldRepairs",
+      "slot" : "one",
+      "title" : "Field repairs"
+    },
+    {
+      "effect" : "Friendly machines within 6 cells mend 1 hp a second.",
+      "effects" : "[GameCore.Effect.aura(GameCore.Aura(hpPerSecond: 1.0, radius: 6.0, filter: GameCore.Filter.machines))]",
+      "kind" : "kestrel",
+      "level" : 5,
+      "perk" : "kestrelMechanic",
+      "slot" : "other",
+      "title" : "Mechanic"
+    },
+    {
+      "effect" : "Nearby Kestrels fire 25% faster.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.fireRate, GameCore.Scope.nearby, GameCore.Change.percent(0.25))]",
+      "kind" : "kestrel",
+      "level" : 6,
+      "perk" : "kestrelSquadron",
+      "slot" : "one",
+      "title" : "Squadron"
+    },
+    {
+      "effect" : "Every Kestrel does 30% more damage to light units.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.damageVs(GameCore.TargetClass.light), GameCore.Scope.every, GameCore.Change.percent(0.3))]",
+      "kind" : "kestrel",
+      "level" : 6,
+      "perk" : "kestrelWorkerHunter",
+      "slot" : "other",
+      "title" : "Worker hunter"
+    },
+    {
+      "effect" : "Every third salvo does double damage.",
+      "effects" : "[GameCore.Effect.everyThird(GameCore.Action.attack)]",
+      "kind" : "kestrel",
+      "level" : 7,
+      "perk" : "kestrelDoubleSalvo",
+      "slot" : "one",
+      "title" : "Double salvo"
+    },
+    {
+      "effect" : "Its rockets ignore armor and do +4 against armored.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.ignoresArmor, GameCore.Scope.driven, GameCore.Change.plus(1.0)), GameCore.Effect.stat(GameCore.Stat.damageVs(GameCore.TargetClass.armored), GameCore.Scope.driven, GameCore.Change.plus(4.0))]",
+      "kind" : "kestrel",
+      "level" : 7,
+      "perk" : "kestrelAPRockets",
+      "slot" : "other",
+      "title" : "AP rockets"
+    },
+    {
+      "effect" : "Every Kestrel fires 10% faster.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.fireRate, GameCore.Scope.every, GameCore.Change.percent(0.1))]",
+      "kind" : "kestrel",
+      "level" : 8,
+      "perk" : "kestrelFlightDrill",
+      "slot" : "one",
+      "title" : "Flight drill"
+    },
+    {
+      "effect" : "Kestrels cost 10% less.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.unitCost(GameCore.Unit.Kind.kestrel), GameCore.Scope.team, GameCore.Change.percent(-0.1))]",
+      "kind" : "kestrel",
+      "level" : 8,
+      "perk" : "kestrelCheapAirframe",
+      "slot" : "other",
+      "title" : "Cheap airframe"
+    },
+    {
+      "effect" : "The ability key gives 2 s at double speed, every 15 s.",
+      "effects" : "[GameCore.Effect.burst(GameCore.Burst(seconds: 2.0, cooldown: 15.0, speed: 1.0, fireRate: 0.0, hpCost: 0.0))]",
+      "kind" : "kestrel",
+      "level" : 9,
+      "perk" : "kestrelAfterburn",
+      "slot" : "one",
+      "title" : "Afterburn"
+    },
+    {
+      "effect" : "Each of its kills gives the team 10% of the victim's cost.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.bounty, GameCore.Scope.driven, GameCore.Change.plus(0.1))]",
+      "kind" : "kestrel",
+      "level" : 9,
+      "perk" : "kestrelBountyHunter",
+      "slot" : "other",
+      "title" : "Bounty hunter"
+    },
+    {
+      "effect" : "Nearby Kestrels do 50% more damage.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.damage, GameCore.Scope.nearby, GameCore.Change.percent(0.5))]",
+      "kind" : "kestrel",
+      "level" : 10,
+      "perk" : "kestrelStrikeWing",
+      "slot" : "one",
+      "title" : "Strike wing"
+    },
+    {
+      "effect" : "A 60 hp shield takes hits first; it refills over 10 s after 7 s without a hit.",
+      "effects" : "[GameCore.Effect.shield(GameCore.Shield(hp: 60.0, delay: 7.0, refill: 10.0))]",
+      "kind" : "kestrel",
+      "level" : 10,
+      "perk" : "kestrelShield",
+      "slot" : "other",
+      "title" : "Shield"
+    },
+    {
+      "effect" : "Nearby Hailstorms fire 10% faster.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.fireRate, GameCore.Scope.nearby, GameCore.Change.percent(0.1))]",
+      "kind" : "hailstorm",
+      "level" : 2,
+      "perk" : "hailstormLoaders",
+      "slot" : "one",
+      "title" : "Loaders"
+    },
+    {
+      "effect" : "Every Hailstorm drives 15% faster.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.speed, GameCore.Scope.every, GameCore.Change.percent(0.15))]",
+      "kind" : "hailstorm",
+      "level" : 2,
+      "perk" : "hailstormTracks",
+      "slot" : "other",
+      "title" : "Tracks"
+    },
+    {
+      "effect" : "Every Hailstorm's flak splashes 20% wider.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.splash, GameCore.Scope.every, GameCore.Change.percent(0.2))]",
+      "kind" : "hailstorm",
+      "level" : 3,
+      "perk" : "hailstormWideBurst",
+      "slot" : "one",
+      "title" : "Wide burst"
+    },
+    {
+      "effect" : "+60 hp and +1 armor.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.hp, GameCore.Scope.driven, GameCore.Change.plus(60.0)), GameCore.Effect.stat(GameCore.Stat.armor, GameCore.Scope.driven, GameCore.Change.plus(1.0))]",
+      "kind" : "hailstorm",
+      "level" : 3,
+      "perk" : "hailstormArmorPlates",
+      "slot" : "other",
+      "title" : "Armor plates"
+    },
+    {
+      "effect" : "+40% damage, and nearby Hailstorms +15%.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.damage, GameCore.Scope.driven, GameCore.Change.percent(0.25)), GameCore.Effect.stat(GameCore.Stat.damage, GameCore.Scope.nearby, GameCore.Change.percent(0.15))]",
+      "kind" : "hailstorm",
+      "level" : 4,
+      "perk" : "hailstormProximityFuse",
+      "slot" : "one",
+      "title" : "Proximity fuse"
+    },
+    {
+      "effect" : "+1 range.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.range, GameCore.Scope.driven, GameCore.Change.plus(1.0))]",
+      "kind" : "hailstorm",
+      "level" : 4,
+      "perk" : "hailstormLongBarrels",
+      "slot" : "other",
+      "title" : "Long barrels"
+    },
+    {
+      "effect" : "Mends itself 3 hp a second after 5 s without a hit.",
+      "effects" : "[GameCore.Effect.selfMend(hpPerSecond: 3.0, delay: 5.0)]",
+      "kind" : "hailstorm",
+      "level" : 5,
+      "perk" : "hailstormCrewMechanic",
+      "slot" : "one",
+      "title" : "Crew mechanic"
+    },
+    {
+      "effect" : "Friendly machines within 6 cells mend 1 hp a second.",
+      "effects" : "[GameCore.Effect.aura(GameCore.Aura(hpPerSecond: 1.0, radius: 6.0, filter: GameCore.Filter.machines))]",
+      "kind" : "hailstorm",
+      "level" : 5,
+      "perk" : "hailstormMechanic",
+      "slot" : "other",
+      "title" : "Mechanic"
+    },
+    {
+      "effect" : "Nearby Hailstorms fire 25% faster.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.fireRate, GameCore.Scope.nearby, GameCore.Change.percent(0.25))]",
+      "kind" : "hailstorm",
+      "level" : 6,
+      "perk" : "hailstormFlakBattery",
+      "slot" : "one",
+      "title" : "Flak battery"
+    },
+    {
+      "effect" : "Every Hailstorm sees 30% farther.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.sight, GameCore.Scope.every, GameCore.Change.percent(0.3))]",
+      "kind" : "hailstorm",
+      "level" : 6,
+      "perk" : "hailstormSkyWatch",
+      "slot" : "other",
+      "title" : "Sky watch"
+    },
+    {
+      "effect" : "Every third burst does double damage.",
+      "effects" : "[GameCore.Effect.everyThird(GameCore.Action.attack)]",
+      "kind" : "hailstorm",
+      "level" : 7,
+      "perk" : "hailstormDoubleBurst",
+      "slot" : "one",
+      "title" : "Double burst"
+    },
+    {
+      "effect" : "Its flak ignores armor and does +4 against armored.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.ignoresArmor, GameCore.Scope.driven, GameCore.Change.plus(1.0)), GameCore.Effect.stat(GameCore.Stat.damageVs(GameCore.TargetClass.armored), GameCore.Scope.driven, GameCore.Change.plus(4.0))]",
+      "kind" : "hailstorm",
+      "level" : 7,
+      "perk" : "hailstormAPFlak",
+      "slot" : "other",
+      "title" : "AP flak"
+    },
+    {
+      "effect" : "Every Hailstorm fires 10% faster.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.fireRate, GameCore.Scope.every, GameCore.Change.percent(0.1))]",
+      "kind" : "hailstorm",
+      "level" : 8,
+      "perk" : "hailstormDrilledGunners",
+      "slot" : "one",
+      "title" : "Drilled gunners"
+    },
+    {
+      "effect" : "Hailstorms cost 10% less.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.unitCost(GameCore.Unit.Kind.hailstorm), GameCore.Scope.team, GameCore.Change.percent(-0.1))]",
+      "kind" : "hailstorm",
+      "level" : 8,
+      "perk" : "hailstormCheapChassis",
+      "slot" : "other",
+      "title" : "Cheap chassis"
+    },
+    {
+      "effect" : "Climbs up and down cliffs like a Comet.",
+      "effects" : "[GameCore.Effect.cliffJump]",
+      "kind" : "hailstorm",
+      "level" : 9,
+      "perk" : "hailstormWalkerLegs",
+      "slot" : "one",
+      "title" : "Walker legs"
+    },
+    {
+      "effect" : "The team's Foundries build 20% faster.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.production(GameCore.Structure.Kind.foundry), GameCore.Scope.team, GameCore.Change.percent(0.2))]",
+      "kind" : "hailstorm",
+      "level" : 9,
+      "perk" : "hailstormHeavyIndustry",
+      "slot" : "other",
+      "title" : "Heavy industry"
+    },
+    {
+      "effect" : "Nearby Hailstorms do 50% more damage.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.damage, GameCore.Scope.nearby, GameCore.Change.percent(0.5))]",
+      "kind" : "hailstorm",
+      "level" : 10,
+      "perk" : "hailstormFlakWall",
+      "slot" : "one",
+      "title" : "Flak wall"
+    },
+    {
+      "effect" : "A 60 hp shield takes hits first; it refills over 10 s after 7 s without a hit.",
+      "effects" : "[GameCore.Effect.shield(GameCore.Shield(hp: 60.0, delay: 7.0, refill: 10.0))]",
+      "kind" : "hailstorm",
+      "level" : 10,
+      "perk" : "hailstormShield",
+      "slot" : "other",
+      "title" : "Shield"
+    },
+    {
+      "effect" : "Nearby Peregrines fire 10% faster.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.fireRate, GameCore.Scope.nearby, GameCore.Change.percent(0.1))]",
+      "kind" : "peregrine",
+      "level" : 2,
+      "perk" : "peregrineWingmen",
+      "slot" : "one",
+      "title" : "Wingmen"
+    },
+    {
+      "effect" : "Every Peregrine flies 15% faster.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.speed, GameCore.Scope.every, GameCore.Change.percent(0.15))]",
+      "kind" : "peregrine",
+      "level" : 2,
+      "perk" : "peregrineThrusters",
+      "slot" : "other",
+      "title" : "Thrusters"
+    },
+    {
+      "effect" : "Every Peregrine sees 20% farther.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.sight, GameCore.Scope.every, GameCore.Change.percent(0.2))]",
+      "kind" : "peregrine",
+      "level" : 3,
+      "perk" : "peregrineLongRangeRadar",
+      "slot" : "one",
+      "title" : "Long-range radar"
+    },
+    {
+      "effect" : "+40 hp and +1 armor.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.hp, GameCore.Scope.driven, GameCore.Change.plus(40.0)), GameCore.Effect.stat(GameCore.Stat.armor, GameCore.Scope.driven, GameCore.Change.plus(1.0))]",
+      "kind" : "peregrine",
+      "level" : 3,
+      "perk" : "peregrineArmorPlates",
+      "slot" : "other",
+      "title" : "Armor plates"
+    },
+    {
+      "effect" : "+25% damage, and nearby Peregrines +15%.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.damage, GameCore.Scope.driven, GameCore.Change.percent(0.25)), GameCore.Effect.stat(GameCore.Stat.damage, GameCore.Scope.nearby, GameCore.Change.percent(0.15))]",
+      "kind" : "peregrine",
+      "level" : 4,
+      "perk" : "peregrineSeekerHeads",
+      "slot" : "one",
+      "title" : "Seeker heads"
+    },
+    {
+      "effect" : "+1 range.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.range, GameCore.Scope.driven, GameCore.Change.plus(1.0))]",
+      "kind" : "peregrine",
+      "level" : 4,
+      "perk" : "peregrineLongRails",
+      "slot" : "other",
+      "title" : "Long rails"
+    },
+    {
+      "effect" : "Mends itself 3 hp a second after 5 s without a hit.",
+      "effects" : "[GameCore.Effect.selfMend(hpPerSecond: 3.0, delay: 5.0)]",
+      "kind" : "peregrine",
+      "level" : 5,
+      "perk" : "peregrineFieldRepairs",
+      "slot" : "one",
+      "title" : "Field repairs"
+    },
+    {
+      "effect" : "Friendly flyers within 6 cells take 10% less damage.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.damageTaken, GameCore.Scope.around(GameCore.Filter.air), GameCore.Change.percent(-0.1))]",
+      "kind" : "peregrine",
+      "level" : 5,
+      "perk" : "peregrineEscort",
+      "slot" : "other",
+      "title" : "Escort"
+    },
+    {
+      "effect" : "Nearby Peregrines fire 25% faster.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.fireRate, GameCore.Scope.nearby, GameCore.Change.percent(0.25))]",
+      "kind" : "peregrine",
+      "level" : 6,
+      "perk" : "peregrinePackHunters",
+      "slot" : "one",
+      "title" : "Pack hunters"
+    },
+    {
+      "effect" : "Every Peregrine does 30% more damage to armored units.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.damageVs(GameCore.TargetClass.armored), GameCore.Scope.every, GameCore.Change.percent(0.3))]",
+      "kind" : "peregrine",
+      "level" : 6,
+      "perk" : "peregrineGunshipKiller",
+      "slot" : "other",
+      "title" : "Gunship killer"
+    },
+    {
+      "effect" : "Every third volley does double damage.",
+      "effects" : "[GameCore.Effect.everyThird(GameCore.Action.attack)]",
+      "kind" : "peregrine",
+      "level" : 7,
+      "perk" : "peregrineDoubleVolley",
+      "slot" : "one",
+      "title" : "Double volley"
+    },
+    {
+      "effect" : "Its missiles ignore armor and do +4 against armored.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.ignoresArmor, GameCore.Scope.driven, GameCore.Change.plus(1.0)), GameCore.Effect.stat(GameCore.Stat.damageVs(GameCore.TargetClass.armored), GameCore.Scope.driven, GameCore.Change.plus(4.0))]",
+      "kind" : "peregrine",
+      "level" : 7,
+      "perk" : "peregrineAPMissiles",
+      "slot" : "other",
+      "title" : "AP missiles"
+    },
+    {
+      "effect" : "Every Peregrine fires 10% faster.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.fireRate, GameCore.Scope.every, GameCore.Change.percent(0.1))]",
+      "kind" : "peregrine",
+      "level" : 8,
+      "perk" : "peregrineFlightSchool",
+      "slot" : "one",
+      "title" : "Flight school"
+    },
+    {
+      "effect" : "Peregrines cost 10% less.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.unitCost(GameCore.Unit.Kind.peregrine), GameCore.Scope.team, GameCore.Change.percent(-0.1))]",
+      "kind" : "peregrine",
+      "level" : 8,
+      "perk" : "peregrineCheapAirframe",
+      "slot" : "other",
+      "title" : "Cheap airframe"
+    },
+    {
+      "effect" : "The ability key gives 2 s at double speed, every 15 s.",
+      "effects" : "[GameCore.Effect.burst(GameCore.Burst(seconds: 2.0, cooldown: 15.0, speed: 1.0, fireRate: 0.0, hpCost: 0.0))]",
+      "kind" : "peregrine",
+      "level" : 9,
+      "perk" : "peregrineAfterburn",
+      "slot" : "one",
+      "title" : "Afterburn"
+    },
+    {
+      "effect" : "Each of its kills gives the team 10% of the victim's cost.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.bounty, GameCore.Scope.driven, GameCore.Change.plus(0.1))]",
+      "kind" : "peregrine",
+      "level" : 9,
+      "perk" : "peregrineBountyHunter",
+      "slot" : "other",
+      "title" : "Bounty hunter"
+    },
+    {
+      "effect" : "Nearby Peregrines do 50% more damage.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.damage, GameCore.Scope.nearby, GameCore.Change.percent(0.5))]",
+      "kind" : "peregrine",
+      "level" : 10,
+      "perk" : "peregrineAirSuperiority",
+      "slot" : "one",
+      "title" : "Air superiority"
+    },
+    {
+      "effect" : "A 40 hp shield takes hits first; it refills over 10 s after 7 s without a hit.",
+      "effects" : "[GameCore.Effect.shield(GameCore.Shield(hp: 40.0, delay: 7.0, refill: 10.0))]",
+      "kind" : "peregrine",
+      "level" : 10,
+      "perk" : "peregrineShield",
+      "slot" : "other",
+      "title" : "Shield"
+    },
+    {
+      "effect" : "Fires 15% faster.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.fireRate, GameCore.Scope.driven, GameCore.Change.percent(0.15))]",
+      "kind" : "atlas",
+      "level" : 2,
+      "perk" : "atlasAutoloader",
+      "slot" : "one",
+      "title" : "Autoloader"
+    },
+    {
+      "effect" : "Every Atlas walks 15% faster.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.speed, GameCore.Scope.every, GameCore.Change.percent(0.15))]",
+      "kind" : "atlas",
+      "level" : 2,
+      "perk" : "atlasServoLegs",
+      "slot" : "other",
+      "title" : "Servo legs"
+    },
+    {
+      "effect" : "Every Atlas sees 20% farther.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.sight, GameCore.Scope.every, GameCore.Change.percent(0.2))]",
+      "kind" : "atlas",
+      "level" : 3,
+      "perk" : "atlasRangefinder",
+      "slot" : "one",
+      "title" : "Rangefinder"
+    },
+    {
+      "effect" : "+100 hp and +1 armor.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.hp, GameCore.Scope.driven, GameCore.Change.plus(100.0)), GameCore.Effect.stat(GameCore.Stat.armor, GameCore.Scope.driven, GameCore.Change.plus(1.0))]",
+      "kind" : "atlas",
+      "level" : 3,
+      "perk" : "atlasArmorPlates",
+      "slot" : "other",
+      "title" : "Armor plates"
+    },
+    {
+      "effect" : "+25% damage.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.damage, GameCore.Scope.driven, GameCore.Change.percent(0.25))]",
+      "kind" : "atlas",
+      "level" : 4,
+      "perk" : "atlasHeavyShells",
+      "slot" : "one",
+      "title" : "Heavy shells"
+    },
+    {
+      "effect" : "+1 range.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.range, GameCore.Scope.driven, GameCore.Change.plus(1.0))]",
+      "kind" : "atlas",
+      "level" : 4,
+      "perk" : "atlasLongBarrels",
+      "slot" : "other",
+      "title" : "Long barrels"
+    },
+    {
+      "effect" : "Mends itself 5 hp a second after 5 s without a hit.",
+      "effects" : "[GameCore.Effect.selfMend(hpPerSecond: 5.0, delay: 5.0)]",
+      "kind" : "atlas",
+      "level" : 5,
+      "perk" : "atlasCrewMechanic",
+      "slot" : "one",
+      "title" : "Crew mechanic"
+    },
+    {
+      "effect" : "Friendly machines within 6 cells mend 2 hp a second.",
+      "effects" : "[GameCore.Effect.aura(GameCore.Aura(hpPerSecond: 2.0, radius: 6.0, filter: GameCore.Filter.machines))]",
+      "kind" : "atlas",
+      "level" : 5,
+      "perk" : "atlasMechanic",
+      "slot" : "other",
+      "title" : "Mechanic"
+    },
+    {
+      "effect" : "Friendly units within 6 cells take 10% less damage.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.damageTaken, GameCore.Scope.around(GameCore.Filter.all), GameCore.Change.percent(-0.1))]",
+      "kind" : "atlas",
+      "level" : 6,
+      "perk" : "atlasBulwark",
+      "slot" : "one",
+      "title" : "Bulwark"
+    },
+    {
+      "effect" : "Every Atlas's splash reaches 25% wider.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.splash, GameCore.Scope.every, GameCore.Change.percent(0.25))]",
+      "kind" : "atlas",
+      "level" : 6,
+      "perk" : "atlasWideShells",
+      "slot" : "other",
+      "title" : "Wide shells"
+    },
+    {
+      "effect" : "Every third volley does double damage.",
+      "effects" : "[GameCore.Effect.everyThird(GameCore.Action.attack)]",
+      "kind" : "atlas",
+      "level" : 7,
+      "perk" : "atlasDoubleVolley",
+      "slot" : "one",
+      "title" : "Double volley"
+    },
+    {
+      "effect" : "Its shells ignore armor and do +6 against armored.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.ignoresArmor, GameCore.Scope.driven, GameCore.Change.plus(1.0)), GameCore.Effect.stat(GameCore.Stat.damageVs(GameCore.TargetClass.armored), GameCore.Scope.driven, GameCore.Change.plus(6.0))]",
+      "kind" : "atlas",
+      "level" : 7,
+      "perk" : "atlasAPShells",
+      "slot" : "other",
+      "title" : "AP shells"
+    },
+    {
+      "effect" : "Its Quake stomp does 50% more damage and reaches 1 cell farther.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.stomp, GameCore.Scope.driven, GameCore.Change.percent(0.5)), GameCore.Effect.stat(GameCore.Stat.stomp, GameCore.Scope.driven, GameCore.Change.plus(1.0))]",
+      "kind" : "atlas",
+      "level" : 8,
+      "perk" : "atlasAftershock",
+      "slot" : "one",
+      "title" : "Aftershock"
+    },
+    {
+      "effect" : "Atlases cost 10% less.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.unitCost(GameCore.Unit.Kind.atlas), GameCore.Scope.team, GameCore.Change.percent(-0.1))]",
+      "kind" : "atlas",
+      "level" : 8,
+      "perk" : "atlasCheapFrame",
+      "slot" : "other",
+      "title" : "Cheap frame"
+    },
+    {
+      "effect" : "The team's Foundries build 20% faster.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.production(GameCore.Structure.Kind.foundry), GameCore.Scope.team, GameCore.Change.percent(0.2))]",
+      "kind" : "atlas",
+      "level" : 9,
+      "perk" : "atlasHeavyIndustry",
+      "slot" : "one",
+      "title" : "Heavy industry"
+    },
+    {
+      "effect" : "Its cannons also fire at flyers, at half damage.",
+      "effects" : "[GameCore.Effect.hitsAir(share: 0.5)]",
+      "kind" : "atlas",
+      "level" : 9,
+      "perk" : "atlasFlakMount",
+      "slot" : "other",
+      "title" : "Flak mount"
+    },
+    {
+      "effect" : "Friendly units within 6 cells move 15% faster.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.speed, GameCore.Scope.around(GameCore.Filter.all), GameCore.Change.percent(0.15))]",
+      "kind" : "atlas",
+      "level" : 10,
+      "perk" : "atlasWarMarch",
+      "slot" : "one",
+      "title" : "War march"
+    },
+    {
+      "effect" : "A 150 hp shield takes hits first; it refills over 10 s after 7 s without a hit.",
+      "effects" : "[GameCore.Effect.shield(GameCore.Shield(hp: 150.0, delay: 7.0, refill: 10.0))]",
+      "kind" : "atlas",
+      "level" : 10,
+      "perk" : "atlasShield",
+      "slot" : "other",
+      "title" : "Shield"
+    },
+    {
+      "effect" : "Every Scorpion buries and digs out 50% faster.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.buryTime, GameCore.Scope.every, GameCore.Change.percent(0.5))]",
+      "kind" : "scorpion",
+      "level" : 2,
+      "perk" : "scorpionQuickDig",
+      "slot" : "one",
+      "title" : "Quick dig"
+    },
+    {
+      "effect" : "Every Scorpion crawls 15% faster.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.speed, GameCore.Scope.every, GameCore.Change.percent(0.15))]",
+      "kind" : "scorpion",
+      "level" : 2,
+      "perk" : "scorpionLightFrame",
+      "slot" : "other",
+      "title" : "Light frame"
+    },
+    {
+      "effect" : "Every Scorpion sees 20% farther.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.sight, GameCore.Scope.every, GameCore.Change.percent(0.2))]",
+      "kind" : "scorpion",
+      "level" : 3,
+      "perk" : "scorpionSeismicSense",
+      "slot" : "one",
+      "title" : "Seismic sense"
+    },
+    {
+      "effect" : "+40 hp and +1 armor.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.hp, GameCore.Scope.driven, GameCore.Change.plus(40.0)), GameCore.Effect.stat(GameCore.Stat.armor, GameCore.Scope.driven, GameCore.Change.plus(1.0))]",
+      "kind" : "scorpion",
+      "level" : 3,
+      "perk" : "scorpionArmorPlates",
+      "slot" : "other",
+      "title" : "Armor plates"
+    },
+    {
+      "effect" : "+25% damage, and nearby Scorpions +15%.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.damage, GameCore.Scope.driven, GameCore.Change.percent(0.25)), GameCore.Effect.stat(GameCore.Stat.damage, GameCore.Scope.nearby, GameCore.Change.percent(0.15))]",
+      "kind" : "scorpion",
+      "level" : 4,
+      "perk" : "scorpionHeavyCharge",
+      "slot" : "one",
+      "title" : "Heavy charge"
+    },
+    {
+      "effect" : "+1 range.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.range, GameCore.Scope.driven, GameCore.Change.plus(1.0))]",
+      "kind" : "scorpion",
+      "level" : 4,
+      "perk" : "scorpionLongTail",
+      "slot" : "other",
+      "title" : "Long tail"
+    },
+    {
+      "effect" : "Mends itself 3 hp a second after 5 s without a hit.",
+      "effects" : "[GameCore.Effect.selfMend(hpPerSecond: 3.0, delay: 5.0)]",
+      "kind" : "scorpion",
+      "level" : 5,
+      "perk" : "scorpionFieldRepairs",
+      "slot" : "one",
+      "title" : "Field repairs"
+    },
+    {
+      "effect" : "Buried, enemies see it only within 1 cell.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.revealRange, GameCore.Scope.driven, GameCore.Change.plus(-1.0))]",
+      "kind" : "scorpion",
+      "level" : 5,
+      "perk" : "scorpionDeepBurrow",
+      "slot" : "other",
+      "title" : "Deep burrow"
+    },
+    {
+      "effect" : "Every Scorpion reloads 20% faster.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.fireRate, GameCore.Scope.every, GameCore.Change.percent(0.2))]",
+      "kind" : "scorpion",
+      "level" : 6,
+      "perk" : "scorpionQuickReload",
+      "slot" : "one",
+      "title" : "Quick reload"
+    },
+    {
+      "effect" : "Every Scorpion does 30% more damage to light units.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.damageVs(GameCore.TargetClass.light), GameCore.Scope.every, GameCore.Change.percent(0.3))]",
+      "kind" : "scorpion",
+      "level" : 6,
+      "perk" : "scorpionWorkerHunter",
+      "slot" : "other",
+      "title" : "Worker hunter"
+    },
+    {
+      "effect" : "Its sting ignores armor and does +10 against armored.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.ignoresArmor, GameCore.Scope.driven, GameCore.Change.plus(1.0)), GameCore.Effect.stat(GameCore.Stat.damageVs(GameCore.TargetClass.armored), GameCore.Scope.driven, GameCore.Change.plus(10.0))]",
+      "kind" : "scorpion",
+      "level" : 7,
+      "perk" : "scorpionShapedCharge",
+      "slot" : "one",
+      "title" : "Shaped charge"
+    },
+    {
+      "effect" : "Its strike hits a second target within 2 cells of the first.",
+      "effects" : "[GameCore.Effect.secondTarget(radius: 2.0)]",
+      "kind" : "scorpion",
+      "level" : 7,
+      "perk" : "scorpionTwinSting",
+      "slot" : "other",
+      "title" : "Twin sting"
+    },
+    {
+      "effect" : "Every Scorpion reloads 10% faster.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.fireRate, GameCore.Scope.every, GameCore.Change.percent(0.1))]",
+      "kind" : "scorpion",
+      "level" : 8,
+      "perk" : "scorpionMinefieldDrill",
+      "slot" : "one",
+      "title" : "Minefield drill"
+    },
+    {
+      "effect" : "Scorpions cost 10% less.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.unitCost(GameCore.Unit.Kind.scorpion), GameCore.Scope.team, GameCore.Change.percent(-0.1))]",
+      "kind" : "scorpion",
+      "level" : 8,
+      "perk" : "scorpionCheapShell",
+      "slot" : "other",
+      "title" : "Cheap shell"
+    },
+    {
+      "effect" : "Its sting also hits buildings, at half damage.",
+      "effects" : "[GameCore.Effect.hitsBuildings(share: 0.5)]",
+      "kind" : "scorpion",
+      "level" : 9,
+      "perk" : "scorpionSapper",
+      "slot" : "one",
+      "title" : "Sapper"
+    },
+    {
+      "effect" : "Each of its kills gives the team 10% of the victim's cost.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.bounty, GameCore.Scope.driven, GameCore.Change.plus(0.1))]",
+      "kind" : "scorpion",
+      "level" : 9,
+      "perk" : "scorpionBountyHunter",
+      "slot" : "other",
+      "title" : "Bounty hunter"
+    },
+    {
+      "effect" : "Nearby Scorpions do 50% more damage.",
+      "effects" : "[GameCore.Effect.stat(GameCore.Stat.damage, GameCore.Scope.nearby, GameCore.Change.percent(0.5))]",
+      "kind" : "scorpion",
+      "level" : 10,
+      "perk" : "scorpionNest",
+      "slot" : "one",
+      "title" : "Nest"
+    },
+    {
+      "effect" : "A 40 hp shield takes hits first; it refills over 10 s after 7 s without a hit.",
+      "effects" : "[GameCore.Effect.shield(GameCore.Shield(hp: 40.0, delay: 7.0, refill: 10.0))]",
+      "kind" : "scorpion",
+      "level" : 10,
+      "perk" : "scorpionShield",
+      "slot" : "other",
+      "title" : "Shield"
+    }
+  ],
+  "signature" : "0f7122f0c2cca793",
+  "xpToReach" : [
+    0,
+    0,
+    60,
+    180,
+    360,
+    600,
+    900,
+    1260,
+    1680,
+    2160,
+    2700,
+    2700
+  ]
+}

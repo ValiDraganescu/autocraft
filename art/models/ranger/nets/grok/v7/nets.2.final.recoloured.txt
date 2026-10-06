@@ -1,0 +1,63 @@
+sheet 2: nets.2.final.recoloured.png against nets.2.tinted.png
+layout: outline IoU 0.95
+kept: painted faces changed by 0/255 on average, 0% of pixels by more than 40
+painted over: the unpainted faces changed by 18/255 on average, 16% of their pixels by more than 30
+detail (local contrast inside faces): Grok's fill 12.9; turnaround's painted faces 21.0; clay 8.5
+worst layout: right pauldron seam light, upper 0.70; left pauldron seam light, upper 0.75; backpack light strip 0.79; rifle shroud light 0.79; chest light strip 0.81
+tone inside the faces by the material parts.txt names (mean brightness 0-255):
+  bright steel   Grok  74  turnaround  76  (4 nets, 72-76)
+  blue paint     Grok  82  turnaround  90  (1 nets, 82-82)
+  dark gunmetal  Grok  92  turnaround  87  (18 nets, 85-99)
+  gunmetal       Grok  98  turnaround 136  (2 nets, 96-101)
+  silver         Grok 157  turnaround 132  (10 nets, 150-166)
+  glow           Grok 169  turnaround 111  (1 nets, 169-169)
+per net: name, material, layout IoU, brightness, local contrast, % of unpainted pixels changed by more than 30
+   0 pelvis core                        dark gunmetal 0.98    94  11.1   10%
+   1 groin plate                        silver        0.96   157  15.6    9%
+   2 hip tasset                         silver        0.94   163  10.8    4%
+   3 belly                              dark gunmetal 0.98    93  11.0   11%
+   5 chest light strip                  glow          0.81   nan   nan  nan%
+   6 pectoral edge bar                  dark gunmetal 0.92    93   2.2    0%
+   7 backpack                           silver        0.98   150  19.8   35%
+   8 backpack light strip               glow          0.79   nan   nan  nan%
+   9 collar base                        dark gunmetal 0.93    94   7.1    3%
+  10 collar plate                       silver        0.97   151  18.2    7%
+  11 helmet front                       silver        0.91   161  10.4   29%
+  12 helmet back                        silver        0.95   153   9.9   29%
+  13 shoulder ball joint                dark gunmetal 0.96    99   7.2   13%
+  16 left pauldron shell, top           blue paint    0.95   nan   nan  nan%
+  18 left pauldron seam light, upper    glow          0.75   nan   nan  nan%
+  20 pauldron hinge                     dark gunmetal 0.96    95  11.1    4%
+  23 right pauldron shell, top          blue paint    0.95   nan   nan  nan%
+  25 right pauldron seam light, upper   glow          0.70   nan   nan  nan%
+  26 upper arm                          silver        0.97   163  18.8   33%
+  27 elbow joint                        dark gunmetal 0.94    99   9.4   15%
+  28 forearm                            silver        0.94   151  25.8   57%
+  29 fist                               dark gunmetal 0.95    97  11.2    6%
+  30 knuckle guard                      bright steel  0.96    76   8.6    5%
+  31 shield strap                       dark gunmetal 0.94    88  17.7   11%
+  34 rifle barrel shroud                gunmetal      0.93   101  10.6    0%
+  35 rifle shroud light                 glow          0.79   nan   nan  nan%
+  36 rifle barrel                       dark gunmetal 0.94   nan  10.6    0%
+  37 rifle muzzle brake                 gunmetal      0.89   nan   5.8    0%
+  38 rifle under-barrel tube            bright steel  0.98   nan   nan  nan%
+  39 rifle top sight                    gunmetal      0.88   nan  23.4    0%
+  40 rifle magazine                     dark gunmetal 0.94    96   7.4    0%
+  41 rifle pistol grip                  dark gunmetal 0.93    85  20.3   15%
+  42 rifle stock                        gunmetal      0.93    96  10.8    4%
+  43 rifle butt plate                   dark gunmetal 0.93    89  16.8   10%
+  44 hip joint                          dark gunmetal 0.96    93   8.1    2%
+  45 hip joint cap                      bright steel  0.95    75   8.0    3%
+  46 thigh                              silver        0.98   166  16.0   28%
+  47 knee joint                         dark gunmetal 0.96    90   9.7    2%
+  48 knee joint cap                     bright steel  0.96    74   9.4    4%
+  49 knee plate                         blue paint    0.96    82   7.8    1%
+  50 shin                               silver        0.97   159  19.2   26%
+  51 shin light                         glow          0.81   nan   nan  nan%
+  52 shin light                         glow          0.91   169   3.2  100%
+  53 ankle joint                        dark gunmetal 0.96    89  10.9    6%
+  54 ankle joint cap                    bright steel  0.96    72  10.2    3%
+  55 boot                               dark gunmetal 0.96    91  14.2   23%
+  56 sole                               dark gunmetal 0.95    88  14.8   15%
+  57 sole rib                           dark gunmetal 0.89    89  28.1    0%
+wrote art/models/ranger/nets/grok/v7/nets.2.final.recoloured.check.png

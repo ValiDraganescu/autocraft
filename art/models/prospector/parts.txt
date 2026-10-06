@@ -1,0 +1,67 @@
+# Parts for the nets legend (model.sh nets): a tree path, spaces, the part's name, a colon, its surface.
+# Only the surface goes to Grok (no object words, see ranger/parts.txt). Paths as in nets.json; the build
+# order is Models+SCVHull.swift: root 0 the body, 1 and 2 the legs. A twin net takes whichever path is listed.
+0/0         waist ring: dark gunmetal
+0/1         skirt: gunmetal plating
+0/2         hull bell: deep blue painted armour plating
+0/3         hull band: gunmetal plating
+0/4         visor glass: glowing cyan light
+0/5         visor brow top: bright steel plating
+0/6         visor brow bottom: bright steel plating
+0/7         visor brow side: bright steel plating
+0/8         visor brow side: bright steel plating
+0/9         lamp base: dark gunmetal
+0/10        lamp housing: gunmetal plating
+0/11        lamp lens: glowing warm-white light
+0/12        shoulder drum: gunmetal plating
+0/13        shoulder cap: dark gunmetal
+0/16        back plate: dark gunmetal plating
+0/17        air canister: gunmetal plating
+0/18        canister cap: dark gunmetal
+0/23        right upper arm: gunmetal plating
+0/24        right elbow: dark gunmetal
+0/25/0      drill housing: deep blue painted armour plating
+0/25/1      drill rear cap: dark gunmetal
+0/25/2      drill ring: gunmetal plating
+0/25/3      drill collar: dark gunmetal
+0/25/4      torch barrel: bright steel
+0/25/5      torch nozzle: dark gunmetal
+0/25/6      torch clamp: dark gunmetal
+0/25/8/0    drill bit: bright steel
+0/25/8/1    drill flute: bright steel
+0/25/8/2    drill flute: bright steel
+0/25/8/3    drill flute: bright steel
+0/25/8/4    drill flute: bright steel
+0/25/8/5    drill flute: bright steel
+0/26/0      left upper arm: gunmetal plating
+0/28/0      forearm: gunmetal plating
+0/28/1      forearm plate: deep blue painted armour plating
+0/28/2      forearm piston: bright steel
+0/28/3/0    wrist collar: dark gunmetal
+0/28/3/1    palm: gunmetal plating
+0/28/3/2    palm top plate: deep blue painted armour plating
+0/28/3/3    palm face: dark gunmetal
+0/28/3/4    palm lamp: glowing amber light
+0/28/3/5    tine ram: bright steel
+0/28/3/6    ram cylinder: dark gunmetal
+0/28/3/7/0  tine knuckle: dark gunmetal
+0/28/3/7/1  tine pin: bright steel
+0/28/3/7/2  tine prong: gunmetal plating
+0/28/3/7/3  tine stripe: deep blue painted armour plating
+0/28/3/7/4  tine band: hazard yellow paint
+0/28/3/7/5  tine grip pad: dark gunmetal
+0/28/3/7/6/0 tine hook: dark gunmetal
+0/28/3/7/6/1 hook edge: bright steel
+0/28/3/11   sleeve: bright steel
+0/28/3/12   sleeve rail: dark gunmetal
+0/29        hose: dark ribbed rubber
+0/30        hose: dark ribbed rubber
+0/31        hose: dark ribbed rubber
+0/32        hose: dark ribbed rubber
+1/0         hip drum: dark gunmetal
+1/1         thigh: gunmetal plating
+1/2         knee drum: dark gunmetal
+1/3         shin: deep blue painted armour plating
+1/4         ankle: dark gunmetal
+1/5         boot: gunmetal plating
+1/6         toe cap: hazard yellow and black striped paint

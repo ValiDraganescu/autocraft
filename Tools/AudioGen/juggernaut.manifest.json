@@ -1,0 +1,106 @@
+{
+  "about": "The Juggernaut's own sounds. The voice (\"Autocraft Juggernaut\", made with Voice Design, eleven_ttv_v3) is a heavy-armoured grenadier, deep, gruff and deliberate but clipped and crisp on his helmet radio, well below the Ranger, the Comet and the Prospector; its lines go through comm.py like theirs. Ids match the game's sound names (sfx/<name>_<n>): vjuggernaut = reports in, juggernautdeath = death cry, breacher = both grenade launchers (one volley per shot, every 1.07 s, heard where the Juggernaut stands).",
+  "voices": {
+    "juggernaut": "PhPidPLBEvkREcdEXPKg"
+  },
+  "entries": [
+    {
+      "id": "vjuggernaut_1",
+      "kind": "say",
+      "voice": "juggernaut",
+      "text": "[gruff, deliberate, over a helmet radio] Heavy armor, reporting. Point me at something big.",
+      "fx": "comm"
+    },
+    {
+      "id": "vjuggernaut_2",
+      "kind": "say",
+      "voice": "juggernaut",
+      "text": "[low, unhurried] Launchers loaded. Nobody outruns a grenade.",
+      "fx": "comm"
+    },
+    {
+      "id": "vjuggernaut_3",
+      "kind": "say",
+      "voice": "juggernaut",
+      "text": "[calm, gritty] Plates sealed. I slow them down, you finish them.",
+      "fx": "comm"
+    },
+    {
+      "id": "vjuggernaut_4",
+      "kind": "say",
+      "voice": "juggernaut",
+      "text": "[slow, menacing] Grenadier on station. Send me the tanks.",
+      "fx": "comm"
+    },
+    {
+      "id": "juggernautdeath_1",
+      "kind": "say",
+      "voice": "juggernaut",
+      "text": "[pained, clipped] Plates cracked\u2014!",
+      "fx": "comm"
+    },
+    {
+      "id": "juggernautdeath_2",
+      "kind": "say",
+      "voice": "juggernaut",
+      "text": "[pained shout] Breached!",
+      "fx": "comm"
+    },
+    {
+      "id": "juggernautdeath_3",
+      "kind": "say",
+      "voice": "juggernaut",
+      "text": "[pained, clipped] Suit's gone!",
+      "fx": "comm"
+    },
+    {
+      "id": "juggernautdeath_4",
+      "kind": "say",
+      "voice": "juggernaut",
+      "text": "[gruff cry] Can't hold\u2014!",
+      "fx": "comm"
+    },
+    {
+      "id": "juggernautdeath_5",
+      "kind": "say",
+      "voice": "juggernaut",
+      "text": "[quick pained shout] Not now!",
+      "fx": "comm"
+    },
+    {
+      "id": "juggernautdeath_6",
+      "kind": "say",
+      "voice": "juggernaut",
+      "text": "[strained shout] I'm hit!",
+      "fx": "comm"
+    },
+    {
+      "id": "juggernautdeath_7",
+      "kind": "say",
+      "voice": "juggernaut",
+      "text": "[short sharp cry] I'm done!",
+      "fx": "comm"
+    },
+    {
+      "id": "breacher_1",
+      "kind": "sfx",
+      "prompt": "heavy sci-fi grenade launcher firing two rounds a split second apart, deep hollow thoomp thoomp, metallic clack of the breech, short rumbling tail, close up",
+      "seconds": 1.5,
+      "influence": 0.5
+    },
+    {
+      "id": "breacher_2",
+      "kind": "sfx",
+      "prompt": "loud twin arm-mounted grenade launchers on power armor fire almost together, two punchy pneumatic thumps, heavy mechanical recoil clank, deep boom tail, close up",
+      "seconds": 1.5,
+      "influence": 0.5
+    },
+    {
+      "id": "breacher_3",
+      "kind": "sfx",
+      "prompt": "two concussive grenade launches in quick succession, deep bassy whump and a hiss of propellant, armored metal clunk, brief echo",
+      "seconds": 1.5,
+      "influence": 0.5
+    }
+  ]
+}

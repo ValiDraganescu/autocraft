@@ -1,0 +1,93 @@
+{
+  "about": "The Dropship's own sounds. The voice (\"Autocraft Dropship\", made with Voice Design, eleven_ttv_v3) is the dropship's pilot, the roster's first woman: a calm, professional combat medic with a dry, deadpan humour, on her cockpit radio; its lines go through comm.py like the others'. Ids match the game's sound names (sfx/<name>_<n>): vdropship = reports in, dropshipdeath = her cry as it is shot down (the blast plays with it), heal = the heal beam, a seamless loop in your ear while a driven Dropship heals (the game loops only the first file), dropshipmove = a driven Dropship's engines as it pulls away (at most every 2 s, in your ear).",
+  "voices": {
+    "dropship": "cbwtR95UgWxxbiW95zI6"
+  },
+  "entries": [
+    {
+      "id": "vdropship_1",
+      "kind": "say",
+      "voice": "dropship",
+      "text": "[brisk, dry] Dropship up. Who is bleeding?",
+      "fx": "comm"
+    },
+    {
+      "id": "vdropship_2",
+      "kind": "say",
+      "voice": "dropship",
+      "text": "[crisp, professional] Evac bird is up. Form a line.",
+      "fx": "comm"
+    },
+    {
+      "id": "vdropship_3",
+      "kind": "say",
+      "voice": "dropship",
+      "text": "[deadpan] Flight medic up. Try not to need me.",
+      "fx": "comm"
+    },
+    {
+      "id": "vdropship_4",
+      "kind": "say",
+      "voice": "dropship",
+      "text": "[wry, clipped] Bandages ready. Climb aboard.",
+      "fx": "comm"
+    },
+    {
+      "id": "dropshipdeath_1",
+      "kind": "say",
+      "voice": "dropship",
+      "text": "[short sharp cry] Mayday!",
+      "fx": "comm"
+    },
+    {
+      "id": "dropshipdeath_2",
+      "kind": "say",
+      "voice": "dropship",
+      "text": "[quick pained shout] Going down!",
+      "fx": "comm"
+    },
+    {
+      "id": "dropshipdeath_3",
+      "kind": "say",
+      "voice": "dropship",
+      "text": "[pained, clipped] Engines out—!",
+      "fx": "comm"
+    },
+    {
+      "id": "dropshipdeath_4",
+      "kind": "say",
+      "voice": "dropship",
+      "text": "[short sharp cry] I'm hit!",
+      "fx": "comm"
+    },
+    {
+      "id": "heal_1",
+      "kind": "sfx",
+      "prompt": "continuous sci-fi tractor beam hum, soothing electronic drone with a light sparkle on top, steady, no rises or hits",
+      "seconds": 6,
+      "loop": true,
+      "influence": 0.5
+    },
+    {
+      "id": "dropshipmove_1",
+      "kind": "sfx",
+      "prompt": "VTOL dropship pulls away: twin jet engines spool up, turbine whine rising in pitch, a deep whoosh of thrust as it surges forward, heard from the cockpit",
+      "seconds": 2,
+      "influence": 0.5
+    },
+    {
+      "id": "dropshipmove_2",
+      "kind": "sfx",
+      "prompt": "VTOL dropship throttles up from a hover and pulls away: jet engines roar up at once with a rising turbine whine and a rush of thrust, heard from the cockpit",
+      "seconds": 2,
+      "influence": 0.5
+    },
+    {
+      "id": "dropshipmove_3",
+      "kind": "sfx",
+      "prompt": "medical evacuation gunship accelerates from a hover: turbofans rev up with a rising whine, rushing air, a low rumble of thrust, from inside the cabin",
+      "seconds": 2,
+      "influence": 0.5
+    }
+  ]
+}
