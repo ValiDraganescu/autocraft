@@ -146,7 +146,8 @@ void UAcPilotOverlaySubsystem::OnFrame(const FAcFrame& Frame)
 	}
 	const ac::Simulation& S = Sim->Simulation();
 	const TOptional<FAcPilotFrame> F = Pawn && Pawn->Driving() ? FAcPilotFrame::Of(S) : TOptional<FAcPilotFrame>();
-	if (!F || F->Unit.id != Pawn->Driven())
+	// -AcPilotPullOut: the camera has left the unit; the HUD goes with it.
+	if (!F || F->Unit.id != Pawn->Driven() || Pawn->PulledOut())
 	{
 		if (DrivenId != INDEX_NONE)
 		{

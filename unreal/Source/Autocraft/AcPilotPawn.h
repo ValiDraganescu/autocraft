@@ -77,6 +77,23 @@
 //                        into it, so the clip shows the top-down view and the
 //                        dive into the unit
 //   -AcPilotDive=S       the dive's length (ac.PilotDive)
+//   -AcPilotAt=enemy     a fresh KIND above the nearest enemy base instead:
+//                        on the walkable approach 20-26 cells out whose
+//                        ground falls the most toward its Citadel over the
+//                        first 6 cells (a slope down to it), facing it
+//   -AcPilotAt=slope     on the top of the player's own ramp (its top
+//                        nearest the player's Citadel), facing down it
+//                        (with -AcPilotVariant=anchored: a Longbow anchored;
+//                        with -AcPilotDiveAt: put down as the game starts,
+//                        so the top-down view has it before the dive)
+//   -AcPilotAt=X,Y       a fresh KIND at that ground point (cells), facing
+//                        -AcPilotYaw (radians, default east)
+//   -AcPilotPullOut=S[,L] in a recording: S seconds after the take over the
+//                        camera leaves the eye and rises behind the unit,
+//                        turned to the gas giant, over L seconds (5); the
+//                        unit drawn, the cockpit and the pilot's HUD off
+//                        (`PulledOut()`), and the recording's UI with them
+//                        (-AcShotUI ends there). The drive goes on underneath.
 //   -AcPilotFor=S        hold an -AcShot until S game seconds after the take
 //                        over (the path runs meanwhile)
 //   -AcPilotYaw=RAD -AcPilotPitch=RAD   the view at the start
@@ -166,7 +183,9 @@ public:
 
 	/// The camera is still flying down into the unit (the dive): the unit
 	/// drawn, no cockpit.
-	bool InDive() const { return Dive.IsSet() && !Dive->bInside; }
+	bool InDive() const { return (Dive.IsSet() && !Dive->bInside) || PulledOut(); }
+	/// -AcPilotPullOut: the camera is out of the unit, on its way to the gas giant.
+	bool PulledOut() const { return PullOut.IsSet() && PullOut->bOutside; }
 	/// The eye (pitch, lean, third person) and the camera.
 	FAcPilotCamera& Eye() { return Cam; }
 	UCameraComponent* Camera() const { return CameraComponent; }
@@ -309,6 +328,28 @@ private:
 		bool bInside = false;
 	};
 	TOptional<FDive> Dive;
+	/// -AcPilotPullOut: when (seconds after the take over) and how long; the
+	/// camera's way out once it starts.
+	double ScriptPullOutAt = -1;
+	double ScriptPullOutFor = 5;
+	struct FPullOut
+	{
+		double Start = 0;
+		double Seconds = 5;
+		/// Away from the eye: the unit drawn, the cockpit and HUD off.
+		bool bOutside = false;
+	};
+	TOptional<FPullOut> PullOut;
+	void PullOutView(FVector& At, FQuat& Rot, const FVector& Body);
+	/// -AcPilotAt: a fresh unit of the kind at a staged place.
+	bool StageAt(ac::UnitKind Kind, const FString& Where);
+	/// Puts that unit down (not taken over yet); its id, or INDEX_NONE.
+	int64 PlaceAt(ac::UnitKind Kind, const FString& Where);
+	/// The -AcPilotAt unit, once put down (before the dive, so the top-down
+	/// view shows it).
+	int64 PlacedId = INDEX_NONE;
+	ac::Vec2 PlacedAt;
+	double PlacedHeading = 0;
 
 	// `pilotSounds`' memory.
 	TOptional<int64> LastStep;

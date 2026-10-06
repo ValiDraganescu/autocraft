@@ -19,7 +19,8 @@ public class Autocraft : ModuleRules
 			"RenderCore", "RHI",  // FAcPerf reads the render/RHI thread and GPU frame times
 			"AudioMixer", "AudioMixerCore", "NonRealtimeAudioRenderer",  // UAcAudioDirector records the mix (offline)
 			"ImageCore",  // UAcMusicPlayer draws covers
-			"ProceduralMeshComponent"  // AAcPilotAids: the driven unit's range ring
+			"ProceduralMeshComponent",  // AAcPilotAids: the driven unit's range ring
+			"MovieSceneCapture"  // UAcShotSubsystem: -AcShotRaw reads frames back with FFrameGrabber
 		});
 		if (Target.Platform == UnrealTargetPlatform.Mac)
 		{

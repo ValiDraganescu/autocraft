@@ -1,4 +1,5 @@
 #include "AcPilotPawn.h"
+#include "AcGasGiant.h"
 
 #include "AcHeadless.h"
 
@@ -178,6 +179,13 @@ void AAcPilotPawn::BeginPlay()
 	if (FParse::Value(Cmd, TEXT("AcPilot="), ScriptKind))
 	{
 		if (UAcShotSubsystem::IsRecordRun()) FParse::Value(Cmd, TEXT("AcPilotDiveAt="), ScriptDiveAt);
+		if (FString Out; UAcShotSubsystem::IsRecordRun() && FParse::Value(Cmd, TEXT("AcPilotPullOut="), Out))
+		{
+			FString At, For;
+			if (!Out.Split(TEXT(","), &At, &For)) At = Out;
+			ScriptPullOutAt = FCString::Atod(*At);
+			if (!For.IsEmpty()) ScriptPullOutFor = FMath::Max(0.5, FCString::Atod(*For));
+		}
 		bScriptStage = FParse::Param(Cmd, TEXT("AcPilotStage"));
 		FParse::Value(Cmd, TEXT("AcPilotVariant="), StageVariant);
 		FString Steps = TEXT("w:1.5,w+right:1.5,d:1,act:1");
@@ -445,6 +453,7 @@ void AAcPilotPawn::Leave()
 	const int64 Was = DrivenId;
 	DrivenId = INDEX_NONE;
 	Dive.Reset();
+	PullOut.Reset();
 	bHold = false;
 	bAbilityHeld = false;
 	MoveInput = FVector2D::ZeroVector;
@@ -888,6 +897,7 @@ void AAcPilotPawn::Follow(const FAcFrame& Frame)
 	FVector View = At;
 	FQuat ViewRot = Rot;
 	if (Dive) DiveView(View, ViewRot);
+	if (PullOut) PullOutView(View, ViewRot, Root.GetTranslation());
 	SetActorLocationAndRotation(View, ViewRot);
 	LastEye = At;
 	LastRotation = Rot;
@@ -896,7 +906,7 @@ void AAcPilotPawn::Follow(const FAcFrame& Frame)
 	// E4: the range ring and the fog veil round the unit; the gun marker.
 	// (The unit as the sim has it: its turret where it really points, not
 	// where the view follows the mouse.)
-	if (AAcPilotAids* Aids = AAcPilotAids::SpawnFor(GetWorld())) Aids->Update(AcPilotAim::RangeCue(S, *Found), Root.GetTranslation());
+	if (AAcPilotAids* Aids = AAcPilotAids::SpawnFor(GetWorld())) Aids->Update(PulledOut() ? TOptional<FAcRangeCue>() : AcPilotAim::RangeCue(S, *Found), Root.GetTranslation());
 	GunMark = AcPilotAim::GunMarker(S, *Found, At, Rot, FAcPilotCamera::FovDegrees, Chase.Eye() ? *Chase.Eye() : At, AimPoint());
 
 	// The hooks of the other chunks.
@@ -1038,9 +1048,13 @@ void AAcPilotPawn::Script(const double Dt)
 	{
 		// Wait for the renderer and the rays to have the world.
 		if (++ScriptFrames < 20) return;
-		// -AcPilotDiveAt: the recording shows the top-down view first.
+		// -AcPilotDiveAt: the recording shows the top-down view first
+		// (an -AcPilotAt unit already on the map).
 		if (ScriptDiveAt >= 0)
 		{
+			FString Where;
+			const std::optional<ac::UnitKind> Kind = ac::parse<ac::UnitKind>(TCHAR_TO_UTF8(*ScriptKind.ToLower()));
+			if (PlacedId == INDEX_NONE && Kind && FParse::Value(FCommandLine::Get(), TEXT("AcPilotAt="), Where, false)) PlacedId = PlaceAt(*Kind, Where);
 			const UAcShotSubsystem* Recorder = UAcShotSubsystem::Get(this);
 			const TOptional<double> Rolling = Recorder ? Recorder->GetRecordStart() : TOptional<double>();
 			if (!Rolling || GetWorld()->GetTimeSeconds() - *Rolling < ScriptDiveAt) return;
@@ -1070,6 +1084,15 @@ void AAcPilotPawn::Script(const double Dt)
 	// staged still is paused).
 	ScriptStart += Dt;
 	const double Since = ScriptStart;
+	// -AcPilotPullOut: the camera leaves the unit for the gas giant.
+	if (ScriptPullOutAt >= 0 && !PullOut && Since >= ScriptPullOutAt && Driving())
+	{
+		FPullOut P;
+		P.Start = GetWorld()->GetUnpausedTimeSeconds();
+		P.Seconds = ScriptPullOutFor;
+		PullOut = P;
+		UE_LOG(LogAutocraft, Log, TEXT("pilot: pull-out at t=%.2f over %.2f s"), Since, P.Seconds);
+	}
 
 	// The path: keys held for their seconds (game time).
 	// (-AcPilotLive: a staged still runs its path once the staging is over.)
@@ -1149,6 +1172,7 @@ bool AAcPilotPawn::StageScripted()
 	const std::optional<ac::UnitKind> Kind = ac::parse<ac::UnitKind>(TCHAR_TO_UTF8(*ScriptKind.ToLower()));
 	if (!Kind) return false;
 	if (bScriptStage) return StageFor(*Kind);
+	if (FString Where; FParse::Value(FCommandLine::Get(), TEXT("AcPilotAt="), Where, false)) return StageAt(*Kind, Where);
 	for (const ac::Unit& U : S.state.units)
 	{
 		if (U.kind == *Kind && AcPick::Drivable(U, ac::Pilot::player))
@@ -1218,6 +1242,36 @@ void AAcPilotPawn::DiveView(FVector& At, FQuat& Rot)
 	At = Pos;
 	Rot = FQuat::Slerp(Turned, Rot, FMath::SmoothStep(0.55, 1.0, T));
 	CameraComponent->SetFieldOfView(FMath::Lerp(Dive->FromFov, CameraComponent->FieldOfView, float(S)));
+}
+
+void AAcPilotPawn::PullOutView(FVector& At, FQuat& Rot, const FVector& Body)
+{
+	// From the eye up and back from the unit, away from the gas giant,
+	// turned to it: the unit low in the middle of the picture, the planet
+	// over the horizon. It drifts on slowly once there.
+	const double Since = GetWorld()->GetUnpausedTimeSeconds() - PullOut->Start;
+	const double T = FMath::Clamp(Since / PullOut->Seconds, 0.0, 1.0);
+	const double S = T * T * T * (T * (T * 6.0 - 15.0) + 10.0);
+	const FVector Giant = FAcGasGiant::Direction();
+	const FVector Back = -FVector(Giant.X, Giant.Y, 0).GetSafeNormal();
+	const double Drift = FMath::Max(0.0, Since - PullOut->Seconds);
+	const double Away = AcSpace::ToCm(14 + 0.6 * Drift), Up = AcSpace::ToCm(4 + 0.2 * Drift);
+	const FVector End = Body + Back * Away + FVector::UpVector * Up;
+	const FVector Pos = FMath::Lerp(At, End, S);
+	if (!PullOut->bOutside && (FVector::Dist(Pos, At) > AcSpace::ToCm(2.5) || T > 0.2))
+	{
+		// Out of the unit: the model on, the cockpit and the HUD off (the
+		// recording's whole UI too: the end of a video).
+		PullOut->bOutside = true;
+		ApplyView();
+		if (UAcShotSubsystem* Shot = UAcShotSubsystem::Get(this)) Shot->SetShowUI(false);
+		UE_LOG(LogAutocraft, Log, TEXT("pilot: pull-out: body %s, giant %s, to %s"), *Body.ToCompactString(), *Giant.ToCompactString(), *End.ToCompactString());
+	}
+	// Toward the giant, pitched so the unit sits 19 degrees under the middle.
+	FRotator Look = Giant.Rotation();
+	Look.Pitch = float(FMath::RadiansToDegrees(std::atan2(-Up, Away))) + 19.f;
+	At = Pos;
+	Rot = FQuat::Slerp(Rot, Look.Quaternion(), FMath::SmoothStep(0.0, 0.85, T));
 }
 
 void AAcPilotPawn::AimAt(const FVector& Target)

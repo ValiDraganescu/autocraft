@@ -10,8 +10,11 @@
     uv run .claude/skills/autocraft-video/scripts/record.py --list
 
 One hidden Unreal run per sim (UnrealEditorBG.app, -RenderOffscreen, no
--log): the game stages the sim from its flags, steps at a fixed 1/FPS, saves
-every frame as a PNG (`-AcShotRecord`, AcShot.h), and quits. With sound (the
+-log): the game stages the sim from its flags, steps at a fixed 1/FPS,
+streams every frame into a pipe as raw BGRA (`-AcShotRecord -AcShotRaw`,
+AcShot.h: read back from the GPU without stalling the render), and quits;
+FFmpeg encodes from the pipe while the game runs. `--png` saves every frame
+as a PNG instead (the old, several times slower way). With sound (the
 default) the same run renders the game's mix offline to a WAV
 (-deterministicaudio, -AcAudioRecord: the non-realtime mixer, nothing reaches
 the speakers; AcAudioDirector.h); without, the run has -nosound. FFmpeg then
@@ -27,6 +30,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import shutil
 import subprocess
@@ -88,7 +92,16 @@ def command(sim: dict, d: dict, frames: Path, log: Path) -> list[str]:
     return cmd
 
 
-def record(name: str, sim: dict, d: dict, out: Path) -> Path:
+def frame_count(ff: str, video: Path) -> int:
+    probe = str(Path(ff).with_name("ffprobe"))
+    if not Path(probe).exists():
+        probe = shutil.which("ffprobe") or "ffprobe"
+    out = subprocess.run([probe, "-v", "error", "-select_streams", "v:0", "-count_packets", "-show_entries",
+                          "stream=nb_read_packets", "-of", "csv=p=0", str(video)], capture_output=True, text=True)
+    return int(out.stdout.strip() or 0)
+
+
+def record(name: str, sim: dict, d: dict, out: Path, png: bool = False) -> Path:
     out.mkdir(parents=True, exist_ok=True)
     frames = REPO / "video/.frames" / name
     if frames.exists():
@@ -97,14 +110,35 @@ def record(name: str, sim: dict, d: dict, out: Path) -> Path:
     log = out / f"{name}.log"
     fps = sim.get("fps", d["fps"])
     t0 = time.time()
-    run = subprocess.run(command(sim, d, frames, log), stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=1800)
-    pngs = sorted(frames.glob("f_*.png"))
-    expected = round(sim.get("seconds", d["seconds"]) * fps)
-    if run.returncode != 0 or len(pngs) < expected:
-        sys.exit(f"record: {name}: exit {run.returncode}, {len(pngs)} of {expected} frames; read {log}")
-    mp4 = out / f"{name}.mp4"
     ff = ffmpeg()
-    video = ["-framerate", str(fps), "-i", str(frames / "f_%05d.png")]
+    w, h = sim.get("width", d["width"]), sim.get("height", d["height"])
+    expected = round(sim.get("seconds", d["seconds"]) * fps)
+    cmd = command(sim, d, frames, log)
+    encoder = None
+    if not png:
+        # The game writes raw frames into a pipe; FFmpeg encodes them as they come.
+        pipe = frames / "f.raw"
+        os.mkfifo(pipe)
+        encoder = subprocess.Popen([ff, "-y", "-loglevel", "error", "-f", "rawvideo", "-pix_fmt", "bgra", "-s", f"{w}x{h}",
+                                    "-framerate", str(fps), "-i", str(pipe), "-c:v", "libx264", "-pix_fmt", "yuv420p",
+                                    "-crf", "16", str(frames / "video.mp4")])
+        cmd.append(f"-AcShotRaw={pipe}")
+    run = subprocess.run(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=1800)
+    if encoder:
+        try:
+            encoder.wait(timeout=120 if run.returncode == 0 else 5)
+        except subprocess.TimeoutExpired:
+            # The game never opened the pipe (it failed before recording).
+            encoder.kill()
+            encoder.wait()
+        count = frame_count(ff, frames / "video.mp4") if (frames / "video.mp4").exists() else 0
+        video = ["-i", str(frames / "video.mp4")]
+    else:
+        count = len(sorted(frames.glob("f_*.png")))
+        video = ["-framerate", str(fps), "-i", str(frames / "f_%05d.png")]
+    if run.returncode != 0 or count < expected:
+        sys.exit(f"record: {name}: exit {run.returncode}, {count} of {expected} frames; read {log}")
+    mp4 = out / f"{name}.mp4"
     sound, note = [], "silent"
     wav = frames / "sound.wav"
     if wav.exists() and wav.stat().st_size > 44:
@@ -114,18 +148,21 @@ def record(name: str, sim: dict, d: dict, out: Path) -> Path:
         peak = re.search(r"audio: recorded .*peak ([\d.]+), rms ([-\d.]+) dBFS", text)
         offset = max(0.0, float(v.group(1)) - float(a.group(1))) if v and a else 0.0
         sound = ["-ss", f"{offset:.4f}", "-i", str(wav), "-map", "0:v", "-map", "1:a", "-c:a", "aac", "-b:a", "192k",
-                 "-t", f"{len(pngs) / fps:.4f}"]
+                 "-t", f"{count / fps:.4f}"]
         note = f"sound offset {offset:.3f} s" + (f", peak {peak.group(1)}, rms {peak.group(2)} dBFS" if peak else "")
     elif sim.get("sound", d.get("sound", True)):
         print(f"record: {name}: warning: no sound was written; the clip is silent (read {log})")
+    vcodec = ["-c:v", "copy"] if encoder else ["-c:v", "libx264", "-pix_fmt", "yuv420p", "-crf", "16"]
+    if encoder and not sound:
+        sound = ["-map", "0:v"]
     subprocess.run([ff, "-y", "-loglevel", "error", *video, *sound,
-                    "-c:v", "libx264", "-pix_fmt", "yuv420p", "-crf", "16", "-movflags", "+faststart", str(mp4)], check=True)
-    step = max(1, len(pngs) // 4)
+                    *vcodec, "-movflags", "+faststart", str(mp4)], check=True)
+    step = max(1, count // 4)
     subprocess.run([ff, "-y", "-loglevel", "error", "-i", str(mp4), "-vf",
                     f"select='not(mod(n\\,{step}))',scale=800:-1,tile=2x2", "-frames:v", "1", str(out / f"{name}-contact.png")], check=True)
     if mp4.stat().st_size > 0:
         shutil.rmtree(frames)
-    print(f"record: {name}: {mp4} ({len(pngs)} frames, {len(pngs) / fps:.1f} s, {note}, {mp4.stat().st_size / 1e6:.1f} MB, {time.time() - t0:.0f} s)")
+    print(f"record: {name}: {mp4} ({count} frames, {count / fps:.1f} s, {note}, {mp4.stat().st_size / 1e6:.1f} MB, {time.time() - t0:.0f} s)")
     return mp4
 
 
@@ -135,6 +172,7 @@ def main() -> None:
     ap.add_argument("--out", type=Path, default=REPO / "video/clips")
     ap.add_argument("--seconds", type=float, help="override every sim's length")
     ap.add_argument("--list", action="store_true")
+    ap.add_argument("--png", action="store_true", help="save PNG frames and encode after the run (the old, slower way)")
     a = ap.parse_args()
     d, sims = load()
     if a.list or not a.sims:
@@ -147,7 +185,7 @@ def main() -> None:
         sim = dict(sims[name])
         if a.seconds:
             sim["seconds"] = a.seconds
-        record(name, sim, d, a.out.resolve())
+        record(name, sim, d, a.out.resolve(), a.png)
 
 
 if __name__ == "__main__":

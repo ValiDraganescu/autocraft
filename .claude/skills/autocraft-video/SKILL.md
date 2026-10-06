@@ -29,7 +29,8 @@ A micro simulation is one short, staged moment of the real game: the game stages
 
 - Every run is hidden and silent to the room: `UnrealEditorBG.app`, `-RenderOffscreen`, no `-log` (`unreal/Tools/README.md`, "Hidden test runs"). The sound is rendered offline into a WAV (`-deterministicaudio -AcAudioRecord`: the non-realtime mixer, nothing reaches the speakers); a sim without sound runs with `-nosound`. `record.py` does this; never launch the game another way, never play sound out loud, and never relaunch the user's game or editor.
 - The game module must be built with `-AcShotRecord` (`unreal/Source/Autocraft/AcShot.h`). After a C++ change, build first (AGENTS.md); the hidden run loads the new module, the user's open editor does not.
-- One sim takes about 1 to 3.5 minutes at 1080p, depending on the machine's load. Run sims one at a time; the machine is shared.
+- The frames never touch the disk: the game reads each one back from the GPU without stalling the render and streams it as raw BGRA into a pipe (`-AcShotRaw`, AcShot.h), and FFmpeg encodes it while the game runs. A 10 s clip at 1080p takes about 25 s: ~9 s of start-up, the recording at about 40 fps, then the sound muxed in. `record.py --png` saves PNG frames instead (the old way, three to four times slower); use it only if the raw path breaks.
+- Run sims one at a time; the machine is shared.
 
 ## The kit
 
@@ -86,6 +87,8 @@ A new moment is a new row in `sims.json`:
 - `flags`: the game's own staging flags. The useful ones, with their docs:
   - `-AcPilot=KIND -AcPilotPath=w:1.5,w+right:1.5,act:2` drives a unit in first person (`AcPilotPawn.h`: keys `w a s d act right left up down ability next view leave wait`); add `-AcPilotThird` for third person.
   - `-AcPilotDiveAt=1` takes over 1 s into the recording: the clip opens on the RTS view and the camera dives into the unit (1.2 s; `-AcPilotDive=S` sets the length, `ac.PilotDive` in the game). Start its path with a short `wait:` so the unit stands still while the camera lands. `ranger-dive` is the example.
+  - `-AcPilotAt=slope|enemy|X,Y` puts a fresh unit down instead of taking the first one: `slope` on the top of the player's own ramp facing down it (the way out toward the enemy), `enemy` 20–26 cells from the nearest enemy Citadel facing it (a Longbow drives 2.4 s to be in anchored range), `X,Y` at a ground point facing `-AcPilotYaw`. `-AcPilotVariant=anchored` puts a Longbow down anchored. With `-AcPilotDiveAt` the unit is on the map before the dive. The log prints where it went (`pilot: -AcPilotAt=`); a fixed point is only valid on that map.
+  - `-AcPilotPullOut=S,L` ends a clip: S seconds after the take-over the camera leaves the unit and rises behind it over L seconds, turned to the gas giant (best at night, `-AcHour=22`); the cockpit and all the UI go off, the drive goes on below. `longbow-finale` is the example.
   - `-AcPilotStage` (with `-AcPilotVariant=fire|jump|anchoring|heal|…`) stages the classic pilot shot and then **pauses**: a still, not motion.
   - `-AcStageFight=N -AcCamAtArmy` stages two armies of N face to face (`AcWorldRenderer.h`); `-AcNoFog` shows the whole fight.
   - `-AcOrders`, `-AcQueue` (`AcCommandMap.h`), `-AcHour=19` (dusk), `-AcMap=badlands-large`, `-AcZoom=`, `-AcCamAt=`, `-AcSelect=`, `-AcHover=`.
@@ -205,9 +208,12 @@ Give the user the absolute path of the MP4, its length and size, the contact she
 | The perf panel shows | `-AcNoPerfPanel` missing | It's in the `sims.json` defaults; keep it |
 | The build names a field that is too long | The text doesn't fit the component | Shorten it; never change a limit for one video |
 | `rm -rf /abs/path` is refused | The repo's shell hook blocks it | `rm -r` with the exact relative path from the repo root |
+| A new flag's value with a comma arrives cut short (`X,Y` read as `X`) | `FParse::Value` stops at commas | Parse it with `FParse::Value(Cmd, TEXT("AcFoo="), Out, false)` |
+| An `-AcPilotAt` clip shows the top-down view only, "nothing to drive" in the log | The place did not parse, or is not on this map | Read the log's `pilot: -AcPilotAt=` line |
+| `record.py` hangs or reports 0 frames, "cannot open" in the log | The game failed before it opened the pipe, or FFmpeg stopped reading it | Read `NAME.log` (`shot: -AcShotRaw`, `shot: writing raw frame`); try once with `--png` |
 | Render warns about the V8 heap | Too many capture workers | `hyperframes render --workers 5 -o …` |
 
 ## Next steps for this skill
 
-- A pull-out on leaving a unit (the game cuts back to the RTS view today).
+- A pull-out on leaving a unit back to the RTS view (the game cuts today; `-AcPilotPullOut` only rises to the sky).
 - Camera moves in first person (an orbit around the piloted unit in third person).

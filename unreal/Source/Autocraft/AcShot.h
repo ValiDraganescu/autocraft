@@ -18,6 +18,14 @@
 //                  their start in world seconds, to line them up. Run it with
 //                  -UseFixedTimeStep -FPS=30 so each frame is 1/30 s of game
 //                  time; the autocraft-video skill encodes the frames.
+// -AcShotRaw=FILE  with -AcShotRecord: no PNGs; the frames are read back
+//                  from the GPU without stalling the render (FFrameGrabber,
+//                  a frame or two behind) and written one after another to
+//                  FILE as raw BGRA, -ResX x -ResY each. FILE can be a pipe
+//                  an encoder reads (the autocraft-video skill's record.py
+//                  makes one). The UI is whatever the window shows: without
+//                  -AcShotUI (or after SetShowUI(false)) the viewport's
+//                  widgets are collapsed.
 // A relative PATH is relative to the directory the process was launched in.
 // Code that needs more time before the picture (a scene being staged, a
 // mesh streaming in) holds the shot with `Hold()` and `Release()`.
@@ -57,6 +65,9 @@ public:
 	FAcBeforeShot OnBeforeShot;
 
 	const FString& GetPath() const { return Path; }
+	/// Whether the frames keep the UI (-AcShotUI); a recording can drop it
+	/// midway (the pilot's pull-out).
+	void SetShowUI(const bool bShow) { bShowUI = bShow; }
 
 private:
 	FString Path;
@@ -74,4 +85,20 @@ private:
 	int32 SoundWait = 0;
 	TOptional<double> RecordStart;
 	FString FramePath(int32 Index) const;
+
+	/// -AcShotRaw: the grabber, the file, the size, frames written.
+	TSharedPtr<class FFrameGrabber> Grabber;
+	FString RawPath;
+	FILE* Raw = nullptr;
+	FIntPoint RawSize = FIntPoint::ZeroValue;
+	int32 Written = 0;
+	int32 Flushes = 0;
+	/// The viewport's widgets' visibility before -AcShotRaw collapsed them.
+	TOptional<EVisibility> UIWas;
+	bool StartRaw();
+	void ApplyUI();
+	/// Writes the frames read back so far; false on a write error.
+	bool DrainRaw();
+	void StopRaw();
+	virtual void Deinitialize() override;
 };

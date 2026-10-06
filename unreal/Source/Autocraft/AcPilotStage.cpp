@@ -463,3 +463,103 @@ bool AAcPilotPawn::StageTick(UAcSimSubsystem& Sim)
 	}
 	return true;
 }
+
+bool AAcPilotPawn::StageAt(const ac::UnitKind Kind, const FString& Where)
+{
+	// Put down already (before a dive), else now; then taken over.
+	if (PlacedId == INDEX_NONE) PlacedId = PlaceAt(Kind, Where);
+	UAcSimSubsystem* Sim = UAcSimSubsystem::Get(this);
+	ac::Simulation& S = Sim->Simulation();
+	// Back where it was put and how it faced (an idle unit gets nudged
+	// while the top-down view runs before a dive).
+	if (ac::Unit* U = UnitById(S.state, PlacedId)) { U->position = PlacedAt; U->heading = PlacedHeading; U->aim.reset(); }
+	if (PlacedId == INDEX_NONE || !TakeOver(PlacedId)) return false;
+	PilotYaw = PlacedHeading;
+	if (S.pilot) S.pilot->heading = PlacedHeading;
+	return true;
+}
+
+int64 AAcPilotPawn::PlaceAt(const ac::UnitKind Kind, const FString& Where)
+{
+	// -AcPilotAt: a fresh unit of the player's at a staged place (a video's
+	// opening); -AcPilotVariant=anchored puts a Longbow down anchored.
+	UAcSimSubsystem* Sim = UAcSimSubsystem::Get(this);
+	ac::Simulation& S = Sim->Simulation();
+	ac::GameState& St = S.state;
+	double Heading = 0;
+	FParse::Value(FCommandLine::Get(), TEXT("AcPilotYaw="), Heading);
+	ac::Unit Me = NewUnit(S, Kind, ac::Pilot::player, ac::Vec2(0, 0), Heading);
+	if (Where == TEXT("enemy") || Where == TEXT("slope"))
+	{
+		// The nearest enemy Citadel to the player's own.
+		ac::Vec2 Home(0, 0);
+		for (const ac::Structure& B : St.structures)
+		{
+			if (B.owner == ac::Pilot::player && B.kind == ac::StructureKind::citadel) { Home = B.position; break; }
+		}
+		const ac::Structure* Foe = nullptr;
+		for (const ac::Structure& B : St.structures)
+		{
+			if (B.kind == ac::StructureKind::citadel && St.hostile(B.owner, ac::Pilot::player)
+				&& (!Foe || ac::distance(B.position, Home) < ac::distance(Foe->position, Home))) Foe = &B;
+		}
+		if (!Foe || !S.field) return INDEX_NONE;
+		// The approach whose ground falls the most toward the Citadel over
+		// its first 6 cells, open all the way to 12 cells out (an anchored
+		// Longbow's reach).
+		const ac::Vec2 C = Foe->position;
+		double Best = -1e9;
+		std::optional<ac::Vec2> BestAt;
+		for (int32 K = 0; K < 96; ++K)
+		{
+			const double A = double(K) / 96 * 2 * UE_DOUBLE_PI;
+			const ac::Vec2 Out(std::cos(A), std::sin(A));
+			for (double R = 20; R <= 26; R += 1)
+			{
+				const ac::Vec2 P = C + Out * R;
+				bool bOpen = true;
+				for (double T = 0; T <= R - 12 && bOpen; T += 0.25) bOpen = S.pilotCanStand(Me, P - Out * T);
+				if (!bOpen) continue;
+				const double Drop = S.field->height(P) - S.field->height(P - Out * 6);
+				if (Drop > Best) { Best = Drop; BestAt = P; }
+			}
+		}
+		ac::Vec2 In = BestAt ? ac::normalize(C - *BestAt) : ac::Vec2(1, 0);
+		if (Where == TEXT("slope") && S.map)
+		{
+			// The player's own ramp (its top nearest the player's Citadel),
+			// the way out toward the enemy: on its top, a cell and a half
+			// back from where it starts down, facing down it.
+			const ac::Ramp* Ramp = nullptr;
+			for (const ac::Ramp& R : S.map->ramps)
+			{
+				if (!Ramp || ac::distance(R.high, Home) < ac::distance(Ramp->high, Home)) Ramp = &R;
+			}
+			if (!Ramp) return INDEX_NONE;
+			In = ac::normalize(Ramp->low - Ramp->high);
+			BestAt = Ramp->high - In * 1.5;
+			Best = S.field->height(*BestAt) - S.field->height(*BestAt + In * 6);
+			UE_LOG(LogAutocraft, Log, TEXT("pilot: -AcPilotAt=slope: %d ramps; this one %.2f,%.2f (level %lld) down to %.2f,%.2f (level %lld), %.1f wide, levels %.2f apart"),
+				int32(S.map->ramps.size()), Ramp->high.x, Ramp->high.y, (long long)Ramp->highLevel, Ramp->low.x, Ramp->low.y,
+				(long long)Ramp->lowLevel, Ramp->width, S.map->levelHeight);
+		}
+		if (!BestAt) return INDEX_NONE;
+		Me.position = *BestAt;
+		Heading = std::atan2(In.y, In.x);
+		UE_LOG(LogAutocraft, Log, TEXT("pilot: -AcPilotAt=%s: at %.2f,%.2f heading %.3f, the ground falls %.2f over 6 cells ahead; the Citadel at %.2f,%.2f (player %lld), %.1f cells off"),
+			*Where, Me.position.x, Me.position.y, Heading, Best, C.x, C.y, (long long)Foe->owner, ac::distance(Me.position, C));
+	}
+	else
+	{
+		FString X, Y;
+		if (!Where.Split(TEXT(","), &X, &Y)) return INDEX_NONE;
+		Me.position = ac::Vec2(FCString::Atod(*X), FCString::Atod(*Y));
+	}
+	Me.heading = Heading;
+	if (StageVariant == TEXT("anchored") && Me.anchor) { Me.anchor = 1.0; Me.anchored = true; }
+	PlacedAt = Me.position;
+	PlacedHeading = Heading;
+	St.units.push_back(Me);
+	S.lookNow();
+	return Me.id;
+}

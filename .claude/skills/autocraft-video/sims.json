@@ -107,6 +107,105 @@
       "camera": "0:-6,0,45;6:6,-4,45",
       "seconds": 6,
       "notes": "RTS view: a slow pan across the base at dusk."
+    },
+    {
+      "name": "longbow-ramp-dive",
+      "flags": [
+        "-AcPilot=longbow",
+        "-AcNoAI",
+        "-AcStageBuildings",
+        "-AcPilotAt=slope",
+        "-AcPilotThird",
+        "-AcHour=10",
+        "-AcPilotDiveAt=1",
+        "-AcCamAt=-24,1",
+        "-AcPilotPath=wait:0.6,w:3.6"
+      ],
+      "seconds": 6.5,
+      "music": false,
+      "notes": "Day: the top-down view over the player's ramp, the dive into a Longbow on its top, and the drive down it in third person."
+    },
+    {
+      "name": "longbow-siege-first",
+      "flags": [
+        "-AcPilot=longbow",
+        "-AcNoAI",
+        "-AcStageBuildings",
+        "-AcPilotAt=enemy",
+        "-AcHour=11",
+        "-AcPilotPath=wait:0.3,w:2.4,ability:3,act:4.5"
+      ],
+      "seconds": 10.5,
+      "music": false,
+      "notes": "Day, first person: a Longbow drives up to the enemy base, anchors (the cockpit changes) and shells the buildings."
+    },
+    {
+      "name": "longbow-walk-third",
+      "flags": [
+        "-AcPilot=longbow",
+        "-AcNoAI",
+        "-AcStageBuildings",
+        "-AcPilotAt=53.6,3.0",
+        "-AcPilotYaw=-1.68",
+        "-AcPilotVariant=anchored",
+        "-AcPilotThird",
+        "-AcHour=19",
+        "-AcPilotPath=act:1.5,w+act:3,w+right+act:2.5"
+      ],
+      "seconds": 7,
+      "music": false,
+      "notes": "Dusk, third person: an anchored Longbow walks on its legs, firing at the enemy base."
+    },
+    {
+      "name": "longbow-rts-night",
+      "flags": [
+        "-AcPilot=longbow",
+        "-AcNoAI",
+        "-AcStageBuildings",
+        "-AcPilotAt=53.2,-1.5",
+        "-AcPilotYaw=-1.68",
+        "-AcPilotVariant=anchored",
+        "-AcHour=22",
+        "-AcNoFog",
+        "-AcCamAt=52.5,-8",
+        "-AcPilotPath=leave:0.1"
+      ],
+      "seconds": 7,
+      "music": false,
+      "notes": "Night, top-down: an anchored Longbow left to itself shells the enemy base; the camera pushes in.",
+      "camera": "0:0,6,30;7:0,-2,60"
+    },
+    {
+      "name": "longbow-packup-first",
+      "flags": [
+        "-AcPilot=longbow",
+        "-AcNoAI",
+        "-AcStageBuildings",
+        "-AcPilotAt=53.2,-1.5",
+        "-AcPilotYaw=-1.68",
+        "-AcPilotVariant=anchored",
+        "-AcHour=22",
+        "-AcPilotPath=act:1.2,ability:2.9,w+act:2.5,act:1.6"
+      ],
+      "seconds": 8.5,
+      "music": false,
+      "notes": "Night, first person: an anchored Longbow fires, packs up into tank mode, drives in and fires on the move."
+    },
+    {
+      "name": "longbow-finale",
+      "flags": [
+        "-AcPilot=longbow",
+        "-AcNoAI",
+        "-AcStageBuildings",
+        "-AcPilotAt=enemy",
+        "-AcPilotThird",
+        "-AcHour=22",
+        "-AcPilotPullOut=3.2,5",
+        "-AcPilotPath=w+act:2.6,act:8.4"
+      ],
+      "seconds": 11,
+      "music": false,
+      "notes": "Night, third person: a Longbow drives in firing, then the camera pulls out and turns to the gas giant."
     }
   ]
 }
