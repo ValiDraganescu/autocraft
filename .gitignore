@@ -31,3 +31,7 @@ video/
 # Orchestrator's own skills and agents (orc-*): local only, never published.
 .claude/skills/orc-*/
 .claude/agents/orc-*
+# Local only: MCP socket paths, old screenshots, Claude Code locks.
+.mcp.json
+art/fog/
+.claude/*.lock
