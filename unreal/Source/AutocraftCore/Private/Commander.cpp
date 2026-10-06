@@ -1741,7 +1741,8 @@ std::vector<Command> Commander::workers(const Simulation& sim, const std::set<in
             if (!(on < Rules::workersPerWell)) continue;
             const auto free = sorted(filtered(myProspectors, [&](const Unit& u) {
                 return !busy.count(u.id) && !u.order && u.carrying == 0
-                    && (u.task == Unit::Task::toPatch || u.task == Unit::Task::idle);
+                    && (u.task == Unit::Task::toPatch || u.task == Unit::Task::idle)
+                    && sim.reaches(u.position, r.position, Rules::radius(Structure::Kind::derrick) + 2.0);
             }), [&](const Unit& a, const Unit& b) { return distance(a.position, r.position) < distance(b.position, r.position); });
             for (const Unit& u : prefix(free, ac::min(Rules::workersPerWell - on, room))) {
                 out.push_back(make::harvest(u.id, r.id));
@@ -1933,6 +1934,9 @@ std::vector<Command> Commander::transfers(const GameState& s, const Simulation& 
             int64_t room = t.want - t.have;
             while (surplus > 0 && room > 0 && !open.empty() && m < movers.size()) {
                 const Unit& u = movers[m++];
+                // Not to a base it cannot walk to (C++ only; a base walled
+                // in by its buildings kept sending its workers off).
+                if (!sim.reaches(u.position, s.patches[size_t(open.front())].position, Simulation::patchReach)) continue;
                 out.push_back(make::gather(u.id, open.front()));
                 open.erase(open.begin());
                 surplus -= 1; room -= 1;

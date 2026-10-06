@@ -9,14 +9,14 @@ using namespace simtest;
 
 namespace {
 
-/// Blue's main and a second Citadel at the nearest other site, its
-/// Prospectors at work for a few seconds, and one Red Ranger in the main's
-/// ore line. Red has nothing else (no Commander moves it).
+/// Blue's main and a second Citadel far off, its
+/// Prospectors at work for a few seconds, and Red Rangers by the main's ore
+/// line. Red has nothing else (no Commander moves them).
 struct Raid {
     std::optional<Simulation> sim;
     Structure main;
     int64_t site = 0;
-    int64_t ranger = 0;
+    std::vector<int64_t> rangers;
     std::vector<int64_t> workers;
 };
 
@@ -25,12 +25,13 @@ Raid raid(bool pullBack) {
     GameState s = blueOnly(GameState::new_(m));
     Raid r;
     r.main = s.structures[0];
-    std::optional<Vec2> natural;
+    // A second base well away (the nearest site 30+ cells off).
+    std::optional<Vec2> other;
     for (const BaseSite& b : m.bases) {
-        if (!(distance(b.center, r.main.position) > 5)) continue;
-        if (!natural || distance(b.center, r.main.position) < distance(*natural, r.main.position)) natural = b.center;
+        if (!(distance(b.center, r.main.position) > 30)) continue;
+        if (!other || distance(b.center, r.main.position) < distance(*other, r.main.position)) other = b.center;
     }
-    addStructure(s, Structure::Kind::citadel, *natural, 0);
+    addStructure(s, Structure::Kind::citadel, *other, 0);
     s.units.clear();
     for (int k = 0; k < 6; k++) addUnit(s, Unit::Kind::prospector, r.main.position + Vec2(3 + k * 0.5, 3), 0);
     std::vector<Commander> blue{Commander(m, 0)};
@@ -48,7 +49,11 @@ Raid raid(bool pullBack) {
     }
     ore = ore / static_cast<double>(n);
     const Vec2 at = ore + normalize(ore - r.main.position) * 2.5;
-    r.ranger = addUnit(sim.state, Unit::Kind::ranger, sim.nav->nearestFree(at).value_or(at), 1);
+    // Twelve: more than the Prospectors would fight (`militiaMax`).
+    for (int k = 0; k < 12; k++) {
+        const Vec2 p = at + Vec2(0.8 * (k % 4 - 1.5), 0.8 * (k / 4));
+        r.rangers.push_back(addUnit(sim.state, Unit::Kind::ranger, sim.nav->nearestFree(p).value_or(p), 1));
+    }
     return r;
 }
 
@@ -79,8 +84,8 @@ TEST(workerPull_runShortAndComeBack) {
     }
     EXPECT_TRUE(alive > 0);
     EXPECT_EQ(fled(sim, r.workers), alive);
-    // The Ranger leaves; the base is calm `calmTime` later.
-    std::erase_if(sim.state.units, [&](const Unit& u) { return u.id == r.ranger; });
+    // The Rangers leave; the base is calm `calmTime` later.
+    std::erase_if(sim.state.units, [&](const Unit& u) { return u.owner == 1; });
     run(sim, Commander::calmTime + 2.5);
     EXPECT_EQ(fled(sim, r.workers), int64_t(0));
     int64_t home = 0, working = 0;

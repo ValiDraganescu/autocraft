@@ -162,8 +162,8 @@ struct Commander {
                                                                 const std::set<int64_t>& busy) const;
     /// C++ only: Prospectors run a short way from a base under attack and
     /// go back to their patch once it is calm (`pullWorkers`). Off, the
-    /// Swift game's: they mine at the nearest safe base from then on (the
-    /// goldens).
+    /// Swift game's: they mine at the nearest safe base from then on
+    /// (`commanderProspectorsRunFromFireflies`; the goldens pass either way).
     bool pullBack = true;
     static constexpr double fleeDistance = 9, calmRadius = 16, calmTime = 3;
     std::pair<std::vector<Command>, std::set<int64_t>> pullWorkers(const GameState& s, const Simulation& sim,
@@ -183,7 +183,7 @@ struct Commander {
     /// C++ only: buildings never cut the ground about them in two
     /// (`NavGrid::cuts`); the user's base had its ore line walled in by
     /// Habitat Domes set corner to corner with the Citadel (2026-10-06).
-    /// Off, the Swift placement (the goldens).
+    /// Off, the Swift placement (the goldens pass either way).
     bool keepOpen = true;
 
     /// The buildings that take a Lab.

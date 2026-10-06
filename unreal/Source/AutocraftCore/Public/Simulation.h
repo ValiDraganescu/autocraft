@@ -189,8 +189,9 @@ public:
     /// C++ only: a buried Scorpion is under the ground, so other ground units
     /// walk over it (`separate` leaves it out, as RTS games do burrowed units).
     /// One buried in the lane between an ore field and its Citadel held a
-    /// Scorpion behind it for good (the user's report, 2026-10-06). False
-    /// only in the golden tests (the Swift game's pushes).
+    /// Scorpion behind it for good (the user's report, 2026-10-06). Off:
+    /// the Swift game's pushes (StuckUnitsTests checks both; the goldens
+    /// pass either way).
     bool buriedPassable = true;
     /// Apply an order now. False when it is not possible (cost, supply,
     /// unknown unit); nothing changes then.

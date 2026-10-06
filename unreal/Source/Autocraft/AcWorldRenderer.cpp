@@ -169,7 +169,17 @@ void UAcWorldRenderer::Clear()
 	ObjectIndex.Reset();
 	for (FBatch& B : Batches)
 	{
-		if (B.Component) B.Component->ClearInstances();
+		if (B.Component)
+		{
+			B.Component->ClearInstances();
+			// ClearInstances (5.8) keeps the previous transforms, so after a
+			// new game they no longer match the instances one for one and the
+			// engine drops the batch's per-instance motion vectors for good
+			// (every moving unit doubled and smeared by TSR). Start them over.
+			B.Component->SetHasPerInstancePrevTransforms(false);
+			B.Component->SetHasPerInstancePrevTransforms(true);
+		}
+		B.bWarnedPrev = false;
 		B.Xf.Reset();
 		B.Shown.Reset();
 		B.Owner.Reset();
@@ -320,6 +330,10 @@ void UAcWorldRenderer::Allocate(FObject& O)
 			Slots[K] = S;
 			while (B.Owner.Num() <= S) B.Owner.Add(-1);
 			B.Owner[S] = O.Id;
+			// A slot taken over (freed this frame, by a unit gone or an
+			// outline change) must not hand its last transform on as this
+			// object's previous one: it appears, no motion.
+			if (S < B.Shown.Num()) B.Shown[S] = Gone();
 			float* C = &B.Custom[S * CustomFloats];
 			C[AcModelData::TeamIndex] = float(O.Team);
 			C[AcModelData::EmissionScale] = 1.f;

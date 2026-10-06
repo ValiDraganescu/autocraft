@@ -2885,6 +2885,12 @@ void Simulation::stepUnit(Unit& u, double dt, std::vector<GameEvent>& events) {
             u.task = Task::idle; u.structure = std::nullopt; return;
         }
         if (travel(u, r->position, Rules::radius(Structure::Kind::derrick) + 0.3, dt)) {
+            // The walk ended short of the door: it cannot get there (C++
+            // only, as `patchArrival`). Not harvested from afar.
+            if (distance(u.position, r->position) > Rules::radius(Structure::Kind::derrick) + 2.0) {
+                u.task = Task::idle; u.structure = std::nullopt; u.timer = 0;
+                return;
+            }
             // One at a time inside; the others wait at the door.
             if (!(*state.wells)[*gi].harvester) {
                 (*state.wells)[*gi].harvester = u.id;
