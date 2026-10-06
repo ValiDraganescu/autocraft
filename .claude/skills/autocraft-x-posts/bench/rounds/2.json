@@ -1,0 +1,252 @@
+[
+ {
+  "brief": "skills-repo",
+  "arm": "skill",
+  "text": "Claude Code writes all of Autocraft's code, Grok paints the art, Suno makes the music. I direct. The agents work from Claude Code skills, written playbooks for one job each, and they're all public in the repo.\n\nThis video came out of one of them. The video skill staged the Longbow shots, recorded them and cut them: a tank that anchors into artillery and shells an enemy base.\n\nThe other skills take concept art to a finished Unreal model, set the light language of the buildings, and run the tests. Everything is CC0, so copy them into your own project.\n\n---\n\nThe skills the agents work from, video skill included: github.com/ValiDraganescu/autocraft/tree/main/.claude/skills",
+  "video": "video/renders/longbow-x.mp4",
+  "angle": "build",
+  "attachment": "The Longbow video, made by the video skill.",
+  "id": "r2-00",
+  "round": 2
+ },
+ {
+  "brief": "hydrogen",
+  "arm": "baseline",
+  "text": "Metallic Hydrogen, the second resource in Autocraft.\n\nIt's a liquid metal, like mercury. It sits in wells: silver liquid that heaves slowly, cold blue-white light at the rim, pale vapour boiling off.\n\nYou build a Derrick over a well to pump it.\n\nThe game's radio runs ads for Quicksilver Cola, which is pumped from these same wells. It is not a beverage.",
+  "video": "record: a close-up of a Metallic Hydrogen well",
+  "angle": "world",
+  "attachment": "Close-up: a pool of mirror-silver liquid metal in a rock mound.",
+  "id": "r2-01",
+  "round": 2
+ },
+ {
+  "brief": "hydrogen",
+  "arm": "skill",
+  "text": "This is Metallic Hydrogen, the second resource in Autocraft: a liquid metal like mercury, sitting in wells in the rock. Autocraft is set on Ashfall Reach, a mining frontier under a gas giant, and this is what the rival outfits fight over.\n\nThe clip is a close-up of one well. The silver heaves slowly, cold blue-white light runs along the rim, and pale vapour boils off the top. To get it out, you build a Derrick over the well and pump.\n\nThe game's only radio station runs an ad for Quicksilver Cola, pumped fresh from these same wells. Not a beverage.\n\n---\n\nThe doc where the game's names are set, from the resources to the units: github.com/ValiDraganescu/autocraft/blob/main/docs/naming.md",
+  "video": "record: a close-up of a Metallic Hydrogen well",
+  "angle": "world",
+  "attachment": "Close-up: a pool of mirror-silver liquid metal in a rock mound.",
+  "id": "r2-02",
+  "round": 2
+ },
+ {
+  "brief": "leveling",
+  "arm": "skill",
+  "text": "Autocraft is an RTS where an AI commander runs your army, and you can take over any unit and play it like a shooter. Now the more you play a kind of unit yourself, the better every unit of that kind gets.\n\nEach level puts two upgrade cards over the cockpit and you keep one. This one is the Prospector's: every Prospector pumps Metallic Hydrogen 20% faster. There are 216 of them across the twelve kinds.\n\nThe Prospector is the worker that mines and builds, the dullest job on Ashfall Reach. Now there's a reason to climb into the cab and pump for a while, and every worker on your side speeds up.\n\n---\n\nHow leveling works, with all 216 upgrades for the twelve kinds of unit: github.com/ValiDraganescu/autocraft/blob/main/docs/leveling.md",
+  "video": "docs/media/level-cards.jpg",
+  "angle": "mechanic",
+  "attachment": "Screenshot: two upgrade cards over the Prospector's cockpit at a level-up.",
+  "id": "r2-03",
+  "round": 2
+ },
+ {
+  "brief": "dive",
+  "arm": "skill",
+  "text": "Autocraft is an RTS where an AI commander runs your army, and you can take over any of your units and play it like a shooter.\n\nIn the clip I click a Ranger on the map. The camera dives from the top-down view to the Ranger's own eyes in 1.2 seconds, and it walks out in first person.\n\nFrom there it plays like a shooter: WASD walks, the mouse aims, a click fires. Esc hands the Ranger back to the AI commander.\n\nIt works the same on all twelve kinds of unit, each with its own cockpit and weapon.\n\n---\n\nThe whole game is public domain (CC0): code, art, models, sounds, music, and the Claude Code skills the agents build it from.\ngithub.com/ValiDraganescu/autocraft",
+  "video": "docs/media/dive.gif",
+  "angle": "play",
+  "attachment": "6 s GIF: the camera dives from the top-down RTS view into a Ranger, who walks out in first person.",
+  "id": "r2-04",
+  "round": 2
+ },
+ {
+  "brief": "ai-crew",
+  "arm": "baseline",
+  "text": "Autocraft is nine days old. I started it on 28 September.\n\nClaude Code wrote all of it, about 96,000 lines of C++. I haven't typed a line by hand.\n\nGrok and Gemini painted the concept art, and agents built the 3D models from it. Suno made the music. ElevenLabs did the voices and sound effects.\n\nStill rough: the sky up high is too blue, and the third-person shots need work.\n\nAll of it is public domain (CC0). Link below.",
+  "video": "docs/media/flyover.gif",
+  "angle": "build",
+  "attachment": "GIF: the camera pans across a base at dusk.",
+  "id": "r2-05",
+  "round": 2
+ },
+ {
+  "brief": "longbow",
+  "arm": "skill",
+  "text": "Claude Code writes all of Autocraft's code, Grok paints the art, Suno makes the music. I direct. This is the Longbow, a tank that anchors into artillery, and every shot in this video is the real game.\n\nAn agent skill stages each shot, records it hidden at a fixed 30 fps, and keeps the game's own sound. What you're watching: a Longbow rolls down a ramp, anchors, shells an enemy base, walks on its siege legs, packs up and fires on the move. Top-down, first and third person, day into night.\n\nThe last shot pulls out to the gas giant over Ashfall Reach.\n\n---\n\nThe skill the agent used to stage and record every shot: github.com/ValiDraganescu/autocraft/tree/main/.claude/skills/autocraft-video",
+  "video": "video/renders/longbow-x.mp4",
+  "angle": "unit",
+  "attachment": "46 s video: a Longbow drives down a ramp, anchors, shells an enemy base, walks on its siege legs, packs up and fires on the move; top-down, first and third person; day into night; ends pulling out to the gas giant.",
+  "id": "r2-06",
+  "round": 2
+ },
+ {
+  "brief": "radio",
+  "arm": "skill",
+  "text": "Autocraft is set on Ashfall Reach, a mining frontier under a gas giant, and it has one radio station: KSTR 88.7 Stardust. The others got shelled.\n\nBetween songs, a glossy announcer reads ads for the world's products, each ending in fast fine print. This one plays over the base at dusk. Quicksilver Cola is pumped from Metallic Hydrogen wells. Not a beverage.\n\nSuno makes the songs, ElevenLabs voices the ads. In the game's player I vote each one up or down, and it logs how long each was heard. The next batch is written from what worked.\n\nI'm thinking about adding podcast segments on the world's lore.\n\n---\n\nThe song prompts, ad scripts and what the votes taught us: github.com/ValiDraganescu/autocraft/blob/main/docs/music.md",
+  "video": "record: the base at dusk with a KSTR ad playing, sound on",
+  "angle": "world",
+  "attachment": "20 s clip with sound: an in-game radio ad over the base at dusk.",
+  "id": "r2-07",
+  "round": 2
+ },
+ {
+  "brief": "night",
+  "arm": "skill",
+  "text": "Autocraft is set on Ashfall Reach, a mining frontier under a gas giant. The sun crosses the sky in every match, and when it goes down, the beacons and lamps come on.\n\nThis is my base at night, with the gas giant hanging over the whole map.\n\nThe outfits out here fight over Stardust Ore and Metallic Hydrogen, and the fighting runs past sundown. The only radio station left is KSTR 88.7 Stardust (the others got shelled), and tonight it is selling Hab Dome Deluxe: now with walls and a roof. Air sold separately.\n\n---\n\nThe whole game is public domain, code, art, models, sounds and music: github.com/ValiDraganescu/autocraft",
+  "video": "docs/media/top-night.jpg",
+  "angle": "world",
+  "attachment": "Screenshot: the base at night, beacons and lamps lit.",
+  "id": "r2-08",
+  "round": 2
+ },
+ {
+  "brief": "cc0",
+  "arm": "skill",
+  "text": "Everything in Autocraft is public domain under CC0: the code, the art, the 3D models, the sounds, the music and the docs. Use any of it for anything. Credit is optional.\n\nAutocraft is a Mac RTS where Claude Code writes all the code, Grok paints the art, agents build the models in Unreal and Suno makes the music. I direct.\n\nThat's a Citadel and its ore line, seen from above. The Citadel, the Stardust Ore it sits on and the 96,000 lines of C++ that run it are yours to take.\n\nThe repo also holds the Claude Code skills the agents work from, so the workflow comes with the game.\n\n---\n\nThe whole game, plus the skills the agents use, all CC0: github.com/ValiDraganescu/autocraft",
+  "video": "docs/media/top.jpg",
+  "angle": "build",
+  "attachment": "Screenshot: the top-down view of a base, the Citadel and its ore line.",
+  "id": "r2-09",
+  "round": 2
+ },
+ {
+  "brief": "atlas",
+  "arm": "skill",
+  "text": "Claude Code writes all of Autocraft's code, Grok paints the art, Suno makes the music. I direct.\n\nThis is one of the newest units, the Atlas, a heavy assault walker, seen from its own cockpit.\n\nAn agent built the model procedurally in Geometry Script inside Unreal, working from a six-view turnaround sheet of the walker. No one sculpted it by hand; the shape you see is code.\n\nLike every unit in the game, you can drive it: click the Atlas, the camera dives into this seat, and you play the walker yourself.\n\n---\nThe skill the agents follow to turn concept art into Unreal models: github.com/ValiDraganescu/autocraft/tree/main/.claude/skills/autocraft-model-pipeline",
+  "video": "docs/media/pilot-atlas.jpg",
+  "angle": "unit",
+  "attachment": "Screenshot: the Atlas heavy assault walker, from its cockpit.",
+  "id": "r2-10",
+  "round": 2
+ },
+ {
+  "brief": "oracle",
+  "arm": "skill",
+  "text": "This is the Oracle, the voice of your base in Autocraft, telling you the base is under attack.\n\nAutocraft is an RTS set on Ashfall Reach, a mining frontier under a gas giant, where rival outfits fight over the ore fields. The Oracle reads every warning, and it never says its own name.\n\nElevenLabs makes the voice.\n\nThere is one radio station on the Reach, KSTR 88.7 Stardust, and between songs it runs an ad for Oracle Premium: forty voices and smooth jazz while the base burns.\n\n---\n\nThe whole game is public domain (CC0): code, art, models, voices, music, and the Claude Code skills the agents work from. github.com/ValiDraganescu/autocraft",
+  "video": "record: the base under attack with the Oracle's warning, sound on",
+  "angle": "world",
+  "attachment": "10 s clip with sound: the base voice warns that the base is under attack.",
+  "id": "r2-11",
+  "round": 2
+ },
+ {
+  "brief": "model-pipeline",
+  "arm": "baseline",
+  "text": "How a unit gets made in Autocraft, using the Atlas walker:\n\n1. Grok paints the concept\n2. The pick becomes a six-view turnaround sheet\n3. A Claude Code agent builds the model part by part in Unreal's Geometry Script, procedurally, and fits it against the six views\n\nPainting → sheet → engine. Pipeline skill in the reply 👇",
+  "video": "docs/media/atlas-turnaround.jpg",
+  "angle": "build",
+  "attachment": "Three images: the Atlas walker's concept painting, its six-view turnaround sheet, the model in the engine.",
+  "id": "r2-12",
+  "round": 2
+ },
+ {
+  "brief": "port",
+  "arm": "skill",
+  "text": "Autocraft is an RTS for the Mac, and Claude Code writes all of its code. I direct. It began on 28 September as a live wallpaper in Swift and SceneKit, with the AIs fighting on my desktop background. That's the left image. The right one is the same game in Unreal Engine 5 today.\n\nSceneKit choked at about 150 units, and the game wants eight-player battles with big armies. On 4 October I picked Unreal. The agents ported the simulation line by line to plain C++ and rebuilt the game in Unreal in about two days. The Swift version was retired on 5 October, a week after it started.\n\n---\n\nThe porting notes from the move to Unreal: github.com/ValiDraganescu/autocraft/blob/main/unreal/PORTING.md",
+  "video": "record: the old Swift wallpaper next to the Unreal game today",
+  "angle": "build",
+  "attachment": "Two images: the old Swift live-wallpaper version and the Unreal game today.",
+  "id": "r2-13",
+  "round": 2
+ },
+ {
+  "brief": "army-fight",
+  "arm": "skill",
+  "text": "Two armies of twelve meet in the desert on Ashfall Reach, and the camera sweeps in from above.\n\nAutocraft is an RTS where an AI commander runs your army, and you can take over any unit and play it like a shooter. The game staged this fight itself: it set up both sides, flew the camera in and recorded every frame at a fixed 30 fps.\n\nA full match has up to eight players, all fighting over the same Stardust Ore deposits. Twelve a side is the small version.\n\n---\n\nThe Claude Code skill the agents use to stage and record clips like this one: github.com/ValiDraganescu/autocraft/tree/main/.claude/skills/autocraft-video",
+  "video": "docs/media/fight.gif",
+  "angle": "play",
+  "attachment": "8 s GIF: two armies of twelve meet in the desert, seen from above as the camera sweeps in.",
+  "id": "r2-14",
+  "round": 2
+ },
+ {
+  "brief": "mining",
+  "arm": "skill",
+  "text": "The Prospector is the worker in Autocraft, an RTS where an AI commander runs your army and you can take over any unit and play it like a shooter. So I took over the worker.\n\nIn the clip I'm drilling Stardust Ore by hand in first person. Dark rock with opal shimmers that shift teal, violet and gold as the view angle changes.\n\nThe Prospector mines that ore, pumps Metallic Hydrogen from the wells, builds and repairs. Most of the time the commander keeps a crowd of them busy. You can pick any one and work its shift yourself.\n\n---\n\nThe whole game is public domain (CC0): code, art, models, sound and music, plus the Claude Code skills the agents work from. github.com/ValiDraganescu/autocraft",
+  "video": "docs/media/mining.gif",
+  "angle": "play",
+  "attachment": "GIF: a Prospector drilling Stardust Ore in first person.",
+  "id": "r2-15",
+  "round": 2
+ },
+ {
+  "brief": "hidden-runs",
+  "arm": "skill",
+  "text": "Claude Code writes all of Autocraft's code, an RTS for the Mac in Unreal Engine 5, and the agents test the game on my Mac while I keep using it.\n\nIn the video: an agent's terminal recording a game clip, and me working in another window.\n\nEvery game run an agent starts is hidden and silent. It launches a copy of the editor with no Dock icon, renders offscreen, and writes the sound to a file. The game never appears on my screen or plays through my speakers.\n\nEvery clip and GIF in the repo was recorded this way, by the agents' video skill.\n\n---\n\nThe video skill the agents use to record every clip and GIF, hidden and silent: github.com/ValiDraganescu/autocraft/tree/main/.claude/skills/autocraft-video",
+  "video": "record: a screen capture of an agent recording a clip while the developer works",
+  "angle": "build",
+  "attachment": "Screen capture: an agent's terminal recording a game clip while the developer keeps working in another window.",
+  "id": "r2-16",
+  "round": 2
+ },
+ {
+  "brief": "model-pipeline",
+  "arm": "skill",
+  "text": "The Atlas walker in Autocraft, three times. Claude Code writes all of Autocraft's code, Grok paints the art, and agents build the 3D models from it. I direct.\n\nEvery unit starts as a concept painting from Grok. That's the first image. The one I pick becomes a six-view turnaround sheet, the second image. Then a Claude Code agent builds the model part by part in Unreal's Geometry Script, procedurally, and fits it against those six views. The third image is the Atlas that came out, in the engine.\n\n---\n\nThe skill the agents follow from concept painting to finished model, with every hiccup they hit written down as they go: github.com/ValiDraganescu/autocraft/tree/main/.claude/skills/autocraft-model-pipeline",
+  "video": "docs/media/atlas-turnaround.jpg",
+  "angle": "build",
+  "attachment": "Three images: the Atlas walker's concept painting, its six-view turnaround sheet, the model in the engine.",
+  "id": "r2-17",
+  "round": 2
+ },
+ {
+  "brief": "ai-crew",
+  "arm": "skill",
+  "text": "Autocraft, my Mac RTS, is nine days old. Claude Code writes all of its code, about 96,000 lines of C++ so far, and I haven't written a line of it by hand. Grok and Gemini paint the concept art, agents build the 3D models from it, Suno makes the music and ElevenLabs the voices and sound effects. I direct and play.\n\nThis is a base at dusk.\n\nRough edges you can see in it: the sky high up is too blue, and the third-person shots still look rough. Both get less so every day.\n\nAll of it, the code, art, models, music and sounds, is public domain.\n\n---\n\nThe whole game, CC0, plus the Claude Code skills the agents work from: github.com/ValiDraganescu/autocraft",
+  "video": "docs/media/flyover.gif",
+  "angle": "build",
+  "attachment": "GIF: the camera pans across a base at dusk.",
+  "id": "r2-18",
+  "round": 2
+ },
+ {
+  "brief": "fast-recording",
+  "arm": "skill",
+  "text": "Claude Code writes all of Autocraft's code, and an agent skill records its clips: staged moments of the real game, run hidden, at 30 fps with the game's sound. A 10 s clip used to take about 7 minutes to record. Now it takes about 25 s.\n\nI asked: \"why does it take 7 minutes to record?\" and \"if I run the game at 60fps, why can't it record at 60fps?\" Every frame was being saved as a PNG, then encoded. Now the agent reads frames back from the GPU asynchronously and pipes them raw into ffmpeg while the game runs.\n\nThis Longbow clip came out of the new path.\n\n---\n\nThe skill that records Autocraft's clips, public domain like the rest of the game: github.com/ValiDraganescu/autocraft/tree/main/.claude/skills/autocraft-video",
+  "video": "video/renders/longbow-x.mp4",
+  "angle": "build",
+  "attachment": "The Longbow video, recorded by the new path.",
+  "id": "r2-19",
+  "round": 2
+ },
+ {
+  "brief": "third-person",
+  "arm": "skill",
+  "text": "Autocraft is an RTS where an AI commander runs your army, and you can take over any unit and play it like a shooter. Press V and the unit you're playing swaps between first and third person.\n\nThis is the Ranger, the rifle infantry, walking in third person. From behind you see the whole soldier, the rifle and the ground ahead. Press V again and you're looking out through its eyes.\n\nAll twelve kinds of unit work this way, from a Ranger on foot to a Juggernaut. Each has its own cockpit for first person, and V gets you out of it.\n\n---\n\nThe whole game is public domain, code, art, models and music, with the Claude Code skills the agents build it from: github.com/ValiDraganescu/autocraft",
+  "video": "docs/media/third.gif",
+  "angle": "unit",
+  "attachment": "GIF: a Ranger walking in third person.",
+  "id": "r2-20",
+  "round": 2
+ },
+ {
+  "brief": "commander",
+  "arm": "skill",
+  "text": "Autocraft is an RTS where an AI commander runs your army, and you can take over any unit and play it like a shooter.\n\nThis is the command map. Press M and it opens: every base on the map, with your team's objectives on top.\n\nFrom here you set a stance and mark the objectives: attack this base, defend that one, hold this ground. The commander plans the rest and moves the army. When a fight matters, you click any of your units, the camera dives into it, and you play that one yourself.\n\n---\n\nThe whole game, code, art, models, sounds and music, is public domain (CC0): github.com/ValiDraganescu/autocraft",
+  "video": "docs/media/command-map.jpg",
+  "angle": "play",
+  "attachment": "Screenshot: the command map, the bases of the map and the team's objectives.",
+  "id": "r2-21",
+  "round": 2
+ },
+ {
+  "brief": "comet",
+  "arm": "skill",
+  "text": "The Comet: a jump-pack raider with twin pistols, and you can play it yourself.\n\nAutocraft is an RTS where an AI commander runs your army, and you can take over any unit and play it like a shooter. In this clip I'm in a Comet in first person, jumping it straight up a cliff.\n\nEvery other ground unit has to walk around that cliff. The Comet goes over it and lands on top.\n\nKSTR 88.7, the only radio station on Ashfall Reach, runs an ad for Comet Jump Academy. Most graduates land.\n\n---\n\nThe whole game is public domain (CC0): code, art, models, sounds and music, plus the Claude Code skills the agents work from. github.com/ValiDraganescu/autocraft",
+  "video": "docs/media/comet.gif",
+  "angle": "unit",
+  "attachment": "8 s GIF: playing a Comet in first person, jumping up a cliff.",
+  "id": "r2-22",
+  "round": 2
+ },
+ {
+  "brief": "dive",
+  "arm": "baseline",
+  "text": "Click any unit in Autocraft and the camera dives in: 1.2 s from the top-down RTS view to the unit's own eyes.\n\nThen it's a shooter. WASD walks, the mouse aims, click fires. Esc hands the unit back to the AI commander.\n\nHere's a Ranger walking out.",
+  "video": "docs/media/dive.gif",
+  "angle": "play",
+  "attachment": "6 s GIF: the camera dives from the top-down RTS view into a Ranger, who walks out in first person.",
+  "id": "r2-23",
+  "round": 2
+ },
+ {
+  "brief": "port",
+  "arm": "baseline",
+  "text": "Autocraft started on 28 September as a Mac live wallpaper. Swift + SceneKit, AIs fighting on my desktop background.\n\nSceneKit choked at ~150 units. I want 8-player battles with big armies.\n\n4 Oct: picked Unreal Engine 5. Claude Code agents ported the sim line by line to plain C++ and rebuilt the game in ~2 days.\n\n5 Oct: Swift retired.\n\nBefore → now 👇",
+  "video": "record: the old Swift wallpaper next to the Unreal game today",
+  "angle": "build",
+  "attachment": "Two images: the old Swift live-wallpaper version and the Unreal game today.",
+  "id": "r2-24",
+  "round": 2
+ }
+]

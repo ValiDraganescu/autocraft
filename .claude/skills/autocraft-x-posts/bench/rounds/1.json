@@ -1,0 +1,184 @@
+[
+ {
+  "brief": "night",
+  "arm": "skill",
+  "text": "Night on Ashfall Reach. The sun crosses the sky every match, and when it sets the beacons and lamps come on under a gas giant.",
+  "id": "r1-00",
+  "round": 1
+ },
+ {
+  "brief": "commander",
+  "arm": "skill",
+  "text": "Press M for the command map.\n\nSet a stance, pick objectives (attack, defend, hold, man a Bastion), call expansions and make requests. Your team's AI commander plans the rest and runs the army.\n\n---\n\nClick a building and press its buttons: anything the AI can do for you is queued for your commander instead of refused.",
+  "id": "r1-01",
+  "round": 1
+ },
+ {
+  "brief": "leveling",
+  "arm": "baseline",
+  "text": "Nobody wants to drive the worker. So now driving it pays.\n\nThe longer you pilot a kind of unit in a game, the better every unit of that kind gets. Only while you're at the wheel, though. Units the AI runs never level.\n\nEach level offers two upgrades and you keep one. That's 216 across the twelve unit kinds.\n\nThis one: \"Every Prospector pumps MH 20% faster.\"",
+  "id": "r1-02",
+  "round": 1
+ },
+ {
+  "brief": "mining",
+  "arm": "skill",
+  "text": "Mining Stardust Ore by hand, in first person, from the seat of a Prospector.\n\nDriving one levels up every Prospector you own.",
+  "id": "r1-03",
+  "round": 1
+ },
+ {
+  "brief": "model-pipeline",
+  "arm": "skill",
+  "text": "The Atlas walker, left to right: a concept painting made with Grok, the six-view turnaround sheet, the model in Unreal. An agent builds it part by part with Geometry Script and fits it against the six views.\n\n---\n\nEvery unit goes through this. The skill the agent works from, autocraft-model-pipeline, is in the repo: github.com/ValiDraganescu/autocraft",
+  "id": "r1-04",
+  "round": 1
+ },
+ {
+  "brief": "wallpaper-origin",
+  "arm": "skill",
+  "text": "Autocraft began as a Mac live wallpaper in Swift and SceneKit: the AIs played on your desktop background.\n\nNow it's an Unreal Engine 5 game. The simulation came over as engine-free C++20, and the Swift version retired on 5 October.",
+  "id": "r1-05",
+  "round": 1
+ },
+ {
+  "brief": "leveling",
+  "arm": "skill",
+  "text": "The longer you drive a kind of unit, the better every unit of that kind gets, but only while you drive it. Units the AI runs never level.\n\nEach level offers two upgrades, you keep one. 216 across twelve unit kinds, and a reason to drive the Prospector.",
+  "id": "r1-06",
+  "round": 1
+ },
+ {
+  "brief": "dive",
+  "arm": "skill",
+  "text": "Click any of your units and the camera dives in, 1.2 s from the top-down view to first person.\n\nWASD walks, mouse aims, click fires, R uses its ability, V switches to third person. Esc hands it back to the AI commander.",
+  "id": "r1-07",
+  "round": 1
+ },
+ {
+  "brief": "hidden-runs",
+  "arm": "skill",
+  "text": "Every game run an agent starts is hidden and silent: a Dock-less copy of the editor, rendering offscreen, sound rendered to a WAV file.\n\nSo an agent can test and record the game while I keep working on the same M4 Max MacBook Pro.",
+  "id": "r1-08",
+  "round": 1
+ },
+ {
+  "brief": "core-tests",
+  "arm": "skill",
+  "text": "Autocraft's whole simulation is plain C++20 with no Unreal in it. Economy, pathing, combat, the AI commanders: all tested with plain clang in about 7 seconds.\n\nUnreal draws the frames, plays the sounds, takes the input. The agents that change the game run these tests.\n\n---\n\nmake -C unreal/core-tests\n\nOpen source, public domain: github.com/ValiDraganescu/autocraft",
+  "id": "r1-09",
+  "round": 1
+ },
+ {
+  "brief": "cc0",
+  "arm": "skill",
+  "text": "All of Autocraft is public domain under CC0 1.0: code, art, 3D models, sounds, music and docs. Use any of it for anything, no credit needed. Only third-party files keep their licences: a font, a JSON library, an MP3 decoder.\n\n---\n\nThe repo also holds the Claude Code skills the agents work from.\n\ngithub.com/ValiDraganescu/autocraft",
+  "id": "r1-10",
+  "round": 1
+ },
+ {
+  "brief": "atlas",
+  "arm": "skill",
+  "text": "The Atlas, a heavy assault walker and one of the newest units. An agent built the model procedurally in Geometry Script from a six-view turnaround sheet.\n\nLike every unit, you can drive it.",
+  "id": "r1-11",
+  "round": 1
+ },
+ {
+  "brief": "army-fight",
+  "arm": "skill",
+  "text": "Two armies of twelve meet in the desert, staged by the game and recorded hidden at a fixed 30 fps.\n\nA micro simulation: set up the moment, record it, stop. No match gets played out to get there.",
+  "id": "r1-12",
+  "round": 1
+ },
+ {
+  "brief": "comet",
+  "arm": "skill",
+  "text": "The Comet jumps cliffs that every other ground unit has to walk around.\n\nJump-pack raider, twin pistols, and you can drive it in first person like a shooter, in the middle of an RTS.",
+  "id": "r1-13",
+  "round": 1
+ },
+ {
+  "brief": "skills-repo",
+  "arm": "skill",
+  "text": "The Claude Code skills my agents work from are in the repo: the model pipeline from concept art to Unreal model, the buildings' light language, testing, video.\n\nCC0, so copy them into your own project.\n\n---\n\ngithub.com/ValiDraganescu/autocraft",
+  "id": "r1-14",
+  "round": 1
+ },
+ {
+  "brief": "core-tests",
+  "arm": "baseline",
+  "text": "The whole simulation of my RTS (economy, pathing, combat, the AI commanders) is plain C++20 with no Unreal in it.\n\nUnreal only draws the frames, plays the sounds and takes the input.\n\nThe core's tests build with plain clang and run in about 7 seconds:\n\nmake -C unreal/core-tests\n\nThat split is what lets AI agents change the game safely. They run the 7-second tests, not the editor.\n\nEverything is CC0: github.com/ValiDraganescu/autocraft",
+  "id": "r1-15",
+  "round": 1
+ },
+ {
+  "brief": "longbow",
+  "arm": "skill",
+  "text": "The Longbow is a tank that anchors into artillery. Like every unit in Autocraft, you can drive it.\n\nDown the ramp, anchor, shell the base, walk it on its siege legs, pack up, fire on the move. Top-down, first and third person, day into night.",
+  "id": "r1-16",
+  "round": 1
+ },
+ {
+  "brief": "hidden-runs",
+  "arm": "baseline",
+  "text": "My agents test and record Autocraft on the same M4 Max MacBook Pro I'm working on, and I don't notice.\n\nEvery game run they start is hidden and silent: a Dock-less copy of the editor, rendering offscreen. Sound goes to a WAV file. Nothing reaches my speakers.\n\nScreenshot: one of them recording a clip while I keep working.",
+  "id": "r1-17",
+  "round": 1
+ },
+ {
+  "brief": "radio",
+  "arm": "skill",
+  "text": "The music plays as a radio station: KSTR 88.7 Stardust, original songs with in-world ads between them.\n\nQuicksilver Cola is pumped from Metallic Hydrogen wells and is not a beverage. Opal Glow face scrub side effects include levitation and being mined.",
+  "id": "r1-18",
+  "round": 1
+ },
+ {
+  "brief": "fast-recording",
+  "arm": "skill",
+  "text": "A 10 s clip of Autocraft used to take about 7 minutes to record. Now it takes 25 s.\n\nBefore, every frame was saved as a PNG, then encoded. Now frames are read back from the GPU asynchronously and piped raw into ffmpeg while the game runs.\n\n---\n\nEvery GIF in the README came from the game's video skill: staged moments of the real game, recorded hidden at a fixed 30 fps, with the game's own sound.\n\ngithub.com/ValiDraganescu/autocraft",
+  "id": "r1-19",
+  "round": 1
+ },
+ {
+  "brief": "third-person",
+  "arm": "skill",
+  "text": "A Ranger, over the shoulder. Press V on any of the twelve unit kinds to switch between first and third person, each with its own cockpit, weapon and ability.",
+  "id": "r1-20",
+  "round": 1
+ },
+ {
+  "brief": "oracle",
+  "arm": "skill",
+  "text": "The base voice is the Oracle. It warns you when your base is under attack, and none of its warnings ever say its name.\n\n---\n\nEvery voice and sound effect in the game was made with ElevenLabs.\n\nOpen source, public domain: github.com/ValiDraganescu/autocraft",
+  "id": "r1-21",
+  "round": 1
+ },
+ {
+  "brief": "radio",
+  "arm": "baseline",
+  "text": "The music in Autocraft plays as a radio station: KSTR 88.7 Stardust, original songs with in-world ads between them.\n\nTonight's sponsors:\nQuicksilver Cola, pumped from Metallic Hydrogen wells. \"Not a beverage.\"\nOpal Glow face scrub. Side effects include levitation and being mined.\nCitadel Timeshares. Ash view guaranteed.\n\nSound on 🔊",
+  "id": "r1-22",
+  "round": 1
+ },
+ {
+  "brief": "hydrogen",
+  "arm": "skill",
+  "text": "Metallic Hydrogen, the second resource: a liquid metal like mercury, pooled in a rock mound. It heaves slowly, cold blue-white light at the rim, pale vapour boiling off.\n\nBuild a Derrick over the well to pump it.",
+  "id": "r1-23",
+  "round": 1
+ },
+ {
+  "brief": "commander",
+  "arm": "baseline",
+  "text": "In Autocraft you don't micromanage. Your team's AI commander runs the army.\n\nPress M for the command map. Set a stance, pick objectives (attack, defend, hold, man a Bastion), call expansions, make requests. The AI plans the rest.\n\nClick a building and press its buttons. If the AI can do it for you, the order goes to your commander's queue.",
+  "id": "r1-24",
+  "round": 1
+ },
+ {
+  "brief": "agents-parallel",
+  "arm": "skill",
+  "text": "Each pane is a Claude Code agent working on its own part of Autocraft, all in the same repo at the same time.\n\nWhen their work overlaps, they combine it with a three-way merge, never by copying whole files over each other.\n\n---\n\nThe rules they follow are in AGENTS.md: github.com/ValiDraganescu/autocraft",
+  "id": "r1-25",
+  "round": 1
+ }
+]
