@@ -1,5 +1,5 @@
 ---
-status: wip
+status: proposed
 date: 
 angle: world
 video: record: a close-up of a Metallic Hydrogen well

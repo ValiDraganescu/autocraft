@@ -66,7 +66,9 @@
 //                        aims at its chest); the game is then paused
 //   -AcPilotPath=STEPS   a scripted drive, `key:seconds` joined by commas
 //                        (keys joined by +: w a s d, act, right left (yaw 0.6 rad/s),
-//                        up down (pitch), ability, next, view, leave, wait);
+//                        up down (pitch), ability, next, view, leave, wait,
+//                        aim: the view on the nearest enemy's chest within
+//                        25 cells, every frame it is held, e.g. aim+act:2);
 //                        default "w:1.5,w+right:1.5,d:1,act:1"
 //   -AcPilotVariant=V    with -AcPilotStage: Swift's `--pilot KIND-V` (fire,
 //                        far, miss, minigun[+fire], anchored, anchoring,
@@ -97,6 +99,8 @@
 //   -AcPilotFor=S        hold an -AcShot until S game seconds after the take
 //                        over (the path runs meanwhile)
 //   -AcPilotYaw=RAD -AcPilotPitch=RAD   the view at the start
+//   -AcPilotFoeHp=N      the staged enemy ahead starts with N hp, so the
+//                        driven unit wins the duel (a clip that goes on)
 //   ac.Pilot KIND|ID|off, ac.PilotLook DX DY (console)
 //
 // The dive: a take-over from the top-down view flies the camera from where
@@ -277,6 +281,8 @@ private:
 	/// so a staged flyer is up off its pad: forget the renderer's `BornAt`.
 	void StageLifted();
 	void AimAt(const FVector& Target);
+	/// -AcPilotPath's `aim` key: `ScriptAimTarget` is the nearest enemy.
+	void ScriptAimNearest();
 	/// The dive's start: the RTS camera as it was drawn (before the possess).
 	void StartDive(const APlayerController* PC);
 	/// The dive's camera this frame, from the eye (`At`, `Rot`) it ends on.

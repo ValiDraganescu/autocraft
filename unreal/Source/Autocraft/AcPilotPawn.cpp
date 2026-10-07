@@ -179,7 +179,7 @@ void AAcPilotPawn::BeginPlay()
 	if (FParse::Value(Cmd, TEXT("AcPilot="), ScriptKind))
 	{
 		if (UAcShotSubsystem::IsRecordRun()) FParse::Value(Cmd, TEXT("AcPilotDiveAt="), ScriptDiveAt);
-		if (FString Out; UAcShotSubsystem::IsRecordRun() && FParse::Value(Cmd, TEXT("AcPilotPullOut="), Out))
+		if (FString Out; UAcShotSubsystem::IsRecordRun() && FParse::Value(Cmd, TEXT("AcPilotPullOut="), Out, false))
 		{
 			FString At, For;
 			if (!Out.Split(TEXT(","), &At, &For)) At = Out;
@@ -1121,6 +1121,7 @@ void AAcPilotPawn::Script(const double Dt)
 			else if (K == TEXT("next") && bFirst) Next();
 			else if (K == TEXT("view") && bFirst) ToggleView();
 			else if (K == TEXT("leave") && bFirst) bLeaveWanted = true;
+			else if (K == TEXT("aim")) ScriptAimNearest();
 		}
 		MoveInput = Move;
 		PathAt += Dt;
@@ -1272,6 +1273,27 @@ void AAcPilotPawn::PullOutView(FVector& At, FQuat& Rot, const FVector& Body)
 	Look.Pitch = float(FMath::RadiansToDegrees(std::atan2(-Up, Away))) + 19.f;
 	At = Pos;
 	Rot = FQuat::Slerp(Rot, Look.Quaternion(), FMath::SmoothStep(0.0, 0.85, T));
+}
+
+void AAcPilotPawn::ScriptAimNearest()
+{
+	const UAcSimSubsystem* Sim = SimOf(this);
+	const std::optional<ac::Unit> Me = Sim && Driving() ? Sim->Simulation().pilotUnit() : std::nullopt;
+	if (!Me) return;
+	const ac::GameState& St = Sim->Simulation().state;
+	const ac::Unit* Best = nullptr;
+	for (const ac::Unit& U : St.units)
+	{
+		if (!St.hostile(U.owner, Me->owner) || U.task == ac::Unit::Task::aboard || U.task == ac::Unit::Task::inBastion
+			|| U.task == ac::Unit::Task::inDerrick || ac::distance(U.position, Me->position) > 25) continue;
+		if (!Best || ac::distance(U.position, Me->position) < ac::distance(Best->position, Me->position)) Best = &U;
+	}
+	// `Follow` turns the view onto its chest this frame (the target may walk).
+	if (Best)
+	{
+		ScriptAimTarget = Best->id;
+		ScriptAimRounds = 1;
+	}
 }
 
 void AAcPilotPawn::AimAt(const FVector& Target)

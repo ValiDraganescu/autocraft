@@ -1,6 +1,6 @@
 ---
 status: wip
-date: 
+date:
 angle: build
 video: video/renders/longbow-x.mp4
 posted: 

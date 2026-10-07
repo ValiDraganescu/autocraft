@@ -1,6 +1,6 @@
 ---
 status: wip
-date: 
+date:
 angle: unit
 video: docs/media/third.gif
 posted: 
@@ -16,4 +16,4 @@ A Ranger, over the shoulder. Press V on any of the twelve unit kinds to switch b
 
 ## Notes
 
-Round 1 of the skill benchmark (skill), voted up. The developer's note: with accompanying video would make sense
+Round 1 of the skill benchmark (skill), voted up. The developer's note: with accompanying video would make sense, transition from TPS to FPS, use the Ranger with shield and minigun upgrades, show the ranger shooting at ground and air targets

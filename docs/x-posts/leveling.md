@@ -1,6 +1,6 @@
 ---
 status: wip
-date: 
+date:
 angle: mechanic
 video: docs/media/level-cards.jpg
 posted: 

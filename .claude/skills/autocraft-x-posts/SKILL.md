@@ -87,7 +87,7 @@ Rewrite any sentence that has one.
 
 ## The calendar
 
-Posts live in `docs/x-posts/`, one Markdown file each ([README](../../../docs/x-posts/README.md)): `status` (wip, approved, posted), `date`, `angle`, `video`, `posted`, then `## Post`, `## Reply`, `## Notes`. Save every draft the developer likes there as `wip`. Only the developer sets `approved` and the date. Before proposing a date, run `uv run docs/x-posts/calendar.py --check`: at most two posts a day, and no angle twice in a row.
+Posts live in `docs/x-posts/`, one Markdown file each ([README](../../../docs/x-posts/README.md)): `status` (proposed, wip, approved, posted), `date`, `angle`, `video`, `posted`, then `## Post`, `## Reply`, `## Notes`. Save every new draft there as `proposed`. The developer moves the ones they want to `wip`: then make each one's video (record the clip with the autocraft-video skill, set `video` to the file) and rework the text from its notes. Only the developer sets `approved` and the date. Before proposing a date, run `uv run docs/x-posts/calendar.py --check`: at most two posts a day, and no angle twice in a row.
 
 ## The benchmark
 

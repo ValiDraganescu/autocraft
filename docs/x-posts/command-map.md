@@ -1,5 +1,5 @@
 ---
-status: wip
+status: proposed
 date: 
 angle: mechanic
 video: docs/media/command-map.jpg

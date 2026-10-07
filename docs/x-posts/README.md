@@ -10,13 +10,19 @@ uv run docs/x-posts/calendar.py          # the schedule, then the drafts
 uv run docs/x-posts/calendar.py --check  # also warns on clashes
 ```
 
+The vote page of the `autocraft-x-posts` skill has a Calendar tab: the posts
+with their videos, a status, a date and notes for each. `--export DIR` writes
+the JSON the page loads; `--apply DIR` takes the status, date and notes the
+developer set there back into these files (read the page's `calendar`
+collection into DIR first).
+
 ## A post file
 
 `docs/x-posts/<slug>.md`, the slug in kebab-case (`kstr-radio-ads.md`):
 
 ```markdown
 ---
-status: wip            # wip, approved, posted
+status: proposed       # proposed, wip, approved, posted
 date:                  # the day to post it (YYYY-MM-DD), once approved
 angle: world           # play, build, world, unit, mechanic
 video: docs/media/dive.gif
@@ -43,7 +49,10 @@ description.
 
 ## Statuses
 
-- **wip**: a draft. No date needed. It can miss its video.
+- **proposed**: a draft Claude wrote. Every new post starts here. No date,
+  and it can miss its video.
+- **wip**: the developer picked it. Claude makes its video (records the clip
+  with the video skill) and reworks the text from the notes.
 - **approved**: the developer read it and wants it out. It has a date and a
   video that exists.
 - **posted**: on X. `posted` has the link, `date` the day it went out. Don't

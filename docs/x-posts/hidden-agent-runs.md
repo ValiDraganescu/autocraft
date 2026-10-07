@@ -1,5 +1,5 @@
 ---
-status: wip
+status: proposed
 date: 
 angle: build
 video: record: a screen capture of an agent recording a clip while the developer works

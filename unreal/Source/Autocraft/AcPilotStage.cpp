@@ -331,7 +331,15 @@ bool AAcPilotPawn::StageUnit(ac::Simulation& S, const ac::UnitKind Kind, const a
 		const double D = bAway ? FMath::Min(Reach + 2, ac::Rules::sight - 0.3) + Radii
 			: Variant == TEXT("close") ? 1.4 + Radii : bHeals ? 3.5 : 4.5;
 		const bool bHurt = bHeals && Variant != TEXT("miss");
-		Ahead = Ranger(bHeals, At + Out * D + Side * (bHeals ? 0.2 : 0.4), [bHurt](ac::Unit& V) { if (bHurt) V.hp = 18; });
+		// -AcPilotFoeHp=N: the enemy ahead starts with N hp (a clip whose
+		// duel the driven unit wins).
+		double FoeHp = 0;
+		FParse::Value(FCommandLine::Get(), TEXT("AcPilotFoeHp="), FoeHp);
+		Ahead = Ranger(bHeals, At + Out * D + Side * (bHeals ? 0.2 : 0.4), [bHurt, bHeals, FoeHp](ac::Unit& V)
+		{
+			if (bHurt) V.hp = 18;
+			if (!bHeals && FoeHp > 0) V.hp = FoeHp;
+		});
 	}
 	const int64 MeId = Me.id;
 	St.units.push_back(Me);

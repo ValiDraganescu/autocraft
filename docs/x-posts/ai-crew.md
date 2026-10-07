@@ -1,5 +1,5 @@
 ---
-status: wip
+status: proposed
 date: 
 angle: build
 video: docs/media/flyover.gif

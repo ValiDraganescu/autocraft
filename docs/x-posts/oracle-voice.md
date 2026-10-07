@@ -1,5 +1,5 @@
 ---
-status: wip
+status: proposed
 date: 
 angle: world
 video: record: a base under attack with the Oracle warning (sound on)

@@ -1,6 +1,6 @@
 ---
 status: wip
-date: 
+date:
 angle: world
 video: record: the base at dusk with a KSTR ad playing (sound on)
 posted: 

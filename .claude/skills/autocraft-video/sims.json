@@ -48,6 +48,40 @@
       "notes": "The RTS view over the base, then the dive into a Ranger and a short walk in first person."
     },
     {
+      "name": "ranger-dive-full",
+      "flags": [
+        "-AcPilot=ranger",
+        "-AcPilotDiveAt=1",
+        "-AcPilotPath=wait:0.6,aim:0.4,aim+act:2.4,w+right:1.6,leave:0.1,wait:2"
+      ],
+      "seconds": 10,
+      "notes": "The whole drive: the RTS view over the base, the dive into a Ranger, aiming at the enemy Ranger's chest and firing from where it lands (walking first runs into it), walking off to the right, then Esc hands it back and the view returns to the RTS view."
+    },
+    {
+      "name": "ranger-dive-giant",
+      "flags": [
+        "-AcPilot=ranger",
+        "-AcPilotDiveAt=1",
+        "-AcPilotFoeHp=20",
+        "-AcPilotPullOut=3.6,5",
+        "-AcPilotPath=wait:0.6,aim:0.4,aim+act:2.4,wait:8"
+      ],
+      "seconds": 12,
+      "notes": "The dive into a Ranger, a duel aimed at the enemy's chest that the Ranger wins (-AcPilotFoeHp), then the camera pulls out of the Ranger up to the gas giant: the signature ending."
+    },
+    {
+      "name": "ranger-giant-intro",
+      "flags": [
+        "-AcPilot=ranger",
+        "-AcPilotThird",
+        "-AcPilotPullOut=0.3,4",
+        "-AcPilotPath=wait:8"
+      ],
+      "seconds": 5,
+      "sound": false,
+      "notes": "A pull-out from a Ranger by the base up to the gas giant, played in reverse as the opening: the gas giant comes down into the scene."
+    },
+    {
       "name": "ranger-third-walk",
       "flags": [
         "-AcPilot=ranger",

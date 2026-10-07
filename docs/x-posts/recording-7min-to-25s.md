@@ -1,5 +1,5 @@
 ---
-status: wip
+status: proposed
 date: 
 angle: build
 video: record: two terminal timings, or a clip recorded by the new path
