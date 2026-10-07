@@ -5,9 +5,9 @@
 # ///
 """Vertical cuts of a 16:9 clip or explainer for the phone feed.
 
-    uv run .claude/skills/autocraft-video/scripts/vertical.py video/clips/fight-12-dive.mp4
-    uv run .claude/skills/autocraft-video/scripts/vertical.py IN.mp4 --aspect 9:16 --mode crop --focus 0.4
-    uv run .claude/skills/autocraft-video/scripts/vertical.py IN.mp4 --kicker "Micro simulation" --title "Two armies|of twelve meet"
+    uv run .claude/skills/ringshadow-video/scripts/vertical.py video/clips/fight-12-dive.mp4
+    uv run .claude/skills/ringshadow-video/scripts/vertical.py IN.mp4 --aspect 9:16 --mode crop --focus 0.4
+    uv run .claude/skills/ringshadow-video/scripts/vertical.py IN.mp4 --kicker "Micro simulation" --title "Two armies|of twelve meet"
 
 Modes:
   fit   (default) the whole 16:9 picture across the width, over a blurred,

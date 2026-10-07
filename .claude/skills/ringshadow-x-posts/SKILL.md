@@ -1,15 +1,15 @@
 ---
-name: autocraft-x-posts
-description: Write X (Twitter) posts and replies about Autocraft, the open-source Mac RTS built by AI agents, in the developer's own voice, and keep them in the post calendar (docs/x-posts/). Use for a caption under a clip or screenshot, a devlog post, a reply, or planning what to post.
+name: ringshadow-x-posts
+description: Write X (Twitter) posts and replies about Ringshadow, the open-source Mac RTS built by AI agents, in the developer's own voice, and keep them in the post calendar (docs/x-posts/). Use for a caption under a clip or screenshot, a devlog post, a reply, or planning what to post.
 ---
 
-# X posts for Autocraft
+# X posts for Ringshadow
 
-You write the words that go under a clip or a screenshot. The reader is a stranger scrolling the For You feed: no idea what Autocraft is, what "drive a unit" means, or who made it. Every post has to make sense to that person on its own.
+You write the words that go under a clip or a screenshot. The reader is a stranger scrolling the For You feed: no idea what Ringshadow is, what "drive a unit" means, or who made it. Every post has to make sense to that person on its own.
 
 ## The game
 
-Autocraft is a real-time strategy game for the Mac, in Unreal Engine 5. An AI commander runs your army. You steer it from above, and when a fight matters you click any of your units, the camera dives into it, and you play that one unit yourself, in first or third person, like a shooter. Twelve kinds of unit, each with its own cockpit, weapon and ability. Up to eight players.
+Ringshadow is a real-time strategy game for the Mac, in Unreal Engine 5. An AI commander runs your army. You steer it from above, and when a fight matters you click any of your units, the camera dives into it, and you play that one unit yourself, in first or third person, like a shooter. Twelve kinds of unit, each with its own cockpit, weapon and ability. Up to eight players.
 
 **How it's made.** One developer, and AI agents do the making. Claude Code writes all the code: about 96,000 lines of C++ so far. Grok and Gemini paint the concept art, and agents build the 3D models from it in Unreal. Suno makes the music, ElevenLabs the voices and sound effects. The developer directs, plays, and decides. The game started on 28 September 2026 as a Mac live wallpaper written in Swift; on 4 October the agents ported it to Unreal Engine 5 in about two days, because the old renderer choked at about 150 units and the game wants eight-player battles. Everything, the code, art, models, sounds and music, is public domain (CC0) at github.com/ValiDraganescu/autocraft, along with the Claude Code skills the agents work from.
 
@@ -52,11 +52,11 @@ One person who made a thing with a crew of agents. "I" for the developer, "the a
 
 ## Shape
 
-- **450 to 700 characters.** X shows the first 280, then "Show more". Those first 280 hold three things: the name Autocraft, one sentence on what it is, and the news. The rest is the how.
+- **450 to 700 characters.** X shows the first 280, then "Show more". Those first 280 hold three things: the name Ringshadow, one sentence on what it is, and the news. The rest is the how.
 - **One identity sentence per post**, chosen for the angle, and a different one from the post before:
-  - play: "Autocraft is an RTS where an AI commander runs your army, and you can take over any unit and play it like a shooter."
-  - build: "Claude Code writes all of Autocraft's code, Grok paints the art, Suno makes the music. I direct."
-  - world: "Autocraft is set on Ashfall Reach, a mining frontier under a gas giant."
+  - play: "Ringshadow is an RTS where an AI commander runs your army, and you can take over any unit and play it like a shooter."
+  - build: "Claude Code writes all of Ringshadow's code, Grok paints the art, Suno makes the music. I direct."
+  - world: "Ringshadow is set on Ashfall Reach, a mining frontier under a gas giant."
   Reword them freely; keep the facts.
 - **One idea per post.** Leveling, driving and the commander are three posts. Explain the one term the post needs ("drive a unit: take it over and play it yourself") and use no other.
 - **Small stories** have a before, a change and an after: "a 10 s clip took 7 minutes to record; the agent moved the frames to the GPU and piped them straight into the encoder; now it takes 25 s". A feeling goes in only when the brief gives one, in its own words.
@@ -87,7 +87,7 @@ Rewrite any sentence that has one.
 
 ## The calendar
 
-Posts live in `docs/x-posts/`, one Markdown file each ([README](../../../docs/x-posts/README.md)): `status` (proposed, wip, approved, posted), `date`, `angle`, `video`, `posted`, then `## Post`, `## Reply`, `## Notes`. Save every new draft there as `proposed`. The developer moves the ones they want to `wip`: then make each one's video (record the clip with the autocraft-video skill, set `video` to the file) and rework the text from its notes. Only the developer sets `approved` and the date. Before proposing a date, run `uv run docs/x-posts/calendar.py --check`: at most two posts a day, and no angle twice in a row.
+Posts live in `docs/x-posts/`, one Markdown file each ([README](../../../docs/x-posts/README.md)): `status` (proposed, wip, approved, posted), `date`, `angle`, `video`, `posted`, then `## Post`, `## Reply`, `## Notes`. Save every new draft there as `proposed`. The developer moves the ones they want to `wip`: then make each one's video (record the clip with the ringshadow-video skill, set `video` to the file) and rework the text from its notes. Only the developer sets `approved` and the date. Before proposing a date, run `uv run docs/x-posts/calendar.py --check`: at most two posts a day, and no angle twice in a row.
 
 ## The benchmark
 

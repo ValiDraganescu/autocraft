@@ -17,12 +17,12 @@
 //                  with it, and waits for its WAV; both log
 //                  their start in world seconds, to line them up. Run it with
 //                  -UseFixedTimeStep -FPS=30 so each frame is 1/30 s of game
-//                  time; the autocraft-video skill encodes the frames.
+//                  time; the ringshadow-video skill encodes the frames.
 // -AcShotRaw=FILE  with -AcShotRecord: no PNGs; the frames are read back
 //                  from the GPU without stalling the render (FFrameGrabber,
 //                  a frame or two behind) and written one after another to
 //                  FILE as raw BGRA, -ResX x -ResY each. FILE can be a pipe
-//                  an encoder reads (the autocraft-video skill's record.py
+//                  an encoder reads (the ringshadow-video skill's record.py
 //                  makes one). The UI is whatever the window shows: without
 //                  -AcShotUI (or after SetShowUI(false)) the viewport's
 //                  widgets are collapsed.

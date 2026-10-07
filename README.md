@@ -112,10 +112,10 @@ part by part with Geometry Script and fitted against those views.
 **Built with AI agents.** Ringshadow is made with AI coding agents, and the
 skills they work from are in [`.claude/skills/`](.claude/skills):
 
-- [`autocraft-model-pipeline`](.claude/skills/autocraft-model-pipeline): concept art to an Unreal model.
-- [`autocraft-building-visuals`](.claude/skills/autocraft-building-visuals): the buildings' light language.
-- [`autocraft-testing`](.claude/skills/autocraft-testing): which tests a change needs and how to run them.
-- [`autocraft-video`](.claude/skills/autocraft-video): records staged moments of the real game, hidden, at a fixed 30 fps with their sound, and cuts them into clips and narrated videos. Every GIF on this page came from it.
+- [`ringshadow-model-pipeline`](.claude/skills/ringshadow-model-pipeline): concept art to an Unreal model.
+- [`ringshadow-building-visuals`](.claude/skills/ringshadow-building-visuals): the buildings' light language.
+- [`ringshadow-testing`](.claude/skills/ringshadow-testing): which tests a change needs and how to run them.
+- [`ringshadow-video`](.claude/skills/ringshadow-video): records staged moments of the real game, hidden, at a fixed 30 fps with their sound, and cuts them into clips and narrated videos. Every GIF on this page came from it.
 
 ## Build and run
 

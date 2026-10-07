@@ -5,9 +5,9 @@
 # ///
 """Record micro simulations of `sims.json` as MP4 clips.
 
-    uv run .claude/skills/autocraft-video/scripts/record.py ranger-fire
-    uv run .claude/skills/autocraft-video/scripts/record.py ranger-fire comet-jump --out video/projects/NAME/sources
-    uv run .claude/skills/autocraft-video/scripts/record.py --list
+    uv run .claude/skills/ringshadow-video/scripts/record.py ranger-fire
+    uv run .claude/skills/ringshadow-video/scripts/record.py ranger-fire comet-jump --out video/projects/NAME/sources
+    uv run .claude/skills/ringshadow-video/scripts/record.py --list
 
 One hidden Unreal run per sim (UnrealEditorBG.app, -RenderOffscreen, no
 -log): the game stages the sim from its flags, steps at a fixed 1/FPS,

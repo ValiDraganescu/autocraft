@@ -28,7 +28,7 @@
 //                       (-AcModelPaint=parts); hidden parts and translucent or additive meshes stay out.
 //                       Meant for -ResX=512 -ResY=512. Writes the camera numbers next to the shot, as
 //                       <shot>.json (the format of one panel of stencil.json). The sheet is composed by
-//                       .claude/skills/autocraft-model-pipeline/stencil.py.
+//                       .claude/skills/ringshadow-model-pipeline/stencil.py.
 // Shots: use a 16:9 -ResX/-ResY (AcShot crops other aspects, 2026-10-05);
 // the camera keeps the 30° vertical FOV, so crop the centre square to compare.
 #pragma once

@@ -1,9 +1,9 @@
 ---
-name: autocraft-video
-description: Make gameplay clips and narrated explainer videos (MP4) of Autocraft for x.com posts. Records micro simulations of the real game hidden (a staged moment: a piloted unit, a fight, the base at night) at a fixed 30 fps with the game's own sound and optional RTS camera moves, cuts vertical versions for the phone feed, and lays clips out with the Autocraft video kit (HUD colours, Barlow Condensed), a Kokoro voice, and HyperFrames. Use when the user wants a gameplay clip, a devlog or explainer video, a video of a new unit, model, effect, perf win or tool, or anything to post as video on X.
+name: ringshadow-video
+description: Make gameplay clips and narrated explainer videos (MP4) of Ringshadow for x.com posts. Records micro simulations of the real game hidden (a staged moment: a piloted unit, a fight, the base at night) at a fixed 30 fps with the game's own sound and optional RTS camera moves, cuts vertical versions for the phone feed, and lays clips out with the Ringshadow video kit (HUD colours, Barlow Condensed), a Kokoro voice, and HyperFrames. Use when the user wants a gameplay clip, a devlog or explainer video, a video of a new unit, model, effect, perf win or tool, or anything to post as video on X.
 ---
 
-# Autocraft video
+# Ringshadow video
 
 Two products, both MP4:
 
@@ -14,12 +14,12 @@ A micro simulation is one short, staged moment of the real game: the game stages
 
 | Path | Content | Lifetime |
 |---|---|---|
-| `.claude/skills/autocraft-video/sims.json` | The micro simulations: name, flags or scene, seconds | committed |
-| `.claude/skills/autocraft-video/scripts/record.py` | Records sims hidden, with their sound, and encodes them | committed |
-| `.claude/skills/autocraft-video/scripts/vertical.py` | Vertical cuts (4:5, 9:16, 1:1) of any clip or explainer | committed |
-| `.claude/skills/autocraft-video/kit/` | The kit: tokens (the game's HUD palette and font), scene components, layout, motion, the gallery | committed |
-| `.claude/skills/autocraft-video/scripts/` | setup, build, verify, finish, gallery, tts | committed |
-| `.claude/skills/autocraft-video/workspace/` | `package.json`, `pnpm-lock.yaml`, `env.sh`; setup copies them into `video/` | committed |
+| `.claude/skills/ringshadow-video/sims.json` | The micro simulations: name, flags or scene, seconds | committed |
+| `.claude/skills/ringshadow-video/scripts/record.py` | Records sims hidden, with their sound, and encodes them | committed |
+| `.claude/skills/ringshadow-video/scripts/vertical.py` | Vertical cuts (4:5, 9:16, 1:1) of any clip or explainer | committed |
+| `.claude/skills/ringshadow-video/kit/` | The kit: tokens (the game's HUD palette and font), scene components, layout, motion, the gallery | committed |
+| `.claude/skills/ringshadow-video/scripts/` | setup, build, verify, finish, gallery, tts | committed |
+| `.claude/skills/ringshadow-video/workspace/` | `package.json`, `pnpm-lock.yaml`, `env.sh`; setup copies them into `video/` | committed |
 | `video/` | The workspace: `node_modules/`, `.tools/` (FFmpeg), `skills/` (HyperFrames docs), `.frames/` (frames while recording) | ignored by git |
 | `video/clips/` | Clips that `record.py` makes by default | ignored by git |
 | `video/projects/<video>/` | One explainer: `scenes.json`, `sources/`, the build output | deleted by `finish.sh` |
@@ -34,7 +34,7 @@ A micro simulation is one short, staged moment of the real game: the game stages
 
 ## The kit
 
-Every explainer uses the kit, so all videos look the same: the game's HUD palette (glass blue, cyan accent, ice text; `AcHudStyle.h`), the HUD font Barlow Condensed (`unreal/Content-src/fonts`), a footer with "Autocraft", the video title and the scene count, a progress bar, and one entrance motion.
+Every explainer uses the kit, so all videos look the same: the game's HUD palette (glass blue, cyan accent, ice text; `AcHudStyle.h`), the HUD font Barlow Condensed (`unreal/Content-src/fonts`), a footer with "Ringshadow", the video title and the scene count, a progress bar, and one entrance motion.
 
 A scene is data in `scenes.json`, never HTML. Each `visual.type` is one component of `kit/components/`:
 
@@ -56,7 +56,7 @@ When a scene needs a layout that no component has, change the kit; never write H
 
 1. Add `kit/components/<name>.mjs` with `validate` and `html` (see `stats.mjs`), its classes in `kit/kit.css`, and the component in `kit/components/index.mjs`. Colours and sizes come from `kit/tokens.css`. Entrance motion comes from `data-in` (`up`, `left`, `pop`) and `data-step` (the order); `kit/scene.mjs` makes the timeline.
 2. Add a scene of the new component to `kit/gallery/scenes.json`.
-3. Run `bash .claude/skills/autocraft-video/scripts/gallery.sh` (and `gallery.sh portrait`, `gallery.sh story` for the vertical canvases). It must pass `hyperframes check` with 0 errors and 0 warnings. Read `video/projects/kit-gallery/snapshots/contact-sheet.jpg`.
+3. Run `bash .claude/skills/ringshadow-video/scripts/gallery.sh` (and `gallery.sh portrait`, `gallery.sh story` for the vertical canvases). It must pass `hyperframes check` with 0 errors and 0 warnings. Read `video/projects/kit-gallery/snapshots/contact-sheet.jpg`.
 4. Show the gallery snapshot to the user. The kit changes only when the user accepts the look.
 5. Delete `video/projects/kit-gallery/` (`rm -r video/projects/kit-gallery` from the repo root).
 
@@ -65,7 +65,7 @@ When a scene needs a layout that no component has, change the kit; never write H
 ### 1. Prepare the workspace
 
 ```bash
-bash .claude/skills/autocraft-video/scripts/setup.sh
+bash .claude/skills/ringshadow-video/scripts/setup.sh
 ```
 
 It copies `workspace/` into `video/`, installs the pinned `hyperframes` and `gsap` from the lockfile, builds FFmpeg from nixpkgs into `video/.tools/`, and downloads the HyperFrames docs of the same version into `video/skills/`. It stops if git does not ignore `video/`. Safe to run again. The voice needs mlx-audio at `~/git/dev/mlx-audio/.venv` (`VIDEO_TTS_PYTHON` for another place).
@@ -75,8 +75,8 @@ Done when it prints `workspace ready` and the doctor lines show FFmpeg, FFprobe 
 ### 2. Record the micro simulations
 
 ```bash
-uv run .claude/skills/autocraft-video/scripts/record.py --list
-uv run .claude/skills/autocraft-video/scripts/record.py fight-12 ranger-duel --out video/projects/<video>/sources
+uv run .claude/skills/ringshadow-video/scripts/record.py --list
+uv run .claude/skills/ringshadow-video/scripts/record.py fight-12 ranger-duel --out video/projects/<video>/sources
 ```
 
 Each sim gives `NAME.mp4` (H.264, 1920×1080, 30 fps, AAC game sound), `NAME-contact.png` (four frames) and `NAME.log`. The run prints the sound's offset to the frames (about one frame), its peak and its loudness; a peak of 0 or "no sound was written" means a silent clip. Read every contact sheet before you use a clip.
@@ -103,8 +103,8 @@ For a post that is only a clip, cut the vertical version (below), then give the 
 ### Vertical cuts
 
 ```bash
-uv run .claude/skills/autocraft-video/scripts/vertical.py video/clips/fight-12-dive.mp4 --kicker "Micro simulation" --title "Two armies of twelve|meet in the desert"
-uv run .claude/skills/autocraft-video/scripts/vertical.py video/clips/ranger-duel.mp4 --aspect 9:16 --mode crop --focus 0.5
+uv run .claude/skills/ringshadow-video/scripts/vertical.py video/clips/fight-12-dive.mp4 --kicker "Micro simulation" --title "Two armies of twelve|meet in the desert"
+uv run .claude/skills/ringshadow-video/scripts/vertical.py video/clips/ranger-duel.mp4 --aspect 9:16 --mode crop --focus 0.5
 ```
 
 - `--aspect`: `4:5` (1080×1350, the X feed; default), `9:16` (1080×1920), `1:1`.
@@ -163,7 +163,7 @@ Done when each scene has an id, a narration and a visual, and each `src` exists.
 
 ```bash
 cd video && source ./env.sh
-node ../.claude/skills/autocraft-video/scripts/build.mjs <video>
+node ../.claude/skills/ringshadow-video/scripts/build.mjs <video>
 cd projects/<video>
 hyperframes check
 hyperframes snapshot --at "$(node -e "console.log(JSON.parse(require('fs').readFileSync('.build/timeline.json','utf8')).scenes.map(s=>(s.start+s.duration*0.6).toFixed(2)).join(','))")"
@@ -177,7 +177,7 @@ When a lint finding is unclear, read `video/skills/hyperframes-core/SKILL.md` or
 
 ```bash
 hyperframes render -o renders/<video>.mp4
-bash ../../../.claude/skills/autocraft-video/scripts/verify.sh . renders/<video>.mp4
+bash ../../../.claude/skills/ringshadow-video/scripts/verify.sh . renders/<video>.mp4
 ```
 
 `verify.sh` checks the H.264 and AAC tracks, the length against the timeline (within 0.5 s), that the voice is audible, and writes `renders/<video>-contact.png`. Read it.
@@ -185,7 +185,7 @@ bash ../../../.claude/skills/autocraft-video/scripts/verify.sh . renders/<video>
 ### 6. Finish
 
 ```bash
-bash .claude/skills/autocraft-video/scripts/finish.sh <video>
+bash .claude/skills/ringshadow-video/scripts/finish.sh <video>
 ```
 
 From the repo root. It verifies again, copies the MP4 and contact sheet to `video/renders/`, and deletes the project. On a failed check it keeps the project.

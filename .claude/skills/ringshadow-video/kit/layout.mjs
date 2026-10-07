@@ -16,7 +16,7 @@ export const SOUND = { full: 1, duck: 0.35, ramp: 0.25 };
 // The music bed: `volume` between the voices, `duck` × volume under them,
 // faded in over `fadeIn` and out over the last `fadeOut` seconds.
 export const MUSIC = { volume: 0.25, duck: 0.4, ramp: 0.4, fadeIn: 1, fadeOut: 2 };
-export const BRAND = 'Autocraft';
+export const BRAND = 'Ringshadow';
 
 // Called once by the build, before anything is laid out.
 export const useFormat = (name = 'landscape') => {

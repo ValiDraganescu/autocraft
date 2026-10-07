@@ -1,6 +1,6 @@
 # X post calendar
 
-One post per file. The `autocraft-x-posts` skill writes drafts here, the
+One post per file. The `ringshadow-x-posts` skill writes drafts here, the
 developer approves them and gives them a date, and a posted file keeps its
 link. [../x-plan.md](../x-plan.md) has the strategy: two posts a day at most,
 five hours apart, and a different kind of post each time.
@@ -10,7 +10,7 @@ uv run docs/x-posts/calendar.py          # the schedule, then the drafts
 uv run docs/x-posts/calendar.py --check  # also warns on clashes
 ```
 
-The vote page of the `autocraft-x-posts` skill has a Calendar tab: the posts
+The vote page of the `ringshadow-x-posts` skill has a Calendar tab: the posts
 with their videos, a status, a date and notes for each. `--export DIR` writes
 the JSON the page loads; `--apply DIR` takes the status, date and notes the
 developer set there back into these files (read the page's `calendar`
@@ -44,7 +44,7 @@ Why it's written this way, feedback, what's missing.
 
 `video` is a file in the repo (`docs/media/…`, `video/renders/…`), or
 `record: <what to record>` when the clip doesn't exist yet: a sim of
-[the video skill](../../.claude/skills/autocraft-video/sims.json) or a
+[the video skill](../../.claude/skills/ringshadow-video/sims.json) or a
 description.
 
 ## Statuses

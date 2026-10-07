@@ -68,7 +68,7 @@ Blue is canonical. The team colour is not baked: per-instance custom data slot 0
 - `PaintBase` / `PaintEmissive` = 1: blue paint in the texture is recoloured (painted skins).
 - `TeamGlow` = 1: the emission takes the team's lamp colour.
 
-A model script reuses an existing `MI_<name>_<key>` where one fits (the shared hull materials: hull light, mid and dark, hazard, team, chrome, the glow family; list `Content/Models/Materials`) and asks the helper for a new one otherwise. The kit calls `make_materials.make_instance` for a material described in the script instead of in a manifest: parent `M_Hull`, `M_Emissive` (unlit lamps) or `M_Additive`; parameters `BaseColorTint`, `Metallic`, `Roughness`, `EmissiveColor`, `Opacity`, `UVScale`, the four team flags. Lamps are their own materials and their own parts, so each can pulse alone (the `autocraft-building-visuals` skill has the light language for buildings). Keep one material key per look: the same key in two models means one instance.
+A model script reuses an existing `MI_<name>_<key>` where one fits (the shared hull materials: hull light, mid and dark, hazard, team, chrome, the glow family; list `Content/Models/Materials`) and asks the helper for a new one otherwise. The kit calls `make_materials.make_instance` for a material described in the script instead of in a manifest: parent `M_Hull`, `M_Emissive` (unlit lamps) or `M_Additive`; parameters `BaseColorTint`, `Metallic`, `Roughness`, `EmissiveColor`, `Opacity`, `UVScale`, the four team flags. Lamps are their own materials and their own parts, so each can pulse alone (the `ringshadow-building-visuals` skill has the light language for buildings). Keep one material key per look: the same key in two models means one instance.
 
 ## The stencil files
 

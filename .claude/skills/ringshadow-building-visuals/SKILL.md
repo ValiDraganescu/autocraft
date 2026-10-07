@@ -1,11 +1,11 @@
 ---
-name: autocraft-building-visuals
-description: Visual status language for Autocraft buildings in the Unreal Engine 5 game (unreal/). Use whenever you create a new building or structure model, add production/research/activity to a building, or change how a building's lights and animations report its state (the building pose functions in AcPoseBuildings*.cpp, the lamp pool in AcLamps.cpp, `ac::Structure` in AutocraftCore).
+name: ringshadow-building-visuals
+description: Visual status language for Ringshadow buildings in the Unreal Engine 5 game (unreal/). Use whenever you create a new building or structure model, add production/research/activity to a building, or change how a building's lights and animations report its state (the building pose functions in AcPoseBuildings*.cpp, the lamp pool in AcLamps.cpp, `ac::Structure` in AutocraftCore).
 ---
 
-# Autocraft building visuals
+# Ringshadow building visuals
 
-Every Autocraft building reports its state with the same light language, so
+Every Ringshadow building reports its state with the same light language, so
 the player can read the whole base at a glance from the RTS camera. The
 model only names its lamp parts; a pose function drives them every frame.
 
@@ -151,7 +151,7 @@ above. The AI places it so the ground in front of its door stays clear.
 ## Checklist for a new building
 
 1. **The model**, built in Unreal by its model script (the
-   `autocraft-model-pipeline` skill): the named lamp parts, its own
+   `ringshadow-model-pipeline` skill): the named lamp parts, its own
    emissive materials, and a `scaffold_<kind>` model for construction.
 2. **The core**: the kind in `StructureKind` (append at the end), its cost,
    build time, hp, radius, sight and tech requirement in `Rules.cpp`, and
@@ -167,6 +167,6 @@ above. The AI places it so the ground in front of its door stays clear.
    busy and under construction, by day and at `-AcHour=23`, in two team
    colours (`/Game/Maps/ModelRow` with `-AcModelFocus`, or `-AcPlayground`;
    see `unreal/SHOTS.md` and the hidden-run rules in the
-   `autocraft-testing` skill). Look at the PNGs side by side from the
+   `ringshadow-testing` skill). Look at the PNGs side by side from the
    game's camera angle. The user checks the motion in the game by hand;
    never relaunch their editor or game.

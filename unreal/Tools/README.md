@@ -6,7 +6,7 @@ rays golden, `hud/bake_icons.sh`, the Swift side of `shots/compare.py` and
 `bench/bench.py --swift` can no longer run here. What they made stays:
 `Content-src/models` on disk (not in git) and the imported meshes in
 `Content/Models`. New models are built in Unreal (the
-`autocraft-model-pipeline` skill). `hud/bake_hud.sh`, `cursors/bake_cursors.sh`
+`ringshadow-model-pipeline` skill). `hud/bake_hud.sh`, `cursors/bake_cursors.sh`
 and `Editor/import_sounds.py` still work from copies of the Swift files they
 need, kept in `swift/` beside them.
 

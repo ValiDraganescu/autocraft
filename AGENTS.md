@@ -29,8 +29,8 @@ The original Swift and SceneKit game left this repo on 2026-10-05. It is archive
 
 ## Skills
 
-- `.claude/skills/autocraft-model-pipeline/`: turning concept art into an Unreal model (the Grok turnaround, a Geometry Script model). Record every hiccup in it as it happens.
-- `.claude/skills/autocraft-building-visuals/`: the light language of the buildings. Use it for every new building.
-- `.claude/skills/autocraft-testing/`: which tests a change needs and how to run them, the slow map test included.
-- `.claude/skills/autocraft-video/`: gameplay clips and narrated explainer videos for X. It records micro simulations of the game, hidden, at a fixed 30 fps.
+- `.claude/skills/ringshadow-model-pipeline/`: turning concept art into an Unreal model (the Grok turnaround, a Geometry Script model). Record every hiccup in it as it happens.
+- `.claude/skills/ringshadow-building-visuals/`: the light language of the buildings. Use it for every new building.
+- `.claude/skills/ringshadow-testing/`: which tests a change needs and how to run them, the slow map test included.
+- `.claude/skills/ringshadow-video/`: gameplay clips and narrated explainer videos for X. It records micro simulations of the game, hidden, at a fixed 30 fps.
 - `.claude/skills/orc-elevenlabs/`: speech, sound effects and music. This copy has the Ringshadow sound notes, which the Orchestrator's stock copy lacks. Keep it. Like every `orc-*` skill and agent it is local only: git ignores them and they are never published.

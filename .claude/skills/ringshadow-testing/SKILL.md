@@ -1,9 +1,9 @@
 ---
-name: autocraft-testing
-description: Running Autocraft's tests (Unreal Engine 5 game in unreal/) — which run a change needs, how long it takes, how to read the result. Use when verifying a change to the C++ core or the UE game module, running core tests or UE automation tests, running a flow test, debugging a failing test, after changing maps or pathing, or when writing a test.
+name: ringshadow-testing
+description: Running Ringshadow's tests (Unreal Engine 5 game in unreal/) — which run a change needs, how long it takes, how to read the result. Use when verifying a change to the C++ core or the UE game module, running core tests or UE automation tests, running a flow test, debugging a failing test, after changing maps or pathing, or when writing a test.
 ---
 
-# Autocraft tests
+# Ringshadow tests
 
 Three layers, cheapest first. Pick the run from the table, run it, read it.
 

@@ -9,7 +9,7 @@
 //   Prospector welds, a weld point hops along the scaffold's top edge by the
 //   golden angle (cue `AcWeld`: sparks and a flickering light, drawn by
 //   `UAcBuildingFx`).
-// - The light language (`.claude/skills/autocraft-building-visuals`): the
+// - The light language (`.claude/skills/ringshadow-building-visuals`): the
 //   red beacon (0.25 s of every 1.2 s once complete), the blue progress
 //   lamps (quarters, the next one blinking) and queue lamps (one per item),
 //   the yellow "working" glow (steady 1.2 idle, `0.05 + 2.6·b²` on and off

@@ -50,9 +50,9 @@ The plan as written before the move:
 | `Tools/Audio/` | Only a 118 MB extraction cache. Delete it rather than move it. |
 | `art/` | 597 MB of concept art and turnarounds. Nothing in `unreal/` reads it. |
 | `README.md` | Describes only the Swift game. A new root README replaces it. |
-| `.claude/skills/autocraft-model-pipeline/` | Runs `swift build` and `.build/release/Autocraft`. Needs an Unreal rewrite. |
-| `.claude/skills/autocraft-building-visuals/` | Refers to `Models.swift`. Needs an Unreal rewrite. |
-| `.claude/skills/autocraft-testing/` | XCTest and `make test`. Needs an Unreal rewrite. |
+| `.claude/skills/ringshadow-model-pipeline/` | Runs `swift build` and `.build/release/Autocraft`. Needs an Unreal rewrite. |
+| `.claude/skills/ringshadow-building-visuals/` | Refers to `Models.swift`. Needs an Unreal rewrite. |
+| `.claude/skills/ringshadow-testing/` | XCTest and `make test`. Needs an Unreal rewrite. |
 | `.idea/autocraft.dev.iml` | A CLion SwiftPM module. |
 | `.build/`, `.build-log.txt`, `grid_bot.png`, `grid_top.png` | Git ignores these and they can be rebuilt. Delete them. |
 

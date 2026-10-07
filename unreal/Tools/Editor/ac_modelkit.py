@@ -1,5 +1,5 @@
 """The modelling kit: what every unreal/Tools/Editor/models/<model>.py imports
-(MODELLING.md; .claude/skills/autocraft-model-pipeline).
+(MODELLING.md; .claude/skills/ringshadow-model-pipeline).
 
 A model script says only the shape of the model:
 

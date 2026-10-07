@@ -25,7 +25,7 @@ unreal/DerivedDataCache/
 unreal/.vs/
 unreal/*.xcworkspace
 
-# The autocraft-video skill's workspace: node_modules, tools, projects, clips, renders.
+# The ringshadow-video skill's workspace: node_modules, tools, projects, clips, renders.
 video/
 
 # Orchestrator's own skills and agents (orc-*): local only, never published.

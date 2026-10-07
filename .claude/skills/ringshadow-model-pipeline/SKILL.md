@@ -1,9 +1,9 @@
 ---
-name: autocraft-model-pipeline
-description: Build or restyle an Autocraft unit or building model for the Unreal Engine 5 game (unreal/) — concept art and turnaround sheets with mcp__orchestrator__grok_image, a Geometry Script modelling script per model, catalog entries, render review. Use for a new unit (Peregrine, Atlas, Scorpion), a restyle from artwork, an image-AI prompt for a model, or checking a painted sheet against its model.
+name: ringshadow-model-pipeline
+description: Build or restyle a Ringshadow unit or building model for the Unreal Engine 5 game (unreal/) — concept art and turnaround sheets with mcp__orchestrator__grok_image, a Geometry Script modelling script per model, catalog entries, render review. Use for a new unit (Peregrine, Atlas, Scorpion), a restyle from artwork, an image-AI prompt for a model, or checking a painted sheet against its model.
 ---
 
-# Autocraft model pipeline (Unreal)
+# Ringshadow model pipeline (Unreal)
 
 The game is the UE 5.8 project `unreal/Autocraft.uproject`. A model there is a tree of **rigid parts**, one static mesh per (part, material), named `/Game/Models/<model>/SM_<part>__<material>`, plus a **catalog** entry in `unreal/Content/Models/ModelCatalog.json`. Three readers depend on the part names and data: the pose code (`unreal/Source/Autocraft/AcPose*.cpp`, finds a part by name), the ray code (`AcRaysWorld`, reads each part's `rays`) and the renderer (one instanced-mesh set per kind, part and material; team colour from per-instance custom data and the team flags on the material). `unreal/GAME-LAYER.md` §2.6, §3.3 and §3.4 are the contract; the field-by-field catalog entry is in [MODELLING.md](MODELLING.md).
 
@@ -13,7 +13,7 @@ Save every render you judge by to `art/models/<unit>/previews/` and tell the use
 
 ## Status: what exists, what is to build
 
-Steps 0 to 4, 6 and 7 run today; step 5 is by hand. Build a helper when a step needs one, in `unreal/Tools/Editor/` or `.claude/skills/autocraft-model-pipeline/`, and move it from this list to "exists" in the same edit.
+Steps 0 to 4, 6 and 7 run today; step 5 is by hand. Build a helper when a step needs one, in `unreal/Tools/Editor/` or `.claude/skills/ringshadow-model-pipeline/`, and move it from this list to "exists" in the same edit.
 
 To build:
 - Paint onto UE meshes (skin projection and nets): parked, see [NETS.md](NETS.md).

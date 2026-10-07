@@ -428,7 +428,7 @@ appending keeps saved games loading.
   which is retired. The new units are modelled in Unreal: an editor Python
   script per model builds its parts with Geometry Script and writes the same
   `SM_<part>__<material>` meshes and catalog entries the renderer, the pose
-  code and the ray code read (the `autocraft-model-pipeline` skill).
+  code and the ray code read (the `ringshadow-model-pipeline` skill).
 
 ## Decisions
 
