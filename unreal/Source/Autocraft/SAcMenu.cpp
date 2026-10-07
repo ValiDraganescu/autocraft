@@ -503,7 +503,7 @@ int32 SAcMenu::OnPaint(const FPaintArgs& Args, const FGeometry& Geometry, const 
 
 	if (bHome)
 	{
-		Label(TEXT("AUTOCRAFT"), 46, FAcHudStyle::Ice(), EAcHAlign::Center).Paint(Out, L, P, FVector2f(PanelW / 2, 26));
+		Label(TEXT("RINGSHADOW"), 46, FAcHudStyle::Ice(), EAcHAlign::Center).Paint(Out, L, P, FVector2f(PanelW / 2, 26));
 		Label(TEXT("Stardust Ore · Metallic Hydrogen · a frontier world"), 14, FAcHudStyle::Soft(), EAcHAlign::Center, EAcVAlign::Top,
 			EAcFontWeight::Medium)
 			.Paint(Out, L, P, FVector2f(PanelW / 2, 80));

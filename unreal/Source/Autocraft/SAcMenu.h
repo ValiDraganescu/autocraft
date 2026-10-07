@@ -1,7 +1,7 @@
 // `SAcMenu` (the launcher, AcGameFlow): the home screen and the pause menu,
 // drawn in HUD chrome like `SAcNewGame` over the dimmed (paused) game.
 //
-//   Home:   AUTOCRAFT                  Pause:  PAUSED
+//   Home:   RINGSHADOW                  Pause:  PAUSED
 //           [your game: map, teams,            [the game: map, teams, time]
 //            time played]                      [RESUME]
 //           [RESUME GAME] (when there is one)  [QUIT TO HOME]

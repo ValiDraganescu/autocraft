@@ -2,7 +2,7 @@
 	"FileVersion": 3,
 	"EngineAssociation": "5.8",
 	"Category": "",
-	"Description": "Autocraft: the RTS of prospectors on a frontier world, remade in Unreal.",
+	"Description": "Ringshadow: the RTS of prospectors on a frontier world, remade in Unreal.",
 	"Modules": [
 		{
 			"Name": "Autocraft",

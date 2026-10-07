@@ -1,4 +1,4 @@
-// Autocraft space ↔ Unreal space: the one place that knows the axes, the
+// Ringshadow space ↔ Unreal space: the one place that knows the axes, the
 // units and the yaw sign (GAME-LAYER.md §1). Every chunk converts through
 // these functions and nothing else.
 //

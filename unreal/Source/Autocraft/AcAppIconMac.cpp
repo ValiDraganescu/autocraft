@@ -1,6 +1,6 @@
 // The game's Dock icon on the Mac. The game runs as `UnrealEditor -game`,
 // whose bundle carries the editor's icon, so a game run swaps in the
-// Autocraft one (Build/Mac/Resources/Assets.xcassets, which a packaged build
+// Ringshadow one (Build/Mac/Resources/Assets.xcassets, which a packaged build
 // takes as its app icon). The editor itself keeps its own icon.
 #include "AcAppIcon.h"
 
