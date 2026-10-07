@@ -88,7 +88,8 @@ A new moment is a new row in `sims.json`:
   - `-AcPilot=KIND -AcPilotPath=w:1.5,w+right:1.5,act:2` drives a unit in first person (`AcPilotPawn.h`: keys `w a s d act right left up down ability next view leave wait aim`; `aim+act:2` keeps the view on the nearest enemy's chest while firing); add `-AcPilotThird` for third person.
   - `-AcPilotDiveAt=1` takes over 1 s into the recording: the clip opens on the RTS view and the camera dives into the unit (1.2 s; `-AcPilotDive=S` sets the length, `ac.PilotDive` in the game). Start its path with a short `wait:` so the unit stands still while the camera lands. `ranger-dive` is the example.
   - `-AcPilotAt=slope|enemy|X,Y` puts a fresh unit down instead of taking the first one: `slope` on the top of the player's own ramp facing down it (the way out toward the enemy), `enemy` 20–26 cells from the nearest enemy Citadel facing it (a Longbow drives 2.4 s to be in anchored range), `X,Y` at a ground point facing `-AcPilotYaw`. `-AcPilotVariant=anchored` puts a Longbow down anchored. With `-AcPilotDiveAt` the unit is on the map before the dive. The log prints where it went (`pilot: -AcPilotAt=`); a fixed point is only valid on that map.
-  - `-AcPilotPullOut=S,L` ends a clip: S seconds after the take-over the camera leaves the unit and rises behind it over L seconds, turned to the gas giant (best at night, `-AcHour=22`); the cockpit and all the UI go off, the drive goes on below. `longbow-finale` is the example.
+  - `-AcPilotPullOut=S,L` ends a clip: S seconds after the take-over the camera leaves the unit and rises behind it over L seconds, turned to the gas giant (best at night, `-AcHour=22`); the eject: the UI fades out over 0.5 s while the camera shoots out of the unit (eased out), the cockpit goes once it is out of the body, the view stays on the unit and then turns up to the gas giant; the drive goes on below. `longbow-finale` is the example.
+  - `-AcPilotVariant=minigun+shield+flyer` (any of them, `+`-joined): the player's Mini gun and Aegis Shield upgrades; an enemy Kestrel in the air past the staged enemy (`aim` holds a flyer at its hover). `-AcPilotFoeHp=N` lets the driven unit win (the Kestrel gets 2N). `ranger-third-to-first` is the example.
   - `-AcPilotStage` (with `-AcPilotVariant=fire|jump|anchoring|heal|…`) stages the classic pilot shot and then **pauses**: a still, not motion.
   - `-AcStageFight=N -AcCamAtArmy` stages two armies of N face to face (`AcWorldRenderer.h`); `-AcNoFog` shows the whole fight.
   - `-AcOrders`, `-AcQueue` (`AcCommandMap.h`), `-AcHour=19` (dusk), `-AcMap=badlands-large`, `-AcZoom=`, `-AcCamAt=`, `-AcSelect=`, `-AcHover=`.
@@ -97,6 +98,18 @@ A new moment is a new row in `sims.json`:
 - `seconds` (default 4), `warm` (frames before recording, default 60), `width`/`height`/`fps`.
 
 When no flag stages what the video needs, add the staging to the game: a new `-Ac…` flag in the chunk that owns it, documented in its header, like the ones above. Build, then add the sim. Keep it a staged moment, never a played-out game.
+
+### The post cut (the gas giant shape)
+
+Every X post video has the same shape (the posts skill's WORKFLOW.md, step 4): the opening card over the gas giant, the clip's pull-out reversed down into the scene, the scene, the eject back up to the gas giant under the end card. `scripts/giantcut.py` cuts it from one sim that ends with `-AcPilotPullOut`:
+
+```bash
+uv run .claude/skills/ringshadow-video/scripts/giantcut.py video/clips/ranger-third-to-first.mp4 \
+  --down 5.85,10.0 --end 12.9 --title "Press V to switch views." --music firefight_1 --music-at 18 \
+  --out video/renders/third-person.mp4 --x
+```
+
+The cards are drawn with Pillow: RINGSHADOW in Exo 2 Black, the title in dark Barlow Condensed ExtraBold on a cyan bar, a dark gradient under them at the lower left, everything above the bottom 230 px (X's player bar). The fonts are in `unreal/Content-src/fonts` (OFL). `--down` starts on the first frame without the cockpit and ends where the camera settles.
 
 For a post that is only a clip, cut the vertical version (below), then give the user both MP4 paths, their length and size, and the contact sheet.
 
@@ -215,5 +228,5 @@ Give the user the absolute path of the MP4, its length and size, the contact she
 
 ## Next steps for this skill
 
-- A pull-out on leaving a unit back to the RTS view (the game cuts today; `-AcPilotPullOut` only rises to the sky).
+- A recorded eject back to the RTS view: leaving a unit now blends the view from the eye up to the top-down view (`ac.PilotEject`, 0.9 s), but the pilot HUD still swaps for the RTS HUD at once.
 - Camera moves in first person (an orbit around the piloted unit in third person).

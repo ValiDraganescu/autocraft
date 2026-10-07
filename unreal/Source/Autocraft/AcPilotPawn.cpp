@@ -61,6 +61,8 @@ namespace
 		TEXT("The mouse turn's base gain over Swift's points (raw counts are slower than macOS's accelerated points)."));
 	TAutoConsoleVariable<float> CVarDive(TEXT("ac.PilotDive"), 1.2f,
 		TEXT("Seconds the take-over flies the camera from the top-down view into the unit (0: a cut)."));
+	TAutoConsoleVariable<float> CVarEject(TEXT("ac.PilotEject"), 0.9f,
+		TEXT("Seconds leaving a unit flies the camera from its eye back up to the top-down view (0: a cut)."));
 	TAutoConsoleVariable<int32> CVarPickParts(TEXT("ac.PickParts"), 1,
 		TEXT("Top-down picking against the models' parts (E1 rays): 0 boxes only (Swift), 1 a part hit refines "
 		     "the box's distance (a miss keeps the box), 2 a miss drops the candidate."));
@@ -469,8 +471,17 @@ void AAcPilotPawn::Leave()
 			// The RTS pawn sets its own input mode and context on possession.
 			PC->Possess(*It);
 			if (At) It->CenterOn(*At);
+			// The eject: the dive in reverse, from the eye where it was up to
+			// the top-down view (this camera stays put while not driving).
+			if (const float Eject = CVarEject.GetValueOnGameThread(); Eject > 0 && (!UAcShotSubsystem::IsShotRun() || UAcShotSubsystem::IsRecordRun()))
+			{
+				PC->SetViewTarget(this);
+				PC->SetViewTargetWithBlend(*It, Eject, VTBlend_EaseInOut, 2.f);
+			}
 		}
 	}
+	// The unit drawn again for the way up.
+	ApplyView();
 	UE_LOG(LogAutocraft, Log, TEXT("pilot: back to the camera"));
 	OnLeft.Broadcast(Was);
 }
@@ -958,7 +969,9 @@ void AAcPilotPawn::Follow(const FAcFrame& Frame)
 	{
 		if (const std::optional<ac::Unit> V = S.state.unit(*ScriptAimTarget))
 		{
-			AimAt(AcSpace::ToWorld(V->position, GroundAt(GetWorld(), V->position) + ChestHeight(V->kind)));
+			// A flyer at its hover, the rest at the chest.
+			const double Up = ac::Rules::stats(V->kind).air ? AcPose::Hover(V->kind) : ChestHeight(V->kind);
+			AimAt(AcSpace::ToWorld(V->position, GroundAt(GetWorld(), V->position) + Up));
 		}
 		if (--ScriptAimRounds == 0) ScriptAimTarget.Reset();
 	}
@@ -1091,6 +1104,9 @@ void AAcPilotPawn::Script(const double Dt)
 		P.Start = GetWorld()->GetUnpausedTimeSeconds();
 		P.Seconds = ScriptPullOutFor;
 		PullOut = P;
+		// The eject: the HUD (the recording's whole UI) fades out while the
+		// camera backs out of the eye; the cockpit goes once it is out.
+		if (UAcShotSubsystem* Shot = UAcShotSubsystem::Get(this)) Shot->SetShowUI(false, PullOutFade);
 		UE_LOG(LogAutocraft, Log, TEXT("pilot: pull-out at t=%.2f over %.2f s"), Since, P.Seconds);
 	}
 
@@ -1252,27 +1268,32 @@ void AAcPilotPawn::PullOutView(FVector& At, FQuat& Rot, const FVector& Body)
 	// over the horizon. It drifts on slowly once there.
 	const double Since = GetWorld()->GetUnpausedTimeSeconds() - PullOut->Start;
 	const double T = FMath::Clamp(Since / PullOut->Seconds, 0.0, 1.0);
-	const double S = T * T * T * (T * (T * 6.0 - 15.0) + 10.0);
+	// Eased out: it ejects fast, out of the unit at once, and slows into place.
+	const double S = 1.0 - FMath::Pow(1.0 - T, 3.0);
 	const FVector Giant = FAcGasGiant::Direction();
 	const FVector Back = -FVector(Giant.X, Giant.Y, 0).GetSafeNormal();
 	const double Drift = FMath::Max(0.0, Since - PullOut->Seconds);
 	const double Away = AcSpace::ToCm(14 + 0.6 * Drift), Up = AcSpace::ToCm(4 + 0.2 * Drift);
 	const FVector End = Body + Back * Away + FVector::UpVector * Up;
 	const FVector Pos = FMath::Lerp(At, End, S);
-	if (!PullOut->bOutside && (FVector::Dist(Pos, At) > AcSpace::ToCm(2.5) || T > 0.2))
+	if (!PullOut->bOutside && (FVector::Dist(Pos, At) > AcSpace::ToCm(1.2) || Since >= PullOutFade))
 	{
-		// Out of the unit: the model on, the cockpit and the HUD off (the
-		// recording's whole UI too: the end of a video).
+		// Out of the unit's body (the HUD still fading): the model on, the
+		// cockpit off.
 		PullOut->bOutside = true;
 		ApplyView();
-		if (UAcShotSubsystem* Shot = UAcShotSubsystem::Get(this)) Shot->SetShowUI(false);
 		UE_LOG(LogAutocraft, Log, TEXT("pilot: pull-out: body %s, giant %s, to %s"), *Body.ToCompactString(), *Giant.ToCompactString(), *End.ToCompactString());
 	}
 	// Toward the giant, pitched so the unit sits 19 degrees under the middle.
 	FRotator Look = Giant.Rotation();
 	Look.Pitch = float(FMath::RadiansToDegrees(std::atan2(-Up, Away))) + 19.f;
+	// On the way out the view turns onto the unit (it stays in the picture
+	// as the camera shoots back), then onto the giant.
+	const FVector ToBody = Body + FVector::UpVector * AcSpace::ToCm(0.6) - Pos;
+	const FQuat OnBody = ToBody.Size() > AcSpace::ToCm(0.8) ? ToBody.Rotation().Quaternion() : Rot;
+	const FQuat Out = FQuat::Slerp(Rot, OnBody, FMath::SmoothStep(0.0, 0.2, T));
 	At = Pos;
-	Rot = FQuat::Slerp(Rot, Look.Quaternion(), FMath::SmoothStep(0.0, 0.85, T));
+	Rot = FQuat::Slerp(Out, Look.Quaternion(), FMath::SmoothStep(0.25, 0.9, T));
 }
 
 void AAcPilotPawn::ScriptAimNearest()

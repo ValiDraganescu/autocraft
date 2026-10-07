@@ -47,12 +47,18 @@ public:
 	/// While driving only the resources stay up (E2 calls this).
 	void SetDriving(bool bDriving);
 
+	/// The whole HUD at this opacity (a recording's eject fade). The widgets
+	/// paint their own colours, so the first call moves the HUD into a
+	/// retainer that draws it as one picture; it stays there.
+	void SetFade(float Opacity);
+
 private:
 	void Attach();
 	void OnFrame(const FAcFrame& Frame);
 	void OnGameStarted(UAcSimSubsystem& Sim);
 
 	TSharedPtr<SAcRoot> RootWidget;
+	TSharedPtr<class SRetainerWidget> Fader;
 	FDelegateHandle FrameHandle;
 	FDelegateHandle StartedHandle;
 	bool bLoggedScale = false;

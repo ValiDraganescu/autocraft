@@ -44,10 +44,10 @@ For every `wip` post, read its notes and rework the text with this skill: what t
 
 Every post video has the same shape, with the gas giant as the game's signature:
 
-1. **The first frame is the thumbnail and has to be striking**: the gas giant over the scene, with the title in large type placed where it doesn't cover the gas giant (over the ground, lower left). A small line above the title says what the game is, "RINGSHADOW · AN RTS IN UNREAL ENGINE 5". The text is on screen from frame 0.
+1. **The first frame is the thumbnail and has to be striking**: the gas giant over the scene, and the opening card at the lower left, over a dark gradient, clear of the gas giant and above X's player bar: RINGSHADOW in large white Exo 2 Black, the video's title in dark type on a cyan bar, and "A REAL-TIME STRATEGY GAME IN UNREAL ENGINE 5" under it. On screen from frame 0. (The developer picked this look on 2026-10-07; small cyan text on the sand was unreadable.)
 2. **The gas giant comes down into the scene**: the same shot's pull-out played in reverse, faster (2×), so it lands where the scene happens.
 3. **The scene**: what the post describes, with the game's own sound.
-4. **Back to the gas giant**: the camera pulls out of the unit to the gas giant, and the end card comes up: the name, "A real-time strategy game in Unreal Engine 5.", "Drive any unit. Open source, public domain.", the GitHub link.
+4. **Back to the gas giant**: the eject. The HUD fades out over half a second while the camera shoots out of the cockpit, keeps the unit in view, and turns up to the gas giant. Then the end card comes up in the same style: the name, "A real-time strategy game in Unreal Engine 5." on the cyan bar, "Drive any unit. Open source, public domain.", the GitHub link.
 
 Music under all of it (a track from `unreal/Resources/Sounds/music/`), the game's sound over the scene, loudness at -16 LUFS.
 
@@ -56,8 +56,8 @@ How:
 1. Write the sim in the video skill's `sims.json`: the moment plus `-AcPilotPullOut=S,L` at its end. Useful staging: `-AcPilotPath` with `aim+act:N` (the view stays on the nearest enemy's chest while firing), `-AcPilotFoeHp=N` (the staged enemy dies, so the unit lives to the pull-out), `-AcPilotDiveAt=1` (opens on the RTS view and dives in), `-AcPilotAt=`, `-AcHour=` (night shows the gas giant best).
 2. Record it with the video skill's `record.py` (hidden, silent to the room, about 25 s per 10 s).
 3. Look at it before anything else: the contact sheet, and a tile of 6 to 8 frames across the clip (ffmpeg `select` + `tile`), full-size crops where aim or text matter. Read the log's `pilot:` lines for when the unit left, died or pulled out. Fix the staging and record again until the frames show what the post says. The usual failures: the unit walks into the enemy, shots go into the ground, the unit dies before the pull-out, the pull-out never reaches the gas giant.
-4. Cut it with a script in `video/projects/<slug>/cut.py` (copy `video/projects/dive-giant/cut.py`): the held first frame with the title, the reversed pull-out, a cross-fade into the scene, the scene, the held last frame under the end card. Check frame 0 and the end card at full size.
-5. Make the X file: a 2-pass x264 encode under 10 MB (`-b:v 3900k` fits 18 s), `video/renders/<slug>-x.mp4`. The browser upload to X takes at most 10 MB.
+4. Cut it with the video skill's `scripts/giantcut.py`: `--down S,E` is the pull-out in the clip, from the frame the cockpit is gone (the HUD fade starts about 0.3 s before it) to where the camera settles; `--end` the scene's end; `--title` the opening card's title (about 25 characters at most); `--music`, `--music-at`; `--x` also writes the X file, a 2-pass x264 encode under 10 MB (`video/renders/<slug>-x.mp4`; the browser upload to X takes at most 10 MB). Find S and E in a tile of the pull-out at 4 to 8 frame steps. Check frame 0 and the end card at full size.
+5. Keep the cut's command line in the post's `## Notes`, so it can be cut again.
 6. Set the post's `video` to the X file and note in `## Notes` how it was made (sim, cut script, length, size).
 
 ## 5. Preview

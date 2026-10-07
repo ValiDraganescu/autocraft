@@ -8,6 +8,7 @@
 #include "SAcRoot.h"
 
 #include "Blueprint/WidgetLayoutLibrary.h"
+#include "Slate/SRetainerWidget.h"
 #include "Engine/Engine.h"
 #include "Engine/GameViewportClient.h"
 #include "Engine/World.h"
@@ -55,8 +56,10 @@ void AAcHUD::EndPlay(const EEndPlayReason::Type Reason)
 	}
 	if (RootWidget && GEngine && GEngine->GameViewport)
 	{
-		GEngine->GameViewport->RemoveViewportWidgetContent(RootWidget.ToSharedRef());
+		if (Fader) GEngine->GameViewport->RemoveViewportWidgetContent(Fader.ToSharedRef());
+		else GEngine->GameViewport->RemoveViewportWidgetContent(RootWidget.ToSharedRef());
 	}
+	Fader.Reset();
 	RootWidget.Reset();
 	Super::EndPlay(Reason);
 }
@@ -75,6 +78,23 @@ void AAcHUD::Attach()
 		});
 	Viewport->AddViewportWidgetContent(RootWidget.ToSharedRef(), 10);
 	UE_LOG(LogAutocraft, Log, TEXT("hud: attached"));
+}
+
+void AAcHUD::SetFade(const float Opacity)
+{
+	UGameViewportClient* Viewport = GetWorld() ? GetWorld()->GetGameViewport() : nullptr;
+	if (!RootWidget || !Viewport) return;
+	if (!Fader)
+	{
+		Viewport->RemoveViewportWidgetContent(RootWidget.ToSharedRef());
+		Fader = SNew(SRetainerWidget).RenderOnPhase(false).RenderOnInvalidation(false).StatId(TEXT("AcHudFade"))
+		[
+			RootWidget.ToSharedRef()
+		];
+		Fader->SetRetainedRendering(true);
+		Viewport->AddViewportWidgetContent(Fader.ToSharedRef(), 10);
+	}
+	Fader->SetRenderOpacity(FMath::Clamp(Opacity, 0.f, 1.f));
 }
 
 float AAcHUD::PixelsPerPoint() const

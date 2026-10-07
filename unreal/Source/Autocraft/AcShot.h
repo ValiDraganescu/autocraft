@@ -67,7 +67,12 @@ public:
 	const FString& GetPath() const { return Path; }
 	/// Whether the frames keep the UI (-AcShotUI); a recording can drop it
 	/// midway (the pilot's pull-out).
-	void SetShowUI(const bool bShow) { bShowUI = bShow; }
+	/// `FadeSeconds`: a drop fades the UI out over that long first.
+	void SetShowUI(const bool bShow, const double FadeSeconds = 0)
+	{
+		bShowUI = bShow;
+		FadeTotal = FadeLeft = bShow ? 0 : FMath::RoundToInt(FadeSeconds * 30);
+	}
 
 private:
 	FString Path;
@@ -95,6 +100,9 @@ private:
 	int32 Flushes = 0;
 	/// The viewport's widgets' visibility before -AcShotRaw collapsed them.
 	TOptional<EVisibility> UIWas;
+	/// Recorded frames (30 a second) left in the UI's fade, of how many.
+	int32 FadeLeft = 0;
+	int32 FadeTotal = 0;
 	bool StartRaw();
 	void ApplyUI();
 	/// Writes the frames read back so far; false on a write error.

@@ -28,3 +28,7 @@ Round 2 of the skill benchmark (skill), voted up.
 Video: the ranger-dive-full sim (10 s, with the game's sound): the RTS view, the dive, the duel (aimed at the enemy's chest), a walk off, Esc back to the RTS view. 10.1 MB, so re-encode under 10 MB for the browser upload.
 
 Video, test of the gas giant signature (2026-10-07): video/renders/dive-giant.mp4, 18 s, 15.7 MB (dive-giant-x.mp4: 9.4 MB, for the upload). Opens on the gas giant over the Citadel with the title, comes down into the scene (the clip's own pull-out, reversed), the RTS view, the dive, the duel, then the pull-out back to the gas giant under the end card. Cut by video/projects/dive-giant/cut.py from the ranger-dive-giant sim.
+
+Re-cut 2026-10-07 with title card D and the eject (17.1 s, the X file 8.9 MB):
+
+    uv run .claude/skills/ringshadow-video/scripts/giantcut.py video/clips/ranger-dive-giant.mp4 --down 5.1,9.5 --end 11.95 --title "Take over any unit." --music ashfall_reach_1 --music-at 18 --out video/renders/dive-giant.mp4 --x

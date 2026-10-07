@@ -74,7 +74,11 @@
 //                        far, miss, minigun[+fire], anchored, anchoring,
 //                        close, jump, heal, cargo; a Prospector's citadel,
 //                        enemy, wide); "fire"/"miss"/"heal" step until the
-//                        round leaves, then hold (AcPilotStage.cpp)
+//                        round leaves, then hold (AcPilotStage.cpp);
+//                        joined by +, any staging: "shield" (the Aegis
+//                        Shield), "flyer" (an enemy Kestrel off to the
+//                        left past the target; `aim` holds a flyer at its
+//                        hover)
 //   -AcPilotDiveAt=S     in a recording (-AcShotRecord): take over S seconds
 //                        into it, so the clip shows the top-down view and the
 //                        dive into the unit
@@ -93,9 +97,11 @@
 //   -AcPilotPullOut=S[,L] in a recording: S seconds after the take over the
 //                        camera leaves the eye and rises behind the unit,
 //                        turned to the gas giant, over L seconds (5); the
-//                        unit drawn, the cockpit and the pilot's HUD off
-//                        (`PulledOut()`), and the recording's UI with them
-//                        (-AcShotUI ends there). The drive goes on underneath.
+//                        recording's UI (-AcShotUI) fades out over the first
+//                        0.5 s; the camera ejects fast (eased out), and once
+//                        it is out of the body the unit is drawn and the
+//                        cockpit and the pilot's HUD are off (`PulledOut()`).
+//                        The drive goes on underneath.
 //   -AcPilotFor=S        hold an -AcShot until S game seconds after the take
 //                        over (the path runs meanwhile)
 //   -AcPilotYaw=RAD -AcPilotPitch=RAD   the view at the start
@@ -109,7 +115,12 @@
 // and levelled into the eye's at the end, the field of view with it. The
 // unit stays drawn and the cockpit hidden until the camera is 2.5 cells from
 // the eye or 80% of the way (`InDive()`). Stills (-AcShot without -AcShotRecord, a
-// staged -AcPilotStage) cut. Leaving still cuts back.
+// staged -AcPilotStage) cut.
+//
+// The eject: leaving blends the view from the eye, where it was, up to the
+// top-down view (`ac.PilotEject` seconds, 0.9, eased; 0 cuts), the unit
+// drawn again. A recording's pull-out fades the HUD out over its first
+// `PullOutFade` seconds and drops the cockpit at its end.
 #pragma once
 
 #include "CoreMinimal.h"
@@ -346,6 +357,9 @@ private:
 		bool bOutside = false;
 	};
 	TOptional<FPullOut> PullOut;
+	/// The HUD's fade at the pull-out's start, seconds; the cockpit goes once
+	/// the camera is out of the body, at the latest at its end.
+	static constexpr double PullOutFade = 0.5;
 	void PullOutView(FVector& At, FQuat& Rot, const FVector& Body);
 	/// -AcPilotAt: a fresh unit of the kind at a staged place.
 	bool StageAt(ac::UnitKind Kind, const FString& Where);

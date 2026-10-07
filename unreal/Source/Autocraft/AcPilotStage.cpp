@@ -267,6 +267,16 @@ bool AAcPilotPawn::StageUnit(ac::Simulation& S, const ac::UnitKind Kind, const a
 		if (!P.upgrades) P.upgrades.emplace();
 		P.upgrades->insert(ac::Upgrade::minigun);
 	}
+	// "shield": the Aegis Shield too (Rangers +10 hp).
+	if (Mods.Remove(TEXT("shield")) > 0)
+	{
+		ac::Player& P = St.players[ac::Pilot::player];
+		if (!P.upgrades) P.upgrades.emplace();
+		P.upgrades->insert(ac::Upgrade::aegisShield);
+	}
+	// "flyer": an enemy Kestrel too, off to the left past the target (a
+	// gun that hits air turns up to it once the target is down).
+	const bool bExtraFlyer = Mods.Remove(TEXT("flyer")) > 0;
 	const FString Variant = Mods.Num() > 0 ? Mods[0] : FString();
 
 	ac::Vec2 Sum(0, 0);
@@ -340,6 +350,14 @@ bool AAcPilotPawn::StageUnit(ac::Simulation& S, const ac::UnitKind Kind, const a
 			if (bHurt) V.hp = 18;
 			if (!bHeals && FoeHp > 0) V.hp = FoeHp;
 		});
+		if (bExtraFlyer && !bHeals)
+		{
+			ac::Unit K = NewUnit(S, ac::UnitKind::kestrel, 1, At + Out * 5.5 + Side * 3.0, std::atan2(-Out.y, -Out.x));
+			K.cooldown = 6.0; // holds its rockets while the target is fought
+			if (FoeHp > 0) K.hp = FoeHp * 2;
+			St.units.push_back(K);
+			StagedIds.Add(K.id);
+		}
 	}
 	const int64 MeId = Me.id;
 	St.units.push_back(Me);

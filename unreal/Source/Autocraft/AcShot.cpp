@@ -1,4 +1,5 @@
 #include "AcShot.h"
+#include "AcHUD.h"
 
 #include "AcAudioDirector.h"
 #include "AcLog.h"
@@ -262,6 +263,13 @@ void UAcShotSubsystem::ApplyUI()
 	const TSharedPtr<SViewport> Widget = Client ? Client->GetGameViewportWidget() : nullptr;
 	const TSharedPtr<SWidget> Content = Widget ? Widget->GetContent() : nullptr;
 	if (!Content) return;
+	if (!bShowUI && FadeLeft > 0)
+	{
+		// The HUD paints its own colours: it fades as one picture.
+		if (AAcHUD* Hud = AAcHUD::Get(this)) Hud->SetFade(float(--FadeLeft) / float(FadeTotal));
+		else --FadeLeft;
+		return;
+	}
 	if (!bShowUI && !UIWas)
 	{
 		UIWas = Content->GetVisibility();

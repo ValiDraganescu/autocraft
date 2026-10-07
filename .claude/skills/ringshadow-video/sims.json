@@ -92,6 +92,19 @@
       "notes": "Third person: a Ranger walks and turns."
     },
     {
+      "name": "ranger-third-to-first",
+      "flags": [
+        "-AcPilot=ranger",
+        "-AcPilotThird",
+        "-AcPilotVariant=minigun+shield+flyer",
+        "-AcPilotFoeHp=20",
+        "-AcPilotPullOut=6.8,5",
+        "-AcPilotPath=wait:0.3,aim:0.3,aim+act:1.8,view:0.1,wait:0.3,aim:0.4,aim+act:2.6,wait:8"
+      ],
+      "seconds": 13,
+      "notes": "Third person over a Ranger with the Mini gun and the Aegis Shield: it guns down the enemy Ranger, V switches to first person, it turns up to an enemy Kestrel and shoots it down, then the camera pulls out to the gas giant."
+    },
+    {
       "name": "comet-drive",
       "flags": [
         "-AcPilot=comet",
