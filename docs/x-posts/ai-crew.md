@@ -8,7 +8,7 @@ posted:
 
 ## Post
 
-Autocraft is nine days old. I started it on 28 September.
+Ringshadow is nine days old. I started it on 28 September.
 
 Claude Code wrote all of it, about 96,000 lines of C++. I haven't typed a line by hand.
 

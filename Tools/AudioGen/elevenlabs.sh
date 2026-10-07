@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Autocraft's own sounds from ElevenLabs, made once and shipped in the repo
+# Ringshadow's own sounds from ElevenLabs, made once and shipped in the repo
 # (unreal/Resources/Sounds). The game never calls ElevenLabs.
 #
 #   elevenlabs.sh voices                              voice_id | name | labels

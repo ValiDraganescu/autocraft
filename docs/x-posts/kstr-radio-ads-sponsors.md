@@ -8,7 +8,7 @@ posted:
 
 ## Post
 
-The music in Autocraft plays as a radio station: KSTR 88.7 Stardust, original songs with in-world ads between them.
+The music in Ringshadow plays as a radio station: KSTR 88.7 Stardust, original songs with in-world ads between them.
 
 Tonight's sponsors:
 Quicksilver Cola, pumped from Metallic Hydrogen wells. "Not a beverage."

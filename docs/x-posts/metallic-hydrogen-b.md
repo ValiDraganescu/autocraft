@@ -8,7 +8,7 @@ posted:
 
 ## Post
 
-Metallic Hydrogen, the second resource in Autocraft.
+Metallic Hydrogen, the second resource in Ringshadow.
 
 It's a liquid metal, like mercury. It sits in wells: silver liquid that heaves slowly, cold blue-white light at the rim, pale vapour boiling off.
 

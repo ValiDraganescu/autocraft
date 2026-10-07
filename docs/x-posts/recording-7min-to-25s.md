@@ -8,7 +8,7 @@ posted:
 
 ## Post
 
-A 10 s clip of Autocraft used to take about 7 minutes to record. Now it takes 25 s.
+A 10 s clip of Ringshadow used to take about 7 minutes to record. Now it takes 25 s.
 
 Before, every frame was saved as a PNG, then encoded. Now frames are read back from the GPU asynchronously and piped raw into ffmpeg while the game runs.
 

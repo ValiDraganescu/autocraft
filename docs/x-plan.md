@@ -1,4 +1,4 @@
-# Sharing Autocraft on X
+# Sharing Ringshadow on X
 
 The goal is to build in public: share the game's progress and its tooling
 (Claude Code skills, the multi-agent workflow, the Orchestrator, Suno
@@ -10,7 +10,7 @@ X content that Grok cited, and they haven't been checked.
 
 ## The short version
 
-- **One account**, aimed at Claude Code users. Autocraft is the proof. A
+- **One account**, aimed at Claude Code users. Ringshadow is the proof. A
   split account (game / tools) means two empty audiences. Bio, one sentence:
   building a Mac RTS in Unreal by driving coding agents, and open-sourcing
   the skills. Bio link: the GitHub repo.

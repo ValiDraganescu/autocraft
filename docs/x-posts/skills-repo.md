@@ -8,7 +8,7 @@ posted:
 
 ## Post
 
-Claude Code writes all of Autocraft's code, Grok paints the art, Suno makes the music. I direct. The agents work from Claude Code skills, written playbooks for one job each, and they're all public in the repo.
+Claude Code writes all of Ringshadow's code, Grok paints the art, Suno makes the music. I direct. The agents work from Claude Code skills, written playbooks for one job each, and they're all public in the repo.
 
 This video came out of one of them. The video skill staged the Longbow shots, recorded them and cut them: a tank that anchors into artillery and shells an enemy base.
 

@@ -56,7 +56,9 @@ description.
 - **approved**: the developer read it and wants it out. It has a date and a
   video that exists.
 - **posted**: on X. `posted` has the link, `date` the day it went out. Don't
-  edit the text afterwards: it's the record of what was said.
+  edit the text afterwards: it's the record of what was said. A post from
+  before 2026-10-07 says Autocraft, the game's name until the rename to
+  Ringshadow, and keeps it.
 
 `--check` warns when a day has more than two posts, when two posts in a row
 share an angle, when an approved post has no date or its video is missing,

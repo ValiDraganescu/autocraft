@@ -8,7 +8,7 @@ posted:
 
 ## Post
 
-Autocraft is an RTS where an AI commander runs your army, and you can take over any unit and play it like a shooter. Now the more you play a kind of unit yourself, the better every unit of that kind gets.
+Ringshadow is an RTS where an AI commander runs your army, and you can take over any unit and play it like a shooter. Now the more you play a kind of unit yourself, the better every unit of that kind gets.
 
 Each level puts two upgrade cards over the cockpit and you keep one. This one is the Prospector's: every Prospector pumps Metallic Hydrogen 20% faster. There are 216 of them across the twelve kinds.
 

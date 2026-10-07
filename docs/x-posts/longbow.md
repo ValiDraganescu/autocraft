@@ -23,3 +23,5 @@ Open source, public domain: github.com/ValiDraganescu/autocraft
 ## Notes
 
 The first post written with Claude. The video is the 46 s cut, re-encoded to 9.7 MB for the upload.
+
+The game was called Autocraft when this went out. It was renamed Ringshadow on 2026-10-07; this file keeps the text as posted.

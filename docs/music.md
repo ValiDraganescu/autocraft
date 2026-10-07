@@ -2,7 +2,7 @@
 
 The game's music comes on as a radio station, **KSTR 88.7 Stardust**
 (KSTR: US call signs west of the Mississippi start with K, and the rest
-reads "K-STaR"). It plays a shuffled playlist: Autocraft's own tracks,
+reads "K-STaR"). It plays a shuffled playlist: Ringshadow's own tracks,
 shipped in `unreal/Resources/Sounds/music/`, and any audio
 file in the Audio folder's `music/`
 (`~/Library/Application Support/Autocraft/Audio/music/`). After a song

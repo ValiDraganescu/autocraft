@@ -8,7 +8,7 @@ posted:
 
 ## Post
 
-My agents test and record Autocraft on the same M4 Max MacBook Pro I'm working on, and I don't notice.
+My agents test and record Ringshadow on the same M4 Max MacBook Pro I'm working on, and I don't notice.
 
 Every game run they start is hidden and silent: a Dock-less copy of the editor, rendering offscreen. Sound goes to a WAV file. Nothing reaches my speakers.
 

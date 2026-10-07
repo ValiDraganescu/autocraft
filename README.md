@@ -1,4 +1,4 @@
-<h1 align="center">Autocraft</h1>
+<h1 align="center">Ringshadow</h1>
 
 <p align="center">
   <b>A real-time strategy game where the AI runs your army, and you can dive into any unit and fight it yourself.</b><br>
@@ -109,7 +109,7 @@ part by part with Geometry Script and fitted against those views.
 |:---:|:---:|:---:|
 | <img src="docs/media/atlas-concept.jpg" width="250"> | <img src="docs/media/atlas-turnaround.jpg" width="375"> | <img src="docs/media/atlas-model.jpg" width="250"> |
 
-**Built with AI agents.** Autocraft is made with AI coding agents, and the
+**Built with AI agents.** Ringshadow is made with AI coding agents, and the
 skills they work from are in [`.claude/skills/`](.claude/skills):
 
 - [`autocraft-model-pipeline`](.claude/skills/autocraft-model-pipeline): concept art to an Unreal model.

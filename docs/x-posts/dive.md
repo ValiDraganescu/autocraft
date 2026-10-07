@@ -8,7 +8,7 @@ posted:
 
 ## Post
 
-Autocraft is an RTS where an AI commander runs your army, and you can take over any of your units and play it like a shooter.
+Ringshadow is an RTS where an AI commander runs your army, and you can take over any of your units and play it like a shooter.
 
 In the clip I click a Ranger on the map. The camera dives from the top-down view to the Ranger's own eyes in 1.2 seconds, and it opens fire on the enemy Ranger in front of it.
 

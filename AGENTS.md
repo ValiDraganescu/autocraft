@@ -1,6 +1,8 @@
-# Autocraft
+# Ringshadow
 
 A real-time strategy game for macOS in Unreal Engine 5 (`unreal/`, UE 5.8): prospectors mining Stardust Ore and Metallic Hydrogen on a frontier world. [docs/naming.md](docs/naming.md) has the names of every unit, building and resource. [docs/music.md](docs/music.md) has the soundtrack, the music player and the Suno prompts. [README.md](README.md) has the layout. [unreal/PORTING.md](unreal/PORTING.md) and [unreal/GAME-LAYER.md](unreal/GAME-LAYER.md) describe the core and the game layer. [docs/new-units.md](docs/new-units.md) designs the next units.
+
+The game was called Autocraft until 2026-10-07. Ringshadow is the huge ringed gas giant in its sky: the prospectors live in its shadow. Only what a player or a reader sees changed. The code keeps the old name (the `Autocraft` and `AutocraftCore` modules, `Autocraft.uproject`, the `Ac` class prefixes, the data and log folders, `AUTOCRAFT_*` variables, the repo folder and the GitHub repo), and [docs/rename-ringshadow.md](docs/rename-ringshadow.md) plans renaming those. Write Ringshadow in prose, RINGSHADOW in uppercase labels, `ringshadow` as a slug.
 
 The original Swift and SceneKit game left this repo on 2026-10-05. It is archived, with its git history, in `~/git/dev/autocraft-swift` ([docs/swift-move.md](docs/swift-move.md)). Work happens only on the Unreal game; don't take facts from the Swift code. Until 2026-10-01 the repo lived in `~/git/dev/local-ai/autocraft`. Old logs under `art/` still show that path.
 
@@ -31,4 +33,4 @@ The original Swift and SceneKit game left this repo on 2026-10-05. It is archive
 - `.claude/skills/autocraft-building-visuals/`: the light language of the buildings. Use it for every new building.
 - `.claude/skills/autocraft-testing/`: which tests a change needs and how to run them, the slow map test included.
 - `.claude/skills/autocraft-video/`: gameplay clips and narrated explainer videos for X. It records micro simulations of the game, hidden, at a fixed 30 fps.
-- `.claude/skills/orc-elevenlabs/`: speech, sound effects and music. This copy has the Autocraft sound notes, which the Orchestrator's stock copy lacks. Keep it. Like every `orc-*` skill and agent it is local only: git ignores them and they are never published.
+- `.claude/skills/orc-elevenlabs/`: speech, sound effects and music. This copy has the Ringshadow sound notes, which the Orchestrator's stock copy lacks. Keep it. Like every `orc-*` skill and agent it is local only: git ignores them and they are never published.

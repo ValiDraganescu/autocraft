@@ -8,7 +8,7 @@ posted:
 
 ## Post
 
-In Autocraft you don't micromanage. Your team's AI commander runs the army.
+In Ringshadow you don't micromanage. Your team's AI commander runs the army.
 
 Press M for the command map. Set a stance, pick objectives (attack, defend, hold, man a Bastion), call expansions, make requests. The AI plans the rest.
 

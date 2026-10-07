@@ -1,8 +1,16 @@
 # Names
 
-The names of every unit, building and resource in Autocraft, their short
+The names of every unit, building and resource in Ringshadow, their short
 forms, and the identifiers the code uses for them. The name set is
 "Stellar prospectors": a mining frontier on a far world.
+
+## The game
+
+**Ringshadow** (RINGSHADOW in capitals, `ringshadow` as a slug). It is the huge
+ringed gas giant in the game's sky: the prospectors live in its shadow. The
+game was called Autocraft until 2026-10-07; code, data folders and the GitHub
+repo still carry that name ([rename-ringshadow.md](rename-ringshadow.md)). The
+world is **Ashfall Reach**, and the radio station is KSTR 88.7 Stardust.
 
 ## Resources
 

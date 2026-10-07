@@ -8,7 +8,7 @@ posted:
 
 ## Post
 
-This is Metallic Hydrogen, the second resource in Autocraft: a liquid metal like mercury, sitting in wells in the rock. Autocraft is set on Ashfall Reach, a mining frontier under a gas giant, and this is what the rival outfits fight over.
+This is Metallic Hydrogen, the second resource in Ringshadow: a liquid metal like mercury, sitting in wells in the rock. Ringshadow is set on Ashfall Reach, a mining frontier under a gas giant, and this is what the rival outfits fight over.
 
 The clip is a close-up of one well. The silver heaves slowly, cold blue-white light runs along the rim, and pale vapour boils off the top. To get it out, you build a Derrick over the well and pump.
 
