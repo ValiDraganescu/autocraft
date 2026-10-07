@@ -14,11 +14,11 @@ below is done.
 | Group | Where | Hits |
 |---|---|---|
 | A. Unreal modules and project | `Autocraft`, `AutocraftCore`, `Autocraft.uproject`, `*.Target.cs`, `*.Build.cs` | about 330 source files |
-| B. Class and log names | `Ac` / `SAc` / `FAc` / `UAc` prefixes, `AUTOCRAFT_API`, `LogAutocraft`, `Category = "Autocraft"` | 252 `AUTOCRAFT_API`, 6 category files |
-| C. Automation test names | `Autocraft.<Area>.<Case>` | 87 tests, 15 areas |
+| B. Class and log names | `Ac` / `SAc` / `FAc` / `UAc` prefixes, `AUTOCRAFT_API`, `LogAutocraft`, `Category = "Autocraft"` | `AUTOCRAFT_API` in 103 files, 6 category files |
+| C. Automation test names | `Autocraft.<Area>.<Case>` | 76 tests, 15 areas |
 | D. Data and log folders | `~/Library/Application Support/Autocraft`, `~/Library/Logs/Autocraft` | 10 source lines, 8 docs |
 | E. Environment variables | `AUTOCRAFT_*` | 12 names |
-| F. ElevenLabs voice names | `"Autocraft Atlas"` and ten more, in `Tools/AudioGen` | 11 voices |
+| F. ElevenLabs voice names | `"Autocraft Atlas"` and twelve more, in `Tools/AudioGen` | 13 voices |
 | G. Repo folder, worktrees, GitHub repo | `~/git/dev/autocraft*`, `github.com/ValiDraganescu/autocraft` | 12 files with the URL |
 | H. Leftovers | the Swift archive's names, imported-asset metadata, benchmark records | see the end |
 
@@ -62,8 +62,8 @@ section or accept that the volume sliders reset once.
 **Files touched.** All of `unreal/Source/` (folders and the `AUTOCRAFT_API` and
 `AUTOCRAFTCORE_API` export macros, which follow the module name),
 `Autocraft.uproject` (renamed to `Ringshadow.uproject`), `Config/*.ini`, the two
-maps, `core-tests/Makefile`, `Tools/**` (about 60 scripts and the shot
-comparer pass `Autocraft.uproject` and look for "module Autocraft"), the
+maps, `core-tests/Makefile`, `Tools/**` (72 files in all name `Autocraft.uproject`; the bench and the shot
+comparer also look for "module Autocraft" in a failed run's text), the
 build commands in AGENTS.md, README.md and three skills, and `.idea/`.
 
 **Risk.** High and wide, but mechanical. The first build after the rename is a
@@ -83,7 +83,7 @@ the class prefix question below, never in separate passes.
 ## B. Class prefixes, the log category and editor categories
 
 - **`Ac` / `SAc` / `FAc` / `UAc` / `AAc` prefixes.** A new prefix (`Rs`) means
-  renaming about 150 files and every use. `Ac` stays readable as "Ringshadow
+  renaming 255 files and every use. `Ac` stays readable as "Ringshadow
   core", so keep it. **Recommendation: keep.**
 - **`LogAutocraft`** is read by the pilot probe
   (`Tools/Audio/pilot_probe.py` greps `LogAutocraft: audio:`) and by
@@ -96,7 +96,7 @@ the class prefix question below, never in separate passes.
 ## C. Automation test names
 
 `IMPLEMENT_SIMPLE_AUTOMATION_TEST(..., "Autocraft.Audio.Rules.Weapons", ...)`
-and 86 more, plus the header comments with their `-ExecCmds="Automation
+and 75 more, plus the header comments with their `-ExecCmds="Automation
 RunTests Autocraft.<Area>"` lines and the testing skill's table. The names are
 only labels, so renaming is a find and replace of `"Autocraft.` inside the
 test files, and of the run commands in the testing skill, SHOTS.md and the
@@ -108,7 +108,7 @@ header comments. Risk: none beyond a stale command somewhere.
 `~/Library/Application Support/Autocraft/` holds the saves (`sessions/`,
 `Unreal/sessions/`), `tracking.sqlite` (and its `-shm`/`-wal`),
 `Unreal/tracking.sqlite`, `Unreal/music.jsonl` and `Audio/music` (the user's
-own MP3 soundtrack, 117 MB of it in the repo's archive too).
+own MP3 soundtrack).
 `~/Library/Logs/Autocraft/` holds `autocraft.log` (the Swift game's),
 `unreal.log` and Unreal's own `AutoSDKInfo` files (Unreal names that folder
 after the project, so it moves with A without any code).
@@ -169,7 +169,7 @@ The voices were made with Voice Design and saved under names like
 `Autocraft Oracle`. The manifests in `Tools/AudioGen/*.manifest.json` and
 docs/music.md name them, and `design_voice.py save` takes the name. The
 sounds already generated do not depend on the name, only a regeneration does.
-**What it means.** Rename the 11 voices in the ElevenLabs account (by hand in
+**What it means.** Rename the 13 voices in the ElevenLabs account (by hand in
 the dashboard) and the strings in the manifests and docs; or leave the account
 alone. **Risk:** a manifest that names a voice that no longer exists fails the
 next generation. **Recommendation:** leave them; the names are internal to the
