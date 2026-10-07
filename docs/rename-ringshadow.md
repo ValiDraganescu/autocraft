@@ -4,9 +4,13 @@ The game was renamed from Autocraft to Ringshadow on 2026-10-07. Phase 1
 changed everything a player or a reader sees: the menu title (RINGSHADOW),
 `ProjectName` and `Description` in `DefaultGame.ini`, the uproject
 description, every doc, the post drafts and the five skills (now
-`ringshadow-*`). This file is phase 2, a plan only: the internal names that
-still say Autocraft, what renaming each one means, and what to do. Nothing
-below is done.
+`ringshadow-*`).
+
+**Decision, 2026-10-07: there is no phase 2.** Ringshadow is the marketing
+name; Autocraft stays the project's name inside: the modules, the uproject,
+the class prefixes, the data and log folders, the variables, the repo folder
+and the GitHub repo. The rest of this file is the plan that was written before
+that decision, kept for reference. Don't carry it out.
 
 `git grep -n -i autocraft` still finds these groups (the counts are from
 2026-10-07):
