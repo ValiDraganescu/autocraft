@@ -1,9 +1,9 @@
 ---
-status: proposed
-date:
+status: posted
+date: 2026-10-07
 angle: unit
 video: video/renders/longbow-giant-x.mp4
-posted: 
+posted: https://x.com/escu__valentin/status/2107784893514072161
 ---
 
 ## Post
@@ -24,3 +24,5 @@ The Longbow video re-cut in the gas giant shape, asked for by the developer on 2
 
     video/projects/longbow-giant/source.mp4: video/renders/longbow.mp4 0-36 s + video/clips/longbow-finale.mp4 (ffmpeg concat)
     uv run .claude/skills/ringshadow-video/scripts/giantcut.py video/projects/longbow-giant/source.mp4 --down 38.6,42.6 --end 46.9 --title "The Longbow: drive the artillery." --music firefight_1 --music-at 20 --music-ends --out video/renders/longbow-giant.mp4 --x
+
+Posted 2026-10-07 with the reply under it, uploaded through x.com/compose/post (9.3 MB).
