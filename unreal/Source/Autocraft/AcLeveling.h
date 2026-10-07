@@ -29,7 +29,7 @@
 //   -AcEarn=XP[@S]         XP for the driven unit S real seconds (default 1)
 //                          after a drive starts (`sim.earn`: the real path,
 //                          event, banner and fanfare cue)
-//   -AcPickKey=z|x         that key once cards are up
+//   -AcPickKey=z|x[@S]     that key once cards are up (S seconds later)
 //   -AcPickClick=1|2       a click on that card through the widget
 //   -AcMapPickPerk=N       a click on the command map's Nth pick button
 //   ac.Earn XP, ac.Pick z|x|PERK, ac.LevelUp [KIND LEVEL] (console)
@@ -173,6 +173,8 @@ private:
 	double EarnAfter = 1;
 	double DriveStarted = -1;
 	FString PickKeyWanted;
+	/// Frames the cards are up before -AcPickKey's key (8; "z@S": S seconds).
+	int32 PickAfterFrames = 8;
 	int32 PickClickWanted = 0;
 	int32 MapPickWanted = 0;
 	int32 CardFrames = 0;

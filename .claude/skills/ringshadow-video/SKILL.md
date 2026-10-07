@@ -109,7 +109,13 @@ uv run .claude/skills/ringshadow-video/scripts/giantcut.py video/clips/ranger-th
   --out video/renders/third-person.mp4 --x
 ```
 
-The cards are drawn with Pillow: RINGSHADOW in Exo 2 Black, the title in dark Barlow Condensed ExtraBold on a cyan bar, a dark gradient under them at the lower left, everything above the bottom 230 px (X's player bar). The fonts are in `unreal/Content-src/fonts` (OFL). `--down` starts on the first frame without the cockpit and ends where the camera settles.
+The cards are drawn with Pillow: RINGSHADOW in Exo 2 Black, the title in dark Barlow Condensed ExtraBold on a cyan bar, a dark gradient under them at the lower left, everything above the bottom 230 px (X's player bar). The fonts are in `unreal/Content-src/fonts` (OFL). `--down` starts on the first frame without the cockpit and ends where the camera settles. The X file's rate is set for 9.4 MB at any length.
+
+- `--caption "…" --caption-at S,E`: one line on a cyan bar over the scene, above the pilot's console (the music deck stays visible). X autoplays muted: say what the sound is.
+- `--music-ends`: the music only under the opening and the end card, when the scene's own sound is the point (the radio).
+- `--zoom S,E,X,Y,F`: eases into F× on pixel X,Y between scene seconds S and E and back out (the level-up cards: `0.8,3.6,952,715,2`).
+
+Staging that goes with it: `-AcMusicAd=ID` opens the station on that ad (`quicksilver_cola`, `opal_glow`, `citadel_timeshares`…; `unreal/Resources/Sounds/ads/titles.json`); `-AcLevel=prospector:2 -AcPicks=1 -AcEarn=100@2 -AcPickKey=z@3` levels a driven Prospector up to 3 and keeps the first card after 3 s (`AcLeveling.h`).
 
 For a post that is only a clip, cut the vertical version (below), then give the user both MP4 paths, their length and size, and the contact sheet.
 

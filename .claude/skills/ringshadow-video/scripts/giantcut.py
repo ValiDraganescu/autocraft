@@ -14,7 +14,7 @@
    card.
 
 Music under all of it, loudness -16 LUFS. --x also writes the X upload
-(2-pass x264, under 10 MB for about 18 s) next to the output.
+(2-pass x264, its rate set for 9.4 MB at any length) next to the output.
 
     uv run .claude/skills/ringshadow-video/scripts/giantcut.py video/clips/ranger-dive-giant.mp4 \\
         --down 5.7,11.95 --end 11.95 --title "Take over any unit." --music ashfall_reach_1 --music-at 18 \\
@@ -92,6 +92,15 @@ def ending() -> Image.Image:
     return img
 
 
+def caption(s: str) -> Image.Image:
+    """One line on a cyan bar at the lower left, over the scene."""
+    img = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    if s:
+        # Above the pilot's console (its top is about 790 px down), so the music deck shows.
+        bar(img, H - 390, s, font("BarlowCondensed-ExtraBold.ttf", 58))
+    return img
+
+
 def main() -> None:
     a = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     a.add_argument("src", type=Path, help="the recorded sim (with -AcPilotPullOut)")
@@ -100,6 +109,11 @@ def main() -> None:
     a.add_argument("--title", required=True, help="the opening card's title, about 25 characters at most")
     a.add_argument("--music", default="ashfall_reach_1", help="a track of unreal/Resources/Sounds/music")
     a.add_argument("--music-at", type=float, default=18, help="seconds into the track")
+    a.add_argument("--music-ends", action="store_true",
+                   help="the music only under the opening and the end card (the scene's own sound is the point: the radio)")
+    a.add_argument("--caption", help="a line over the scene, lower left, e.g. what the radio plays (X autoplays muted)")
+    a.add_argument("--caption-at", default="0.5,8", help="S,E: when the caption shows, scene seconds")
+    a.add_argument("--zoom", help="S,E,X,Y,F: ease into F× on the pixel X,Y between scene seconds S and E (small UI, e.g. cards)")
     a.add_argument("--hold", type=float, default=1.3, help="the opening frame held under the card")
     a.add_argument("--speed", type=float, default=2.0, help="the descent plays this much faster")
     a.add_argument("--tail", type=float, default=2.0, help="the last frame held under the end card")
@@ -115,6 +129,24 @@ def main() -> None:
     tmp = Path(tempfile.mkdtemp(prefix="giantcut-"))
     opening(o.title).save(tmp / "open.png")
     ending().save(tmp / "end.png")
+    caption(o.caption or "").save(tmp / "caption.png")
+    c0, c1 = (float(v) for v in o.caption_at.split(","))
+    music = REPO / f"unreal/Resources/Sounds/music/{o.music}.mp3"
+    if o.music_ends:
+        # Full under the opening, out as the scene starts, back for the end card.
+        s0, s1 = a_len - xf, a_len - xf + card_at
+        bed = (f"volume='0.3*if(lt(t,{s0}),1,if(lt(t,{s0 + 0.8}),1-(t-{s0})/0.8,"
+               f"if(lt(t,{s1}),0,if(lt(t,{s1 + 0.8}),(t-{s1})/0.8,1))))':eval=frame")
+    else:
+        bed = "volume=0.3"
+    zoom = ""
+    if o.zoom:
+        z0, z1, zx, zy, zf = (float(v) for v in o.zoom.split(","))
+        # 0 → 1 over 0.6 s from z0, back to 0 over the 0.6 s before z1 (smoothstep).
+        e = f"clip(min((it-{z0})/0.6,({z1}-it)/0.6),0,1)"
+        z = f"(1+{zf - 1}*({e})*({e})*(3-2*({e})))"
+        zoom = (f"zoompan=z='{z}':x='clip({zx}-iw/zoom/2,0,iw-iw/zoom)':"
+                f"y='clip({zy}-ih/zoom/2,0,ih-ih/zoom)':d=1:s={W}x{H}:fps=30,")
     graph = (
         # A: the descent, reversed and faster, its first frame held; the card fades as it lands.
         f"[0:v]trim={d0}:{d1},setpts=PTS-STARTPTS,reverse,setpts=PTS/{o.speed},"
@@ -122,21 +154,23 @@ def main() -> None:
         f"[2:v]format=rgba,fade=t=out:st={a_len - 0.65}:d=0.45:alpha=1[oc];"
         f"[a0][oc]overlay=0:0:shortest=1[a];"
         # B: the scene to the gas giant, its last frame held; the end card fades in.
-        f"[0:v]trim=0:{o.end},setpts=PTS-STARTPTS,tpad=stop_duration={o.tail}:stop_mode=clone,fps=30,setsar=1[b0];"
+        f"[0:v]trim=0:{o.end},setpts=PTS-STARTPTS,{zoom}tpad=stop_duration={o.tail}:stop_mode=clone,fps=30,setsar=1[b0];"
         f"[3:v]format=rgba,fade=t=in:st={card_at}:d=0.5:alpha=1[ec];"
-        f"[b0][ec]overlay=0:0:shortest=1,fade=t=out:st={b_len - 0.5}:d=0.5[b];"
+        f"[4:v]format=rgba,fade=t=in:st={c0}:d=0.4:alpha=1,fade=t=out:st={c1 - 0.4}:d=0.4:alpha=1[cc];"
+        f"[b0][cc]overlay=0:0:shortest=1[b1];"
+        f"[b1][ec]overlay=0:0:shortest=1,fade=t=out:st={b_len - 0.5}:d=0.5[b];"
         f"[a][b]xfade=transition=fade:duration={xf}:offset={a_len - xf},format=yuv420p[v];"
         # The game's sound under the scene, the music under everything.
         f"[0:a]atrim=0:{o.end},asetpts=PTS-STARTPTS,volume=2.0,afade=t=out:st={o.end - 0.6}:d=0.6,"
         f"adelay={int((a_len - xf) * 1000)}:all=1,apad=whole_dur={total}[g];"
-        f"[1:a]atrim={o.music_at}:{o.music_at + total},asetpts=PTS-STARTPTS,volume=0.3,afade=t=in:d=0.5,"
+        f"[1:a]atrim={o.music_at}:{o.music_at + total},asetpts=PTS-STARTPTS,{bed},afade=t=in:d=0.5,"
         f"afade=t=out:st={total - 2.5}:d=2.5[m];"
         f"[g][m]amix=inputs=2:duration=longest:normalize=0,loudnorm=I=-16:TP=-1.5:LRA=11,aresample=48000[au]")
-    music = REPO / f"unreal/Resources/Sounds/music/{o.music}.mp3"
     o.out.parent.mkdir(parents=True, exist_ok=True)
     subprocess.run([FF, "-y", "-loglevel", "error", "-i", str(o.src), "-i", str(music),
                     "-loop", "1", "-framerate", "30", "-i", str(tmp / "open.png"),
                     "-loop", "1", "-framerate", "30", "-i", str(tmp / "end.png"),
+                    "-loop", "1", "-framerate", "30", "-i", str(tmp / "caption.png"),
                     "-filter_complex", graph, "-map", "[v]", "-map", "[au]", "-t", f"{total:.3f}",
                     "-c:v", "libx264", "-crf", "18", "-preset", "slow", "-c:a", "aac", "-b:a", "192k",
                     "-movflags", "+faststart", str(o.out)], check=True)
@@ -144,7 +178,9 @@ def main() -> None:
     if o.x:
         x = o.out.with_name(o.out.stem + "-x.mp4")
         log = str(tmp / "pass")
-        common = ["-c:v", "libx264", "-b:v", "3900k", "-preset", "slow", "-passlogfile", log]
+        # 9.4 MB in all, the sound's 128k off the top: under X's 10 MB browser upload.
+        rate = int(9.4e6 * 8 / total / 1000) - 128
+        common = ["-c:v", "libx264", "-b:v", f"{rate}k", "-preset", "slow", "-passlogfile", log]
         subprocess.run([FF, "-y", "-loglevel", "error", "-i", str(o.out), *common, "-pass", "1", "-an", "-f", "mp4", "/dev/null"], check=True)
         subprocess.run([FF, "-y", "-loglevel", "error", "-i", str(o.out), *common, "-pass", "2",
                         "-c:a", "aac", "-b:a", "128k", "-movflags", "+faststart", str(x)], check=True)

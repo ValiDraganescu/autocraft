@@ -2,7 +2,7 @@
 status: wip
 date:
 angle: world
-video: record: the base at dusk with a KSTR ad playing (sound on)
+video: video/renders/kstr-radio-x.mp4
 posted: 
 ---
 
@@ -19,8 +19,10 @@ Sound on 🔊
 
 ## Reply
 
-
+The soundtrack, the station and the prompts behind the songs: github.com/ValiDraganescu/autocraft/blob/main/docs/music.md
 
 ## Notes
 
 Round 1 of the skill benchmark (baseline), voted up. The developer's note: -
+
+Video: the same as kstr-radio-ads (video/renders/kstr-radio-x.mp4); the two posts are alternatives.

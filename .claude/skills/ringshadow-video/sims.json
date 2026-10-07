@@ -120,6 +120,39 @@
       "notes": "First person: a Prospector drills Stardust Ore."
     },
     {
+      "name": "kstr-dusk-mining",
+      "flags": [
+        "-AcPilot=prospector",
+        "-AcPilotStage",
+        "-AcPilotLive",
+        "-AcPilotThird",
+        "-AcHour=18",
+        "-AcMusicAd=quicksilver_cola",
+        "-AcPilotPullOut=15.5,5",
+        "-AcPilotPath=act:5,w+left:2,w:5,w+right:3.5,wait:8"
+      ],
+      "seconds": 21,
+      "warm": 30,
+      "notes": "Dusk, third person: a Prospector drills at the ore until its hopper is full, then drives off around the field, while KSTR 88.7 Stardust plays its Quicksilver Cola ad (the deck shows it); then the eject to the gas giant."
+    },
+    {
+      "name": "prospector-level-up",
+      "flags": [
+        "-AcPilot=prospector",
+        "-AcPilotStage",
+        "-AcPilotLive",
+        "-AcHour=21",
+        "-AcLevel=prospector:2",
+        "-AcPicks=1",
+        "-AcEarn=100@2",
+        "-AcPickKey=z@3",
+        "-AcPilotPullOut=9,5",
+        "-AcPilotPath=act:9,wait:8"
+      ],
+      "seconds": 15,
+      "notes": "Night, first person: a Prospector drills, reaches level 3, the two cards come up over the cockpit (Rig master, Plating), it keeps Rig master (every Prospector pumps Metallic Hydrogen 20% faster), then the eject to the gas giant."
+    },
+    {
       "name": "fight-12",
       "flags": [
         "-AcStageFight=12",
@@ -253,6 +286,22 @@
       "seconds": 11,
       "music": false,
       "notes": "Night, third person: a Longbow drives in firing, then the camera pulls out and turns to the gas giant."
+    },
+    {
+      "name": "longbow-siege-giant",
+      "flags": [
+        "-AcPilot=longbow",
+        "-AcNoAI",
+        "-AcStageBuildings",
+        "-AcPilotAt=enemy",
+        "-AcPilotThird",
+        "-AcHour=19",
+        "-AcPilotPullOut=10.5,5",
+        "-AcPilotPath=wait:0.3,w:2.4,ability:3,act:4.8,act:8"
+      ],
+      "seconds": 16,
+      "music": false,
+      "notes": "Dusk, third person: a Longbow drives up to the enemy base, anchors into artillery and shells the buildings, then the eject to the gas giant."
     }
   ]
 }

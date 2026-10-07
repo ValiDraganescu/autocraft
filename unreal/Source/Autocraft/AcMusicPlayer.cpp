@@ -21,6 +21,7 @@
 #include "ImageUtils.h"
 #include "Kismet/GameplayStatics.h"
 #include "Misc/CommandLine.h"
+#include "Misc/Parse.h"
 #include "Misc/FileHelper.h"
 #include "Misc/Paths.h"
 #include "Policies/CondensedJsonPrintPolicy.h"
@@ -546,7 +547,11 @@ void UAcMusicPlayer::Tick(float DeltaTime)
 	if (!bStarted && !bSilent && PlayWorld())
 	{
 		bStarted = true;
-		Start();
+		// -AcMusicAd=ID: the station opens on that ad (a clip of the radio).
+		FString AdId;
+		const int32 Opening = FParse::Value(FCommandLine::Get(), TEXT("AcMusicAd="), AdId)
+			? Ads.IndexOfByPredicate([&AdId](const FTrack& T) { return T.Id == AdId; }) : INDEX_NONE;
+		if (Opening == INDEX_NONE || !Load(true, Opening)) Start();
 	}
 	if (GapUntil && !bPaused && Clock >= *GapUntil) Advance();
 	if (IsPlaying())

@@ -16,7 +16,8 @@
 // Plays and votes go to a JSON-lines log until the tracking database exists:
 // ~/Library/Application Support/Autocraft/Unreal/music.jsonl.
 //
-// Command line: -AcNoMusic (silent), -AcMusicSeed=N (a fixed shuffle).
+// Command line: -AcNoMusic (silent), -AcMusicSeed=N (a fixed shuffle),
+// -AcMusicAd=ID (the station opens on that ad: quicksilver_cola, opal_glow...).
 // Console: `ac.Music next|previous|toggle|up|down|status`.
 #pragma once
 

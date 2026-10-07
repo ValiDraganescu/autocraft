@@ -261,6 +261,12 @@ void UAcLevelingSubsystem::OnWorldBeginPlay(UWorld& InWorld)
 	}
 	FParse::Value(Cmd, TEXT("AcPickKey="), PickKeyWanted);
 	PickKeyWanted = PickKeyWanted.ToLower();
+	// "z@S": the cards stay up S seconds first (a recording shows them).
+	if (FString Key, After; PickKeyWanted.Split(TEXT("@"), &Key, &After))
+	{
+		PickKeyWanted = Key;
+		PickAfterFrames = FMath::Max(8, FMath::RoundToInt(FCString::Atod(*After) * 30));
+	}
 	FParse::Value(Cmd, TEXT("AcPickClick="), PickClickWanted);
 	FParse::Value(Cmd, TEXT("AcMapPickPerk="), MapPickWanted);
 
@@ -481,7 +487,7 @@ void UAcLevelingSubsystem::Script(const UAcSimSubsystem& InSim)
 	}
 	// Scripted picks, a few frames after the cards are up (they lay out first).
 	CardFrames = CardsWidget && CardsWidget->Offer() ? CardFrames + 1 : 0;
-	if (CardFrames == 8)
+	if (CardFrames == (PickKeyWanted.IsEmpty() ? 8 : PickAfterFrames))
 	{
 		if (!PickKeyWanted.IsEmpty())
 		{
