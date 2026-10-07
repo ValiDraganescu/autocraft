@@ -1,6 +1,6 @@
 ---
-status: wip
-date:
+status: approved
+date: 2026-10-08
 angle: world
 video: video/renders/kstr-radio-x.mp4
 posted: 

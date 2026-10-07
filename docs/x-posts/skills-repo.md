@@ -1,6 +1,6 @@
 ---
-status: wip
-date:
+status: approved
+date: 2026-10-12
 angle: build
 video: video/renders/skills-repo-x.mp4
 posted: 

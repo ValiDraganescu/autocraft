@@ -1,6 +1,6 @@
 ---
-status: wip
-date:
+status: approved
+date: 2026-10-09
 angle: mechanic
 video: video/renders/leveling-x.mp4
 posted: 

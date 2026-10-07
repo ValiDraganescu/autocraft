@@ -1,6 +1,6 @@
 ---
-status: wip
-date: 
+status: approved
+date: 2026-10-08
 angle: play
 video: video/renders/dive-giant-x.mp4
 posted: 

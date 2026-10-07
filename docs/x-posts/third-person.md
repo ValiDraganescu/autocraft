@@ -1,6 +1,6 @@
 ---
-status: wip
-date:
+status: approved
+date: 2026-10-09
 angle: unit
 video: video/renders/third-person-x.mp4
 posted: 

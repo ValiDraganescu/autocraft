@@ -1,6 +1,6 @@
 ---
-status: wip
-date:
+status: approved
+date: 2026-10-12
 angle: world
 video: video/renders/kstr-sponsors-x.mp4
 posted: 
