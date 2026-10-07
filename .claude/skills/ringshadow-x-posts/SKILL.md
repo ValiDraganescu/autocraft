@@ -85,10 +85,8 @@ Rewrite any sentence that has one.
 3. Check the best one against the banned list and the 280-character fold.
 4. Return the post as plain text ready to paste, then `---`, then the reply. Nothing else.
 
-## The calendar
+## From idea to posted
 
-Posts live in `docs/x-posts/`, one Markdown file each ([README](../../../docs/x-posts/README.md)): `status` (proposed, wip, approved, posted), `date`, `angle`, `video`, `posted`, then `## Post`, `## Reply`, `## Notes`. Save every new draft there as `proposed`. The developer moves the ones they want to `wip`: then make each one's video (record the clip with the ringshadow-video skill, set `video` to the file) and rework the text from its notes. Only the developer sets `approved` and the date. Before proposing a date, run `uv run docs/x-posts/calendar.py --check`: at most two posts a day, and no angle twice in a row.
+[WORKFLOW.md](WORKFLOW.md) is the whole path, and every post goes through it: proposals on the review page, the developer's picks and notes, the sync to `docs/x-posts/`, the rework, the video in the gas giant shape (record, check the frames, cut, the X encode), the preview, approval with a date, posting on X after the developer's yes, and the record. It also has the benchmark rounds for tuning this file.
 
-## The benchmark
-
-`bench/` tests this skill: `briefs.json` holds the facts and proposed video for each post, `run.py ROUND` writes a post per brief with `claude -p` (plus a few blind posts without the skill), and the voting page shows them with their video. The developer's votes and notes decide the next change to this file.
+The statuses: `proposed` (Claude's draft), `wip` (the developer picked it), `approved` (with a date), `posted` (with its link). Only the developer sets `wip` and `approved`.

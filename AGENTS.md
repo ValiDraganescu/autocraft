@@ -33,4 +33,5 @@ The original Swift and SceneKit game left this repo on 2026-10-05. It is archive
 - `.claude/skills/ringshadow-building-visuals/`: the light language of the buildings. Use it for every new building.
 - `.claude/skills/ringshadow-testing/`: which tests a change needs and how to run them, the slow map test included.
 - `.claude/skills/ringshadow-video/`: gameplay clips and narrated explainer videos for X. It records micro simulations of the game, hidden, at a fixed 30 fps.
+- `.claude/skills/ringshadow-x-posts/`: X posts in the developer's voice, and the whole path of a post (WORKFLOW.md): the review page, the calendar in `docs/x-posts/`, the videos, posting.
 - `.claude/skills/orc-elevenlabs/`: speech, sound effects and music. This copy has the Ringshadow sound notes, which the Orchestrator's stock copy lacks. Keep it. Like every `orc-*` skill and agent it is local only: git ignores them and they are never published.
