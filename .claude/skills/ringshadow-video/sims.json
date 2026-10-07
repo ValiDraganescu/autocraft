@@ -136,6 +136,22 @@
       "notes": "Dusk, third person: a Prospector drills at the ore until its hopper is full, then drives off around the field, while KSTR 88.7 Stardust plays its Quicksilver Cola ad (the deck shows it); then the eject to the gas giant."
     },
     {
+      "name": "kstr-scorpion-ridge",
+      "flags": [
+        "-AcPilot=scorpion",
+        "-AcPilotAt=ridge",
+        "-AcPilotMiners=6",
+        "-AcPilotThird",
+        "-AcHour=6",
+        "-AcMusicAd=citadel_timeshares",
+        "-AcPilotPullOut=13,5",
+        "-AcPilotPath=wait:2,left:0.6,wait:0.6,right:1.2,wait:0.6,left:0.6,wait:15"
+      ],
+      "seconds": 19,
+      "warm": 30,
+      "notes": "Dawn, third person: a Scorpion on a ridge over the player's base, its Prospectors busy below, the gas giant behind the base, while KSTR plays the Citadel Timeshares ad; then the eject."
+    },
+    {
       "name": "prospector-level-up",
       "flags": [
         "-AcPilot=prospector",

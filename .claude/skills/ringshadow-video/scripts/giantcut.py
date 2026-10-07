@@ -106,6 +106,7 @@ def main() -> None:
     a.add_argument("src", type=Path, help="the recorded sim (with -AcPilotPullOut)")
     a.add_argument("--down", required=True, help="S,E: the pull-out, from leaving the eye to the gas giant (clip s)")
     a.add_argument("--end", type=float, required=True, help="where the scene ends (clip s), on the gas giant")
+    a.add_argument("--start", type=float, default=0, help="where the scene starts (clip s): skips a take-over's first frames")
     a.add_argument("--title", required=True, help="the opening card's title, about 25 characters at most")
     a.add_argument("--music", default="ashfall_reach_1", help="a track of unreal/Resources/Sounds/music")
     a.add_argument("--music-at", type=float, default=18, help="seconds into the track")
@@ -123,9 +124,9 @@ def main() -> None:
     d0, d1 = (float(v) for v in o.down.split(","))
     xf = 0.35
     a_len = o.hold + (d1 - d0) / o.speed
-    b_len = o.end + o.tail
+    b_len = o.end - o.start + o.tail
     total = a_len + b_len - xf
-    card_at = o.end - 2.2
+    card_at = o.end - o.start - 2.2
     tmp = Path(tempfile.mkdtemp(prefix="giantcut-"))
     opening(o.title).save(tmp / "open.png")
     ending().save(tmp / "end.png")
@@ -154,14 +155,14 @@ def main() -> None:
         f"[2:v]format=rgba,fade=t=out:st={a_len - 0.65}:d=0.45:alpha=1[oc];"
         f"[a0][oc]overlay=0:0:shortest=1[a];"
         # B: the scene to the gas giant, its last frame held; the end card fades in.
-        f"[0:v]trim=0:{o.end},setpts=PTS-STARTPTS,{zoom}tpad=stop_duration={o.tail}:stop_mode=clone,fps=30,setsar=1[b0];"
+        f"[0:v]trim={o.start}:{o.end},setpts=PTS-STARTPTS,{zoom}tpad=stop_duration={o.tail}:stop_mode=clone,fps=30,setsar=1[b0];"
         f"[3:v]format=rgba,fade=t=in:st={card_at}:d=0.5:alpha=1[ec];"
         f"[4:v]format=rgba,fade=t=in:st={c0}:d=0.4:alpha=1,fade=t=out:st={c1 - 0.4}:d=0.4:alpha=1[cc];"
         f"[b0][cc]overlay=0:0:shortest=1[b1];"
         f"[b1][ec]overlay=0:0:shortest=1,fade=t=out:st={b_len - 0.5}:d=0.5[b];"
         f"[a][b]xfade=transition=fade:duration={xf}:offset={a_len - xf},format=yuv420p[v];"
         # The game's sound under the scene, the music under everything.
-        f"[0:a]atrim=0:{o.end},asetpts=PTS-STARTPTS,volume=2.0,afade=t=out:st={o.end - 0.6}:d=0.6,"
+        f"[0:a]atrim={o.start}:{o.end},asetpts=PTS-STARTPTS,volume=2.0,afade=t=out:st={o.end - o.start - 0.6}:d=0.6,"
         f"adelay={int((a_len - xf) * 1000)}:all=1,apad=whole_dur={total}[g];"
         f"[1:a]atrim={o.music_at}:{o.music_at + total},asetpts=PTS-STARTPTS,{bed},afade=t=in:d=0.5,"
         f"afade=t=out:st={total - 2.5}:d=2.5[m];"

@@ -22,6 +22,7 @@
 // the staging steps would stay on screen frozen as a tracer (Swift's first
 // shot of the target lands unseen: its Ranger reads 39/45, this one 45/45).
 #include "AcPilotPawn.h"
+#include "AcGasGiant.h"
 
 #include "AcLog.h"
 #include "AcSimSubsystem.h"
@@ -574,6 +575,86 @@ int64 AAcPilotPawn::PlaceAt(const ac::UnitKind Kind, const FString& Where)
 		Heading = std::atan2(In.y, In.x);
 		UE_LOG(LogAutocraft, Log, TEXT("pilot: -AcPilotAt=%s: at %.2f,%.2f heading %.3f, the ground falls %.2f over 6 cells ahead; the Citadel at %.2f,%.2f (player %lld), %.1f cells off"),
 			*Where, Me.position.x, Me.position.y, Heading, Best, C.x, C.y, (long long)Foe->owner, ac::distance(Me.position, C));
+	}
+	else if (Where == TEXT("ridge"))
+	{
+		// High ground over a base (the player's, else any) with the gas giant
+		// behind the base as seen from there: standable, 10-34 cells from its
+		// Citadel and above it, roughly along the giant's bearing, scored by
+		// height, how straight the line is, an edge in front and nearness;
+		// facing the Citadel.
+		if (!S.field) return INDEX_NONE;
+		const FVector G = FAcGasGiant::Direction();
+		const ac::Vec2 Bearing = ac::normalize(ac::Vec2(G.X, G.Y));
+		const double Level = S.map && S.map->levelHeight > 0 ? S.map->levelHeight : 1.0;
+		double Best = -1e9;
+		std::optional<ac::Vec2> BestAt, Home;
+		int64 HomeOwner = ac::Pilot::player;
+		// The maps put every base on its top level, so the ground above one
+		// may not exist: then the base's own level, out toward its edge.
+		bool bFlat = false;
+		for (int32 Pass = 0; Pass < 2 && !BestAt; ++Pass)
+		{
+		bFlat = Pass == 1;
+		const double MinUp = bFlat ? -0.25 * Level : 0.3 * Level;
+		for (const ac::Structure& B : St.structures)
+		{
+			if (B.kind != ac::StructureKind::citadel) continue;
+			const double HomeH = S.field->height(B.position);
+			for (double R = 10; R <= 34; R += 0.5)
+			{
+				for (int32 K = 0; K < 240; ++K)
+				{
+					const double A = double(K) / 240 * 2 * UE_DOUBLE_PI;
+					const ac::Vec2 P = B.position + ac::Vec2(std::cos(A), std::sin(A)) * R;
+					const ac::Vec2 To = ac::normalize(B.position - P);
+					const double Along = To.x * Bearing.x + To.y * Bearing.y;
+					const double Up = S.field->height(P) - HomeH;
+					if (Along < 0.5 || Up < MinUp || !S.pilotCanStand(Me, P)) continue;
+					// A clear view: no ore field or well within 7 cells of it.
+					bool bClear = true;
+					for (const ac::OreDeposit& D : St.patches) bClear = bClear && ac::distance(D.position, P) > 7;
+					if (St.wells) for (const ac::Well& W : *St.wells) bClear = bClear && ac::distance(W.position, P) > 7;
+					if (!bClear) continue;
+					const double Edge = FMath::Clamp((S.field->height(P) - S.field->height(P + To * 3)) / Level, 0.0, 1.0);
+					// The player's own base first.
+					// Far enough to look over the base (about 20 cells), not lost in it.
+					const double Score = 1.5 * FMath::Min(Up / Level, 2.0) + 4 * Along + Edge - 0.1 * FMath::Abs(R - 20)
+						+ (B.owner == ac::Pilot::player ? 1.0 : 0.0);
+					if (Score > Best) { Best = Score; BestAt = P; Home = B.position; HomeOwner = B.owner; }
+				}
+			}
+		}
+		}
+		if (!BestAt)
+		{
+			UE_LOG(LogAutocraft, Error, TEXT("pilot: -AcPilotAt=ridge: no open ground by a base along the gas giant's bearing (%.2f,%.2f)"), Bearing.x, Bearing.y);
+			return INDEX_NONE;
+		}
+		const double HomeH = S.field->height(*Home);
+		Me.position = *BestAt;
+		const ac::Vec2 In = ac::normalize(*Home - *BestAt);
+		Heading = std::atan2(In.y, In.x);
+		UE_LOG(LogAutocraft, Log, TEXT("pilot: -AcPilotAt=ridge%s: at %.2f,%.2f heading %.3f, %.2f above the Citadel at %.2f,%.2f (player %lld), %.1f cells off"),
+			bFlat ? TEXT(" (no higher ground: the base's own level)") : TEXT(""), Me.position.x, Me.position.y, Heading, S.field->height(Me.position) - HomeH, Home->x, Home->y, (long long)HomeOwner, ac::distance(Me.position, *Home));
+		// -AcPilotMiners=N: N more Prospectors of that base's by its
+		// Citadel, sent to the patches nearest it (a busy base below).
+		if (int32 Miners = 0; FParse::Value(FCommandLine::Get(), TEXT("AcPilotMiners="), Miners) && Miners > 0)
+		{
+			std::vector<int64> Near;
+			for (int64 I = 0; I < (int64)St.patches.size(); ++I)
+			{
+				if (St.patches[(size_t)I].remaining > 0 && ac::distance(St.patches[(size_t)I].position, *Home) < 12.0) Near.push_back(I);
+			}
+			for (int32 K = 0; K < Miners && !Near.empty(); ++K)
+			{
+				const double A = double(K) / Miners * 2 * UE_DOUBLE_PI;
+				ac::Unit W = NewUnit(S, ac::UnitKind::prospector, HomeOwner, *Home + ac::Vec2(std::cos(A), std::sin(A)) * 4.5, A);
+				W.task = ac::Unit::Task::toPatch;
+				W.patch = Near[(size_t)K % Near.size()];
+				St.units.push_back(W);
+			}
+		}
 	}
 	else
 	{

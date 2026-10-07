@@ -92,6 +92,10 @@
 //                        (with -AcPilotVariant=anchored: a Longbow anchored;
 //                        with -AcPilotDiveAt: put down as the game starts,
 //                        so the top-down view has it before the dive)
+//   -AcPilotAt=ridge     on high ground over a base (the player's first), above
+//                        it toward an edge, the gas giant behind the base
+//                        as seen from there, facing the Citadel
+//                        (-AcPilotMiners=N: N more Prospectors mining below)
 //   -AcPilotAt=X,Y       a fresh KIND at that ground point (cells), facing
 //                        -AcPilotYaw (radians, default east)
 //   -AcPilotPullOut=S[,L] in a recording: S seconds after the take over the

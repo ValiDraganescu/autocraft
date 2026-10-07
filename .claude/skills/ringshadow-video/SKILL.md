@@ -113,9 +113,10 @@ The cards are drawn with Pillow: RINGSHADOW in Exo 2 Black, the title in dark Ba
 
 - `--caption "…" --caption-at S,E`: one line on a cyan bar over the scene, above the pilot's console (the music deck stays visible). X autoplays muted: say what the sound is.
 - `--music-ends`: the music only under the opening and the end card, when the scene's own sound is the point (the radio).
+- `--start S`: the scene starts S seconds into the clip (an `-AcPilotAt` take-over shows the top-down view for its first frames).
 - `--zoom S,E,X,Y,F`: eases into F× on pixel X,Y between scene seconds S and E and back out (the level-up cards: `0.8,3.6,952,715,2`).
 
-Staging that goes with it: `-AcMusicAd=ID` opens the station on that ad (`quicksilver_cola`, `opal_glow`, `citadel_timeshares`…; `unreal/Resources/Sounds/ads/titles.json`); `-AcLevel=prospector:2 -AcPicks=1 -AcEarn=100@2 -AcPickKey=z@3` levels a driven Prospector up to 3 and keeps the first card after 3 s (`AcLeveling.h`).
+Staging that goes with it: `-AcPilotAt=ridge` puts the unit out from a base, in line with the gas giant behind it, facing the Citadel (`-AcPilotMiners=N` adds busy Prospectors). The generated maps put every base on its top level, so there is no ground above one: the ridge falls back to the base's own level, 20 cells out, clear of ore fields and wells. `-AcMusicAd=ID` opens the station on that ad (`quicksilver_cola`, `opal_glow`, `citadel_timeshares`…; `unreal/Resources/Sounds/ads/titles.json`); `-AcLevel=prospector:2 -AcPicks=1 -AcEarn=100@2 -AcPickKey=z@3` levels a driven Prospector up to 3 and keeps the first card after 3 s (`AcLeveling.h`).
 
 For a post that is only a clip, cut the vertical version (below), then give the user both MP4 paths, their length and size, and the contact sheet.
 
