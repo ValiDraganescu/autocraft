@@ -6,10 +6,15 @@
 
 // In the Unreal build the engine's SQLiteCore names its exports
 // `SQLITE_API=SQLITECORE_API=DLLIMPORT`; the core includes no engine header,
-// so this is DLLIMPORT as the Mac toolchain defines it. (core-tests build
-// against the system's sqlite3.h, which has no such macro.)
+// so this is DLLIMPORT as the platform headers define it (WindowsPlatform.h,
+// ApplePlatform.h, UnixPlatform.h). (core-tests build against the system's
+// sqlite3.h, which has no such macro.)
 #if defined(SQLITE_API) && !defined(DLLIMPORT)
+#if defined(_WIN32)
+#define DLLIMPORT __declspec(dllimport)
+#else
 #define DLLIMPORT __attribute__((visibility("default")))
+#endif
 #endif
 #include <sqlite3.h>
 
