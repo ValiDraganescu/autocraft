@@ -4,6 +4,8 @@
 // of the struct body; their bodies are in the `.cpp` of the same names.
 #pragma once
 
+#include "AutocraftCoreApi.h"
+
 #include "SimdMath.h"
 #include "Rules.h"
 #include "Router.h"
@@ -44,7 +46,7 @@ struct NavGrid;
 ///    bent to answer the enemy it has seen (`counters`),
 /// 7. transfers of surplus Prospectors to bases that are short.
 /// Placement is checked against the terrain, resources and buildings.
-struct Commander {
+struct AUTOCRAFTCORE_API Commander {
     MapDefinition map;
     TerrainField field;
     Router router;

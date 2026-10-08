@@ -1,6 +1,8 @@
 // Port of Sources/GameCore/StallWatch.swift.
 #pragma once
 
+#include "AutocraftCoreApi.h"
+
 #include "Types.h"
 
 #include <cstdint>
@@ -20,7 +22,7 @@ namespace ac {
 /// - broke: Prospectors but no income (no ore or MH gathered) for
 ///   `window` seconds;
 /// - retreat: the army falling back for longer than `window` seconds.
-struct StallWatch {
+struct AUTOCRAFTCORE_API StallWatch {
     static constexpr double window = 60.0;
     static constexpr int64_t bank = 1000;
 

@@ -1,6 +1,8 @@
 // Port of Sources/GameCore/WindowMaps.swift.
 #pragma once
 
+#include "AutocraftCoreApi.h"
+
 #include "Noise.h"
 #include "SimdMath.h"
 #include "Types.h"
@@ -22,8 +24,8 @@ template <> struct EnumInfo<MapStyle> {
     static constexpr std::array<std::string_view, 4> names{"highlands", "openField", "ridge", "badlands"};
 };
 
-std::string title(MapStyle s);
-std::string blurb(MapStyle s);
+AUTOCRAFTCORE_API std::string title(MapStyle s);
+AUTOCRAFTCORE_API std::string blurb(MapStyle s);
 
 enum class MapSize : uint8_t { small, medium, large, huge };
 
@@ -31,12 +33,12 @@ template <> struct EnumInfo<MapSize> {
     static constexpr std::array<std::string_view, 4> names{"small", "medium", "large", "huge"};
 };
 
-std::string title(MapSize s);
+AUTOCRAFTCORE_API std::string title(MapSize s);
 
 /// `(width: Double, depth: Double)`.
 struct MapCells { double width, depth; };
 /// Ground size, cells.
-MapCells cells(MapSize s);
+AUTOCRAFTCORE_API MapCells cells(MapSize s);
 
 /// `(perSide: Int, axis: Int)`.
 struct MapExtras { int64_t perSide, axis; };
@@ -45,7 +47,7 @@ struct MapExtras { int64_t perSide, axis; };
 MapExtras extras(MapSize s);
 
 /// A map picked in the new-game dialog.
-struct MapChoice {
+struct AUTOCRAFTCORE_API MapChoice {
     MapStyle style = MapStyle::highlands;
     MapSize size = MapSize::small;
     /// Starts on the map (C++ only): 2, the Swift game's mirrored maps;
@@ -57,7 +59,7 @@ struct MapChoice {
     bool operator==(const MapChoice&) const = default;
 };
 
-struct WindowMaps {
+struct AUTOCRAFTCORE_API WindowMaps {
     /// The playground's ground (`autocraft models`): flat and open, a few
     /// patches of grass and gravel, and nothing standing on it. What stands
     /// on it is put down by hand (`Simulation+Playground`).

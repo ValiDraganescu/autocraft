@@ -2,6 +2,8 @@
 // `Rules` extension of Vision.swift (sight).
 #pragma once
 
+#include "AutocraftCoreApi.h"
+
 #include "SimdMath.h"
 
 #include <array>
@@ -83,7 +85,7 @@ struct UnitStats {
 };
 
 /// The game's numbers, in real seconds.
-struct Rules {
+struct AUTOCRAFTCORE_API Rules {
     /// Prospector move speed, cells per second.
     static constexpr double prospectorSpeed = 3.94;
     /// Prospector turn rate, radians per second.

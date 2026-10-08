@@ -453,10 +453,12 @@ Files in `Source/Autocraft/`; read the headers, they are the spec.
   categories' warnings and errors), not the Swift game's `autocraft.log`.
 - **Map** `/Game/Maps/Battlefield`: an empty level, the game default.
   Everything in it is spawned from code.
-- **Linking the core.** Unreal's Mac toolchain hides functions without an
-  `_API` macro, so `AutocraftCore.Build.cs` force-includes
-  `Module/AutocraftCoreVisibility.h` (`#pragma GCC visibility push(default)`)
-  into the core's files. Windows would need a `.def` or export macros.
+- **Linking the core.** In the modular (editor) build the core is its own
+  library, and only what its public headers mark `AUTOCRAFTCORE_API` leaves
+  it: Windows exports nothing unmarked, and the Mac toolchain hides
+  functions. `Public/AutocraftCoreApi.h` defines the macro empty for
+  core-tests. A core class or free function the game module calls needs the
+  mark, or the editor build stops linking (on the Mac too, since 2026-10-08).
 
 ## 4. Work breakdown
 

@@ -22,8 +22,7 @@ public class AutocraftCore : ModuleRules
 		PrivateIncludePaths.Add(System.IO.Path.Combine(EngineDirectory, "Plugins", "Runtime", "Database", "SQLiteCore", "Source", "ThirdParty", "sqlite"));
 		PublicDefinitions.Add("JSON_NOEXCEPTION=1");
 		PrivateIncludePaths.Add(System.IO.Path.Combine(ModuleDirectory, "ThirdParty"));
-		// Export the core's functions to the game module (no API macros in the
-		// engine-free sources; see Module/AutocraftCoreVisibility.h).
-		ForceIncludeFiles.Add(System.IO.Path.Combine(ModuleDirectory, "Module", "AutocraftCoreVisibility.h"));
+		// The game module links what the public headers mark AUTOCRAFTCORE_API
+		// (Public/AutocraftCoreApi.h); nothing else leaves the module.
 	}
 }

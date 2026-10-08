@@ -7,6 +7,8 @@
 // Types.cpp (Leveling's in Leveling.cpp).
 #pragma once
 
+#include "AutocraftCoreApi.h"
+
 #include "MapView.h"
 #include "SimdMath.h"
 #include "Noise.h"
@@ -114,11 +116,11 @@ enum class Upgrade : uint8_t {
     lifelineReactor,
 };
 /// The building whose Lab researches it.
-StructureKind at(Upgrade u);
-int64_t ore(Upgrade u);
-int64_t hydrogen(Upgrade u);
-double time(Upgrade u);
-std::string name(Upgrade u);
+AUTOCRAFTCORE_API StructureKind at(Upgrade u);
+AUTOCRAFTCORE_API int64_t ore(Upgrade u);
+AUTOCRAFTCORE_API int64_t hydrogen(Upgrade u);
+AUTOCRAFTCORE_API double time(Upgrade u);
+AUTOCRAFTCORE_API std::string name(Upgrade u);
 
 /// How a team's Prospectors split between ore and MH.
 enum class Harvest : uint8_t {
@@ -143,7 +145,7 @@ enum class Stance : uint8_t {
     /// does not pull squads home.
     allIn,
 };
-std::string title(Stance s);
+AUTOCRAFTCORE_API std::string title(Stance s);
 
 // MARK: - Effects (Leveling.swift)
 
@@ -285,7 +287,7 @@ struct Change {
 /// The sum of the changes on one stat of one unit:
 /// `max(base × times, atLeast) × (1 + percent) + plus`. With no changes
 /// it leaves a number exactly as it was.
-struct Boost {
+struct AUTOCRAFTCORE_API Boost {
     double times = 1.0;
     std::optional<double> atLeast;
     double percent = 0.0;
@@ -486,23 +488,23 @@ struct PerkInfo {
 };
 
 // `Perk`'s members (defined in Leveling.cpp, with the catalogue).
-const PerkInfo& info(Perk p);
-UnitKind kind(Perk p);
-int64_t level(Perk p);
-const std::string& title(Perk p);
-const std::string& effect(Perk p);
+AUTOCRAFTCORE_API const PerkInfo& info(Perk p);
+AUTOCRAFTCORE_API UnitKind kind(Perk p);
+AUTOCRAFTCORE_API int64_t level(Perk p);
+AUTOCRAFTCORE_API const std::string& title(Perk p);
+AUTOCRAFTCORE_API const std::string& effect(Perk p);
 /// What it does (`built`).
-const std::vector<Effect>& effects(Perk p);
+AUTOCRAFTCORE_API const std::vector<Effect>& effects(Perk p);
 /// `Perk.offer(_:level:)`: the two picks a kind offers at `level` (2…10),
 /// the same every game.
-std::optional<std::pair<Perk, Perk>> perkOffer(UnitKind kind, int64_t level);
+AUTOCRAFTCORE_API std::optional<std::pair<Perk, Perk>> perkOffer(UnitKind kind, int64_t level);
 
 /// Pilot leveling (docs/leveling.md): the more the player drives a kind of
 /// unit in a game, the better that kind gets, but only while the player
 /// drives it. The numbers, the record and the perk catalogue live here; the
 /// simulation's side (XP, picks, the effects) is in `Simulation+Leveling`.
 /// (Defined in Leveling.cpp.)
-struct Leveling {
+struct AUTOCRAFTCORE_API Leveling {
     /// The highest level a kind reaches.
     static constexpr int64_t cap = 10;
     /// XP in all to reach `level`: `30 × L × (L − 1)` (0 for level 1).
@@ -661,7 +663,7 @@ struct KindRecord {
 
 /// The player's leveling this game, kept on the human `Player` (`pilot`)
 /// so it is saved with the session; a new game starts without one.
-struct PilotRecord {
+struct AUTOCRAFTCORE_API PilotRecord {
     /// Each kind the player has driven this game.
     std::map<UnitKind, KindRecord> kinds;
 
@@ -762,7 +764,7 @@ struct Doodad {
 };
 
 /// Everything static about a map. Ground coordinates are cells.
-struct MapDefinition {
+struct AUTOCRAFTCORE_API MapDefinition {
     std::string name;
     /// Bump when a map's layout changes; old sessions on it are restarted.
     int64_t version = 0;
@@ -813,7 +815,7 @@ struct MapDefinition {
 
 // MARK: - The state (State.swift)
 
-struct OreDeposit {
+struct AUTOCRAFTCORE_API OreDeposit {
     int64_t id = 0;
     Vec2 position;
     double angle = 0;
@@ -829,7 +831,7 @@ struct OreDeposit {
     bool operator==(const OreDeposit&) const = default;
 };
 
-struct Structure {
+struct AUTOCRAFTCORE_API Structure {
     using Kind = StructureKind;
     int64_t id = 0;
     Kind kind = Kind::citadel;
@@ -933,7 +935,7 @@ struct Mission {
     bool operator==(const Mission&) const = default;
 };
 
-struct Unit {
+struct AUTOCRAFTCORE_API Unit {
     using Kind = UnitKind;
     enum class Task : uint8_t {
         idle, toPatch, mining, toBase, depositing,
@@ -1077,7 +1079,7 @@ struct Unit {
 // MARK: - Directives (Directives.swift)
 
 /// One thing a team's humans asked its AI to spend on.
-struct Request {
+struct AUTOCRAFTCORE_API Request {
     struct What {
         struct Unit { UnitKind kind; bool operator==(const Unit&) const = default; };
         /// A building, placed by the AI. A Lab goes on the building
@@ -1315,7 +1317,7 @@ struct Intel {
 };
 
 /// The whole mutable state of one session.
-struct GameState {
+struct AUTOCRAFTCORE_API GameState {
     std::vector<Player> players;
     double time = 0;
     std::vector<OreDeposit> patches;

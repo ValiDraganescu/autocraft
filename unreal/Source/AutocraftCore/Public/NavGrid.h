@@ -1,6 +1,8 @@
 // Port of Sources/GameCore/NavGrid.swift.
 #pragma once
 
+#include "AutocraftCoreApi.h"
+
 #include "SimdMath.h"
 #include "TerrainField.h"
 #include "Types.h"
@@ -136,7 +138,7 @@ struct Heap4 {
 /// cells keeps a unit's body clear of it. Buildings and ore deposits change
 /// during a game (`setDynamic`), as do the doodads and wells put down in
 /// the playground; the rest is fixed per map.
-struct NavGrid {
+struct AUTOCRAFTCORE_API NavGrid {
     static constexpr double cell = 0.5;
     /// A unit's radius (the Prospector's and the Ranger's: 0.375), a little less so
     /// units may squeeze through a gap exactly one unit wide.

@@ -5,6 +5,8 @@
 // body; their bodies are in the `.cpp` of the same names.
 #pragma once
 
+#include "AutocraftCoreApi.h"
+
 #include "Leveling.h"
 #include "SimdMath.h"
 #include "NavGrid.h"
@@ -34,7 +36,7 @@ struct Commander;
 class PathAhead;
 
 /// Advances a GameState. Pure: the same steps give the same state.
-class Simulation {
+class AUTOCRAFTCORE_API Simulation {
 public:
     GameState state;
     /// The AI players, one per player it plays; asked for orders once a

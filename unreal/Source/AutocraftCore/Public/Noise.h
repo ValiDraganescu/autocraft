@@ -1,6 +1,8 @@
 // Port of Sources/GameCore/Noise.swift.
 #pragma once
 
+#include "AutocraftCoreApi.h"
+
 #include <cstdint>
 #include <utility>
 #include <vector>
@@ -8,7 +10,7 @@
 namespace ac {
 
 /// Deterministic value noise and a small PRNG. Same seed, same map, on every run.
-struct Noise {
+struct AUTOCRAFTCORE_API Noise {
     uint32_t seed;
     explicit Noise(uint64_t seed_) : seed(static_cast<uint32_t>(seed_ ^ (seed_ >> 32))) {}
 
@@ -26,7 +28,7 @@ struct Noise {
 /// Also Swift's `RandomNumberGenerator` algorithms the game uses with it
 /// (`next(upperBound:)`, `Int.random(in:using:)`, `randomElement(using:)`,
 /// `shuffle(using:)`), the way the Swift standard library computes them.
-struct SeededRandom {
+struct AUTOCRAFTCORE_API SeededRandom {
     uint64_t state;
     explicit SeededRandom(uint64_t seed) : state(seed) {}
     uint64_t next();

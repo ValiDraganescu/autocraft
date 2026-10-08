@@ -4,6 +4,8 @@
 // SQLite here: `TrackingStore.h` writes the rows.
 #pragma once
 
+#include "AutocraftCoreApi.h"
+
 #include "Session.h"
 #include "Types.h"
 
@@ -73,7 +75,7 @@ struct TrackedLevel {
 };
 
 /// A game as it stands, to be written whole.
-struct TrackedGame {
+struct AUTOCRAFTCORE_API TrackedGame {
     enum class Result : uint8_t { won, lost, drawn, abandoned, open };
 
     std::string id;

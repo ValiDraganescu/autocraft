@@ -4,6 +4,8 @@
 // `{"case":{"_0":...}}`, dates as ISO 8601, infinities as strings).
 #pragma once
 
+#include "AutocraftCoreApi.h"
+
 #include "Hearing.h"
 #include "ScreenConfig.h"
 #include "Types.h"
@@ -16,7 +18,7 @@ namespace ac {
 
 /// Foundation's `Date`: seconds since 1970-01-01 00:00:00 UTC. Saved as ISO
 /// 8601 in UTC, whole seconds (`2026-09-29T08:00:44Z`).
-struct Date {
+struct AUTOCRAFTCORE_API Date {
     double since1970 = 0;
     /// The wall clock now.
     static Date now();
@@ -24,7 +26,7 @@ struct Date {
 };
 
 /// A game played on one screen configuration.
-struct Session {
+struct AUTOCRAFTCORE_API Session {
     std::string id;
     std::string signature;
     Date created;
@@ -62,7 +64,7 @@ struct Session {
 std::string newUUID();
 
 /// Session files: one JSON file per screen configuration.
-struct SessionStore {
+struct AUTOCRAFTCORE_API SessionStore {
     std::string directory;
 
     explicit SessionStore(std::string directory_) : directory(std::move(directory_)) {}
@@ -115,7 +117,7 @@ struct SessionStore {
 };
 
 /// The whole of a file, or nil when it cannot be read.
-std::optional<std::string> readFile(const std::string& path);
+AUTOCRAFTCORE_API std::optional<std::string> readFile(const std::string& path);
 /// Write a whole file through a temporary one and a rename.
 bool writeFileAtomically(const std::string& path, const std::string& contents);
 

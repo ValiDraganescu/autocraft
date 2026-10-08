@@ -1,6 +1,8 @@
 // Port of Sources/GameCore/Projection.swift.
 #pragma once
 
+#include "AutocraftCoreApi.h"
+
 #include "SimdMath.h"
 
 #include <limits>
@@ -28,7 +30,7 @@ struct CanvasRect {
 /// above +Z, pitched down, and its full frustum covers the whole canvas; every
 /// screen renders the sub-frustum of its own canvas rectangle, so the picture
 /// is continuous wherever two screens touch.
-struct CanvasProjection {
+struct AUTOCRAFTCORE_API CanvasProjection {
     double canvasWidth = 0;
     double canvasHeight = 0;
     /// Screen points per cell at the focus point (canvas centre, ground level).

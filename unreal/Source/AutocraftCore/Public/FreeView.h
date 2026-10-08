@@ -1,6 +1,8 @@
 // Port of Sources/GameCore/FreeView.swift.
 #pragma once
 
+#include "AutocraftCoreApi.h"
+
 #include "Projection.h"
 #include "SimdMath.h"
 
@@ -13,7 +15,7 @@ namespace ac {
 /// window mode. The camera keeps the wallpaper's pitch and field of view, so
 /// the picture is the same; only its focus point (`target`) and its scale
 /// (`pointsPerCell`, view points per cell at the focus) change.
-struct FreeView {
+struct AUTOCRAFTCORE_API FreeView {
     GroundRect bounds;
     /// The ground point at the centre of the view.
     Vec2 target;

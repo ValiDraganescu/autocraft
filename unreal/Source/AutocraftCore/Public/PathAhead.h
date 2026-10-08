@@ -21,6 +21,8 @@
 // itself.
 #pragma once
 
+#include "AutocraftCoreApi.h"
+
 #include "SimdMath.h"
 #include "NavGrid.h"
 #include "Types.h"
@@ -40,7 +42,7 @@ namespace ac {
 
 class Simulation;
 
-class PathAhead {
+class AUTOCRAFTCORE_API PathAhead {
 public:
     /// `threads` workers for the searches (at least 1), plus one for the probe.
     explicit PathAhead(int threads);

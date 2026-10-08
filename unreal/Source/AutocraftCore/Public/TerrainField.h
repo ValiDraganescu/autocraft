@@ -1,6 +1,8 @@
 // Port of Sources/GameCore/TerrainField.swift.
 #pragma once
 
+#include "AutocraftCoreApi.h"
+
 #include "SimdMath.h"
 #include "Noise.h"
 #include "Projection.h"
@@ -16,7 +18,7 @@ namespace ac {
 /// Continuous terrain derived from a map: height and ground-material weights
 /// at any ground point. The renderer samples it into a mesh and a splat map;
 /// the simulation samples it to stand units on the ground.
-struct TerrainField {
+struct AUTOCRAFTCORE_API TerrainField {
     MapDefinition map;
     Noise noise;
     /// Half width of a cliff face, cells.

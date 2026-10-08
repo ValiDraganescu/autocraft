@@ -8,6 +8,8 @@
 // on one writer thread.
 #pragma once
 
+#include "AutocraftCoreApi.h"
+
 #include "Tracking.h"
 
 #include <cstdint>
@@ -19,7 +21,7 @@ struct sqlite3;
 
 namespace ac {
 
-class TrackingStore {
+class AUTOCRAFTCORE_API TrackingStore {
 public:
     /// This build's version of the tracking tables (`meta` key
     /// `version.tracking`). Each later step adds its own migration in

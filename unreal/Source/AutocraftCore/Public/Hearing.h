@@ -1,6 +1,8 @@
 // Port of Sources/GameCore/Hearing.swift.
 #pragma once
 
+#include "AutocraftCoreApi.h"
+
 #include "SimdMath.h"
 
 #include <array>
@@ -12,7 +14,7 @@ namespace ac {
 /// "My location" on the map: where the player listens from. With `local`
 /// on, sounds fade with ground distance and go silent beyond `range`;
 /// with it off, the whole map is heard as before.
-struct Listener {
+struct AUTOCRAFTCORE_API Listener {
     Vec2 position;
     /// Hearing radius in ground cells.
     double range = 16;
