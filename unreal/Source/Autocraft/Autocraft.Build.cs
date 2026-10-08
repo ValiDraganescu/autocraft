@@ -22,6 +22,23 @@ public class Autocraft : ModuleRules
 			"ProceduralMeshComponent",  // AAcPilotAids: the driven unit's range ring
 			"MovieSceneCapture"  // UAcShotSubsystem: -AcShotRaw reads frames back with FFrameGrabber
 		});
+		// Plain files the game reads from the project folder: not assets, so
+		// nothing cooks them. They are staged loose, at the same paths, so the
+		// code reads them as it does in the editor (docs/builds.md).
+		if (Target.Type == TargetType.Game)
+		{
+			foreach (string Path in new string[] {
+				"Resources/Sounds/music/*.mp3",  // UAcMusicPlayer::OwnMusicFolder
+				"Content-src/launcher/*.jpg",  // FAcLauncherArt::Folder
+				"Content/Audio/Sounds.json",  // UAcAudioDirector, UAcMusicDeck, UAcMusicPlayer
+				"Content/Models/ModelCatalog.json",  // FAcModelCatalog
+				"Content/UI/Cursors/*.tiff",  // UAcPointer::InstallCursors: the Mac's
+				"Content/UI/Cursors/*.png"  // and the others' (LoadCursorFromPngs)
+			})
+			{
+				RuntimeDependencies.Add("$(ProjectDir)/" + Path, StagedFileType.NonUFS);
+			}
+		}
 		if (Target.Platform == UnrealTargetPlatform.Mac)
 		{
 			PublicFrameworks.Add("IOKit");  // FAcPerf: the GPU's per-process time (AcPerfMac.cpp)

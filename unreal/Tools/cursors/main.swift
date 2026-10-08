@@ -2,9 +2,12 @@
 // compiled in beside this file, so they are the Swift drawing itself) for
 // Unreal's hardware cursors (chunk D4, AcPointer.cpp): one multi-resolution
 // TIFF per kind (32 points: 1x and 2x reps), which macOS's NSCursor picks
-// from by screen, plus PNGs to look at.
+// from by screen; beside it the same two as PNGs (`Cursor_<kind>.png`,
+// `@2x.png`), which Windows and Linux load instead
+// (UGameViewportClient::LoadCursorFromPngs, nearest to the screen's scale);
+// plus PNGs to look at.
 //   sh unreal/Tools/cursors/bake_cursors.sh
-// Writes unreal/Content/UI/Cursors/Cursor_<kind>.tiff (read at runtime by
+// Writes unreal/Content/UI/Cursors/Cursor_<kind>.tiff and .png (read at runtime by
 // UGameViewportClient::SetHardwareCursor) and unreal/Content-src/cursors/.
 import AppKit
 
@@ -32,6 +35,8 @@ for (name, kind) in [("normal", GameCursor.Kind.normal), ("select", .select), ("
     reps.forEach(out.addRepresentation)
     guard let tiff = out.tiffRepresentation else { fatalError("no tiff for \(name)") }
     try! tiff.write(to: tiffDir.appendingPathComponent("Cursor_\(name).tiff"))
+    try! reps[0].representation(using: .png, properties: [:])!.write(to: tiffDir.appendingPathComponent("Cursor_\(name).png"))
+    try! reps[1].representation(using: .png, properties: [:])!.write(to: tiffDir.appendingPathComponent("Cursor_\(name)@2x.png"))
     try! reps[1].representation(using: .png, properties: [:])!.write(to: pngDir.appendingPathComponent("Cursor_\(name)@2x.png"))
     print("Cursor_\(name): hot spot \(cursor.hotSpot)")
 }

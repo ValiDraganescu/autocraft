@@ -8,8 +8,8 @@ commands.
 Status, 2026-10-08: the build machine's image is `ringshadow-build-20261008-1342`
 (`ami-0fed5dee9c6ddb99a`), warmed with a full Win64 and Linux build of
 `7737714`: 12 minutes cold, 2 with the image's cache. Nobody has played
-those packages yet. "Before the first release" lists what the code still
-needs.
+those packages yet. "Files outside the cook" lists what the game reads
+outside the cook and how it is staged.
 
 ## What is built where
 
@@ -29,32 +29,32 @@ The packages land in `unreal/Saved/Releases/<version>/` (ignored by git), with
 `SHA256SUMS`. The script uploads nothing to GitHub. Publishing a release is a
 separate step.
 
-## Before the first release
+## Files outside the cook
 
-Found by reading the code on 2026-10-08, not yet by a packaged build. A cooked
-game reads only what is cooked or staged, and the game reads these files from
-the project folder itself:
+A cooked game reads only what is cooked or staged. The game reads some plain
+files from the project folder itself; `Autocraft.Build.cs` stages them loose,
+at the same paths, for the game targets (`RuntimeDependencies`, `NonUFS`):
+- the music, `Resources/Sounds/music/*.mp3` (`AcMusicPlayer.cpp`);
+- the launcher art, `Content-src/launcher/*.jpg` (`AcLauncherArt.cpp`);
+- `Content/Audio/Sounds.json` and `Content/Models/ModelCatalog.json`;
+- the cursors, `Content/UI/Cursors`. macOS loads the TIFFs. Windows and
+  Linux load `Cursor_<kind>.png` and `@2x.png` instead
+  (`UGameViewportClient::LoadCursorFromPngs`). `Tools/cursors/bake_cursors.sh`
+  writes both.
 
-- **The music.** `AcMusicPlayer.cpp` plays the MP3s in
-  `unreal/Resources/Sounds/music` (14 files, 69 MB), outside `Content`.
-  Nothing stages them.
-- **The launcher art.** `AcLauncherArt.cpp` reads `unreal/Content-src/launcher`,
-  outside `Content`.
-- **Two JSON files in `Content`.** `Audio/Sounds.json` (`AcAudioDirector.cpp`,
-  `AcMusicDeck.cpp`, `AcMusicPlayer.cpp`) and `Models/ModelCatalog.json`
-  (`AcModelCatalog.cpp`) are plain files, not assets. `DefaultGame.ini` stages
-  only `Shatter` (`DirectoriesToAlwaysStageAsUFS`).
-- **The cursors.** `AcPointer.cpp` installs `Content/UI/Cursors/*.tiff`, a Mac
-  format. Windows loads `.cur`, `.ani` or `.png`, and Linux loads `.png`, so
-  the other two get the system cursor until PNGs sit beside the TIFFs.
-- **The console art** is drawn with Core Graphics (`AcCabArtMac.cpp`).
-  Elsewhere it is flat colour stand-ins (`AcCabArt.cpp`). Baking it to PNGs
-  on the Mac and shipping those would make all three platforms match.
-- **Editor plugins in the game.** `Autocraft.uproject` enables
-  `ModelContextProtocol`, `AllToolsets`, `PythonScriptPlugin`,
-  `EditorScriptingUtilities` and `USDImporter` for every target. They are
-  editor tools. Limit them to the editor (`"TargetAllowList": ["Editor"]`) so
-  that a player's game carries no MCP server and no Python.
+A new file the game reads at run time goes on that list too. `Shatter` is
+staged inside the pak by `DirectoriesToAlwaysStageAsUFS` in
+`DefaultGame.ini`.
+
+The editor's plugins (`ModelContextProtocol`, `AllToolsets`,
+`PythonScriptPlugin`, `EditorScriptingUtilities`, `USDImporter`) have
+`"TargetAllowList": ["Editor"]` in `Autocraft.uproject`, so a player's game
+carries no MCP server and no Python.
+
+Still open: **the console art** is drawn with Core Graphics
+(`AcCabArtMac.cpp`) and its layout follows the window's width. Elsewhere it
+is flat colour stand-ins (`AcCabArt.cpp`). Matching it on Windows and Linux
+means porting the drawing, not baking a few PNGs.
 
 Already fine: the saves (`AcSaves.cpp` uses the platform's settings folder off
 the Mac) and the Mac-only code (icon, watchdog, GPU timing), which is behind
@@ -75,8 +75,8 @@ Mac package built here, played by hand, before any AWS time is spent.
   account (687971795322).
 - **Quotas** (2026-10-08): 32 vCPU of standard instances, on-demand and spot.
   That is one `c7i.8xlarge`, so the setup machine and a build cannot run at
-  the same time. GPU (G and VT) instances: 0, with requests for 8 on-demand
-  and 8 spot filed on 2026-10-08.
+  the same time. GPU (G and VT) instances: 8 vCPU, on-demand and spot
+  (granted 2026-10-08), one `g6.2xlarge`.
 - **What the script makes** (`infra`; every resource is tagged
   `Project=ringshadow`):
   - Bucket `ringshadow-builds-569854554192`: private, objects expire after 60
@@ -99,7 +99,7 @@ Spot prices in `eu-north-1` on 2026-10-08:
 | The 400 GB gp3 disk at 6000 IOPS and 500 MB/s | Cents an hour while a machine runs. |
 | The image's snapshot | About $0.05 a GB-month on the used blocks, roughly $10–15 a month. |
 | A release (Windows and Linux, about an hour) | About $2. |
-| `g6.2xlarge` (NVIDIA L4) for playtesting, Windows, spot | $0.47 an hour, once the GPU quota is granted. |
+| `g6.2xlarge` (NVIDIA L4) for playtesting, Windows, spot | $0.47 an hour. |
 
 ## One-time setup
 
@@ -209,6 +209,5 @@ Not scripted yet.
 
 The build machine has no GPU. A package is proven when someone plays it:
 - **Windows and Linux in AWS:** a `g6.2xlarge` (NVIDIA L4, 24 GB; DX12 and
-  Vulkan) over remote desktop, once the GPU quota is granted. Not scripted
-  yet.
+  Vulkan) over remote desktop. Not scripted yet.
 - **Linux on real hardware:** a player on Ubuntu or Omarchy, by hand.
