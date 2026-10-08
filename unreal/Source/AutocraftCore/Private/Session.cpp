@@ -899,9 +899,11 @@ template <class T> std::string SessionStore::encode(const T& value, bool pretty)
     return coding::put(value).dump(pretty ? 2 : -1);
 }
 
-#define AC_CODABLE(T)                                                                          \
-    template std::optional<T> SessionStore::decode<T>(std::string_view, std::string*);        \
-    template std::string SessionStore::encode<T>(const T&, bool);
+// Exported: the game module calls these, and a DLL exports an explicit
+// instantiation only when it says so (Windows).
+#define AC_CODABLE(T)                                                                                \
+    template AUTOCRAFTCORE_API std::optional<T> SessionStore::decode<T>(std::string_view, std::string*); \
+    template AUTOCRAFTCORE_API std::string SessionStore::encode<T>(const T&, bool);
 AC_CODABLE(Session)
 AC_CODABLE(GameState)
 AC_CODABLE(MapDefinition)
