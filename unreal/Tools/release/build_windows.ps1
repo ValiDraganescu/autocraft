@@ -84,6 +84,17 @@ try {
 		if ($Platform -eq 'Win64') {
 			$Zip = "$Out\Ringshadow-$Version-windows.zip"
 			Run "zip $Platform" { tar.exe -a -c -f $Zip -C $Archive Ringshadow }
+			# The game's symbols stay out of the package (-nodebuginfo) but go
+			# up beside it: next to the exe, they turn a crash report's
+			# addresses into a call stack (`build_release.sh test` puts them there).
+			$Bin = "$Repo\unreal\Binaries\Win64"
+			$Pdbs = @(Get-ChildItem $Bin -Filter "Autocraft*-$Config.pdb" -ErrorAction SilentlyContinue)
+			if ($Pdbs.Count -eq 0) { Say "no Autocraft*-$Config.pdb in $Bin; no symbols this time" }
+			else {
+				$Symbols = "$Out\Ringshadow-$Version-windows-symbols.zip"
+				Run 'zip symbols' { tar.exe -a -c -f $Symbols -C $Bin @($Pdbs | ForEach-Object Name) }
+				$Zips += $Symbols
+			}
 		} else {
 			$Zip = "$Out\Ringshadow-$Version-$($Platform.ToLower()).tar.gz"
 			Run "tar $Platform" { tar.exe -c -z -f $Zip -C $Archive Ringshadow }

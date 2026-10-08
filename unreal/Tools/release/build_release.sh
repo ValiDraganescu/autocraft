@@ -461,6 +461,10 @@ cmd_test() {
 		"& 'C:\\Program Files\\Amazon\\AWSCLIV2\\aws.exe' s3 cp --only-show-errors s3://$b/builds/$version/$zip C:\\tester\\game.zip" \
 		"if (Test-Path C:\\Ringshadow) { Remove-Item -Recurse -Force C:\\Ringshadow }" \
 		"tar.exe -xf C:\\tester\\game.zip -C C:\\" \
+		"\$Sym = 's3://$b/builds/$version/Ringshadow-$version-windows-symbols.zip'" \
+		"if (Test-Path C:\\tester\\symbols.zip) { Remove-Item C:\\tester\\symbols.zip }" \
+		"try { & 'C:\\Program Files\\Amazon\\AWSCLIV2\\aws.exe' s3 cp --only-show-errors \$Sym C:\\tester\\symbols.zip 2>\$null } catch { }" \
+		"if (Test-Path C:\\tester\\symbols.zip) { tar.exe -xf C:\\tester\\symbols.zip -C C:\\Ringshadow\\Autocraft\\Binaries\\Win64; Write-Host 'symbols: next to the exe' } else { Write-Host 'symbols: none for this build' }" \
 		"\$Pre = Get-ChildItem C:\\Ringshadow -Recurse -Filter UEPrereqSetup_x64.exe | Select-Object -First 1" \
 		"if (\$Pre) { Start-Process \$Pre.FullName -ArgumentList '/quiet','/norestart' -Wait }" \
 		"\$S = (New-Object -ComObject WScript.Shell).CreateShortcut('C:\\Users\\Public\\Desktop\\Ringshadow $version.lnk')" \
