@@ -39,6 +39,8 @@ public:
 	/// An image over `R`. `Tint` multiplies it (SpriteKit's `colorBlendFactor`
 	/// mixes toward the texture times the colour: see `BlendTint`).
 	void Image(const FSlateBrush* Brush, const FAcRect& R, const FLinearColor& Tint = FLinearColor::White);
+	/// Baked art (AcBakedArt.h) over `R`, at `Opacity`.
+	void Baked(const class FAcBakedArt& Art, const FAcRect& R, float Opacity = 1.0f);
 	/// A label with its point at `At` (Swift points, y up), SpriteKit-aligned.
 	/// `bShadow`: `PilotOverlay.shadow` (black at 0.75, 1.2 points down right).
 	void Text(const FString& Text, double Size, const FLinearColor& Color, FVector2D At, EAcHAlign Align = EAcHAlign::Left,

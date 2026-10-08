@@ -14,6 +14,7 @@
 #include "Widgets/SCompoundWidget.h"
 #include "Widgets/SLeafWidget.h"
 
+#include "AcBakedArt.h"
 #include "AcCab.h"
 #include "AcLeveling.h"
 
@@ -21,14 +22,13 @@ class UTexture2D;
 struct FAcCommandMapColumn;
 struct FSlateBrush;
 
-/// A plate drawn by `AcCabArt::Plate` into a texture, kept until its size changes.
+/// A plate baked by `AcCabArt::BakePlate`, kept until its size changes.
 struct FAcLevelPlate
 {
-	TStrongObjectPtr<UTexture2D> Texture;
-	TSharedPtr<FSlateBrush> Brush;
+	FAcBakedArt Art;
 	FVector2D For = FVector2D::ZeroVector;
 
-	const FSlateBrush* Get(FVector2D Size, double TL, double TR, double BR, double BL, int32 Seed, const TCHAR* Name);
+	const FAcBakedArt& Get(FVector2D Size, double TL, double TR, double BR, double BL, int32 Seed);
 };
 
 class AUTOCRAFT_API SAcLevelBanner : public SLeafWidget

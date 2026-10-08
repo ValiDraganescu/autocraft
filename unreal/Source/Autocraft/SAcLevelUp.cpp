@@ -107,6 +107,13 @@ namespace
 			Q.Image(B, R, Tint);
 			Layer = Q.NextLayer();
 		}
+		void Baked(const FAcBakedArt& B, const FAcRect& R, float Opacity = 1)
+		{
+			if (!On()) return;
+			FAcConsolePaint Q = P();
+			Q.Baked(B, R, Opacity);
+			Layer = Q.NextLayer();
+		}
 		void Text(const FString& S, double Size, const FLinearColor& Col, FVector2D At, EAcHAlign Align = EAcHAlign::Left,
 			bool bNames = true, float Opacity = 1)
 		{
@@ -122,19 +129,13 @@ namespace
 	};
 }
 
-const FSlateBrush* FAcLevelPlate::Get(const FVector2D Size, const double TL, const double TR, const double BR, const double BL,
-	const int32 Seed, const TCHAR* Name)
+const FAcBakedArt& FAcLevelPlate::Get(const FVector2D Size, const double TL, const double TR, const double BR, const double BL,
+	const int32 Seed)
 {
-	if (Brush && For == Size) return Brush.Get();
+	if (Art.Get() && For == Size) return Art;
 	For = Size;
-	const FAcArtImage Art = AcCabArt::Plate(Size, FAcCuts{TL, TR, BR, BL}, false, Seed);
-	Texture.Reset(AcCabArt::ToTexture(Art, Name));
-	Brush = MakeShared<FSlateBrush>();
-	Brush->DrawAs = ESlateBrushDrawType::Image;
-	Brush->ImageSize = Art.Points;
-	if (Texture) Brush->SetResourceObject(Texture.Get());
-	else Brush->TintColor = FSlateColor(FLinearColor::Transparent);
-	return Brush.Get();
+	AcCabArt::BakePlate(Art, Size, FAcCuts{TL, TR, BR, BL}, false, Seed);
+	return Art;
 }
 
 // MARK: - The marks
@@ -242,9 +243,9 @@ int32 SAcLevelBanner::OnPaint(const FPaintArgs& Args, const FGeometry& Geometry,
 	int32 L = Layer;
 	FPaint P{&Out, &G, L, Size.Y};
 	// `Chrome.plateNode(..., cuts: (14, 14, 4, 4), leds: false, seed: 23)`.
-	const FSlateBrush* Brush = Plate.Get(FVector2D(W, H), 14, 14, 4, 4, 23, TEXT("AcLevelBannerPlate"));
+	const FAcBakedArt& Art = Plate.Get(FVector2D(W, H), 14, 14, 4, 4, 23);
 	const double Pad = AcCabArt::PlatePad;
-	P.Image(Brush, FAcRect(O.X - W / 2 - Pad, O.Y - 32 - Pad, W + 2 * Pad, H + 2 * Pad), FLinearColor(1, 1, 1, float(A)));
+	P.Baked(Art, FAcRect(O.X - W / 2 - Pad, O.Y - 32 - Pad, W + 2 * Pad, H + 2 * Pad), float(A));
 	// Gold rules either side of the title.
 	for (const double Side : {-1.0, 1.0})
 	{
@@ -380,7 +381,7 @@ int32 SAcPickCards::OnPaint(const FPaintArgs& Args, const FGeometry& Geometry, c
 
 	// The plate (`cuts: (10, 10, 3, 3), leds: false, seed: 17`).
 	const double PP = AcCabArt::PlatePad;
-	P.Image(Plate.Get(FVector2D(Plate_.W, Plate_.H), 10, 10, 3, 3, 17, TEXT("AcPickCardsPlate")),
+	P.Baked(Plate.Get(FVector2D(Plate_.W, Plate_.H), 10, 10, 3, 3, 17),
 		FAcRect(Plate_.X - PP, Plate_.Y - PP, Plate_.W + 2 * PP, Plate_.H + 2 * PP));
 
 	// The header: whose level, and on the right how many wait and the keys.

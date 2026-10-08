@@ -1,5 +1,6 @@
 #include "AcConsolePaint.h"
 
+#include "AcBakedArt.h"
 #include "AcHudStyle.h"
 
 #include "Framework/Application/SlateApplication.h"
@@ -118,6 +119,15 @@ void FAcConsolePaint::Image(const FSlateBrush* Brush, const FAcRect& R, const FL
 	const FVector2D TopLeft(R.X, ViewHeight - R.MaxY());
 	FSlateDrawElement::MakeBox(Out, Take(), Geometry.ToPaintGeometry(FVector2f(R.W, R.H), FSlateLayoutTransform(FVector2f(TopLeft))),
 		Brush, ESlateDrawEffect::None, Tint);
+}
+
+void FAcConsolePaint::Baked(const FAcBakedArt& Art, const FAcRect& R, const float Opacity)
+{
+	const FSlateBrush* Brush = Art.Get();
+	if (!Brush || R.IsEmpty() || Opacity <= 0) return;
+	const FVector2D TopLeft(R.X, ViewHeight - R.MaxY());
+	FSlateDrawElement::MakeBox(Out, Take(), Geometry.ToPaintGeometry(FVector2f(R.W, R.H), FSlateLayoutTransform(FVector2f(TopLeft))),
+		Brush, Art.Effects(), Art.Tint(Opacity));
 }
 
 void FAcConsolePaint::Text(const FString& InText, const double Size, const FLinearColor& Color, const FVector2D At,

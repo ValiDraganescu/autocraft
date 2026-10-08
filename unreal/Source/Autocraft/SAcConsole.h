@@ -34,6 +34,7 @@
 #include "Widgets/SCompoundWidget.h"
 #include "Widgets/SLeafWidget.h"
 
+#include "AcBakedArt.h"
 #include "AcCab.h"
 #include "AcConsoleInfo.h"
 #include "SAcMusicDeck.h"
@@ -118,13 +119,6 @@ public:
 	virtual FCursorReply OnCursorQuery(const FGeometry& Geometry, const FPointerEvent& Event) const override;
 
 private:
-	struct FArt
-	{
-		TStrongObjectPtr<UTexture2D> Texture;
-		TSharedPtr<FSlateBrush> Brush;
-		const FSlateBrush* Get() const { return Brush.Get(); }
-	};
-
 	void Relayout(FVector2D Size);
 	/// The faces laid out flat (the strip the warp draws): face art, the
 	/// selection, the card. In the strip's geometry.
@@ -149,7 +143,6 @@ private:
 	FReply ForwardTo(const FForward& F, const FGeometry& Geometry, const FPointerEvent& Event,
 		FReply (SWidget::*Handler)(const FGeometry&, const FPointerEvent&));
 	void ForwardHover(const TOptional<FForward>& Over, const FGeometry& Geometry, const FPointerEvent& Event);
-	void MakeArt(FArt& Art, const struct FAcArtImage& Image, const TCHAR* Name);
 	void PaintBase(class FAcConsolePaint& P) const;
 	void PaintCenter(class FAcConsolePaint& P, const FAcCardInfo& Info) const;
 	void PaintCard(class FAcConsolePaint& P) const;
@@ -171,9 +164,9 @@ private:
 	double PendingSince = 0;
 	FVector2D MinimapSize = FVector2D(220, 170);
 
-	FArt Dash, Faces[3], ButtonOn, ButtonOff, Scan, SwitchPlate;
+	FAcBakedArt Dash, Faces[3], ButtonOn, ButtonOff, Scan, SwitchPlate;
 	/// The cab's frame in its bands round the window (made for the `.cab` look).
-	TArray<TPair<FAcRect, FArt>> Frame;
+	TArray<TPair<FAcRect, FAcBakedArt>> Frame;
 	bool bFrameMade = false;
 	/// The layout was made warped (`ac.ConsoleWarp`).
 	bool bLaidWarped = true;
@@ -221,8 +214,7 @@ public:
 		FSlateWindowElementList& Out, int32 Layer, const FWidgetStyle& Style, bool bParentEnabled) const override;
 
 private:
-	TStrongObjectPtr<UTexture2D> Texture;
-	TSharedPtr<FSlateBrush> Brush;
+	FAcBakedArt Art;
 	FVector2D DrawnSize = FVector2D::ZeroVector;
 	FVector2D PendingSize = FVector2D::ZeroVector;
 	double PendingSince = 0;

@@ -6,9 +6,14 @@ machine in AWS, made on demand, and the Mac build on this Mac. The script is
 commands.
 
 Status, 2026-10-08: the build machine's image is `ringshadow-build-20261008-1342`
-(`ami-0fed5dee9c6ddb99a`), warmed with a full Win64 and Linux build of
-`7737714`: 12 minutes cold, 2 with the image's cache. Nobody has played
-those packages yet. "Files outside the cook" lists what the game reads
+(`ami-0fed5dee9c6ddb99a`), warmed on the setup machine: the first full Win64
+and Linux build (`138d96b`) took 12 minutes, and a rebuild of `7737714`, which changed
+only the build scripts, took 2 on the same machine. The first release from the
+image (`a042937`) took 28 minutes from launch to terminate, 23 of them on
+the build: that commit made five plugins editor-only, which recompiles the
+game for both platforms, and the image's cache is older than it. Refresh the
+image ("Refreshing the image") to bring the cache up to date. Nobody has
+played those packages yet. "Files outside the cook" lists what the game reads
 outside the cook and how it is staged.
 
 ## What is built where
@@ -51,10 +56,10 @@ The editor's plugins (`ModelContextProtocol`, `AllToolsets`,
 `"TargetAllowList": ["Editor"]` in `Autocraft.uproject`, so a player's game
 carries no MCP server and no Python.
 
-Still open: **the console art** is drawn with Core Graphics
-(`AcCabArtMac.cpp`) and its layout follows the window's width. Elsewhere it
-is flat colour stand-ins (`AcCabArt.cpp`). Matching it on Windows and Linux
-means porting the drawing, not baking a few PNGs.
+The console's art (the dashboard, the cab's frame, the plates) is drawn
+the same way on every platform since 2026-10-08: Slate geometry baked per
+window size (`AcCabArt.cpp`, `AcArtList.h`, `AcBakedArt.h`). It was Core
+Graphics on the Mac and flat colour elsewhere before.
 
 Already fine: the saves (`AcSaves.cpp` uses the platform's settings folder off
 the Mac) and the Mac-only code (icon, watchdog, GPU timing), which is behind
@@ -97,9 +102,15 @@ Spot prices in `eu-north-1` on 2026-10-08:
 | `c7i.8xlarge` Windows, spot | $1.62 an hour. About $1.47 of that is the Windows licence, which spot does not discount. |
 | The same, on-demand | About $2.90 an hour. The setup machine runs on-demand. |
 | The 400 GB gp3 disk at 6000 IOPS and 500 MB/s | Cents an hour while a machine runs. |
-| The image's snapshot | About $0.05 a GB-month on the used blocks, roughly $10–15 a month. |
-| A release (Windows and Linux, about an hour) | About $2. |
+| The image's snapshot | About $0.05 a GB-month on the used blocks: 111 GB, about $5.60 a month. |
+| A release (Windows and Linux) | $0.75 for `a042937`: 28 minutes of a spot machine, a full recompile. A release that recompiles less costs less. |
+| A month at 2 to 3 releases a week | At most $7–10 of machine time, $5.60 for the image and under $1 for S3 and the downloads: about $15. |
+| The one-time setup | The setup machine ran 3 hours on demand on 2026-10-08, the Windows build fixes included: about $9. |
 | `g6.2xlarge` (NVIDIA L4) for playtesting, Windows, spot | $0.47 an hour. |
+
+The times come from CloudTrail (`RunInstances`, `TerminateInstances`) and
+each build's `build.log`; the snapshot's size from `aws ec2
+describe-snapshots` (`FullSnapshotSizeInBytes`).
 
 ## One-time setup
 
@@ -118,7 +129,8 @@ Spot prices in `eu-north-1` on 2026-10-08:
 
    It also clones the repo to `C:\build\autocraft`, leaves `C:\build` and the
    engine out of Defender's scans, and puts two installers on the desktop.
-   It takes about 30 minutes.
+   It takes about 10 minutes from the launch. The Visual Studio installer
+   keeps working in the background for a few minutes after the script ends.
 2. **`build_release.sh rdp`** prints the Administrator password and opens a
    tunnel. Connect Windows App (Mac App Store) to `localhost:13389`. On the
    machine:
@@ -139,8 +151,8 @@ Spot prices in `eu-north-1` on 2026-10-08:
    that work. This is also where packaging problems show up first. The setup
    machine is still there to look at them over remote desktop.
 4. **`build_release.sh image`** saves the setup machine as an image
-   (`ringshadow-build-<date>`), waits until it is ready (tens of minutes for
-   400 GB), then terminates the machine.
+   (`ringshadow-build-<date>`), waits until it is ready (about 15 minutes for
+   the 400 GB disk on 2026-10-08), then terminates the machine.
 
 ## A release
 

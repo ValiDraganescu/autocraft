@@ -434,8 +434,7 @@ void UAcCommandMapSubsystem::OnFrame(const FAcFrame& Frame)
 		else SetBlocked(true);
 	}
 	if (bOpen) FitMinimap();
-	// The panel's plate baked ahead on a worker, so the first open does not
-	// stall (~0.5 s of Core Graphics shadow blur on the game thread).
+	// The panel's plate baked ahead, so the first open shows it finished.
 	else if (Mount())
 	{
 		if (const AAcHUD* Hud = AAcHUD::Get(this); Hud && Hud->Root()) Widget->Prebake(Hud->Root()->PointsSize());

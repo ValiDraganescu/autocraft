@@ -8,8 +8,6 @@
 #include "AcLog.h"
 #include "SAcMinimap.h"
 
-#include "Async/Async.h"
-#include "Engine/Texture2D.h"
 #include "Framework/Application/SlateApplication.h"
 #include "Rendering/SlateRenderer.h"
 #include "Widgets/Layout/SBox.h"
@@ -116,6 +114,12 @@ struct SAcCommandMap::FPainter
 	{
 		FAcConsolePaint Q = P();
 		Q.Image(Brush, R, FLinearColor(1, 1, 1, Opacity));
+		Layer = Q.NextLayer();
+	}
+	void Baked(const FAcBakedArt& Art, const FAcRect& R)
+	{
+		FAcConsolePaint Q = P();
+		Q.Baked(Art, R);
 		Layer = Q.NextLayer();
 	}
 	void Text(const FString& S, double Size, const FLinearColor& Col, FVector2D At, EAcHAlign Align = EAcHAlign::Left)
@@ -259,33 +263,13 @@ void SAcCommandMap::Prebake(const FVector2D ViewSize) const
 
 void SAcCommandMap::EnsurePlate(const FVector2D PanelSize) const
 {
-	if (PlateBrush && PlateFor == PanelSize) return;
-	// `Chrome.plateNode(panel, cuts: .all(22), seed: 31)`, baked on a worker
-	// (Core Graphics draws into its own bitmap there); until it is done the
-	// last plate stays (stretched), or none.
-	if (!Baking.IsValid() || BakingFor != PanelSize)
-	{
-		BakingFor = PanelSize;
-		Baking = Async(EAsyncExecution::ThreadPool, [PanelSize]()
-		{
-			const double Start = FPlatformTime::Seconds();
-			FAcArtImage Art = AcCabArt::Plate(PanelSize, FAcCuts{22, 22, 22, 22}, true, 31);
-			UE_LOG(LogAutocraft, Log, TEXT("command map: plate %.0fx%.0f baked in %.0f ms (worker)"), PanelSize.X, PanelSize.Y,
-				(FPlatformTime::Seconds() - Start) * 1000.0);
-			return Art;
-		});
-	}
-	if (!Baking.IsReady()) return;
+	if (Plate.Get() && PlateFor == PanelSize) return;
+	// `Chrome.plateNode(panel, cuts: .all(22), seed: 31)`.
 	const double Start = FPlatformTime::Seconds();
-	const FAcArtImage Art = Baking.Consume();
 	PlateFor = PanelSize;
-	PlateTexture.Reset(AcCabArt::ToTexture(Art, TEXT("AcCommandMapPlate")));
-	PlateBrush = MakeShared<FSlateBrush>();
-	PlateBrush->DrawAs = ESlateBrushDrawType::Image;
-	PlateBrush->ImageSize = Art.Points;
-	if (PlateTexture) PlateBrush->SetResourceObject(PlateTexture.Get());
-	else PlateBrush->TintColor = FSlateColor(FLinearColor::Transparent);
-	UE_LOG(LogAutocraft, Log, TEXT("command map: plate texture made in %.1f ms"), (FPlatformTime::Seconds() - Start) * 1000.0);
+	AcCabArt::BakePlate(Plate, PanelSize, FAcCuts{22, 22, 22, 22}, true, 31);
+	UE_LOG(LogAutocraft, Log, TEXT("command map: plate %.0fx%.0f baked in %.1f ms"), PanelSize.X, PanelSize.Y,
+		(FPlatformTime::Seconds() - Start) * 1000.0);
 }
 
 int32 SAcCommandMap::OnPaint(const FPaintArgs& Args, const FGeometry& Geometry, const FSlateRect& Culling,
@@ -301,7 +285,7 @@ int32 SAcCommandMap::OnPaint(const FPaintArgs& Args, const FGeometry& Geometry, 
 	Under.Fill(P.Inset(8, 8), C(0.02, 0.04, 0.07));
 	EnsurePlate(FVector2D(P.W, P.H));
 	const double Pad = AcCabArt::PlatePad;
-	if (PlateBrush) Under.Image(PlateBrush.Get(), FAcRect(P.X - Pad, P.Y - Pad, P.W + 2 * Pad, P.H + 2 * Pad));
+	Under.Baked(Plate, FAcRect(P.X - Pad, P.Y - Pad, P.W + 2 * Pad, P.H + 2 * Pad));
 
 	// The map itself (the child).
 	const int32 AfterMap = SCompoundWidget::OnPaint(Args, Geometry, Culling, Out, Under.Layer + 1, Style, bParentEnabled);

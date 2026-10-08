@@ -42,7 +42,6 @@ public class Autocraft : ModuleRules
 		if (Target.Platform == UnrealTargetPlatform.Mac)
 		{
 			PublicFrameworks.Add("IOKit");  // FAcPerf: the GPU's per-process time (AcPerfMac.cpp)
-			PublicFrameworks.Add("CoreGraphics");  // the console art (AcCabArtMac.cpp)
 		}
 	}
 }

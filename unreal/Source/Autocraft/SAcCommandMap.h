@@ -21,10 +21,10 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Async/Future.h"
 #include "UObject/StrongObjectPtr.h"
 #include "Widgets/SCompoundWidget.h"
 
+#include "AcBakedArt.h"
 #include "AcCab.h"
 #include "AcCabArt.h"
 #include "AcCommandMapLogic.h"
@@ -102,10 +102,10 @@ public:
 	void Show(const FAcCommandMapInfo& Info);
 	/// The view's size in points as last laid out (zero before).
 	FVector2D ViewSize() const { return View; }
-	/// Bakes the panel's plate for a view of `ViewSize` points on a worker
-	/// thread (Core Graphics' shadow blur takes ~0.5 s at 2 px a point) and
-	/// makes its texture once it is done, so opening the map does not stall.
-	/// Called each frame while the map is shut; nothing to do once baked.
+	/// Bakes the panel's plate for a view of `ViewSize` points ahead (its
+	/// texture comes back from the GPU a frame or two later), so the map
+	/// opens on the finished plate. Called each frame while the map is shut;
+	/// nothing to do once baked.
 	void Prebake(FVector2D ViewSize) const;
 	/// Chunk E9: draws the PILOTS rows where `FAcCommandMapInfo::PilotsRoom` is kept.
 	void SetPilotsPainter(TFunction<void(FAcCommandMapColumn&)> In) { PilotsPainter = MoveTemp(In); }
@@ -148,10 +148,7 @@ private:
 	mutable TArray<TPair<FAcRect, FAcCommandMapHit>> Hits;
 	bool bPressed = false;
 
-	mutable TStrongObjectPtr<UTexture2D> PlateTexture;
-	mutable TSharedPtr<FSlateBrush> PlateBrush;
+	/// The panel's plate, baked for a panel of `PlateFor` points.
+	mutable FAcBakedArt Plate;
 	mutable FVector2D PlateFor = FVector2D::ZeroVector;
-	/// The plate being baked (for a panel of `BakingFor` points).
-	mutable TFuture<FAcArtImage> Baking;
-	mutable FVector2D BakingFor = FVector2D::ZeroVector;
 };

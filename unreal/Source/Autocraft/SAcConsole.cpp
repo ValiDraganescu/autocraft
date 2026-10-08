@@ -95,16 +95,6 @@ void SAcConsole::Construct(const FArguments& InArgs)
 
 SAcConsole::~SAcConsole() = default;
 
-void SAcConsole::MakeArt(FArt& Art, const FAcArtImage& Image, const TCHAR* Name)
-{
-	Art.Texture.Reset(AcCabArt::ToTexture(Image, Name));
-	Art.Brush = MakeShared<FSlateBrush>();
-	Art.Brush->DrawAs = ESlateBrushDrawType::Image;
-	Art.Brush->ImageSize = Image.Points;
-	if (Art.Texture) Art.Brush->SetResourceObject(Art.Texture.Get());
-	else Art.Brush->TintColor = FSlateColor(FLinearColor::Transparent);
-}
-
 void SAcConsole::Relayout(const FVector2D Size)
 {
 	const double T0 = FPlatformTime::Seconds();
@@ -116,17 +106,15 @@ void SAcConsole::Relayout(const FVector2D Size)
 	bFrameMade = false;
 	Frame.Reset();
 	if (Look == EAcConsoleStyle::Cab) MakeFrame();
-	MakeArt(Dash, AcCabArt::DashTop(Lay), TEXT("AcConsoleDash"));
-	static const TCHAR* FaceNames[3] = {TEXT("AcConsoleFaceLeft"), TEXT("AcConsoleFaceCenter"), TEXT("AcConsoleFaceRight")};
-	for (int32 K = 0; K < 3; ++K) MakeArt(Faces[K], AcCabArt::Face(K, Lay), FaceNames[K]);
+	AcCabArt::BakeDashTop(Dash, Lay);
+	for (int32 K = 0; K < 3; ++K) AcCabArt::BakeFace(Faces[K], K, Lay);
 	if (!ButtonOn.Get())
 	{
-		MakeArt(ButtonOn, AcCabArt::ButtonFace(FAcCabLayout::Button, true), TEXT("AcConsoleButtonOn"));
-		MakeArt(ButtonOff, AcCabArt::ButtonFace(FAcCabLayout::Button, false), TEXT("AcConsoleButtonOff"));
-		MakeArt(Scan, AcCabArt::Scanlines(FVector2D(64, 240)), TEXT("AcConsoleScan"));
+		AcCabArt::BakeButtonFace(ButtonOn, FAcCabLayout::Button, true);
+		AcCabArt::BakeButtonFace(ButtonOff, FAcCabLayout::Button, false);
+		AcCabArt::BakeScanlines(Scan, FVector2D(64, 240));
 		// Console.drawViewSwitch: the plate round the switch, 4 and 3 points out.
-		MakeArt(SwitchPlate, AcCabArt::Plate(FVector2D(168 + 8, 24 + 6), FAcCuts{8, 2, 2, 8}, false, 14),
-			TEXT("AcConsoleSwitchPlate"));
+		AcCabArt::BakePlate(SwitchPlate, FVector2D(168 + 8, 24 + 6), FAcCuts{8, 2, 2, 8}, false, 14);
 	}
 	UE_LOG(LogAutocraft, Log, TEXT("console: laid out for %.0fx%.0f points%s, cover %.0f, art in %.0f ms"), Size.X, Size.Y,
 		bLaidWarped ? TEXT("") : TEXT(" (flat)"), Lay.Cover(), (FPlatformTime::Seconds() - T0) * 1000);
@@ -139,14 +127,7 @@ void SAcConsole::MakeFrame()
 	if (bFrameMade || !bLaidOut) return;
 	const double T0 = FPlatformTime::Seconds();
 	bFrameMade = true;
-	Frame.Reset();
-	int32 K = 0;
-	for (const FAcArtBand& Band : AcCabArt::Framed(Lay))
-	{
-		TPair<FAcRect, FArt>& Part = Frame.AddDefaulted_GetRef();
-		Part.Key = Band.At;
-		MakeArt(Part.Value, Band.Image, *FString::Printf(TEXT("AcConsoleCabFrame%d"), K++));
-	}
+	AcCabArt::BakeFramed(Frame, Lay);
 	UE_LOG(LogAutocraft, Log, TEXT("console: cab frame in %.0f ms"), (FPlatformTime::Seconds() - T0) * 1000);
 }
 
@@ -551,15 +532,15 @@ void SAcConsole::PaintDash(FPaint& P) const
 	if (Look != EAcConsoleStyle::Cab)
 	{
 		// The dashboard's top alone (the view frame stands round the view).
-		if (const FSlateBrush* B = Dash.Get()) P.Image(B, FAcRect(0, 0, B->ImageSize.X, B->ImageSize.Y));
+		if (const FSlateBrush* B = Dash.Get()) P.Baked(Dash, FAcRect(0, 0, B->ImageSize.X, B->ImageSize.Y));
 		return;
 	}
 	// A machine's cab: the frame round the window, and its two lamps
 	// (Console.buildCab, setLamps): amber pulsing while it works, green
 	// while locked down, amber and dim at rest.
-	for (const TPair<FAcRect, FArt>& Part : Frame)
+	for (const TPair<FAcRect, FAcBakedArt>& Part : Frame)
 	{
-		if (const FSlateBrush* B = Part.Value.Get()) P.Image(B, Part.Key);
+		P.Baked(Part.Value, Part.Key);
 	}
 	const FLinearColor Color = Lamps == EAcCabLamps::Locked ? LockedColor() : LampColor();
 	double A = Lamps == EAcCabLamps::Idle ? 0.6 : 1.0;
@@ -605,7 +586,7 @@ void SAcConsole::PaintBase(FPaint& P) const
 	// The faces drawn flat.
 	for (int32 K = 0; K < 3; ++K)
 	{
-		if (const FSlateBrush* B = Faces[K].Get()) P.Image(B, Lay.Faces[K].Flat);
+		P.Baked(Faces[K], Lay.Faces[K].Flat);
 	}
 	// Text the Swift art draws with Core Graphics: the deck's station name
 	// (`Cab.deckBay`) and the centre face's stencil (`Cab.centerFace`).
@@ -692,7 +673,7 @@ void SAcConsole::PaintCenter(FPaint& P, const FAcCardInfo& In) const
 		{
 			P.Image(Glow, FAcRect(Mid.X - G / 2, Mid.Y - G / 2, G, G), FPaint::BlendTint(Holo, 1, 0.3));
 		}
-		P.Image(Scan.Get(), FAcRect(R.MinX() + 8, R.MinY() + 20, Ws + 12, Ws + 8));
+		P.Baked(Scan, FAcRect(R.MinX() + 8, R.MinY() + 20, Ws + 12, Ws + 8));
 	}
 	P.Text(FString::Printf(TEXT("%d / %d"), (int32)FMath::RoundHalfFromZero(In.Hp), (int32)In.MaxHp), 16, FAcHudStyle::Health(F),
 		FVector2D(R.MinX() + 14 + Ws / 2, R.MinY() + 8), EAcHAlign::Center, false, false);
@@ -875,7 +856,7 @@ void SAcConsole::PaintCard(FPaint& P) const
 		{
 			if (bRts)
 			{
-				P.Image(ButtonOff.Get(), R, FLinearColor(1, 1, 1, 0.55f));
+				P.Baked(ButtonOff, R, 0.55f);
 				P.Stroke(R, 6, Alpha(Cyan, 0.16), 1);
 			}
 			else
@@ -886,7 +867,7 @@ void SAcConsole::PaintCard(FPaint& P) const
 			continue;
 		}
 		const FAcCardButton& B = Buttons[*I];
-		if (bRts) P.Image((B.bEnabled ? ButtonOn : ButtonOff).Get(), R);
+		if (bRts) P.Baked(B.bEnabled ? ButtonOn : ButtonOff, R);
 		else P.FillRounded(R, 3, B.bEnabled ? Rgb(0.05, 0.12, 0.2) : Rgb(0.05, 0.05, 0.06));
 		if (const FSlateBrush* Icon = FAcIcons::Brush(B.Icon))
 		{
@@ -933,10 +914,10 @@ void SAcConsole::PaintOver(FPaint& P) const
 		P.FillRounded(R, 5, Rgb(0.02, 0.06, 0.1, 0.82));
 		P.Stroke(R, 5, Alpha(Acc, 0.55), 1);
 	}
-	else if (const FSlateBrush* Plate = SwitchPlate.Get())
+	else
 	{
 		const double Pad = AcCabArt::PlatePad;
-		P.Image(Plate, R.Inset(-4 - Pad, -3 - Pad));
+		P.Baked(SwitchPlate, R.Inset(-4 - Pad, -3 - Pad));
 	}
 	P.Text(TEXT("VIEW"), 11, Alpha(Acc, 0.8), FVector2D(R.MinX() + 8, R.MidY() - 4));
 	static const TCHAR* Names[2] = {TEXT("1ST"), TEXT("3RD")};
@@ -1002,18 +983,13 @@ void SAcViewFrame::Tick(const FGeometry& Geometry, const double CurrentTime, con
 	{
 		PendingSize = Size;
 		PendingSince = CurrentTime;
-		if (Texture) return;  // the first one at once, a resize once it settles
+		if (Art.Get()) return;  // the first one at once, a resize once it settles
 	}
 	else if (CurrentTime - PendingSince < 0.15)
 	{
 		return;
 	}
-	const FAcArtImage Image = AcCabArt::ViewFrame(Size);
-	Texture.Reset(AcCabArt::ToTexture(Image, TEXT("AcViewFrame")));
-	Brush = MakeShared<FSlateBrush>();
-	Brush->DrawAs = ESlateBrushDrawType::Image;
-	Brush->ImageSize = Image.Points;
-	if (Texture) Brush->SetResourceObject(Texture.Get());
+	AcCabArt::BakeViewFrame(Art, Size);
 	DrawnSize = Size;
 	Invalidate(EInvalidateWidgetReason::Paint);
 }
@@ -1021,7 +997,9 @@ void SAcViewFrame::Tick(const FGeometry& Geometry, const double CurrentTime, con
 int32 SAcViewFrame::OnPaint(const FPaintArgs& Args, const FGeometry& Geometry, const FSlateRect& Culling,
 	FSlateWindowElementList& Out, int32 Layer, const FWidgetStyle& Style, bool bParentEnabled) const
 {
-	if (!Brush || !Texture) return Layer;
-	FSlateDrawElement::MakeBox(Out, Layer, Geometry.ToPaintGeometry(FVector2f(DrawnSize), FSlateLayoutTransform()), Brush.Get());
+	const FSlateBrush* Brush = Art.Get();
+	if (!Brush) return Layer;
+	FSlateDrawElement::MakeBox(Out, Layer, Geometry.ToPaintGeometry(FVector2f(DrawnSize), FSlateLayoutTransform()), Brush, Art.Effects(),
+		Art.Tint());
 	return Layer + 1;
 }
