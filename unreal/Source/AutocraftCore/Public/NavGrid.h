@@ -212,7 +212,8 @@ struct AUTOCRAFTCORE_API NavGrid {
     std::array<int64_t, 4> changedBox{0, 0, -1, -1};
     /// Totals over every search (any thread): searches run and cells they
     /// closed, for the bench.
-    static std::atomic<int64_t> searchesRun, cellsClosed;
+    static std::atomic<int64_t> searchesRun;
+    static std::atomic<int64_t> cellsClosed;
     /// A straight walk from `a` to `b` passes through a cell `setDynamic`
     /// newly blocked (or next to one): the route is stale.
     bool crossesChange(Vec2 a, Vec2 b) const;

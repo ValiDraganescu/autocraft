@@ -167,7 +167,9 @@ struct AUTOCRAFTCORE_API Commander {
     /// Swift game's: they mine at the nearest safe base from then on
     /// (`commanderProspectorsRunFromFireflies`; the goldens pass either way).
     bool pullBack = true;
-    static constexpr double fleeDistance = 9, calmRadius = 16, calmTime = 3;
+    static constexpr double fleeDistance = 9;
+    static constexpr double calmRadius = 16;
+    static constexpr double calmTime = 3;
     std::pair<std::vector<Command>, std::set<int64_t>> pullWorkers(const GameState& s, const Simulation& sim,
                                                                    const std::set<int64_t>& busy,
                                                                    const std::vector<Unit>& soldiers) const;

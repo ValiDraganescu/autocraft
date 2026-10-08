@@ -287,7 +287,7 @@ struct Change {
 /// The sum of the changes on one stat of one unit:
 /// `max(base × times, atLeast) × (1 + percent) + plus`. With no changes
 /// it leaves a number exactly as it was.
-struct AUTOCRAFTCORE_API Boost {
+struct Boost {
     double times = 1.0;
     std::optional<double> atLeast;
     double percent = 0.0;
@@ -295,12 +295,13 @@ struct AUTOCRAFTCORE_API Boost {
 
     static const Boost none;
 
-    void add(const Change& c);
-    double apply(double base) const;
+    // Exported one by one: an exported class cannot define `none` here (MSVC).
+    AUTOCRAFTCORE_API void add(const Change& c);
+    AUTOCRAFTCORE_API double apply(double base) const;
     /// A rate of 1 under the changes (2: twice as fast).
     double rate() const { return apply(1.0); }
     /// A whole number (a cost, a load) under the changes, rounded.
-    int64_t apply(int64_t base) const;
+    AUTOCRAFTCORE_API int64_t apply(int64_t base) const;
     bool operator==(const Boost&) const = default;
 };
 inline constexpr Boost Boost::none{};
