@@ -1,0 +1,29 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="base.css"><style>
+body{width:1600px;height:990px;padding:56px 64px;display:flex;flex-direction:column;gap:28px}
+.k{font-weight:700;font-size:26px;letter-spacing:3px;color:var(--cyan);text-transform:uppercase}
+h2{font-weight:800;font-size:58px;line-height:1;margin-top:6px}
+table{border-collapse:collapse;width:100%}
+th{font-weight:700;font-size:22px;color:var(--mute);text-transform:uppercase;letter-spacing:2px;text-align:left;padding:0 14px 10px}
+td{padding:11px 14px;border-top:2px solid var(--line);font-size:27px;font-weight:600;vertical-align:middle}
+td.t,td.c{font-family:Menlo,monospace;font-size:20px;color:var(--mute);font-weight:400}
+td.big{font-weight:800;font-size:44px;text-align:right;width:150px;font-variant-numeric:tabular-nums}
+.fail td.big{color:var(--red)} .part td.big{color:var(--amber)} .ok td.big{color:var(--green)}
+td.fix{color:var(--mute);font-weight:500;font-size:24px}
+tr.rel td{border-top:3px solid var(--cyan)}
+.dot{display:inline-block;width:14px;height:14px;border-radius:50%;margin-right:10px;vertical-align:middle}
+.fail .dot{background:var(--red)} .part .dot{background:var(--amber)} .ok .dot{background:var(--green)}
+</style></head><body>
+<div><div class="k">The setup machine, 2026-10-08, times in UTC</div><h2>Eight builds from first try to a saved image</h2></div>
+<table>
+<tr><th>#</th><th>Sent</th><th>Commit</th><th style="text-align:right">Result</th><th>What stopped it</th><th>Fixed by</th></tr>
+<tr class="fail"><td><span class="dot"></span>1</td><td class="t">09:23</td><td class="c">3316551</td><td class="big">setup</td><td>No .NET Framework SDK; Git not on SYSTEM's PATH</td><td class="fix">setup script</td></tr>
+<tr class="fail"><td><span class="dot"></span>2</td><td class="t">09:25</td><td class="c">3316551</td><td class="big">sqlite</td><td>sqlite3.h under MSVC: DLLIMPORT undefined</td><td class="fix c">37ea9b6</td></tr>
+<tr class="fail"><td><span class="dot"></span>3</td><td class="t">09:32</td><td class="c">37ea9b6</td><td class="big">31</td><td>compile errors in about 12 files</td><td class="fix c">e17b0af</td></tr>
+<tr class="fail"><td><span class="dot"></span>4</td><td class="t">09:49</td><td class="c">e17b0af</td><td class="big">394</td><td>link errors: the core DLL exported nothing</td><td class="fix c">626a341</td></tr>
+<tr class="fail"><td><span class="dot"></span>5</td><td class="t">10:15</td><td class="c">626a341</td><td class="big">4</td><td>errors in the new exports</td><td class="fix c">ed3d00b</td></tr>
+<tr class="fail"><td><span class="dot"></span>6</td><td class="t">10:20</td><td class="c">ed3d00b</td><td class="big">2</td><td>unresolved symbols: SessionStore::encode</td><td class="fix c">138d96b</td></tr>
+<tr class="part"><td><span class="dot"></span>7</td><td class="t">10:23</td><td class="c">138d96b</td><td class="big">12 min</td><td>both packages built; the zips missed the launcher and Engine</td><td class="fix c">7737714</td></tr>
+<tr class="ok"><td><span class="dot"></span>8</td><td class="t">10:39</td><td class="c">7737714</td><td class="big">2 min</td><td>good: saved as the image at 10:42</td><td class="fix">image</td></tr>
+<tr class="ok rel"><td><span class="dot"></span>R</td><td class="t">11:23</td><td class="c">a042937</td><td class="big">23 min</td><td>first release from the image: good on its first run</td><td class="fix">spot</td></tr>
+</table>
+</body></html>

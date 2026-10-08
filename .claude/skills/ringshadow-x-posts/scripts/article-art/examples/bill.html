@@ -1,0 +1,45 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="base.css"><style>
+body{width:1600px;height:770px;padding:56px 64px;display:flex;flex-direction:column;gap:34px}
+.k{font-weight:700;font-size:26px;letter-spacing:3px;color:var(--cyan);text-transform:uppercase}
+h2{font-weight:800;font-size:58px;line-height:1;margin-top:6px}
+.chart{display:grid;grid-template-columns:260px 1fr;row-gap:22px;column-gap:24px;align-items:center}
+.lbl{font-weight:700;font-size:30px;text-align:right}
+.lbl small{display:block;font-weight:500;font-size:22px;color:var(--mute)}
+.track{position:relative;height:84px}
+.stack{display:flex;height:100%}
+.seg{display:flex;align-items:center;justify-content:center;font-weight:800;font-size:26px;color:var(--ink);white-space:nowrap;overflow:hidden;border-right:2px solid var(--ink)}
+.tot{position:absolute;top:50%;transform:translateY(-50%);font-weight:800;font-size:40px;padding-left:16px}
+.axis{position:relative;height:30px;font-weight:600;font-size:22px;color:var(--mute)}
+.axis span{position:absolute;transform:translateX(-50%)}
+.legend{display:flex;gap:34px;font-weight:600;font-size:24px;color:var(--mute)}
+.legend i{display:inline-block;width:20px;height:20px;margin-right:10px;vertical-align:-3px}
+.hour{display:flex;flex-direction:column;gap:10px;border-top:2px solid var(--line);padding-top:26px}
+.hour .t{font-weight:700;font-size:30px}
+.hour .t em{font-style:normal;color:var(--cyan)}
+</style></head><body>
+<div><div class="k">The bill at 2 to 3 releases a week</div><h2>About $15 a month. The machine is gone between builds.</h2></div>
+<!-- scale: $0..$18 over the track width. compute = releases x $0.75 (28 min at $1.62/h); image = 111 GB x $0.05; S3+downloads+disk: up to $1 -->
+<div class="chart" id="c"></div>
+<div class="legend"><span><i style="background:var(--cyan)"></i>Build machine, at most $0.75 a release (a full recompile)</span><span><i style="background:var(--amber)"></i>Saved image, 111 GB snapshot</span><span><i style="background:var(--mute)"></i>S3, downloads, disk: up to $1</span></div>
+<div class="hour">
+  <div class="t">Where the <em>$1.62 an hour</em> goes (spot c7i.8xlarge, Windows, eu-north-1)</div>
+  <div class="stack" style="height:70px">
+    <div class="seg" style="flex:1.47;background:var(--red)">Windows licence $1.47</div>
+    <div class="seg" style="flex:0.15;background:var(--cyan)">$0.15</div>
+  </div>
+  <div class="legend"><span>Spot discounts the 32 cores. It doesn't discount the licence.</span></div>
+</div>
+<script>
+const max=18, rows=[["2 a week","8.7 releases",6.5],["3 a week","13 releases",9.75]];
+const c=document.getElementById('c');
+for(const [a,b,comp] of rows){
+  const total=comp+5.6+1;
+  c.insertAdjacentHTML('beforeend',`<div class="lbl">${a}<small>${b}</small></div><div class="track"><div class="stack" style="width:${total/max*100}%">
+   <div class="seg" style="flex:${comp};background:var(--cyan)">$${comp.toFixed(2)}</div>
+   <div class="seg" style="flex:5.6;background:var(--amber)">$5.60</div>
+   <div class="seg" style="flex:1;background:var(--mute)">$1</div></div>
+   <div class="tot" style="left:${total/max*100}%">$${total.toFixed(2)}</div></div>`);
+}
+c.insertAdjacentHTML('beforeend','<div></div><div class="axis">'+[0,3,6,9,12,15,18].map(v=>`<span style="left:${v/max*100}%">$${v}</span>`).join('')+'</div>');
+</script>
+</body></html>

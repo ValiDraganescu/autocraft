@@ -1,0 +1,9 @@
+@font-face{font-family:Barlow;src:url(BarlowCondensed-Medium.ttf);font-weight:500}
+@font-face{font-family:Barlow;src:url(BarlowCondensed-SemiBold.ttf);font-weight:600}
+@font-face{font-family:Barlow;src:url(BarlowCondensed-Bold.ttf);font-weight:700}
+@font-face{font-family:Barlow;src:url(BarlowCondensed-ExtraBold.ttf);font-weight:800}
+@font-face{font-family:Exo;src:url(Exo2-Variable.ttf);font-weight:100 900}
+:root{--ink:#06121e;--deep:#0a1c2c;--glass:#10304a;--line:#1f4d6e;--cyan:#59d9ff;--ice:#ebf7ff;--mute:#8fb3cc;--red:#ff6b5a;--green:#5cf0a0;--amber:#ffb547}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--ink);color:var(--ice);font-family:Barlow,sans-serif;overflow:hidden}
+.mono{font-family:Menlo,monospace}

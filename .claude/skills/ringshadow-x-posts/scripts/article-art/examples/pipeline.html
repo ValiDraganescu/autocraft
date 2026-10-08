@@ -1,0 +1,56 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="base.css"><style>
+body{width:1600px;height:900px;padding:56px 64px;display:flex;flex-direction:column;gap:30px}
+.k{font-weight:700;font-size:26px;letter-spacing:3px;color:var(--cyan);text-transform:uppercase}
+h2{font-weight:800;font-size:58px;line-height:1;margin-top:6px}
+.lanes{display:grid;grid-template-columns:150px 1fr;row-gap:22px;column-gap:20px;align-items:stretch}
+.lane{font-weight:800;font-size:30px;color:var(--mute);text-transform:uppercase;letter-spacing:2px;display:flex;align-items:center}
+.row{display:flex;gap:14px;align-items:stretch}
+.box{flex:1;background:var(--glass);border:2px solid var(--line);padding:14px 16px;display:flex;flex-direction:column;gap:6px;position:relative}
+.box .n{font-weight:800;font-size:22px;color:var(--cyan)}
+.box b{font-weight:700;font-size:28px;line-height:1.1}
+.box span{font-weight:500;font-size:22px;color:var(--mute);line-height:1.2}
+.box code{font-family:Menlo,monospace;font-size:17px;color:var(--ice)}
+.hot{border-color:var(--cyan)}
+.end{border-color:var(--red)}
+.arrow{align-self:center;color:var(--cyan);font-size:34px;font-weight:800}
+.aws{border:2px dashed var(--line);padding:16px;display:flex;gap:14px}
+.time{display:flex;flex-direction:column;gap:10px}
+.bar{display:flex;height:64px;border:2px solid var(--line)}
+.seg{display:flex;align-items:center;justify-content:center;font-weight:800;font-size:24px;color:var(--ink);white-space:nowrap;overflow:hidden}
+.axis{display:flex;justify-content:space-between;font-weight:600;font-size:22px;color:var(--mute)}
+.legend{display:flex;justify-content:space-between;font-weight:600;font-size:24px}
+.legend em{font-style:normal;color:var(--cyan);font-weight:800}
+</style></head><body>
+<div><div class="k">A release, 2026-10-08 <span style="text-transform:none;font-family:Menlo,monospace;font-size:22px;letter-spacing:0">(a042937)</span></div><h2>One command on the Mac. A machine that lives 28 minutes.</h2></div>
+<div class="lanes">
+  <div class="lane">Mac</div>
+  <div class="row">
+    <div class="box"><div class="n">1</div><b>Push, then build</b><code>build_release.sh build</code><span>refuses a commit that isn't on GitHub</span></div>
+    <div class="arrow">→</div>
+    <div class="box" style="flex:2"><div class="n">7</div><b>Download, fix Linux file modes</b><span>a tar made on Windows has no executable bits; the Mac repacks it</span></div>
+    <div class="arrow">→</div>
+    <div class="box hot"><div class="n">8</div><b>Packages + SHA256SUMS</b><span>Saved/Releases/&lt;version&gt;/</span></div>
+  </div>
+  <div class="lane">AWS</div>
+  <div class="aws">
+    <div class="box"><div class="n">2</div><b>Spot c7i.8xlarge</b><span>from the saved image; trap EXIT terminates it</span></div>
+    <div class="box"><div class="n">3</div><b>SSM, no open ports</b><span>runs build_windows.ps1 as SYSTEM</span></div>
+    <div class="box hot"><div class="n">4</div><b>BuildCookRun Win64</b><span>Shipping, pak, IoStore</span></div>
+    <div class="box hot"><div class="n">5</div><b>BuildCookRun Linux</b><span>cross-compiled, same machine</span></div>
+    <div class="box"><div class="n">6</div><b>Zips to S3</b><span>with manifest and build.log</span></div>
+    <div class="box end"><div class="n">9</div><b>Terminated</b><span>on failure too</span></div>
+  </div>
+</div>
+<div class="time">
+  <div class="legend"><span>Where the 28 minutes went (RunInstances 11:21:33 to TerminateInstances 11:49:15 UTC)</span><span><em>$0.75</em> at $1.62/h</span></div>
+  <!-- minutes: boot+SSM 2.8, fetch 0.4, Win64 17.1, Linux 5.6, zip+upload 0.3, download+terminate 1.5 = 27.7 -->
+  <div class="bar">
+    <div class="seg" style="flex:3.2;background:var(--mute)">boot 3</div>
+    <div class="seg" style="flex:17.1;background:var(--cyan)">Windows 17 min</div>
+    <div class="seg" style="flex:5.6;background:var(--green)">Linux 6</div>
+    <div class="seg" style="flex:1.8;background:var(--amber)">2</div>
+  </div>
+  <div class="axis" style="position:relative;height:28px"><span style="position:absolute;left:0.00%;transform:translateX(-50%)">0</span><span style="position:absolute;left:18.05%;transform:translateX(-50%)">5</span><span style="position:absolute;left:36.10%;transform:translateX(-50%)">10</span><span style="position:absolute;left:54.15%;transform:translateX(-50%)">15</span><span style="position:absolute;left:72.20%;transform:translateX(-50%)">20</span><span style="position:absolute;left:90.25%;transform:translateX(-50%)">25</span><span style="position:absolute;right:0">27.7 min</span></div>
+  <div class="legend"><span style="color:var(--mute)">This release recompiled the game for both platforms (five plugins went editor-only). Amber: upload, download and terminate.</span></div>
+</div>
+</body></html>
