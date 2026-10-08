@@ -74,14 +74,14 @@ Mac package built here, played by hand, before any AWS time is spent.
 - **Account** 569854554192, CLI profile `ringshadow` (`aws login --profile
   ringshadow`; a session lasts about 12 hours). The script uses it by default.
   `AUTOCRAFT_AWS_PROFILE` picks another.
-- **Region** `eu-north-1` (Stockholm), the only one the organization's policy
-  allows for EC2. The same policy blocks Trusted Advisor and Compute Optimizer
-  in the console, and every signed S3 call outside eu-north-1 (even to a
-  public bucket). The rule is `UsEast1Partitional` in the SCP
-  AdvancedModeRegionRestrictionSecurityControlPolicy (`p-lunneq4k`), which
-  only the management account (687971795322) can edit. The tester's driver
-  bucket in us-east-1 is public, so it is read without credentials, which no
-  policy sees ("The Windows tester").
+- **Region** `eu-north-1` (Stockholm): everything here lives in it. The
+  organization's policy (SCP AdvancedModeRegionRestrictionSecurityControlPolicy,
+  `p-lunneq4k`, edited from the management account 687971795322) allows
+  eu-north-1 and, since 2026-10-09, all of us-east-1 too; us-west-2 only for a
+  few global services, every other region not at all. The script doesn't use
+  us-east-1 yet: its GPU quota was requested on 2026-10-09. The tester's driver
+  bucket in us-east-1 is public and read without credentials ("The Windows
+  tester").
 - **Quotas** (2026-10-08): 32 vCPU of standard instances, on-demand and spot.
   That is one `c7i.8xlarge`, so the setup machine and a build cannot run at
   the same time. GPU (G and VT) instances: 8 vCPU, on-demand and spot
