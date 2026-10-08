@@ -79,8 +79,9 @@ Mac package built here, played by hand, before any AWS time is spent.
   in the console, and every S3 call outside eu-north-1 (even a public
   bucket's). The tester needs one: NVIDIA's driver for EC2 is in
   `ec2-windows-nvidia-drivers`, a us-east-1 bucket ("Testing the packages").
-  To change it, edit SCP `p-up9slklz` from the management account
-  (687971795322).
+  The rule is `UsEast1Partitional` in the SCP
+  AdvancedModeRegionRestrictionSecurityControlPolicy (`p-lunneq4k`), which
+  only the management account (687971795322) can edit.
 - **Quotas** (2026-10-08): 32 vCPU of standard instances, on-demand and spot.
   That is one `c7i.8xlarge`, so the setup machine and a build cannot run at
   the same time. GPU (G and VT) instances: 8 vCPU, on-demand and spot
