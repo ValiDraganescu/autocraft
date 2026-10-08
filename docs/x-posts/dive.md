@@ -1,9 +1,9 @@
 ---
-status: approved
+status: posted
 date: 2026-10-08
 angle: play
 video: video/renders/dive-giant-x.mp4
-posted: 
+posted: https://x.com/escu__valentin/status/2108163349594701937
 ---
 
 ## Post
