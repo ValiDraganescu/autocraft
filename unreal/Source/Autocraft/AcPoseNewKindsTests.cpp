@@ -502,10 +502,6 @@ bool FAcPoseNewBorrowedTest::RunTest(const FString&)
 		return false;
 	}
 	using ac::UnitKind;
-	TestEqual(TEXT("spoken lines: a Peregrine as a Kestrel (no voice of its own yet)"), (int32)AcNewKinds::StandIn(UnitKind::peregrine), (int32)UnitKind::kestrel);
-	TestEqual(TEXT("an Atlas as a Juggernaut (same)"), (int32)AcNewKinds::StandIn(UnitKind::atlas), (int32)UnitKind::juggernaut);
-	TestEqual(TEXT("a Scorpion is its own: robot chirps, own icon"), (int32)AcNewKinds::StandIn(UnitKind::scorpion), (int32)UnitKind::scorpion);
-	TestEqual(TEXT("the old kinds are their own"), (int32)AcNewKinds::StandIn(UnitKind::longbow), (int32)UnitKind::longbow);
 	for (const UnitKind K : {UnitKind::peregrine, UnitKind::atlas, UnitKind::scorpion})
 	{
 		const FString Own = FString::Printf(TEXT("cockpit_%s_blue"), AcPose::ModelBase(K));

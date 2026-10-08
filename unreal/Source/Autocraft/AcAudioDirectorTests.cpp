@@ -76,11 +76,13 @@ bool FAcAudioWeaponsTest::RunTest(const FString&)
 	TestEqual(TEXT("prospector death"), FString(FAcAudioRules::DeathOf(ac::UnitKind::prospector)), FString(TEXT("prospectordeath")));
 	TestEqual(TEXT("hailstorm voice"), FString(FAcAudioRules::VoiceOf(ac::UnitKind::hailstorm)), FString(TEXT("vhailstorm")));
 	// The Scorpion's robot chirps are its own; the Peregrine pilot and the Atlas crew
-	// still speak with a neighbour's voice (no free custom voice slot: AcNewKinds.h).
+	// speak with library voices of their own.
 	TestEqual(TEXT("scorpion voice"), FString(FAcAudioRules::VoiceOf(ac::UnitKind::scorpion)), FString(TEXT("vscorpion")));
 	TestEqual(TEXT("scorpion death"), FString(FAcAudioRules::DeathOf(ac::UnitKind::scorpion)), FString(TEXT("scorpiondeath")));
-	TestEqual(TEXT("peregrine voice (borrowed)"), FString(FAcAudioRules::VoiceOf(ac::UnitKind::peregrine)), FString(TEXT("vkestrel")));
-	TestEqual(TEXT("atlas death (borrowed)"), FString(FAcAudioRules::DeathOf(ac::UnitKind::atlas)), FString(TEXT("juggernautdeath")));
+	TestEqual(TEXT("peregrine voice"), FString(FAcAudioRules::VoiceOf(ac::UnitKind::peregrine)), FString(TEXT("vperegrine")));
+	TestEqual(TEXT("peregrine death"), FString(FAcAudioRules::DeathOf(ac::UnitKind::peregrine)), FString(TEXT("peregrinedeath")));
+	TestEqual(TEXT("atlas voice"), FString(FAcAudioRules::VoiceOf(ac::UnitKind::atlas)), FString(TEXT("vatlas")));
+	TestEqual(TEXT("atlas death"), FString(FAcAudioRules::DeathOf(ac::UnitKind::atlas)), FString(TEXT("atlasdeath")));
 	return true;
 }
 

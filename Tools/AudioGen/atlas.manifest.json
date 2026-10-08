@@ -1,5 +1,8 @@
 {
-  "about": "INVENTORY (2026-10-06) of what the Atlas needs: stomp (own, in the game); cannon salvo atlasshot (new: the twin cannons, every 2.0 s, WeaponOf, gain 0.35, 3 a second); footfall atlasstep (new: played by UAcEffects::Footfall for every foot that comes down, gain 0.5, 4 a second); driven pull-away atlasmove (new: PullAway, gain 0.3, at most every 2 s); report-in vatlas and death atlasdeath (BLOCKED, see below); HUD icon atlas (made: Content-src/icons/atlas.png, art/models/atlas/previews/icon.png). Picked 2026-10-06 by the numbers (the 0.4 s loudest RMS after peak normalisation, the tail, the active length): atlasshot_1 and _2 (now sfx/atlasshot_1, _2; _3 is quiet, -16 dB, and only 0.7 s alive), atlasmove_3 and _2 (now sfx/atlasmove_1, _2; _1 dies after 1.15 s), atlasstep_1 and _2 (now sfx/atlasstep_1, _2; _3 is hiss at -27 dB). All takes stay in art/models/atlas/sounds/. VOICE BLOCKED (2026-10-06): the ElevenLabs account has 10 of 10 custom voice slots used, so a new Voice Design voice cannot be saved (POST /v1/text-to-voice answers voice_limit_reached) and an unsaved preview cannot speak. Until a slot is freed the Atlas crew's spoken lines (vatlas, atlasdeath) borrow the Juggernaut's's through AcNewKinds::StandIn. The previews are designed and kept in art/models/atlas/sounds/voice/ (vatlas_1..3.mp3 with their generated_voice_ids GumGcWvTfktvOQurtczT, 6x5tfkD48jSjkURQerSz, Ae5JpO7TPso7wT0WXMKK); chosen by spectral numbers (no listening possible): vatlas_3 (Ae5JpO7TPso7wT0WXMKK): lowest spectral centroid (1347 Hz) and the largest share of energy under 600 Hz, i.e. the deepest. Description used: \"A deep, slow, heavy-machinery operator in his fifties, a gravelly bass voice, unhurried and weary, steady like a foreman running a walking war machine. Speaks slowly with weight on each word over a rumbling cab radio. Much deeper and slower than a pilot.\". To finish: free a slot (delete an unused custom voice in the ElevenLabs account), run `uv run Tools/AudioGen/design_voice.py save \"Autocraft Atlas\" \"<description>\" <generated_voice_id>` (previews expire, so design again if it fails: `design_voice.py design`), add `\"voices\": {\"atlas\": \"<voice_id>\"}` and 4 report lines (vatlas_1..4) and 4 death lines (atlasdeath_1..4), kind say, fx comm, to this manifest, run elevenlabs.sh manifest, copy the picked takes to unreal/Resources/Sounds/sfx, import_sounds.py, then drop the kind from AcNewKinds::StandIn and update AcPoseNewKindsTests.cpp and AcAudioDirectorTests.cpp.",
+  "about": "INVENTORY (2026-10-06) of what the Atlas needs: stomp (own, in the game); cannon salvo atlasshot (new: the twin cannons, every 2.0 s, WeaponOf, gain 0.35, 3 a second); footfall atlasstep (new: played by UAcEffects::Footfall for every foot that comes down, gain 0.5, 4 a second); driven pull-away atlasmove (new: PullAway, gain 0.3, at most every 2 s); report-in vatlas and death atlasdeath (BLOCKED, see below); HUD icon atlas (made: Content-src/icons/atlas.png, art/models/atlas/previews/icon.png). Picked 2026-10-06 by the numbers (the 0.4 s loudest RMS after peak normalisation, the tail, the active length): atlasshot_1 and _2 (now sfx/atlasshot_1, _2; _3 is quiet, -16 dB, and only 0.7 s alive), atlasmove_3 and _2 (now sfx/atlasmove_1, _2; _1 dies after 1.15 s), atlasstep_1 and _2 (now sfx/atlasstep_1, _2; _3 is hiss at -27 dB). All takes stay in art/models/atlas/sounds/. VOICE (2026-10-09): the ElevenLabs account has no free custom voice slot (10 of 10, all game voices), so the crew speaks with a library voice, which needs no slot: \"Xavier - Big, Deep & Powerful narrator\" (YRJMFMoNhLEYl3Nae0G6, a veteran soldier's deep, growly voice), picked by ear by the user from four library candidates through comm.py. The brief: a deep, slow heavy-machinery operator in his fifties, gravelly and weary, a foreman running a walking war machine. The Voice Design previews made on 2026-10-06 stay in art/models/atlas/sounds/voice/ (unsaved, expired).",
+  "voices": {
+    "atlas": "YRJMFMoNhLEYl3Nae0G6"
+  },
   "entries": [
     {
       "id": "stomp_1",
@@ -91,6 +94,62 @@
       "prompt": "single stride of a colossal robot: heavy thump that shakes the ground, a servo clunk, scattering pebbles, short",
       "seconds": 1.0,
       "influence": 0.5
+    },
+    {
+      "id": "vatlas_1",
+      "kind": "say",
+      "voice": "atlas",
+      "text": "[slow, gravelly, weary] Atlas walking. Clear the road.",
+      "fx": "comm"
+    },
+    {
+      "id": "vatlas_2",
+      "kind": "say",
+      "voice": "atlas",
+      "text": "[deep, unhurried] Cannons loaded. Point me at the walls.",
+      "fx": "comm"
+    },
+    {
+      "id": "vatlas_3",
+      "kind": "say",
+      "voice": "atlas",
+      "text": "[low, steady] Big boots, slow feet. Don't rush me.",
+      "fx": "comm"
+    },
+    {
+      "id": "vatlas_4",
+      "kind": "say",
+      "voice": "atlas",
+      "text": "[gravelly, deliberate] Crew's aboard. Let's knock something down.",
+      "fx": "comm"
+    },
+    {
+      "id": "atlasdeath_1",
+      "kind": "say",
+      "voice": "atlas",
+      "text": "[heavy pained shout] She's going over—!",
+      "fx": "comm"
+    },
+    {
+      "id": "atlasdeath_2",
+      "kind": "say",
+      "voice": "atlas",
+      "text": "[deep groan] Legs are gone—!",
+      "fx": "comm"
+    },
+    {
+      "id": "atlasdeath_3",
+      "kind": "say",
+      "voice": "atlas",
+      "text": "[gravelly cry] Abandon the cab!",
+      "fx": "comm"
+    },
+    {
+      "id": "atlasdeath_4",
+      "kind": "say",
+      "voice": "atlas",
+      "text": "[strained roar] Reactor's breached!",
+      "fx": "comm"
     }
   ]
 }

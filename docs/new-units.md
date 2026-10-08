@@ -6,15 +6,14 @@ fighter), the **Atlas** (a heavy walker, the late-game capstone) and the
 what it can do, how it levels, what gets tracked, and how it looks and
 behaves.
 
-Status, 2026-10-05: design agreed (see "Decisions"). The simulation side is
-built (core, AI, tests); the models, cockpits, icons and sounds are not: the
-game layer draws each kind as a neighbour (`unreal/Source/Autocraft/AcNewKinds.h`).
-Every number here is a starting point for balance, not a final value.
+Status, 2026-10-09: design agreed (see "Decisions"). All three are built:
+the simulation (core, AI, tests) and the game layer (models, cockpits, poses,
+effects, icons, sounds). Every number here is a starting point for balance,
+not a final value.
 
-Where the build still differs from the text below:
-
-- The Quake stomp has no sound of its own: it plays the anchored Longbow's
-  shell burst (`anchorhit`), the closest thud there is, until one is made.
+The Peregrine pilot and the Atlas crew speak with ElevenLabs library voices
+(a library voice needs no custom voice slot, and the account's ten are full):
+`Tools/AudioGen/peregrine.manifest.json` and `atlas.manifest.json` name them.
 
 **Scope: the Unreal game only.** The facts below come from the C++ in
 `unreal/Source/AutocraftCore` and `unreal/Source/Autocraft`. The Swift

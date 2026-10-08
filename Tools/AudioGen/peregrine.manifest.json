@@ -1,5 +1,8 @@
 {
-  "about": "INVENTORY (2026-10-06) of what the Peregrine needs to stop borrowing (AcAudioDirector, AcNewKinds, AcConsoleInfo): weapon seekers (own, in the game); driven pull-away peregrinepass (own, in the game: the shriek is also its in-ear engine, so no separate peregrinemove is made); report-in vperegrine and death peregrinedeath (BLOCKED, see below); HUD icon peregrine (made 2026-10-06: Content-src/icons/peregrine.png from the peregrine_blue model, art/models/peregrine/previews/icon.png); no lock-on, bury or footfall sound applies. VOICE BLOCKED (2026-10-06): the ElevenLabs account has 10 of 10 custom voice slots used, so a new Voice Design voice cannot be saved (POST /v1/text-to-voice answers voice_limit_reached) and an unsaved preview cannot speak. Until a slot is freed the Peregrine pilot's spoken lines (vperegrine, peregrinedeath) borrow the Kestrel's's through AcNewKinds::StandIn. The previews are designed and kept in art/models/peregrine/sounds/voice/ (vperegrine_1..3.mp3 with their generated_voice_ids tlqR03nLTizdK0NlDWcT, mJl2ro0hZu4rLI9xiUuL, L2fakhGRLAxq8HKtSDeH); chosen by spectral numbers (no listening possible): vperegrine_3 (L2fakhGRLAxq8HKtSDeH): the lowest-weighted of the three, distinct from the Kestrel's bright jock. Description used: \"A cool, precise, terse interceptor ace in his thirties, a calm baritone with a flat, controlled delivery and no swagger. Speaks in short clipped words on a cockpit radio, quiet and focused, a hint of dry steel. Lower and slower than a cocky young jock.\". To finish: free a slot (delete an unused custom voice in the ElevenLabs account), run `uv run Tools/AudioGen/design_voice.py save \"Autocraft Peregrine\" \"<description>\" <generated_voice_id>` (previews expire, so design again if it fails: `design_voice.py design`), add `\"voices\": {\"peregrine\": \"<voice_id>\"}` and 4 report lines (vperegrine_1..4) and 4 death lines (peregrinedeath_1..4), kind say, fx comm, to this manifest, run elevenlabs.sh manifest, copy the picked takes to unreal/Resources/Sounds/sfx, import_sounds.py, then drop the kind from AcNewKinds::StandIn and update AcPoseNewKindsTests.cpp and AcAudioDirectorTests.cpp.",
+  "about": "INVENTORY (2026-10-06) of what the Peregrine needs to stop borrowing (AcAudioDirector, AcNewKinds, AcConsoleInfo): weapon seekers (own, in the game); driven pull-away peregrinepass (own, in the game: the shriek is also its in-ear engine, so no separate peregrinemove is made); report-in vperegrine and death peregrinedeath (BLOCKED, see below); HUD icon peregrine (made 2026-10-06: Content-src/icons/peregrine.png from the peregrine_blue model, art/models/peregrine/previews/icon.png); no lock-on, bury or footfall sound applies. VOICE (2026-10-09): the ElevenLabs account has no free custom voice slot (10 of 10, all game voices), so the pilot speaks with a library voice, which needs no slot: \"The Fox - Strict & Dominating\" (h1IssowVS2h4nL5ZbkkK, a precise, controlled commander baritone), picked by ear by the user from four library candidates through comm.py. The brief: a cool, precise, terse interceptor ace in his thirties, flat and controlled, lower and slower than the Kestrel's cocky jock. The Voice Design previews made on 2026-10-06 stay in art/models/peregrine/sounds/voice/ (unsaved, expired).",
+  "voices": {
+    "peregrine": "h1IssowVS2h4nL5ZbkkK"
+  },
   "entries": [
     {
       "id": "peregrinepass_1",
@@ -42,6 +45,62 @@
       "prompt": "pair of homing missiles fired from a jet fighter: quick crisp hiss-hiss launch and a rising whistle as they zip off, light and fast, close up",
       "seconds": 1.0,
       "influence": 0.5
+    },
+    {
+      "id": "vperegrine_1",
+      "kind": "say",
+      "voice": "peregrine",
+      "text": "[cool, terse] Peregrine on station. Seekers armed.",
+      "fx": "comm"
+    },
+    {
+      "id": "vperegrine_2",
+      "kind": "say",
+      "voice": "peregrine",
+      "text": "[flat, focused] Give me a target in the sky.",
+      "fx": "comm"
+    },
+    {
+      "id": "vperegrine_3",
+      "kind": "say",
+      "voice": "peregrine",
+      "text": "[quiet, controlled] Escort is up. Nothing touches you.",
+      "fx": "comm"
+    },
+    {
+      "id": "vperegrine_4",
+      "kind": "say",
+      "voice": "peregrine",
+      "text": "[clipped, precise] Airborne. Hunting.",
+      "fx": "comm"
+    },
+    {
+      "id": "peregrinedeath_1",
+      "kind": "say",
+      "voice": "peregrine",
+      "text": "[short sharp cry] Wing's gone—!",
+      "fx": "comm"
+    },
+    {
+      "id": "peregrinedeath_2",
+      "kind": "say",
+      "voice": "peregrine",
+      "text": "[strained, clipped] Hit. Going down.",
+      "fx": "comm"
+    },
+    {
+      "id": "peregrinedeath_3",
+      "kind": "say",
+      "voice": "peregrine",
+      "text": "[sharp pained shout] Lost control—!",
+      "fx": "comm"
+    },
+    {
+      "id": "peregrinedeath_4",
+      "kind": "say",
+      "voice": "peregrine",
+      "text": "[short sharp cry] Ejecting!",
+      "fx": "comm"
     }
   ]
 }

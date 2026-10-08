@@ -4,16 +4,6 @@
 
 namespace AcNewKinds
 {
-	ac::UnitKind StandIn(const ac::UnitKind Kind)
-	{
-		switch (Kind)
-		{
-		case ac::UnitKind::peregrine: return ac::UnitKind::kestrel;
-		case ac::UnitKind::atlas: return ac::UnitKind::juggernaut;
-		default: return Kind;
-		}
-	}
-
 	ac::UnitKind CockpitStandIn(const ac::UnitKind Kind)
 	{
 		switch (Kind)

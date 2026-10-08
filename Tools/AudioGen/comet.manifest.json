@@ -1,7 +1,7 @@
 {
   "about": "The Comet's own sounds. The voice (\"Autocraft Comet\", made with Voice Design, eleven_ttv_v3) is a cocky young jump-pack raider, a bright, nasal, fast tenor on his helmet radio, higher and quicker than the Ranger, lower and brighter than the Prospector; its lines go through comm.py like theirs. Ids match the game's sound names (sfx/<name>_<n>): vcomet = reports in, cometdeath = death cry, pistol = both pistols (one volley per shot, every 0.79 s), jetup = the jet pack firing for a cliff jump, jetland = the landing.",
   "voices": {
-    "comet": "O1fProspectorqrkdMz5H7Ee6Cu"
+    "comet": "O1fSCVqrkdMz5H7Ee6Cu"
   },
   "entries": [
     {

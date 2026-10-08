@@ -150,7 +150,7 @@ FAcAudioRules::FWeapon FAcAudioRules::WeaponOf(std::optional<ac::UnitKind> Kind,
 
 const char* FAcAudioRules::DeathOf(ac::UnitKind Kind)
 {
-	switch (AcNewKinds::StandIn(Kind))
+	switch (Kind)
 	{
 	case ac::UnitKind::scorpion: return "scorpiondeath";
 	case ac::UnitKind::ranger: return "rangerdeath";
@@ -161,13 +161,15 @@ const char* FAcAudioRules::DeathOf(ac::UnitKind Kind)
 	case ac::UnitKind::longbow: return "longbowdeath";
 	case ac::UnitKind::kestrel: return "kestreldeath";
 	case ac::UnitKind::hailstorm: return "hailstormdeath";
+	case ac::UnitKind::peregrine: return "peregrinedeath";
+	case ac::UnitKind::atlas: return "atlasdeath";
 	default: return "prospectordeath";
 	}
 }
 
 const char* FAcAudioRules::VoiceOf(ac::UnitKind Kind)
 {
-	switch (AcNewKinds::StandIn(Kind))
+	switch (Kind)
 	{
 	case ac::UnitKind::scorpion: return "vscorpion";
 	case ac::UnitKind::prospector: return "vprospector";
@@ -179,6 +181,8 @@ const char* FAcAudioRules::VoiceOf(ac::UnitKind Kind)
 	case ac::UnitKind::longbow: return "vlongbow";
 	case ac::UnitKind::kestrel: return "vkestrel";
 	case ac::UnitKind::hailstorm: return "vhailstorm";
+	case ac::UnitKind::peregrine: return "vperegrine";
+	case ac::UnitKind::atlas: return "vatlas";
 	default: return "vranger";
 	}
 }

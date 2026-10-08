@@ -199,6 +199,40 @@
     756
    ]
   },
+  "atlasdeath": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/atlasdeath/SW_atlasdeath_1.SW_atlasdeath_1",
+     "source": "sfx/atlasdeath_1.wav",
+     "prepared": "Content-src/sounds/sfx/atlasdeath_1.wav",
+     "seconds": 2.065,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/atlasdeath/SW_atlasdeath_2.SW_atlasdeath_2",
+     "source": "sfx/atlasdeath_2.wav",
+     "prepared": "Content-src/sounds/sfx/atlasdeath_2.wav",
+     "seconds": 3.185,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/atlasdeath/SW_atlasdeath_3.SW_atlasdeath_3",
+     "source": "sfx/atlasdeath_3.wav",
+     "prepared": "Content-src/sounds/sfx/atlasdeath_3.wav",
+     "seconds": 2.065,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/atlasdeath/SW_atlasdeath_4.SW_atlasdeath_4",
+     "source": "sfx/atlasdeath_4.wav",
+     "prepared": "Content-src/sounds/sfx/atlasdeath_4.wav",
+     "seconds": 3.105,
+     "rate": 24000
+    }
+   ],
+   "board": [],
+   "audioSwiftLines": []
+  },
   "atlasmove": {
    "variants": [
     {
@@ -1687,6 +1721,40 @@
     766
    ]
   },
+  "peregrinedeath": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/peregrinedeath/SW_peregrinedeath_1.SW_peregrinedeath_1",
+     "source": "sfx/peregrinedeath_1.wav",
+     "prepared": "Content-src/sounds/sfx/peregrinedeath_1.wav",
+     "seconds": 1.425,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/peregrinedeath/SW_peregrinedeath_2.SW_peregrinedeath_2",
+     "source": "sfx/peregrinedeath_2.wav",
+     "prepared": "Content-src/sounds/sfx/peregrinedeath_2.wav",
+     "seconds": 3.185,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/peregrinedeath/SW_peregrinedeath_3.SW_peregrinedeath_3",
+     "source": "sfx/peregrinedeath_3.wav",
+     "prepared": "Content-src/sounds/sfx/peregrinedeath_3.wav",
+     "seconds": 1.905,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/peregrinedeath/SW_peregrinedeath_4.SW_peregrinedeath_4",
+     "source": "sfx/peregrinedeath_4.wav",
+     "prepared": "Content-src/sounds/sfx/peregrinedeath_4.wav",
+     "seconds": 1.425,
+     "rate": 24000
+    }
+   ],
+   "board": [],
+   "audioSwiftLines": []
+  },
   "peregrinepass": {
    "variants": [
     {
@@ -2157,6 +2225,40 @@
    "board": [],
    "audioSwiftLines": []
   },
+  "vatlas": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/vatlas/SW_vatlas_1.SW_vatlas_1",
+     "source": "sfx/vatlas_1.wav",
+     "prepared": "Content-src/sounds/sfx/vatlas_1.wav",
+     "seconds": 3.585,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/vatlas/SW_vatlas_2.SW_vatlas_2",
+     "source": "sfx/vatlas_2.wav",
+     "prepared": "Content-src/sounds/sfx/vatlas_2.wav",
+     "seconds": 3.105,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/vatlas/SW_vatlas_3.SW_vatlas_3",
+     "source": "sfx/vatlas_3.wav",
+     "prepared": "Content-src/sounds/sfx/vatlas_3.wav",
+     "seconds": 3.905,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/vatlas/SW_vatlas_4.SW_vatlas_4",
+     "source": "sfx/vatlas_4.wav",
+     "prepared": "Content-src/sounds/sfx/vatlas_4.wav",
+     "seconds": 3.505,
+     "rate": 24000
+    }
+   ],
+   "board": [],
+   "audioSwiftLines": []
+  },
   "vcomet": {
    "variants": [
     {
@@ -2479,6 +2581,40 @@
     762
    ]
   },
+  "vperegrine": {
+   "variants": [
+    {
+     "asset": "/Game/Audio/Sfx/vperegrine/SW_vperegrine_1.SW_vperegrine_1",
+     "source": "sfx/vperegrine_1.wav",
+     "prepared": "Content-src/sounds/sfx/vperegrine_1.wav",
+     "seconds": 3.105,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/vperegrine/SW_vperegrine_2.SW_vperegrine_2",
+     "source": "sfx/vperegrine_2.wav",
+     "prepared": "Content-src/sounds/sfx/vperegrine_2.wav",
+     "seconds": 2.145,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/vperegrine/SW_vperegrine_3.SW_vperegrine_3",
+     "source": "sfx/vperegrine_3.wav",
+     "prepared": "Content-src/sounds/sfx/vperegrine_3.wav",
+     "seconds": 3.025,
+     "rate": 24000
+    },
+    {
+     "asset": "/Game/Audio/Sfx/vperegrine/SW_vperegrine_4.SW_vperegrine_4",
+     "source": "sfx/vperegrine_4.wav",
+     "prepared": "Content-src/sounds/sfx/vperegrine_4.wav",
+     "seconds": 2.145,
+     "rate": 24000
+    }
+   ],
+   "board": [],
+   "audioSwiftLines": []
+  },
   "vprospector": {
    "variants": [
     {
@@ -2769,9 +2905,11 @@
   }
  },
  "unusedInSwift": [
+  "atlasdeath",
   "atlasmove",
   "atlasshot",
   "atlasstep",
+  "peregrinedeath",
   "peregrinepass",
   "scorpionbury",
   "scorpiondeath",
@@ -2781,6 +2919,8 @@
   "scorpionunbury",
   "seekers",
   "stomp",
+  "vatlas",
+  "vperegrine",
   "vscorpion"
  ]
 }
