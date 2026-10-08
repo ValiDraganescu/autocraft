@@ -74,14 +74,13 @@ try {
 		if (Test-Path $Archive) { Remove-Item -Recurse -Force $Archive }
 		$UatArgs = @('BuildCookRun', "-project=$Project", '-target=Autocraft', "-platform=$Platform",
 			"-clientconfig=$Config", '-build', '-cook', '-stage', '-pak', '-iostore', '-compressed',
-			'-archive', "-archivedirectory=$Archive", '-nodebuginfo', '-utf8output', '-unattended', '-nop4')
+			'-archive', "-archivedirectory=$Archive\Ringshadow", '-nodebuginfo', '-utf8output', '-unattended', '-nop4')
 		if ($Platform -eq 'Win64') { $UatArgs += '-prereqs' }
 		Run "package $Platform" { & $Uat @UatArgs }
 
-		# UAT archives into one folder named for the platform (Windows, Linux).
-		$Built = Get-ChildItem -Directory $Archive | Select-Object -First 1
-		if (-not $Built) { throw "UAT archived nothing for $Platform" }
-		Rename-Item $Built.FullName 'Ringshadow'
+		# UAT archives the launcher (Autocraft.exe, Autocraft.sh), the project
+		# folder and Engine side by side, straight into Ringshadow.
+		if (-not (Test-Path "$Archive\Ringshadow\Autocraft\Binaries")) { throw "UAT archived no game for $Platform" }
 		if ($Platform -eq 'Win64') {
 			$Zip = "$Out\Ringshadow-$Version-windows.zip"
 			Run "zip $Platform" { tar.exe -a -c -f $Zip -C $Archive Ringshadow }

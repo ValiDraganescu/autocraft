@@ -315,7 +315,7 @@ fix_linux() {
 	local tmp; tmp=$(mktemp -d)
 	tar -xzf "$tgz" -C "$tmp"
 	find "$tmp/Ringshadow" -name '*.sh' -exec chmod 755 {} +
-	find "$tmp/Ringshadow" -type d -path '*/Binaries/Linux' -exec find {} -type f -exec chmod 755 {} + \;
+	find "$tmp/Ringshadow" -type f -path '*/Binaries/Linux/*' -exec chmod 755 {} +
 	COPYFILE_DISABLE=1 tar --uid 0 --gid 0 --uname root --gname root --no-mac-metadata -czf "$tgz" -C "$tmp" Ringshadow
 	rm -r "$tmp"
 	say "Linux: executable bits set"
