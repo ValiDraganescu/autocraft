@@ -5,7 +5,7 @@
 #
 #   build_release.sh infra                  bucket, instance role, security group, key pair (once; rerunnable)
 #   build_release.sh setup                  start the setup machine from Windows Server and install the build tools
-#   build_release.sh rdp [INSTANCE]         remote desktop to it through SSM: localhost:13389, Administrator's password
+#   build_release.sh rdp [INSTANCE]         remote desktop (RDP) to the setup machine or the tester: localhost:13389
 #   build_release.sh image [INSTANCE]       save the setup machine as the build image, then terminate it
 #   build_release.sh build [REF] [options]  build REF (default HEAD) on a spot machine made from the newest image
 #       --version V        name of the zips (default: git describe of REF)
@@ -245,7 +245,8 @@ cmd_setup() {
 
 cmd_rdp() {
 	local id=${1:-$(running_setup)}
-	[ "$id" = None ] && die "no setup machine; give an instance id"
+	[ "$id" = None ] && id=$(running tester)
+	[ "$id" = None ] && die "no setup machine or tester; give an instance id"
 	local pw; pw=$(password "$id")
 	echo
 	echo "  Connect a remote desktop app (Windows App, from the Mac App Store) to:"
@@ -455,6 +456,8 @@ cmd_test() {
 		"\$ErrorActionPreference = 'Stop'" \
 		"\$Gpu = (Get-CimInstance Win32_VideoController | Where-Object { \$_.Name -match 'NVIDIA' }).Name" \
 		"if (-not \$Gpu) { throw 'no NVIDIA driver' }; Write-Host \"GPU: \$Gpu\"" \
+		"\$Rdp = 'HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows NT\\Terminal Services'; New-Item -Path \$Rdp -Force | Out-Null" \
+		"foreach (\$N in 'bEnumerateHWBeforeSW','AVC444ModePreferred','AVCHardwareEncodePreferred') { Set-ItemProperty -Path \$Rdp -Name \$N -Value 1 -Type DWord }" \
 		"& 'C:\\Program Files\\Amazon\\AWSCLIV2\\aws.exe' s3 cp --only-show-errors s3://$b/builds/$version/$zip C:\\tester\\game.zip" \
 		"if (Test-Path C:\\Ringshadow) { Remove-Item -Recurse -Force C:\\Ringshadow }" \
 		"tar.exe -xf C:\\tester\\game.zip -C C:\\" \

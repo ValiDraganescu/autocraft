@@ -53,6 +53,14 @@ if (-not (Get-Service dcvserver -ErrorAction SilentlyContinue)) {
 		'/l*v', (Join-Path $Downloads 'dcv-server.log'))
 }
 
+# Windows App (RDP, `build_release.sh rdp`) draws with the NVIDIA card too,
+# not the basic display adapter, and streams H.264 4:4:4.
+$Rdp = 'HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services'
+New-Item -Path $Rdp -Force | Out-Null
+Set-ItemProperty -Path $Rdp -Name bEnumerateHWBeforeSW -Value 1 -Type DWord
+Set-ItemProperty -Path $Rdp -Name AVC444ModePreferred -Value 1 -Type DWord
+Set-ItemProperty -Path $Rdp -Name AVCHardwareEncodePreferred -Value 1 -Type DWord
+
 # Games stay out of Defender's scans.
 Add-MpPreference -ExclusionPath 'C:\Ringshadow' -ErrorAction SilentlyContinue
 

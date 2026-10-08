@@ -234,6 +234,7 @@ The build machine has no GPU. A package is proven when someone plays it:
 unreal/Tools/release/build_release.sh test            # the newest Windows package in the bucket
 unreal/Tools/release/build_release.sh test a8a6b03    # or one by name
 unreal/Tools/release/build_release.sh dcv             # the remote desktop again, after Ctrl-C
+unreal/Tools/release/build_release.sh rdp             # or Windows App (RDP) on localhost:13389; RDP draws with the GPU too
 unreal/Tools/release/build_release.sh stop            # done
 ```
 
