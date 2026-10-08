@@ -827,7 +827,14 @@ void UAcWorldRenderer::Sync(const FAcFrame& Frame)
 				O->bCulled = false;
 				O->bChanged = true;
 				O->bDrawnHidden = !O->Pose.bHidden;
-				for (int32 K = 0; K < O->Slots.Num(); ++K) Batches[O->Layout->Batch[K]].Shown[O->Slots[K]] = Gone();
+				// A batch without a component (its mesh failed to load) is never
+				// uploaded, so its `Shown` stays short: as in Allocate, only the
+				// slots it has.
+				for (int32 K = 0; K < O->Slots.Num(); ++K)
+				{
+					TArray<FTransform>& Was = Batches[O->Layout->Batch[K]].Shown;
+					if (O->Slots[K] < Was.Num()) Was[O->Slots[K]] = Gone();
+				}
 			}
 			WriteObject(*O);
 		}
