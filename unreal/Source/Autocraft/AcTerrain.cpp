@@ -147,7 +147,7 @@ namespace
 	UStaticMesh* MakeMesh(UObject* Outer, const FName Name, const FMeshDescription& MD, UMaterialInterface* Material)
 	{
 		UStaticMesh* Mesh = NewObject<UStaticMesh>(Outer, Name, RF_Transient);
-		Mesh->GetStaticMaterials().Add(FStaticMaterial(Material, FName("Ground"), FName("Ground")));
+		Mesh->GetStaticMaterials().Add(FStaticMaterial(Material, FName("Ground")));
 		Mesh->bSupportRayTracing = true;
 		UStaticMesh::FBuildMeshDescriptionsParams Params;
 		Params.bFastBuild = true;

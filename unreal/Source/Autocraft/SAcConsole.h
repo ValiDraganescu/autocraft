@@ -144,7 +144,9 @@ private:
 	bool ForwardAt(FVector2D P, FForward& Out, FVector2D& Local) const;
 	/// `P` in `F`'s box (even off it: a drag runs on).
 	FVector2D ForwardLocal(const FForward& F, FVector2D P) const;
-	FReply Forward(const FForward& F, const FGeometry& Geometry, const FPointerEvent& Event,
+	// Not `Forward`: a member of that name hides the engine's Forward<T> in
+	// SLATE_EVENT's lambda setters, which MSVC then cannot parse.
+	FReply ForwardTo(const FForward& F, const FGeometry& Geometry, const FPointerEvent& Event,
 		FReply (SWidget::*Handler)(const FGeometry&, const FPointerEvent&));
 	void ForwardHover(const TOptional<FForward>& Over, const FGeometry& Geometry, const FPointerEvent& Event);
 	void MakeArt(FArt& Art, const struct FAcArtImage& Image, const TCHAR* Name);

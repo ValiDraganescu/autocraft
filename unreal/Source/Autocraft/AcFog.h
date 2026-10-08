@@ -67,7 +67,9 @@ class AUTOCRAFT_API AAcFog : public AActor
 
 public:
 	/// Brightness of ground in sight, seen before, and never seen.
-	static constexpr float InSight = 1.0f, Explored = 0.5f, Unexplored = 0.3f;
+	static constexpr float InSight = 1.0f;
+	static constexpr float Explored = 0.5f;
+	static constexpr float Unexplored = 0.3f;
 	/// How fast the light catches up with the sight (per second).
 	static constexpr float Rate = 6.0f;
 	/// The minimap's fog is redrawn this often (real seconds).

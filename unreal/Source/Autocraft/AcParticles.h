@@ -27,6 +27,7 @@
 
 #include "CoreMinimal.h"
 #include "Math/RandomStream.h"
+#include "Materials/MaterialParameterCollection.h"  // TStrongObjectPtr needs the whole type on MSVC
 #include "UObject/StrongObjectPtr.h"
 
 class AActor;
@@ -100,6 +101,8 @@ class AUTOCRAFT_API FAcParticles
 public:
 	FAcParticles();
 	~FAcParticles();
+	FAcParticles(const FAcParticles&) = delete;
+	FAcParticles& operator=(const FAcParticles&) = delete;
 
 	/// Make the components under `Owner` (game thread). False if the
 	/// assets are missing (run make_particle_materials.py): then every call

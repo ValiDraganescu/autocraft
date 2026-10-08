@@ -371,7 +371,7 @@ FVector2D SAcConsole::ForwardLocal(const FForward& F, const FVector2D P) const
 	return FVector2D(Q.X - F.Rect.X, F.Rect.MaxY() - Q.Y);
 }
 
-FReply SAcConsole::Forward(const FForward& F, const FGeometry& Geometry, const FPointerEvent& Event,
+FReply SAcConsole::ForwardTo(const FForward& F, const FGeometry& Geometry, const FPointerEvent& Event,
 	FReply (SWidget::*Handler)(const FGeometry&, const FPointerEvent&))
 {
 	// The widget's own box at 1 Slate unit a point, the event's positions in it.
@@ -423,7 +423,7 @@ FReply SAcConsole::OnMouseButtonDown(const FGeometry& Geometry, const FPointerEv
 	FVector2D Local;
 	if (ForwardAt(P, F, Local))
 	{
-		const FReply Reply = Forward(F, Geometry, Event, &SWidget::OnMouseButtonDown);
+		const FReply Reply = ForwardTo(F, Geometry, Event, &SWidget::OnMouseButtonDown);
 		if (Reply.IsEventHandled()) return Reply;
 	}
 	if (Event.GetEffectingButton() != EKeys::LeftMouseButton) return Covers(P) ? FReply::Handled() : FReply::Unhandled();
@@ -446,7 +446,7 @@ FReply SAcConsole::OnMouseButtonUp(const FGeometry& Geometry, const FPointerEven
 	if (Captured)
 	{
 		const FForward F = *Captured;
-		FReply Reply = Forward(F, Geometry, Event, &SWidget::OnMouseButtonUp);
+		FReply Reply = ForwardTo(F, Geometry, Event, &SWidget::OnMouseButtonUp);
 		if (Captured && Event.GetPressedButtons().Num() == 0)
 		{
 			// The widget let go of the drag (or never says): so does the console.
@@ -458,7 +458,7 @@ FReply SAcConsole::OnMouseButtonUp(const FGeometry& Geometry, const FPointerEven
 	const FVector2D P = FVector2D(Geometry.AbsoluteToLocal(Event.GetScreenSpacePosition()));
 	FForward F;
 	FVector2D Local;
-	if (ForwardAt(P, F, Local)) return Forward(F, Geometry, Event, &SWidget::OnMouseButtonUp);
+	if (ForwardAt(P, F, Local)) return ForwardTo(F, Geometry, Event, &SWidget::OnMouseButtonUp);
 	return FReply::Unhandled();
 }
 
@@ -467,7 +467,7 @@ FReply SAcConsole::OnMouseButtonDoubleClick(const FGeometry& Geometry, const FPo
 	const FVector2D P = FVector2D(Geometry.AbsoluteToLocal(Event.GetScreenSpacePosition()));
 	FForward F;
 	FVector2D Local;
-	if (ForwardAt(P, F, Local)) return Forward(F, Geometry, Event, &SWidget::OnMouseButtonDoubleClick);
+	if (ForwardAt(P, F, Local)) return ForwardTo(F, Geometry, Event, &SWidget::OnMouseButtonDoubleClick);
 	return OnMouseButtonDown(Geometry, Event);
 }
 
@@ -477,14 +477,14 @@ FReply SAcConsole::OnMouseMove(const FGeometry& Geometry, const FPointerEvent& E
 	if (Captured)
 	{
 		const FForward F = *Captured;
-		return Forward(F, Geometry, Event, &SWidget::OnMouseMove);
+		return ForwardTo(F, Geometry, Event, &SWidget::OnMouseMove);
 	}
 	Hover(P);
 	FForward F;
 	FVector2D Local;
 	const bool bOver = ForwardAt(P, F, Local);
 	ForwardHover(bOver ? TOptional<FForward>(F) : TOptional<FForward>(), Geometry, Event);
-	if (bOver) return Forward(F, Geometry, Event, &SWidget::OnMouseMove);
+	if (bOver) return ForwardTo(F, Geometry, Event, &SWidget::OnMouseMove);
 	return FReply::Unhandled();
 }
 
@@ -493,7 +493,7 @@ FReply SAcConsole::OnMouseWheel(const FGeometry& Geometry, const FPointerEvent& 
 	const FVector2D P = FVector2D(Geometry.AbsoluteToLocal(Event.GetScreenSpacePosition()));
 	FForward F;
 	FVector2D Local;
-	if (ForwardAt(P, F, Local)) return Forward(F, Geometry, Event, &SWidget::OnMouseWheel);
+	if (ForwardAt(P, F, Local)) return ForwardTo(F, Geometry, Event, &SWidget::OnMouseWheel);
 	return FReply::Unhandled();
 }
 

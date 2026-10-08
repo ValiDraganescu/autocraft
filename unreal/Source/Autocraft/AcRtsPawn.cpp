@@ -203,10 +203,10 @@ void AAcRtsPawn::AddMappingContext()
 	if (!Input->HasMappingContext(Context)) Input->AddMappingContext(Context, 0);
 }
 
-void AAcRtsPawn::SetupPlayerInputComponent(UInputComponent* InputComponent)
+void AAcRtsPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
-	Super::SetupPlayerInputComponent(InputComponent);
-	UEnhancedInputComponent* Input = Cast<UEnhancedInputComponent>(InputComponent);
+	Super::SetupPlayerInputComponent(PlayerInputComponent);
+	UEnhancedInputComponent* Input = Cast<UEnhancedInputComponent>(PlayerInputComponent);
 	if (!Input)
 	{
 		UE_LOG(LogAutocraft, Error, TEXT("rts camera: the input component is not an EnhancedInputComponent"));

@@ -281,10 +281,10 @@ void AAcPilotPawn::BindPointer()
 	};
 }
 
-void AAcPilotPawn::SetupPlayerInputComponent(UInputComponent* InputComponent)
+void AAcPilotPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
-	Super::SetupPlayerInputComponent(InputComponent);
-	UEnhancedInputComponent* Input = Cast<UEnhancedInputComponent>(InputComponent);
+	Super::SetupPlayerInputComponent(PlayerInputComponent);
+	UEnhancedInputComponent* Input = Cast<UEnhancedInputComponent>(PlayerInputComponent);
 	if (!Input) return;
 	auto Bind = [&](const TCHAR* Name, const ETriggerEvent Event, void (AAcPilotPawn::*Handler)(const FInputActionValue&))
 	{
@@ -770,31 +770,31 @@ TOptional<FVector> AAcPilotPawn::AimPoint() const
 FTransform AAcPilotPawn::RootOf(const ac::Unit& U) const
 {
 	TOptional<FTransform> Root;
-	bool bHidden = false;
+	bool bRootHidden = false;
 	if (const UAcWorldRenderer* R = UAcWorldRenderer::Get(this))
 	{
 		R->ForEachObject([&](const int64 Id, const bool bUnit, const FAcModelInfo&, const FAcPose& Pose, TConstArrayView<FTransform>)
 		{
 			if (!bUnit || Id != U.id || Pose.Local.Num() == 0) return;
 			Root = Pose.Local[0] * Pose.Placement;
-			bHidden = Pose.bHidden;
+			bRootHidden = Pose.bHidden;
 		});
 	}
 	if (!Root)
 	{
 		Root = FTransform(AcSpace::QuatFromHeading(U.heading), AcSpace::ToWorld(U.position, GroundAt(GetWorld(), U.position)));
-		bHidden = true;
+		bRootHidden = true;
 	}
 	// A hidden unit is not posed: put back what its pose lifts the root by
 	// (the Comet's jump arc and run bob), as the Swift root has it.
-	if (bHidden && U.kind == ac::UnitKind::comet)
+	if (bRootHidden && U.kind == ac::UnitKind::comet)
 	{
 		const std::optional<double> J = U.jump();
 		const double Lift = J ? 1.6 * std::sin(Pi * FMath::Clamp(*J, 0.0, 1.0)) : 0.0;
 		Root->AddToTranslation(FVector(0, 0, AcSpace::ToCm(Lift + FAcPilotCamera::Bob(U))));
 	}
 	// A flyer just out of its Spacedock still rises to its hover (`liftOff`).
-	if (bHidden && ac::Rules::stats(U.kind).air)
+	if (bRootHidden && ac::Rules::stats(U.kind).air)
 	{
 		UAcWorldRenderer* R = UAcWorldRenderer::Get(this);
 		const FAcUnitMemory* Memory = R ? R->Memory(U.id) : nullptr;

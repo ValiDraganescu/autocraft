@@ -1166,7 +1166,7 @@ void FAcShatterLibrary::Build(FJob& J, const double UntilSeconds)
 		{
 			UMaterialInterface* Mat = M.Parts[S.Part].Meshes[S.Mesh].LoadMaterial();
 			UStaticMesh* Mesh = NewObject<UStaticMesh>(GetTransientPackage(), NAME_None, RF_Transient);
-			Mesh->GetStaticMaterials().Add(FStaticMaterial(Mat, FName(TEXT("Mat")), FName(TEXT("Mat"))));
+			Mesh->GetStaticMaterials().Add(FStaticMaterial(Mat, FName(TEXT("Mat"))));
 			UStaticMesh::FBuildMeshDescriptionsParams Params;
 			Params.bFastBuild = true;
 			Params.bCommitMeshDescription = false;

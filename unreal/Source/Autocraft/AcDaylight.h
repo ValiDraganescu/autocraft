@@ -73,7 +73,9 @@ class AUTOCRAFT_API AAcDaylight : public AActor
 
 public:
 	/// Hours: a game starts in the morning; the sun is up from sunrise to sunset.
-	static constexpr double StartHour = 8.0, Sunrise = 5.5, Sunset = 18.5;
+	static constexpr double StartHour = 8.0;
+	static constexpr double Sunrise = 5.5;
+	static constexpr double Sunset = 18.5;
 
 	/// One day and night, seconds of game time (`ac.DayLength`, 600).
 	static double DayLength();

@@ -78,6 +78,11 @@ namespace AcRaySpace
 class AUTOCRAFT_API FAcRayShapes
 {
 public:
+	FAcRayShapes() = default;
+	FAcRayShapes(const FAcRayShapes&) = delete;
+	FAcRayShapes& operator=(const FAcRayShapes&) = delete;
+	FAcRayShapes(FAcRayShapes&&) = default;  // Get() builds it in a lambda
+	FAcRayShapes& operator=(FAcRayShapes&&) = default;
 	static const FAcRayShapes& Get();
 	/// Null if the model has no pieces (or the catalog has no `rays`: rerun
 	/// `export-models` and `import_models.py`).

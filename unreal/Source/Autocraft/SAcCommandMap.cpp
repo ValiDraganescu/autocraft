@@ -389,17 +389,17 @@ void SAcCommandMap::Build(const FVector2D Size, FPainter* Pt, TArray<TPair<FAcRe
 			const FVector2D Q = O + MapPoint(Site.At);
 			const double R = FMath::Max(3.2 * Cell, 14.0);
 			FLinearColor Col;
-			FString Tag;
+			FString SiteTag;
 			bool bDashed = false;
 			if (Site.Ours.IsSet())
 			{
 				Col = *Site.Ours ? Friend() : Foe();
-				Tag = !Site.Holder.IsEmpty() ? Site.Holder : *Site.Ours ? TEXT("Yours") : TEXT("Enemy");
+				SiteTag = !Site.Holder.IsEmpty() ? Site.Holder : *Site.Ours ? TEXT("Yours") : TEXT("Enemy");
 			}
 			else
 			{
 				Col = Site.bQueued ? Amber() : White(0.85, 0.9);
-				Tag = Site.bQueued ? TEXT("Expanding") : Site.bNext ? TEXT("AI's next") : Site.bContested ? TEXT("Contested") : TEXT("Free");
+				SiteTag = Site.bQueued ? TEXT("Expanding") : Site.bNext ? TEXT("AI's next") : Site.bContested ? TEXT("Contested") : TEXT("Free");
 				bDashed = true;
 			}
 			FLinearColor Stroke = Col;
@@ -412,7 +412,7 @@ void SAcCommandMap::Build(const FVector2D Size, FPainter* Pt, TArray<TPair<FAcRe
 			Pt->Ring(Q, R, Alpha(Col, Site.bQueued ? 0.25 : 0.08), Stroke, 2, Glow, bDashed);
 			Pt->Text(FString::Printf(TEXT("Site %lld"), (long long)(Site.Index + 1)), 13, FLinearColor::White, FVector2D(Q.X, Q.Y + R + 4),
 				EAcHAlign::Center);
-			Pt->Text(Tag, 11, Site.bNext && !Site.Ours.IsSet() ? Amber() : Col, FVector2D(Q.X, Q.Y - R - 14), EAcHAlign::Center);
+			Pt->Text(SiteTag, 11, Site.bNext && !Site.Ours.IsSet() ? Amber() : Col, FVector2D(Q.X, Q.Y - R - 14), EAcHAlign::Center);
 		}
 
 		// Objectives, with a line from their squad; beside a site's ring when on one, so the two labels part.

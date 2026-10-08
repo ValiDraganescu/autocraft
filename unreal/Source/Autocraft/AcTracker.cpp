@@ -22,7 +22,11 @@ namespace
 	/// the editor's own binary does not), else the executable's.
 	FString BuildDate()
 	{
+#if IS_MONOLITHIC
+		FString File;
+#else
 		FString File = FModuleManager::Get().GetModuleFilename(TEXT("Autocraft"));
+#endif
 		if (File.IsEmpty() || !IFileManager::Get().FileExists(*File)) File = FPlatformProcess::ExecutablePath();
 		const FDateTime Stamp = IFileManager::Get().GetTimeStamp(*File);
 		return Stamp.ToString(TEXT("%Y-%m-%dT%H:%M:%SZ"));

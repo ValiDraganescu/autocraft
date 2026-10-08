@@ -173,7 +173,7 @@ namespace
 			MD.CreateTriangle(Group, {Ids[S.Index[I]], Ids[S.Index[I + 1]], Ids[S.Index[I + 2]]});
 		}
 		UStaticMesh* Mesh = NewObject<UStaticMesh>(Outer, Name, RF_Transient);
-		Mesh->GetStaticMaterials().Add(FStaticMaterial(nullptr, FName("Cue"), FName("Cue")));
+		Mesh->GetStaticMaterials().Add(FStaticMaterial(nullptr, FName("Cue")));
 		UStaticMesh::FBuildMeshDescriptionsParams Params;
 		Params.bFastBuild = true;
 		Params.bCommitMeshDescription = false;

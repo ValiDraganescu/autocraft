@@ -196,6 +196,8 @@ class AUTOCRAFT_API FAcShatterLibrary
 public:
 	FAcShatterLibrary();
 	~FAcShatterLibrary();
+	FAcShatterLibrary(const FAcShatterLibrary&) = delete;
+	FAcShatterLibrary& operator=(const FAcShatterLibrary&) = delete;
 
 	/// Start cutting `Model` into `Count` chunks, leaving out the parts
 	/// named in `Strip` (and their children; a name ending in `_` is a
