@@ -44,8 +44,10 @@ keyfile="$HOME/.ssh/ringshadow-build.pem"
 # build compiles every shader into the cache the image keeps.
 build_type=c7i.8xlarge
 disk_gb=400
-# The tester: an NVIDIA L4 (DirectX 12, Vulkan), 8 vCPU of the G quota.
-tester_type=g6.2xlarge
+# The tester: 8 vCPU of the G quota, DirectX 12 and Vulkan. An NVIDIA L4
+# first, then an A10G, then a T4, whichever has room (one GRID driver serves
+# all three).
+tester_types="g6.2xlarge g5.2xlarge g4dn.2xlarge"
 tester_disk_gb=100
 
 say() { printf '%s %s\n' "$(date +%H:%M:%S)" "$*"; }
@@ -115,19 +117,35 @@ cmd_infra() {
 # ---------------------------------------------------------------- machines
 
 launch() {  # launch AMI TYPE ROLE NAME MARKET [DISK_GB]: prints the instance id
+	# Tries each zone that offers TYPE (left to itself, EC2 picks one zone and
+	# gives up when it is full). Returns 2 when no zone has room.
 	local spot=()
 	[ "$5" = spot ] && spot=(--instance-market-options 'MarketType=spot,SpotOptions={SpotInstanceType=one-time,InstanceInterruptionBehavior=terminate}')
 	local t="{Key=Project,Value=ringshadow},{Key=Role,Value=$3},{Key=Name,Value=$4}"
-	# Switched off from inside, it is terminated (the tester's time limit).
-	aws ec2 run-instances --image-id "$1" --instance-type "$2" --count 1 \
-		--key-name "$key" --security-group-ids "$(group_id)" \
-		--iam-instance-profile "Name=$role" \
-		--instance-initiated-shutdown-behavior terminate \
-		--block-device-mappings "DeviceName=/dev/sda1,Ebs={VolumeSize=${6:-$disk_gb},VolumeType=gp3,Iops=6000,Throughput=500,DeleteOnTermination=true}" \
-		--metadata-options HttpTokens=required \
-		--tag-specifications "ResourceType=instance,Tags=[$t]" "ResourceType=volume,Tags=[$t]" \
-		${spot[@]+"${spot[@]}"} \
-		--query 'Instances[0].InstanceId' --output text
+	local zone subnet out
+	for zone in $(aws ec2 describe-instance-type-offerings --location-type availability-zone \
+		--filters "Name=instance-type,Values=$2" --query 'InstanceTypeOfferings[].Location' --output text); do
+		subnet=$(aws ec2 describe-subnets --filters "Name=availability-zone,Values=$zone" Name=default-for-az,Values=true \
+			--query 'Subnets[0].SubnetId' --output text)
+		[ "$subnet" = None ] && continue
+		# Switched off from inside, it is terminated (the tester's time limit).
+		if out=$(aws ec2 run-instances --image-id "$1" --instance-type "$2" --count 1 \
+			--key-name "$key" --security-group-ids "$(group_id)" --subnet-id "$subnet" \
+			--iam-instance-profile "Name=$role" \
+			--instance-initiated-shutdown-behavior terminate \
+			--block-device-mappings "DeviceName=/dev/sda1,Ebs={VolumeSize=${6:-$disk_gb},VolumeType=gp3,Iops=6000,Throughput=500,DeleteOnTermination=true}" \
+			--metadata-options HttpTokens=required \
+			--tag-specifications "ResourceType=instance,Tags=[$t]" "ResourceType=volume,Tags=[$t]" \
+			${spot[@]+"${spot[@]}"} \
+			--query 'Instances[0].InstanceId' --output text 2>&1); then
+			echo "$out"; return 0
+		fi
+		case $out in
+		*InsufficientInstanceCapacity*) say "no $5 $2 in $zone" >&2 ;;
+		*) printf '%s\n' "$out" >&2; return 1 ;;
+		esac
+	done
+	return 2
 }
 
 state() { aws ec2 describe-instances --instance-ids "$1" --query 'Reservations[0].Instances[0].State.Name' --output text 2>/dev/null || echo gone; }
@@ -401,8 +419,14 @@ cmd_test() {
 		ami=$(windows_base)
 		say "no tester image yet: setting one up from Windows Server 2022 ($ami)"
 	fi
-	say "launching a $market $tester_type from $ami"
-	local id; id=$(launch "$ami" "$tester_type" tester "ringshadow-tester-$version" "$market" "$tester_disk_gb")
+	local id type rc
+	for type in $tester_types; do
+		say "launching a $market $type from $ami"
+		rc=0; id=$(launch "$ami" "$type" tester "ringshadow-tester-$version" "$market" "$tester_disk_gb") || rc=$?
+		[ $rc = 0 ] && break
+		[ $rc = 2 ] || die "launch failed"
+	done
+	[ $rc = 0 ] || die "no $market GPU machine has room in $AWS_REGION; try again later"
 	say "tester $id"
 	wait_ssm "$id"
 

@@ -238,7 +238,10 @@ unreal/Tools/release/build_release.sh stop            # done
 ```
 
 `test` starts a spot `g6.2xlarge` (NVIDIA L4, 24 GB: DirectX 12 and Vulkan;
-about $0.47 an hour), unpacks the package to `C:\Ringshadow`, runs its
+about $0.47 an hour). Stockholm often has none free: `launch` tries every zone
+that offers the type, and the tester falls back to a `g5.2xlarge` (A10G) and
+then a `g4dn.2xlarge` (T4), all 8 vCPU and served by the same driver (on
+2026-10-08 only the A10G had room, on demand). It unpacks the package to `C:\Ringshadow`, runs its
 prerequisites installer, puts a shortcut on the desktop and opens a tunnel to
 Amazon DCV, a remote desktop that streams what the GPU draws (plain remote
 desktop cannot show a 3D game well). Open `https://localhost:18443` in a
