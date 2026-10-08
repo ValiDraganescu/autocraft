@@ -5,8 +5,11 @@ machine in AWS, made on demand, and the Mac build on this Mac. The script is
 `unreal/Tools/release/build_release.sh`. Run it with no arguments for its
 commands.
 
-Status, 2026-10-08: the script and this plan are written. Nothing has been
-built yet. "Before the first release" lists what the code still needs.
+Status, 2026-10-08: the build machine's image is `ringshadow-build-20261008-1342`
+(`ami-0fed5dee9c6ddb99a`), warmed with a full Win64 and Linux build of
+`7737714`: 12 minutes cold, 2 with the image's cache. Nobody has played
+those packages yet. "Before the first release" lists what the code still
+needs.
 
 ## What is built where
 
@@ -126,6 +129,10 @@ Spot prices in `eu-north-1` on 2026-10-08:
       and the editor debug symbols, which are large and not needed.
    3. Run `v26_clang-20.1.8-rockylinux8.exe`, the Linux cross toolchain named
       in `Engine/Config/Linux/Linux_SDK.json`. It sets `LINUX_MULTIARCH_ROOT`.
+   If **Downloads** ends with no `Engine\Intermediate\Build\Linux` in the
+   engine folder, the Linux tick did not take: the Library tab's engine tile,
+   ▾ next to its Launch, Options, tick Linux, Apply. Then sign out of the
+   launcher, so the image keeps no Epic session.
 3. **Warm build:** `build_release.sh build --instance <setup id>`. This is the
    first package. It compiles every shader for both platforms into the
    machine's derived data cache, which the image keeps, so later builds skip
