@@ -76,14 +76,17 @@ Mac package built here, played by hand, before any AWS time is spent.
   `AUTOCRAFT_AWS_PROFILE` picks another.
 - **Region** `eu-north-1` (Stockholm), the only one the organization's policy
   allows for EC2. The same policy blocks Trusted Advisor and Compute Optimizer
-  in the console. To change it, edit SCP `p-up9slklz` from the management
-  account (687971795322).
+  in the console, and every S3 call outside eu-north-1 (even a public
+  bucket's). The tester needs one: NVIDIA's driver for EC2 is in
+  `ec2-windows-nvidia-drivers`, a us-east-1 bucket ("Testing the packages").
+  To change it, edit SCP `p-up9slklz` from the management account
+  (687971795322).
 - **Quotas** (2026-10-08): 32 vCPU of standard instances, on-demand and spot.
   That is one `c7i.8xlarge`, so the setup machine and a build cannot run at
   the same time. GPU (G and VT) instances: 8 vCPU, on-demand and spot
   (granted 2026-10-08), one `g6.2xlarge`.
 - **What the script makes** (`infra`; every resource is tagged
-  `Project=ringshadow`):
+  `Project=ringshadow`; the tester's machines and image too):
   - Bucket `ringshadow-builds-569854554192`: private, objects expire after 60
     days.
   - Role and instance profile `ringshadow-build`: SSM, plus read and write on
@@ -220,6 +223,33 @@ Not scripted yet.
 ## Testing the packages
 
 The build machine has no GPU. A package is proven when someone plays it:
-- **Windows and Linux in AWS:** a `g6.2xlarge` (NVIDIA L4, 24 GB; DX12 and
-  Vulkan) over remote desktop. Not scripted yet.
+- **Windows in AWS:** `build_release.sh test [VERSION]`, below.
+- **Linux in AWS:** not scripted yet (Ubuntu, the NVIDIA driver, DCV).
 - **Linux on real hardware:** a player on Ubuntu or Omarchy, by hand.
+
+### The Windows tester
+
+```sh
+unreal/Tools/release/build_release.sh test            # the newest Windows package in the bucket
+unreal/Tools/release/build_release.sh test a8a6b03    # or one by name
+unreal/Tools/release/build_release.sh dcv             # the remote desktop again, after Ctrl-C
+unreal/Tools/release/build_release.sh stop            # done
+```
+
+`test` starts a spot `g6.2xlarge` (NVIDIA L4, 24 GB: DirectX 12 and Vulkan;
+about $0.47 an hour), unpacks the package to `C:\Ringshadow`, runs its
+prerequisites installer, puts a shortcut on the desktop and opens a tunnel to
+Amazon DCV, a remote desktop that streams what the GPU draws (plain remote
+desktop cannot show a 3D game well). Open `https://localhost:18443` in a
+browser, accept the machine's own certificate and sign in as Administrator
+with the password it prints. The machine switches itself off and is
+terminated after 4 hours (`--hours H`), and `stop` ends it sooner.
+
+The first `test` sets the tester up from Windows Server 2022 with
+`setup_tester.ps1` (the AWS CLI, NVIDIA's GRID driver, which AWS licenses
+for its G instances, and DCV), reboots it and saves it as the image
+`ringshadow-tester-<date>`. Later ones start from that image.
+
+It needs the organization's policy to let the account read
+`s3://ec2-windows-nvidia-drivers` in us-east-1 (see AWS above). The instance
+role already may (`infra`, policy `tester`, with DCV's license bucket).

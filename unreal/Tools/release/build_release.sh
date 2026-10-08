@@ -15,8 +15,13 @@
 #       --on-demand        an on-demand machine instead of spot
 #       --keep             leave the machine running afterwards (stop it with `stop`)
 #   build_release.sh mac [--version V] [--config C]   package the Mac build on this Mac
+#   build_release.sh test [VERSION] [options]  a GPU machine (g6.2xlarge) with VERSION's Windows package
+#                                           (default: the newest), then the remote desktop to it
+#       --on-demand        an on-demand machine instead of spot
+#       --hours H          it switches itself off and is terminated after H hours (default 4)
+#   build_release.sh dcv [INSTANCE]         remote desktop to the tester through SSM: https://localhost:18443
 #   build_release.sh status                 machines, images and builds in AWS
-#   build_release.sh stop                   terminate every running Ringshadow build machine
+#   build_release.sh stop                   terminate every running Ringshadow machine (builds and testers)
 #
 # The builds land in unreal/Saved/Releases/<version>/ (not in git).
 # AUTOCRAFT_AWS_PROFILE picks the AWS profile (default: ringshadow).
@@ -39,6 +44,9 @@ keyfile="$HOME/.ssh/ringshadow-build.pem"
 # build compiles every shader into the cache the image keeps.
 build_type=c7i.8xlarge
 disk_gb=400
+# The tester: an NVIDIA L4 (DirectX 12, Vulkan), 8 vCPU of the G quota.
+tester_type=g6.2xlarge
+tester_disk_gb=100
 
 say() { printf '%s %s\n' "$(date +%H:%M:%S)" "$*"; }
 die() { printf 'build_release: %s\n' "$*" >&2; exit 1; }
@@ -58,7 +66,7 @@ json() { printf '"%s"' "$(printf '%s' "$1" | sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'
 
 cmd_infra() {
 	local b; b=$(bucket)
-	if ! aws s3api head-bucket --bucket "$b" 2>/dev/null; then
+	if ! aws s3api head-bucket --bucket "$b" >/dev/null 2>&1; then
 		say "bucket $b"
 		aws s3api create-bucket --bucket "$b" --create-bucket-configuration "LocationConstraint=$AWS_REGION" >/dev/null
 		aws s3api put-public-access-block --bucket "$b" --public-access-block-configuration \
@@ -76,6 +84,9 @@ cmd_infra() {
 	fi
 	aws iam put-role-policy --role-name "$role" --policy-name build-bucket --policy-document \
 		"{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"s3:GetObject\",\"s3:PutObject\",\"s3:ListBucket\"],\"Resource\":[\"arn:aws:s3:::$b\",\"arn:aws:s3:::$b/*\"]}]}"
+	# The tester: NVIDIA's driver for EC2 (us-east-1) and DCV's license check.
+	aws iam put-role-policy --role-name "$role" --policy-name tester --policy-document \
+		"{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"s3:GetObject\",\"s3:ListBucket\"],\"Resource\":[\"arn:aws:s3:::ec2-windows-nvidia-drivers\",\"arn:aws:s3:::ec2-windows-nvidia-drivers/*\",\"arn:aws:s3:::dcv-license.$AWS_REGION/*\"]}]}"
 	if ! aws iam get-instance-profile --instance-profile-name "$role" >/dev/null 2>&1; then
 		say "instance profile $role"
 		aws iam create-instance-profile --instance-profile-name "$role" >/dev/null
@@ -103,14 +114,16 @@ cmd_infra() {
 
 # ---------------------------------------------------------------- machines
 
-launch() {  # launch AMI TYPE ROLE NAME MARKET: prints the instance id
+launch() {  # launch AMI TYPE ROLE NAME MARKET [DISK_GB]: prints the instance id
 	local spot=()
 	[ "$5" = spot ] && spot=(--instance-market-options 'MarketType=spot,SpotOptions={SpotInstanceType=one-time,InstanceInterruptionBehavior=terminate}')
 	local t="{Key=Project,Value=ringshadow},{Key=Role,Value=$3},{Key=Name,Value=$4}"
+	# Switched off from inside, it is terminated (the tester's time limit).
 	aws ec2 run-instances --image-id "$1" --instance-type "$2" --count 1 \
 		--key-name "$key" --security-group-ids "$(group_id)" \
 		--iam-instance-profile "Name=$role" \
-		--block-device-mappings "DeviceName=/dev/sda1,Ebs={VolumeSize=$disk_gb,VolumeType=gp3,Iops=6000,Throughput=500,DeleteOnTermination=true}" \
+		--instance-initiated-shutdown-behavior terminate \
+		--block-device-mappings "DeviceName=/dev/sda1,Ebs={VolumeSize=${6:-$disk_gb},VolumeType=gp3,Iops=6000,Throughput=500,DeleteOnTermination=true}" \
 		--metadata-options HttpTokens=required \
 		--tag-specifications "ResourceType=instance,Tags=[$t]" "ResourceType=volume,Tags=[$t]" \
 		${spot[@]+"${spot[@]}"} \
@@ -167,19 +180,36 @@ run_ps() {
 	return 1
 }
 
-running_setup() {
-	aws ec2 describe-instances --filters Name=tag:Project,Values=ringshadow Name=tag:Role,Values=setup \
+running() {  # running ROLE: the newest such machine, or None
+	local id
+	id=$(aws ec2 describe-instances --filters Name=tag:Project,Values=ringshadow "Name=tag:Role,Values=$1" \
 		Name=instance-state-name,Values=pending,running,stopping,stopped \
-		--query 'Reservations[0].Instances[0].InstanceId' --output text
+		--query 'sort_by(Reservations[].Instances[],&LaunchTime)[-1].InstanceId' --output text)
+	echo "${id:-None}"
+}
+running_setup() { running setup; }
+
+windows_base() {
+	aws ssm get-parameter --name /aws/service/ami-windows-latest/Windows_Server-2022-English-Full-Base \
+		--query Parameter.Value --output text
+}
+
+# The Administrator password (Windows makes it in the first minutes).
+password() {
+	[ -r "$keyfile" ] || die "no $keyfile"
+	local pw=""
+	while [ -z "$pw" ]; do
+		pw=$(aws ec2 get-password-data --instance-id "$1" --priv-launch-key "$keyfile" --query PasswordData --output text)
+		[ -z "$pw" ] && { say "the password is not ready yet" >&2; sleep 20; }
+	done
+	printf '%s' "$pw"
 }
 
 cmd_setup() {
 	cmd_infra
 	local existing; existing=$(running_setup)
 	[ "$existing" != None ] && die "a setup machine is already there: $existing (rdp, image or stop it)"
-	local ami
-	ami=$(aws ssm get-parameter --name /aws/service/ami-windows-latest/Windows_Server-2022-English-Full-Base \
-		--query Parameter.Value --output text)
+	local ami; ami=$(windows_base)
 	say "launching the setup machine ($build_type, Windows Server 2022, $ami)"
 	local id; id=$(launch "$ami" "$build_type" setup ringshadow-build-setup on-demand)
 	say "setup machine $id"
@@ -198,12 +228,7 @@ cmd_setup() {
 cmd_rdp() {
 	local id=${1:-$(running_setup)}
 	[ "$id" = None ] && die "no setup machine; give an instance id"
-	[ -r "$keyfile" ] || die "no $keyfile"
-	local pw=""
-	while [ -z "$pw" ]; do
-		pw=$(aws ec2 get-password-data --instance-id "$id" --priv-launch-key "$keyfile" --query PasswordData --output text)
-		[ -z "$pw" ] && { say "the password is not ready yet (Windows makes it in the first minutes)"; sleep 20; }
-	done
+	local pw; pw=$(password "$id")
 	echo
 	echo "  Connect a remote desktop app (Windows App, from the Mac App Store) to:"
 	echo "    PC:       localhost:13389"
@@ -241,8 +266,9 @@ cmd_image() {
 	say "terminated $id. Builds now start from $ami."
 }
 
-newest_image() {
+newest_image() {  # newest_image [build|tester]
 	aws ec2 describe-images --owners self --filters Name=tag:Project,Values=ringshadow Name=state,Values=available \
+		"Name=name,Values=ringshadow-${1:-build}-*" \
 		--query 'sort_by(Images,&CreationDate)[-1].ImageId' --output text
 }
 
@@ -346,6 +372,94 @@ cmd_mac() {
 	say "done: $dir/Ringshadow-$version-mac.zip (unsigned: docs/builds.md, Signing the Mac build)"
 }
 
+# ---------------------------------------------------------------- test
+
+# A GPU machine to play a Windows package on, over Amazon DCV. The first one
+# starts from Windows Server and installs the NVIDIA driver and DCV
+# (setup_tester.ps1), then is saved as the tester image; later ones start
+# from that image.
+cmd_test() {
+	local version="" market=spot hours=4
+	while [ $# -gt 0 ]; do
+		case $1 in
+			--on-demand) market=on-demand; shift ;;
+			--hours) hours=$2; shift 2 ;;
+			-*) die "unknown option $1" ;;
+			*) version=$1; shift ;;
+		esac
+	done
+	cmd_infra >/dev/null
+	local b; b=$(bucket)
+	[ -n "$version" ] || version=$(aws s3 ls "s3://$b/builds/" --recursive | grep -- '-windows\.zip$' | sort | tail -1 | awk '{print $4}' | cut -d/ -f2)
+	[ -n "$version" ] || die "no Windows package in s3://$b/builds/: build one first"
+	local zip="Ringshadow-$version-windows.zip"
+	aws s3 ls "s3://$b/builds/$version/$zip" >/dev/null || die "no s3://$b/builds/$version/$zip"
+
+	local ami fresh=0; ami=$(newest_image tester)
+	if [ "$ami" = None ]; then
+		fresh=1
+		ami=$(windows_base)
+		say "no tester image yet: setting one up from Windows Server 2022 ($ami)"
+	fi
+	say "launching a $market $tester_type from $ami"
+	local id; id=$(launch "$ami" "$tester_type" tester "ringshadow-tester-$version" "$market" "$tester_disk_gb")
+	say "tester $id"
+	wait_ssm "$id"
+
+	if [ $fresh = 1 ]; then
+		aws s3 cp --only-show-errors "$here/setup_tester.ps1" "s3://$b/scripts/setup_tester.ps1"
+		run_ps "$id" 3600 tester-setup \
+			"\$ErrorActionPreference = 'Stop'" \
+			"New-Item -ItemType Directory -Force C:\\tester | Out-Null" \
+			"Read-S3Object -BucketName '$b' -Key scripts/setup_tester.ps1 -File C:\\tester\\setup_tester.ps1 -Region $AWS_REGION | Out-Null" \
+			"& C:\\tester\\setup_tester.ps1" \
+			"exit 0" || die "tester setup failed; $id is still up (build_release.sh stop)"
+		# Saving the image reboots the machine, which the driver needs anyway.
+		local name; name="ringshadow-tester-$(date +%Y%m%d-%H%M)"
+		say "saving $id as $name (it reboots)"
+		aws ec2 create-image --instance-id "$id" --name "$name" \
+			--description 'Ringshadow tester: Windows Server 2022, the NVIDIA GRID driver, Amazon DCV' \
+			--tag-specifications \
+				"ResourceType=image,Tags=[{Key=Project,Value=ringshadow},{Key=Name,Value=$name}]" \
+				"ResourceType=snapshot,Tags=[{Key=Project,Value=ringshadow},{Key=Name,Value=$name}]" \
+			--query ImageId --output text
+		sleep 120
+		wait_ssm "$id"
+	fi
+
+	run_ps "$id" 1800 stage \
+		"\$ErrorActionPreference = 'Stop'" \
+		"\$Gpu = (Get-CimInstance Win32_VideoController | Where-Object { \$_.Name -match 'NVIDIA' }).Name" \
+		"if (-not \$Gpu) { throw 'no NVIDIA driver' }; Write-Host \"GPU: \$Gpu\"" \
+		"& 'C:\\Program Files\\Amazon\\AWSCLIV2\\aws.exe' s3 cp --only-show-errors s3://$b/builds/$version/$zip C:\\tester\\game.zip" \
+		"if (Test-Path C:\\Ringshadow) { Remove-Item -Recurse -Force C:\\Ringshadow }" \
+		"tar.exe -xf C:\\tester\\game.zip -C C:\\" \
+		"\$Pre = Get-ChildItem C:\\Ringshadow -Recurse -Filter UEPrereqSetup_x64.exe | Select-Object -First 1" \
+		"if (\$Pre) { Start-Process \$Pre.FullName -ArgumentList '/quiet','/norestart' -Wait }" \
+		"\$S = (New-Object -ComObject WScript.Shell).CreateShortcut('C:\\Users\\Public\\Desktop\\Ringshadow $version.lnk')" \
+		"\$S.TargetPath = 'C:\\Ringshadow\\Autocraft.exe'; \$S.Save()" \
+		"shutdown.exe /s /t $((hours * 3600)) /c 'Ringshadow tester: its $hours hours are up'" \
+		"exit 0" || die "staging failed; $id is still up (build_release.sh stop)"
+	say "ready: $id has $version on its desktop; it is terminated in $hours h (build_release.sh stop ends it sooner)"
+	cmd_dcv "$id"
+}
+
+cmd_dcv() {
+	local id=${1:-$(running tester)}
+	[ "$id" = None ] && die "no tester running: build_release.sh test"
+	local pw; pw=$(password "$id")
+	echo
+	echo "  Open https://localhost:18443 in a browser (accept its own certificate),"
+	echo "  or the Amazon DCV client with localhost:18443."
+	echo "    User:     Administrator"
+	echo "    Password: $pw"
+	echo
+	echo "  The tunnel stays open while this runs; Ctrl-C closes it (the machine runs on)."
+	echo
+	aws ssm start-session --target "$id" --document-name AWS-StartPortForwardingSession \
+		--parameters 'portNumber=["8443"],localPortNumber=["18443"]'
+}
+
 # ---------------------------------------------------------------- upkeep
 
 cmd_status() {
@@ -371,6 +485,6 @@ cmd_stop() {
 }
 
 case ${1:-} in
-	infra|setup|rdp|image|build|mac|status|stop) c=$1; shift; "cmd_$c" "$@" ;;
-	*) sed -n '2,22p' "$0" | sed 's/^# \{0,1\}//'; exit 1 ;;
+	infra|setup|rdp|image|build|mac|test|dcv|status|stop) c=$1; shift; "cmd_$c" "$@" ;;
+	*) sed -n '2,27p' "$0" | sed 's/^# \{0,1\}//'; exit 1 ;;
 esac
