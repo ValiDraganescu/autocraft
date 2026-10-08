@@ -26,18 +26,18 @@ if (-not (Test-Path $Aws)) {
 	Install 'AWS CLI' 'msiexec.exe' @('/i', $Msi, '/qn', '/norestart')
 }
 
-# The GRID driver, from AWS's bucket (us-east-1; the instance role may read it).
+# The GRID driver, from AWS's public bucket in us-east-1. Fetched without
+# credentials: a signed request is refused by the organization's region policy
+# (it denies S3 reads in us-east-1), an anonymous one never meets it.
 if (-not (Get-CimInstance Win32_VideoController | Where-Object { $_.Name -match 'NVIDIA' })) {
-	try {
-		$Key = (Get-S3Object -BucketName ec2-windows-nvidia-drivers -KeyPrefix latest/ -Region us-east-1 |
-			Where-Object { $_.Key -match '\.exe$' } | Sort-Object LastModified | Select-Object -Last 1).Key
-	} catch {
-		throw "cannot read s3://ec2-windows-nvidia-drivers (us-east-1): the organization's policy must let this account read it (docs/builds.md, Testing the packages). $_"
-	}
+	$Bucket = 'https://ec2-windows-nvidia-drivers.s3.us-east-1.amazonaws.com'
+	[xml] $List = (Invoke-WebRequest -Uri "$Bucket/?list-type=2&prefix=latest/" -UseBasicParsing).Content
+	$Key = ($List.ListBucketResult.Contents | Where-Object { $_.Key -match '\.exe$' } |
+		Sort-Object { [datetime] $_.LastModified } | Select-Object -Last 1).Key
 	if (-not $Key) { throw 'no driver in s3://ec2-windows-nvidia-drivers/latest/' }
 	Write-Host "driver $Key"
 	$Driver = Join-Path $Downloads 'nvidia-grid.exe'
-	Read-S3Object -BucketName ec2-windows-nvidia-drivers -Key $Key -File $Driver -Region us-east-1 | Out-Null
+	Invoke-WebRequest -Uri "$Bucket/$Key" -OutFile $Driver -UseBasicParsing
 	Install 'NVIDIA GRID driver' $Driver @('-s', '-noreboot')
 	# AWS's GRID build is licensed by the instance; hide the license page.
 	New-Item -Path 'HKLM:\SOFTWARE\NVIDIA Corporation\Global\GridLicensing' -Force | Out-Null

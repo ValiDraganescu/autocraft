@@ -76,12 +76,12 @@ Mac package built here, played by hand, before any AWS time is spent.
   `AUTOCRAFT_AWS_PROFILE` picks another.
 - **Region** `eu-north-1` (Stockholm), the only one the organization's policy
   allows for EC2. The same policy blocks Trusted Advisor and Compute Optimizer
-  in the console, and every S3 call outside eu-north-1 (even a public
-  bucket's). The tester needs one: NVIDIA's driver for EC2 is in
-  `ec2-windows-nvidia-drivers`, a us-east-1 bucket ("Testing the packages").
-  The rule is `UsEast1Partitional` in the SCP
+  in the console, and every signed S3 call outside eu-north-1 (even to a
+  public bucket). The rule is `UsEast1Partitional` in the SCP
   AdvancedModeRegionRestrictionSecurityControlPolicy (`p-lunneq4k`), which
-  only the management account (687971795322) can edit.
+  only the management account (687971795322) can edit. The tester's driver
+  bucket in us-east-1 is public, so it is read without credentials, which no
+  policy sees ("The Windows tester").
 - **Quotas** (2026-10-08): 32 vCPU of standard instances, on-demand and spot.
   That is one `c7i.8xlarge`, so the setup machine and a build cannot run at
   the same time. GPU (G and VT) instances: 8 vCPU, on-demand and spot
@@ -251,6 +251,6 @@ The first `test` sets the tester up from Windows Server 2022 with
 for its G instances, and DCV), reboots it and saves it as the image
 `ringshadow-tester-<date>`. Later ones start from that image.
 
-It needs the organization's policy to let the account read
-`s3://ec2-windows-nvidia-drivers` in us-east-1 (see AWS above). The instance
-role already may (`infra`, policy `tester`, with DCV's license bucket).
+The driver comes from AWS's public bucket `ec2-windows-nvidia-drivers` in
+us-east-1, over plain HTTPS without credentials: a signed read would meet the
+organization's region policy (see AWS above).
