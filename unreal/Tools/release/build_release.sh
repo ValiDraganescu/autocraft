@@ -43,6 +43,8 @@ key=ringshadow-build
 keyfile="$HOME/.ssh/ringshadow-build.pem"
 # The notarytool credentials (xcrun notarytool store-credentials ringshadow).
 notary_profile=${AUTOCRAFT_NOTARY_PROFILE:-ringshadow}
+# The Mac app's identity (the project's own is the template's com.YourCompany.Autocraft).
+bundle_id=com.validraganescu.ringshadow
 # 32 vCPU, the whole standard-instance quota, for setup too: its first
 # build compiles every shader into the cache the image keeps.
 build_type=c7i.8xlarge
@@ -399,10 +401,18 @@ cmd_mac() {
 	say "packaging the Mac build $version ($config) from the working tree"
 	"$uat" BuildCookRun -project="$repo/unreal/Autocraft.uproject" -target=Autocraft -platform=Mac \
 		-clientconfig="$config" -build -cook -stage -pak -iostore -compressed \
-		-archive -archivedirectory="$archive" -nodebuginfo -utf8output -unattended -nop4 \
+		-nodebuginfo -utf8output -unattended -nop4 \
 		>"$dir/mac-build.log" 2>&1 || die "UAT failed: $dir/mac-build.log"
-	local app; app=$(find "$archive" -maxdepth 2 -name '*.app' -type d | head -1)
-	[ -n "$app" ] || die "no .app in $archive"
+	# The staged app, which holds the game: UAT's -archive copies the bare
+	# one from Binaries, without Contents/UE (2026-10-09).
+	local staged; staged=$(find "$repo/unreal/Saved/StagedBuilds/Mac" -maxdepth 1 -name '*.app' -type d | head -1)
+	[ -n "$staged" ] && [ -d "$staged/Contents/UE/Autocraft/Content/Paks" ] || die "no staged app with paks in Saved/StagedBuilds/Mac"
+	local app="$archive/Ringshadow.app" plist="$archive/Ringshadow.app/Contents/Info.plist"
+	mkdir -p "$archive"
+	ditto "$staged" "$app"
+	/usr/libexec/PlistBuddy -c "Set :CFBundleIdentifier $bundle_id" -c "Set :CFBundleName Ringshadow" "$plist"
+	/usr/libexec/PlistBuddy -c "Set :CFBundleDisplayName Ringshadow" "$plist" 2>/dev/null \
+		|| /usr/libexec/PlistBuddy -c "Add :CFBundleDisplayName string Ringshadow" "$plist"
 	cmd_sign "$app" "$dir/Ringshadow-$version-mac.zip"
 }
 
