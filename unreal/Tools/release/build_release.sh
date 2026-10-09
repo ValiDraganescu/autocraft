@@ -8,7 +8,7 @@
 #   build_release.sh rdp [INSTANCE]         remote desktop (RDP) to the setup machine or the tester: localhost:13389
 #   build_release.sh image [INSTANCE]       save the setup machine as the build image, then terminate it
 #   build_release.sh build [REF] [options]  build REF (default HEAD) on a spot machine made from the newest image
-#       --version V        name of the zips (default: git describe of REF)
+#       --version V        the game's version and the zips' name (default: git describe of REF, without the v)
 #       --platforms LIST   Win64,Linux (default) or one of them
 #       --config C         Shipping (default) or Development
 #       --instance ID      build on a running machine (the setup one, to warm it) instead of a new one
@@ -18,11 +18,16 @@
 #   build_release.sh sign APP ZIP           sign, notarize and zip a Mac .app (mac does it)
 #   build_release.sh test [VERSION] [options]  a GPU machine (g6.2xlarge) with VERSION's Windows package
 #                                           (default: the newest), then the remote desktop to it
+#       --linux            Ubuntu and the Linux package instead; checks the game reaches the home screen
 #       --on-demand        an on-demand machine instead of spot
 #       --hours H          it switches itself off and is terminated after H hours (default 4)
 #   build_release.sh dcv [INSTANCE]         remote desktop to the tester through SSM: https://localhost:18443
 #   build_release.sh status                 machines, images and builds in AWS
 #   build_release.sh stop                   terminate every running Ringshadow machine (builds and testers)
+#
+#   Before the command, --region R runs the machines in region R (default
+#   eu-north-1; us-east-1 when Stockholm has no room). `--region R infra`
+#   prepares R once: its security group, the key pair, copies of the images.
 #
 # The builds land in unreal/Saved/Releases/<version>/ (not in git).
 # AUTOCRAFT_AWS_PROFILE picks the AWS profile (default: ringshadow).
@@ -33,8 +38,11 @@ repo=$(cd "$here/../../.." && pwd)
 releases="$repo/unreal/Saved/Releases"
 
 export AWS_PROFILE=${AUTOCRAFT_AWS_PROFILE:-ringshadow}
-# The organization's policy allows EC2 only in Stockholm.
-export AWS_REGION=eu-north-1
+# The machines run in Stockholm unless --region (or AUTOCRAFT_AWS_REGION)
+# says otherwise; the bucket, the images' originals and the SSM output stay
+# in Stockholm.
+home_region=eu-north-1
+export AWS_REGION=${AUTOCRAFT_AWS_REGION:-$home_region}
 export AWS_PAGER=""
 
 role=ringshadow-build
@@ -60,6 +68,8 @@ die() { printf 'build_release: %s\n' "$*" >&2; exit 1; }
 
 account() { aws sts get-caller-identity --query Account --output text; }
 bucket() { echo "ringshadow-builds-$(account)"; }
+# The bucket's commands, which go to Stockholm from any region.
+s3() { aws --region "$home_region" s3 "$@"; }
 
 group_id() {
 	aws ec2 describe-security-groups --filters "Name=group-name,Values=$group" \
@@ -73,13 +83,13 @@ json() { printf '"%s"' "$(printf '%s' "$1" | sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'
 
 cmd_infra() {
 	local b; b=$(bucket)
-	if ! aws s3api head-bucket --bucket "$b" >/dev/null 2>&1; then
+	if ! aws --region "$home_region" s3api head-bucket --bucket "$b" >/dev/null 2>&1; then
 		say "bucket $b"
-		aws s3api create-bucket --bucket "$b" --create-bucket-configuration "LocationConstraint=$AWS_REGION" >/dev/null
-		aws s3api put-public-access-block --bucket "$b" --public-access-block-configuration \
+		aws --region "$home_region" s3api create-bucket --bucket "$b" --create-bucket-configuration "LocationConstraint=$home_region" >/dev/null
+		aws --region "$home_region" s3api put-public-access-block --bucket "$b" --public-access-block-configuration \
 			BlockPublicAcls=true,IgnorePublicAcls=true,BlockPublicPolicy=true,RestrictPublicBuckets=true
 		# Builds are kept on the Mac and on GitHub; the bucket only carries them.
-		aws s3api put-bucket-lifecycle-configuration --bucket "$b" --lifecycle-configuration \
+		aws --region "$home_region" s3api put-bucket-lifecycle-configuration --bucket "$b" --lifecycle-configuration \
 			'{"Rules":[{"ID":"expire","Status":"Enabled","Filter":{"Prefix":""},"Expiration":{"Days":60}}]}'
 	fi
 
@@ -93,7 +103,7 @@ cmd_infra() {
 		"{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"s3:GetObject\",\"s3:PutObject\",\"s3:ListBucket\"],\"Resource\":[\"arn:aws:s3:::$b\",\"arn:aws:s3:::$b/*\"]}]}"
 	# The tester: NVIDIA's driver for EC2 (us-east-1) and DCV's license check.
 	aws iam put-role-policy --role-name "$role" --policy-name tester --policy-document \
-		"{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"s3:GetObject\",\"s3:ListBucket\"],\"Resource\":[\"arn:aws:s3:::ec2-windows-nvidia-drivers\",\"arn:aws:s3:::ec2-windows-nvidia-drivers/*\",\"arn:aws:s3:::dcv-license.$AWS_REGION/*\"]}]}"
+		"{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"s3:GetObject\",\"s3:ListBucket\"],\"Resource\":[\"arn:aws:s3:::ec2-windows-nvidia-drivers\",\"arn:aws:s3:::ec2-windows-nvidia-drivers/*\",\"arn:aws:s3:::dcv-license.*/*\"]}]}"
 	if ! aws iam get-instance-profile --instance-profile-name "$role" >/dev/null 2>&1; then
 		say "instance profile $role"
 		aws iam create-instance-profile --instance-profile-name "$role" >/dev/null
@@ -109,14 +119,40 @@ cmd_infra() {
 			--description 'Ringshadow build machines: outbound only' >/dev/null
 	fi
 
-	# The key only decrypts the Windows Administrator password.
+	# The key only decrypts the Windows Administrator password. Every region
+	# gets the same one: the first makes it, the others import its public half.
 	if ! aws ec2 describe-key-pairs --key-names "$key" >/dev/null 2>&1; then
-		[ -e "$keyfile" ] && die "$keyfile exists but AWS has no key pair $key"
-		say "key pair $key -> $keyfile"
-		mkdir -p "$(dirname "$keyfile")"
-		( umask 077; aws ec2 create-key-pair --key-name "$key" --query KeyMaterial --output text >"$keyfile" )
+		if [ -e "$keyfile" ]; then
+			say "key pair $key <- $keyfile"
+			local pub; pub=$(mktemp)
+			ssh-keygen -y -f "$keyfile" >"$pub"
+			aws ec2 import-key-pair --key-name "$key" --public-key-material "fileb://$pub" >/dev/null
+			rm "$pub"
+		else
+			say "key pair $key -> $keyfile"
+			mkdir -p "$(dirname "$keyfile")"
+			( umask 077; aws ec2 create-key-pair --key-name "$key" --query KeyMaterial --output text >"$keyfile" )
+		fi
 	fi
-	say "infra ready: bucket $b, role $role, group $group, key $keyfile"
+
+	# Another region gets copies of Stockholm's newest images (a copy takes
+	# about an hour; until then build and test there say there is no image).
+	if [ "$AWS_REGION" != "$home_region" ]; then
+		local kind src name
+		for kind in build tester; do
+			src=$(AWS_REGION=$home_region newest_image "$kind")
+			[ "$src" = None ] && continue
+			name=$(aws --region "$home_region" ec2 describe-images --image-ids "$src" --query 'Images[0].Name' --output text)
+			if [ "$(aws ec2 describe-images --owners self --filters "Name=name,Values=$name" --query 'length(Images)' --output text)" = 0 ]; then
+				say "copying $name ($src) to $AWS_REGION"
+				aws ec2 copy-image --source-region "$home_region" --source-image-id "$src" --name "$name" \
+					--tag-specifications "ResourceType=image,Tags=[{Key=Project,Value=ringshadow},{Key=Name,Value=$name}]" \
+					"ResourceType=snapshot,Tags=[{Key=Project,Value=ringshadow},{Key=Name,Value=$name}]" \
+					--query ImageId --output text
+			fi
+		done
+	fi
+	say "infra ready in $AWS_REGION: bucket $b, role $role, group $group, key $keyfile"
 }
 
 # ---------------------------------------------------------------- machines
@@ -169,18 +205,23 @@ wait_ssm() {  # wait until the machine's SSM agent answers (Windows boots in abo
 
 # run_ps INSTANCE TIMEOUT_S LABEL LINE...: runs PowerShell lines through SSM,
 # waits, prints the end of the output on a failure. Output goes to the bucket.
-run_ps() {
-	local id=$1 timeout=$2 label=$3; shift 3
+# run_sh is the same for shell lines on Linux.
+run_ps() { run_ssm AWS-RunPowerShellScript awsrunPowerShellScript "$@"; }
+run_sh() { run_ssm AWS-RunShellScript awsrunShellScript "$@"; }
+run_ssm() {
+	local doc=$1 step=$2 id=$3 timeout=$4 label=$5; shift 5
 	local b lines="" l
 	b=$(bucket)
 	for l in "$@"; do lines="$lines${lines:+,}$(json "$l")"; done
 	local cmd
-	cmd=$(aws ssm send-command --instance-ids "$id" --document-name AWS-RunPowerShellScript \
+	cmd=$(aws ssm send-command --instance-ids "$id" --document-name "$doc" \
 		--comment "ringshadow $label" --timeout-seconds 600 \
-		--output-s3-bucket-name "$b" --output-s3-key-prefix ssm \
+		--output-s3-bucket-name "$b" --output-s3-region "$home_region" --output-s3-key-prefix ssm \
 		--parameters "{\"commands\":[$lines],\"executionTimeout\":[\"$timeout\"]}" \
 		--query Command.CommandId --output text)
 	say "$label: SSM command $cmd"
+	# Where its output lands; ssm_output prints it.
+	ssm_out="s3://$b/ssm/$cmd/$id/$step/0.$step"
 	local status t=0
 	while :; do
 		sleep 30; t=$((t + 30))
@@ -195,13 +236,14 @@ run_ps() {
 		[ $((t % 300)) -eq 0 ] && say "$label: running, $((t / 60)) min"
 	done
 	say "$label: $status"
-	local out="s3://$b/ssm/$cmd/$id/awsrunPowerShellScript/0.awsrunPowerShellScript"
+	local f
 	for f in stdout stderr; do
-		echo "--- $f (last 40 lines; whole: $out/$f)"
-		aws s3 cp --only-show-errors "$out/$f" - 2>/dev/null | tail -40 || true
+		echo "--- $f (last 40 lines; whole: $ssm_out/$f)"
+		s3 cp --only-show-errors "$ssm_out/$f" - 2>/dev/null | tail -40 || true
 	done
 	return 1
 }
+ssm_output() { s3 cp --only-show-errors "$ssm_out/stdout" - 2>/dev/null || true; }
 
 running() {  # running ROLE: the newest such machine, or None
 	local id
@@ -250,12 +292,12 @@ cmd_setup() {
 	local id; id=$(launch "$ami" "$build_type" setup ringshadow-build-setup on-demand)
 	say "setup machine $id"
 	wait_ssm "$id"
-	aws s3 cp --only-show-errors "$here/setup_windows.ps1" "s3://$(bucket)/scripts/setup_windows.ps1"
+	s3 cp --only-show-errors "$here/setup_windows.ps1" "s3://$(bucket)/scripts/setup_windows.ps1"
 	# The base image has the AWS Tools for PowerShell but not the CLI yet.
 	run_ps "$id" 7200 setup \
 		"\$ErrorActionPreference = 'Stop'" \
 		"New-Item -ItemType Directory -Force C:\\build\\scripts | Out-Null" \
-		"Read-S3Object -BucketName '$(bucket)' -Key scripts/setup_windows.ps1 -File C:\\build\\scripts\\setup_windows.ps1 -Region $AWS_REGION | Out-Null" \
+		"Read-S3Object -BucketName '$(bucket)' -Key scripts/setup_windows.ps1 -File C:\\build\\scripts\\setup_windows.ps1 -Region $home_region | Out-Null" \
 		"& C:\\build\\scripts\\setup_windows.ps1" \
 		"exit 0"
 	say "next: build_release.sh rdp, then the two installers on its desktop (docs/builds.md)"
@@ -334,6 +376,7 @@ cmd_build() {
 		die "$sha is not on GitHub yet; push it first"
 	fi
 	[ -n "$version" ] || version=$(git -C "$repo" describe --tags --always "$sha")
+	version=${version#v}
 	local b; b=$(bucket)
 	say "building Ringshadow $version ($sha, $platforms, $config)"
 
@@ -352,17 +395,17 @@ cmd_build() {
 	fi
 	wait_ssm "$id"
 
-	aws s3 cp --only-show-errors "$here/build_windows.ps1" "s3://$b/scripts/build_windows.ps1"
+	s3 cp --only-show-errors "$here/build_windows.ps1" "s3://$b/scripts/build_windows.ps1"
 	run_ps "$id" 14400 build \
 		"\$ErrorActionPreference = 'Stop'" \
-		"& 'C:\\Program Files\\Amazon\\AWSCLIV2\\aws.exe' s3 cp --only-show-errors s3://$b/scripts/build_windows.ps1 C:\\build\\scripts\\build_windows.ps1" \
-		"& C:\\build\\scripts\\build_windows.ps1 -Ref $sha -Version '$version' -Bucket '$b' -Platforms '$platforms' -Config $config" \
+		"& 'C:\\Program Files\\Amazon\\AWSCLIV2\\aws.exe' s3 cp --region $home_region --only-show-errors s3://$b/scripts/build_windows.ps1 C:\\build\\scripts\\build_windows.ps1" \
+		"& C:\\build\\scripts\\build_windows.ps1 -Ref $sha -Version '$version' -Bucket '$b' -BucketRegion $home_region -Platforms '$platforms' -Config $config" \
 		"exit 0" \
 		|| { say "build log: s3://$b/builds/$version/build.log"; exit 1; }
 
 	local dir="$releases/$version"
 	mkdir -p "$dir"
-	aws s3 cp --only-show-errors --recursive "s3://$b/builds/$version/" "$dir/"
+	s3 cp --only-show-errors --recursive "s3://$b/builds/$version/" "$dir/"
 	fix_linux "$dir/Ringshadow-$version-linux.tar.gz"
 	( cd "$dir" && shasum -a 256 Ringshadow-* >SHA256SUMS )
 	[ $launched = 1 ] && [ $keep = 1 ] && say "left $id running (--keep): build_release.sh stop"
@@ -394,6 +437,7 @@ cmd_mac() {
 		esac
 	done
 	[ -n "$version" ] || version=$(git -C "$repo" describe --tags --always --dirty)
+	version=${version#v}
 	local dir="$releases/$version" uat="/Users/Shared/Epic Games/UE_5.8/Engine/Build/BatchFiles/RunUAT.sh"
 	local archive="$dir/mac"
 	rm -rf "$archive"
@@ -401,7 +445,7 @@ cmd_mac() {
 	say "packaging the Mac build $version ($config) from the working tree"
 	"$uat" BuildCookRun -project="$repo/unreal/Autocraft.uproject" -target=Autocraft -platform=Mac \
 		-clientconfig="$config" -build -cook -stage -pak -iostore -compressed \
-		-nodebuginfo -utf8output -unattended -nop4 \
+		-nodebuginfo -utf8output -unattended -nop4 -ubtargs="-BuildVersion=$version" \
 		>"$dir/mac-build.log" 2>&1 || die "UAT failed: $dir/mac-build.log"
 	# The staged app, which holds the game: UAT's -archive copies the bare
 	# one from Binaries, without Contents/UE (2026-10-09).
@@ -413,6 +457,14 @@ cmd_mac() {
 	/usr/libexec/PlistBuddy -c "Set :CFBundleIdentifier $bundle_id" -c "Set :CFBundleName Ringshadow" "$plist"
 	/usr/libexec/PlistBuddy -c "Set :CFBundleDisplayName Ringshadow" "$plist" 2>/dev/null \
 		|| /usr/libexec/PlistBuddy -c "Add :CFBundleDisplayName string Ringshadow" "$plist"
+	# The game's version, not the engine's 5.8.3: 0.1.1 from the tag v0.1.1;
+	# 0.1.1 and build 0.1.1.4 four commits after it. Untagged, the engine's stays.
+	if [[ $version =~ ^([0-9]+\.[0-9]+\.[0-9]+)(-([0-9]+)-g)? ]]; then
+		local short=${BASH_REMATCH[1]} n=${BASH_REMATCH[3]}
+		/usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString $short" \
+			-c "Set :CFBundleVersion $short${n:+.$n}" "$plist"
+		say "version $short (build $short${n:+.$n})"
+	fi
 	cmd_sign "$app" "$dir/Ringshadow-$version-mac.zip"
 }
 
@@ -481,10 +533,10 @@ cmd_test() {
 	done
 	cmd_infra >/dev/null
 	local b; b=$(bucket)
-	[ -n "$version" ] || version=$(aws s3 ls "s3://$b/builds/" --recursive | grep -- '-windows\.zip$' | sort | tail -1 | awk '{print $4}' | cut -d/ -f2)
+	[ -n "$version" ] || version=$(s3 ls "s3://$b/builds/" --recursive | grep -- '-windows\.zip$' | sort | tail -1 | awk '{print $4}' | cut -d/ -f2)
 	[ -n "$version" ] || die "no Windows package in s3://$b/builds/: build one first"
 	local zip="Ringshadow-$version-windows.zip"
-	aws s3 ls "s3://$b/builds/$version/$zip" >/dev/null || die "no s3://$b/builds/$version/$zip"
+	s3 ls "s3://$b/builds/$version/$zip" >/dev/null || die "no s3://$b/builds/$version/$zip"
 
 	local ami fresh=0; ami=$(newest_image tester)
 	if [ "$ami" = None ]; then
@@ -504,11 +556,11 @@ cmd_test() {
 	wait_ssm "$id"
 
 	if [ $fresh = 1 ]; then
-		aws s3 cp --only-show-errors "$here/setup_tester.ps1" "s3://$b/scripts/setup_tester.ps1"
+		s3 cp --only-show-errors "$here/setup_tester.ps1" "s3://$b/scripts/setup_tester.ps1"
 		run_ps "$id" 3600 tester-setup \
 			"\$ErrorActionPreference = 'Stop'" \
 			"New-Item -ItemType Directory -Force C:\\tester | Out-Null" \
-			"Read-S3Object -BucketName '$b' -Key scripts/setup_tester.ps1 -File C:\\tester\\setup_tester.ps1 -Region $AWS_REGION | Out-Null" \
+			"Read-S3Object -BucketName '$b' -Key scripts/setup_tester.ps1 -File C:\\tester\\setup_tester.ps1 -Region $home_region | Out-Null" \
 			"& C:\\tester\\setup_tester.ps1" \
 			"exit 0" || die "tester setup failed; $id is still up (build_release.sh stop)"
 		# Saving the image reboots the machine, which the driver needs anyway.
@@ -530,19 +582,27 @@ cmd_test() {
 		"if (-not \$Gpu) { throw 'no NVIDIA driver' }; Write-Host \"GPU: \$Gpu\"" \
 		"\$Rdp = 'HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows NT\\Terminal Services'; New-Item -Path \$Rdp -Force | Out-Null" \
 		"foreach (\$N in 'bEnumerateHWBeforeSW','AVC444ModePreferred','AVCHardwareEncodePreferred') { Set-ItemProperty -Path \$Rdp -Name \$N -Value 1 -Type DWord }" \
-		"& 'C:\\Program Files\\Amazon\\AWSCLIV2\\aws.exe' s3 cp --only-show-errors s3://$b/builds/$version/$zip C:\\tester\\game.zip" \
+		"& 'C:\\Program Files\\Amazon\\AWSCLIV2\\aws.exe' s3 cp --region $home_region --only-show-errors s3://$b/builds/$version/$zip C:\\tester\\game.zip" \
 		"if (Test-Path C:\\Ringshadow) { Remove-Item -Recurse -Force C:\\Ringshadow }" \
 		"tar.exe -xf C:\\tester\\game.zip -C C:\\" \
 		"\$Sym = 's3://$b/builds/$version/Ringshadow-$version-windows-symbols.zip'" \
 		"if (Test-Path C:\\tester\\symbols.zip) { Remove-Item C:\\tester\\symbols.zip }" \
-		"try { & 'C:\\Program Files\\Amazon\\AWSCLIV2\\aws.exe' s3 cp --only-show-errors \$Sym C:\\tester\\symbols.zip 2>\$null } catch { }" \
+		"try { & 'C:\\Program Files\\Amazon\\AWSCLIV2\\aws.exe' s3 cp --region $home_region --only-show-errors \$Sym C:\\tester\\symbols.zip 2>\$null } catch { }" \
 		"if (Test-Path C:\\tester\\symbols.zip) { tar.exe -xf C:\\tester\\symbols.zip -C C:\\Ringshadow\\Autocraft\\Binaries\\Win64; Write-Host 'symbols: next to the exe' } else { Write-Host 'symbols: none for this build' }" \
-		"\$Pre = Get-ChildItem C:\\Ringshadow -Recurse -Filter UEPrereqSetup_x64.exe | Select-Object -First 1" \
-		"if (\$Pre) { Start-Process \$Pre.FullName -ArgumentList '/quiet','/norestart' -Wait }" \
+		"\$Exe = 'C:\\Ringshadow\\Autocraft\\Binaries\\Win64\\Autocraft-Win64-Shipping.exe'" \
+		"Write-Host \"version: \$((Get-Item \$Exe).VersionInfo.ProductVersion)\"" \
+		"# Like a player's PC: no runtime installed; the game brings its own. A short" \
+		"# run without a GPU shows where vcruntime140.dll comes from." \
+		"\$P = Start-Process \$Exe -ArgumentList '-nullrhi','-nosound','-unattended' -PassThru; Start-Sleep 20" \
+		"\$Dll = (Get-Process -Id \$P.Id -ErrorAction SilentlyContinue).Modules | Where-Object ModuleName -eq 'vcruntime140.dll' | Select-Object -First 1" \
+		"Stop-Process -Id \$P.Id -Force -ErrorAction SilentlyContinue" \
+		"Write-Host \"runtime installed: \$(Test-Path 'HKLM:\\SOFTWARE\\Microsoft\\VisualStudio\\14.0\\VC\\Runtimes\\x64')\"" \
+		"Write-Host \"vcruntime140.dll: \$(if (\$Dll) { \$Dll.FileName } else { 'not loaded (the game did not stay up 20 s)' })\"" \
 		"\$S = (New-Object -ComObject WScript.Shell).CreateShortcut('C:\\Users\\Public\\Desktop\\Ringshadow $version.lnk')" \
 		"\$S.TargetPath = 'C:\\Ringshadow\\Autocraft.exe'; \$S.Save()" \
 		"shutdown.exe /s /t $((hours * 3600)) /c 'Ringshadow tester: its $hours hours are up'" \
 		"exit 0" || die "staging failed; $id is still up (build_release.sh stop)"
+	ssm_output | grep -E '^(GPU|version|runtime installed|vcruntime140.dll|symbols):' || true
 	say "ready: $id has $version on its desktop; it is terminated in $hours h (build_release.sh stop ends it sooner)"
 	cmd_dcv "$id"
 }
@@ -574,7 +634,7 @@ cmd_status() {
 	aws ec2 describe-images --owners self --filters Name=tag:Project,Values=ringshadow \
 		--query 'sort_by(Images,&CreationDate)[].[ImageId,Name,State,CreationDate]' --output text
 	echo "Builds in s3://$(bucket)/builds/:"
-	aws s3 ls "s3://$(bucket)/builds/" 2>/dev/null || true
+	s3 ls "s3://$(bucket)/builds/" 2>/dev/null || true
 }
 
 cmd_stop() {
@@ -587,7 +647,11 @@ cmd_stop() {
 	aws ec2 terminate-instances --instance-ids $ids --query 'TerminatingInstances[].[InstanceId,CurrentState.Name]' --output text
 }
 
+if [ "${1:-}" = --region ]; then
+	[ -n "${2:-}" ] || die "--region needs a region"
+	export AWS_REGION=$2; shift 2
+fi
 case ${1:-} in
 	infra|setup|rdp|image|build|mac|sign|test|dcv|status|stop) c=$1; shift; "cmd_$c" "$@" ;;
-	*) sed -n '2,27p' "$0" | sed 's/^# \{0,1\}//'; exit 1 ;;
+	*) sed -n '2,33p' "$0" | sed 's/^# \{0,1\}//'; exit 1 ;;
 esac

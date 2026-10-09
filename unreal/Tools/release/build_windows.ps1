@@ -6,8 +6,9 @@
 # Windows archive cannot carry.
 param(
 	[Parameter(Mandatory = $true)] [string] $Ref,      # a commit on GitHub
-	[Parameter(Mandatory = $true)] [string] $Version,  # names the zips: Ringshadow-<Version>-windows.zip
+	[Parameter(Mandatory = $true)] [string] $Version,  # the game's version; names the zips: Ringshadow-<Version>-windows.zip
 	[Parameter(Mandatory = $true)] [string] $Bucket,
+	[string] $BucketRegion = 'eu-north-1',             # the bucket's, wherever the machine runs
 	[string] $Platforms = 'Win64,Linux',
 	[string] $Config = 'Shipping',
 	[string] $Engine = 'C:\Program Files\Epic Games\UE_5.8'
@@ -68,20 +69,36 @@ try {
 	$Commit = (& $Git -C $Repo rev-parse HEAD).Trim()
 	Say "commit $Commit"
 
+	# The Visual C++ runtime goes next to the game's exe (UAT's app-local
+	# prerequisites), so a PC without it starts the game anyway: the DLLs of
+	# the compiler that built it, from the Build Tools' redistributable folder.
+	# UAT looks in <dir>\Win64\x64\<any folder>.
+	$AppLocal = 'C:\build\applocal'
+	$Crt = Get-ChildItem 'C:\Program Files*\Microsoft Visual Studio\*\*\VC\Redist\MSVC\*\x64\Microsoft.VC*.CRT' -Directory -ErrorAction SilentlyContinue |
+		Sort-Object { [version]($_.Parent.Parent.Name -replace '[^0-9.]', '') } | Select-Object -Last 1
+	if (-not $Crt) { throw 'no Visual C++ redistributable folder in the Build Tools (VC\Redist\MSVC)' }
+	if (Test-Path $AppLocal) { Remove-Item -Recurse -Force $AppLocal }
+	New-Item -ItemType Directory -Force "$AppLocal\Win64\x64\VC.CRT" | Out-Null
+	Copy-Item "$($Crt.FullName)\*.dll" "$AppLocal\Win64\x64\VC.CRT"
+	Say "app-local runtime: $($Crt.FullName) ($((Get-ChildItem "$AppLocal\Win64\x64\VC.CRT").Count) DLLs)"
+
 	$Zips = @()
 	foreach ($Platform in $Platforms.Split(',')) {
 		$Archive = "$Out\$Platform"
 		if (Test-Path $Archive) { Remove-Item -Recurse -Force $Archive }
 		$UatArgs = @('BuildCookRun', "-project=$Project", '-target=Autocraft', "-platform=$Platform",
 			"-clientconfig=$Config", '-build', '-cook', '-stage', '-pak', '-iostore', '-compressed',
-			'-archive', "-archivedirectory=$Archive\Ringshadow", '-nodebuginfo', '-utf8output', '-unattended', '-nop4')
-		if ($Platform -eq 'Win64') { $UatArgs += '-prereqs' }
+			'-archive', "-archivedirectory=$Archive\Ringshadow", '-nodebuginfo', '-utf8output', '-unattended', '-nop4',
+			# The game's version in the exe's Product version (Shipping) and the logs.
+			"-ubtargs=-BuildVersion=$Version")
+		if ($Platform -eq 'Win64') { $UatArgs += '-prereqs', "-applocaldirectory=$AppLocal" }
 		Run "package $Platform" { & $Uat @UatArgs }
 
 		# UAT archives the launcher (Autocraft.exe, Autocraft.sh), the project
 		# folder and Engine side by side, straight into Ringshadow.
 		if (-not (Test-Path "$Archive\Ringshadow\Autocraft\Binaries")) { throw "UAT archived no game for $Platform" }
 		if ($Platform -eq 'Win64') {
+			if (-not (Test-Path "$Archive\Ringshadow\Autocraft\Binaries\Win64\vcruntime140.dll")) { throw 'the Visual C++ runtime is not next to the game' }
 			$Zip = "$Out\Ringshadow-$Version-windows.zip"
 			Run "zip $Platform" { tar.exe -a -c -f $Zip -C $Archive Ringshadow }
 			# The game's symbols stay out of the package (-nodebuginfo) but go
@@ -108,7 +125,7 @@ try {
 		"engine $((Get-Content (Join-Path $Engine 'Engine\Build\Build.version') | ConvertFrom-Json | ForEach-Object { "$($_.MajorVersion).$($_.MinorVersion).$($_.PatchVersion)" }))",
 		"built $((Get-Date).ToUniversalTime().ToString('yyyy-MM-ddTHH:mm:ssZ'))")
 	foreach ($File in $Zips + $Manifest) {
-		Run "upload $(Split-Path -Leaf $File)" { & $Aws s3 cp --only-show-errors $File "$Dest/" }
+		Run "upload $(Split-Path -Leaf $File)" { & $Aws s3 cp --region $BucketRegion --only-show-errors $File "$Dest/" }
 	}
 	Say 'done'
 } catch {
@@ -116,6 +133,6 @@ try {
 	throw
 } finally {
 	$Writer.Close()
-	& $Aws s3 cp --only-show-errors $Log "$Dest/build.log"
+	& $Aws s3 cp --region $BucketRegion --only-show-errors $Log "$Dest/build.log"
 }
 exit 0
