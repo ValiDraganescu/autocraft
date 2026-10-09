@@ -31,8 +31,22 @@ an x86 VM on Apple silicon is too slow for a cook, so those two need a real
 x86 machine.
 
 The packages land in `unreal/Saved/Releases/<version>/` (ignored by git), with
-`SHA256SUMS`. The script uploads nothing to GitHub. Publishing a release is a
-separate step.
+`SHA256SUMS`. The script uploads nothing to GitHub. Publishing is a GitHub
+Release on the public repo, made by hand with `gh`: copy the Mac zip in beside
+the other two, rewrite `SHA256SUMS` over the three packages (`shasum -a 256`),
+then
+
+```sh
+gh release create v0.1.0 --prerelease --target <commit> --title "Ringshadow 0.1.0" \
+  --notes-file notes.md Ringshadow-<v>-windows.zip Ringshadow-<v>-linux.tar.gz \
+  Ringshadow-<v>-mac.zip SHA256SUMS
+```
+
+The Windows symbols stay in S3. The first release, `v0.1.0` from `a9e3d2e`,
+went up on 2026-10-09: Windows and Linux 416 and 419 MB, the Mac 535 MB,
+signed and notarized. Build a release from a clean checkout (`git worktree
+add`) when other sessions have uncommitted work: `mac` packages the working
+tree.
 
 ## Files outside the cook
 
