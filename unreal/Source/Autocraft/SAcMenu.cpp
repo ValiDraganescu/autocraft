@@ -379,8 +379,10 @@ void SAcMenu::PaintArt(FSlateWindowElementList& Out, const int32 Layer, const FG
 		Pan.X = FMath::Clamp(Pan.X, -Slack.X, Slack.X);
 		Pan.Y = FMath::Clamp(Pan.Y, -Slack.Y, Slack.Y);
 		const FVector2f At = (View - Size) * 0.5f + Pan;
+		// No pixel snapping: the drift is under a pixel a frame, and a 1280x720 image
+		// stretched to the window stepped visibly from one whole pixel to the next.
 		FSlateDrawElement::MakeBox(Out, Layer + Sub, G.ToPaintGeometry(FVector2D(Size), FSlateLayoutTransform(FVector2D(At))), B,
-			ESlateDrawEffect::None, FLinearColor(1, 1, 1, Alpha));
+			ESlateDrawEffect::NoPixelSnapping, FLinearColor(1, 1, 1, Alpha));
 	};
 	Box(Out, Layer, G, FBox2f(FVector2f::ZeroVector, View), FLinearColor::Black);
 	if (N > 1 && !bPinned && Local < ArtFade && E >= ArtFade)
