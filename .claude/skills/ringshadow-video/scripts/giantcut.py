@@ -29,7 +29,7 @@ import subprocess
 import tempfile
 from pathlib import Path
 
-from PIL import Image, ImageDraw, ImageFilter, ImageFont
+from PIL import Image, ImageDraw, ImageFilter, ImageFont, ImageOps
 
 REPO = Path(__file__).resolve().parents[4]
 FF = str(REPO / "video/.tools/ffmpeg-bin/bin/ffmpeg")
@@ -76,13 +76,20 @@ def bar(img: Image.Image, y: float, s: str, f: ImageFont.FreeTypeFont) -> None:
     d.text((X0 + pad - l, y + 18 - t), s, font=f, fill=INK)
 
 
-def opening(title: str) -> Image.Image:
-    img = scrim()
-    shadowed(img, (X0 - 6, BASE - 330), "RINGSHADOW", font("Exo2-Variable.ttf", 190, b"Black"), ICE)
+def opening(title: str, right: bool = False) -> Image.Image:
+    img = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    # At the right the name is smaller, so it clears a panel at the left (the home menu ends ~600 px in).
+    size = 150 if right else 190
+    shadowed(img, (X0 - 6, BASE - 140 - size), "RINGSHADOW", font("Exo2-Variable.ttf", size, b"Black"), ICE)
     bar(img, BASE - 82, title, font("BarlowCondensed-ExtraBold.ttf", 84))
     shadowed(img, (X0 + 2, BASE + 40), "A REAL-TIME STRATEGY GAME IN UNREAL ENGINE 5",
              font("BarlowCondensed-SemiBold.ttf", 40), ICE)
-    return img
+    if right:
+        # The block's right edge X0 from the frame's: the left stays clear (the home menu).
+        moved = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        moved.paste(img, ((W - X0) - img.getbbox()[2], 0))
+        return Image.alpha_composite(ImageOps.mirror(scrim()), moved)
+    return Image.alpha_composite(scrim(), img)
 
 
 def ending(line: str) -> Image.Image:
@@ -123,6 +130,7 @@ def main() -> None:
     a.add_argument("--hold", type=float, default=1.3, help="the opening frame held under the card")
     a.add_argument("--speed", type=float, default=2.0, help="the descent plays this much faster")
     a.add_argument("--tail", type=float, default=2.0, help="the last frame held under the end card")
+    a.add_argument("--card-right", action="store_true", help="the opening card at the lower right (the left holds the home menu)")
     a.add_argument("--end-line", default="Drive any unit. Open source, public domain.", help="the end card's line under the bar")
     a.add_argument("--out", type=Path, required=True)
     a.add_argument("--x", action="store_true", help="also write OUT-x.mp4 for the X upload")
@@ -139,7 +147,7 @@ def main() -> None:
     total = a_len + b_len - xf
     card_at = o.end - o.start - 2.2
     tmp = Path(tempfile.mkdtemp(prefix="giantcut-"))
-    opening(o.title).save(tmp / "open.png")
+    opening(o.title, o.card_right).save(tmp / "open.png")
     ending(o.end_line).save(tmp / "end.png")
     caption(o.caption or "").save(tmp / "caption.png")
     c0, c1 = (float(v) for v in o.caption_at.split(","))
