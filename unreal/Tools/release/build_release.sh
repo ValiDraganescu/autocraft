@@ -15,6 +15,7 @@
 #       --on-demand        an on-demand machine instead of spot
 #       --keep             leave the machine running afterwards (stop it with `stop`)
 #   build_release.sh mac [--version V] [--config C]   package the Mac build on this Mac
+#   build_release.sh sign APP ZIP           sign, notarize and zip a Mac .app (mac does it)
 #   build_release.sh test [VERSION] [options]  a GPU machine (g6.2xlarge) with VERSION's Windows package
 #                                           (default: the newest), then the remote desktop to it
 #       --on-demand        an on-demand machine instead of spot
@@ -40,6 +41,8 @@ role=ringshadow-build
 group=ringshadow-build
 key=ringshadow-build
 keyfile="$HOME/.ssh/ringshadow-build.pem"
+# The notarytool credentials (xcrun notarytool store-credentials ringshadow).
+notary_profile=${AUTOCRAFT_NOTARY_PROFILE:-ringshadow}
 # 32 vCPU, the whole standard-instance quota, for setup too: its first
 # build compiles every shader into the cache the image keeps.
 build_type=c7i.8xlarge
@@ -400,8 +403,49 @@ cmd_mac() {
 		>"$dir/mac-build.log" 2>&1 || die "UAT failed: $dir/mac-build.log"
 	local app; app=$(find "$archive" -maxdepth 2 -name '*.app' -type d | head -1)
 	[ -n "$app" ] || die "no .app in $archive"
-	ditto -c -k --keepParent "$app" "$dir/Ringshadow-$version-mac.zip"
-	say "done: $dir/Ringshadow-$version-mac.zip (unsigned: docs/builds.md, Signing the Mac build)"
+	cmd_sign "$app" "$dir/Ringshadow-$version-mac.zip"
+}
+
+# sign APP ZIP: signs the .app with the Developer ID, notarizes it, staples
+# the ticket and zips it. Without the certificate it zips it unsigned; without
+# the notary profile it zips it signed but not notarized.
+cmd_sign() {
+	local app=$1 zip=$2
+	[ -d "$app" ] && [ -n "$zip" ] || die "usage: build_release.sh sign APP ZIP"
+	local identity=${AUTOCRAFT_SIGN_IDENTITY:-$(security find-identity -v -p codesigning |
+		sed -n 's/.*"\(Developer ID Application: [^"]*\)".*/\1/p' | head -1)}
+	rm -f "$zip"
+	if [ -z "$identity" ]; then
+		ditto -c -k --keepParent "$app" "$zip"
+		say "done: $zip, unsigned (no Developer ID Application certificate in the keychain)"
+		return
+	fi
+	say "signing with $identity"
+	# Inside out: every Mach-O file first, then the bundle (--deep is
+	# deprecated and skips files outside the code folders).
+	local f
+	while IFS= read -r f; do
+		[[ $(file -b "$f") == *Mach-O* ]] || continue
+		codesign --force --timestamp --options runtime --sign "$identity" "$f" || die "codesign $f"
+	done < <(find "$app/Contents" -type f \( -perm -u+x -o -name '*.dylib' -o -name '*.so' \))
+	codesign --force --timestamp --options runtime --sign "$identity" "$app" || die "codesign $app"
+	codesign --verify --deep --strict "$app" || die "the signature does not verify"
+	ditto -c -k --keepParent "$app" "$zip"
+	if ! xcrun notarytool history --keychain-profile "$notary_profile" >/dev/null 2>&1; then
+		say "done: $zip, signed, not notarized (no notarytool profile \"$notary_profile\": docs/builds.md, Signing the Mac build)"
+		return
+	fi
+	say "notarizing (a few minutes)"
+	xcrun notarytool submit "$zip" --keychain-profile "$notary_profile" --wait --timeout 1h \
+		>"$zip.notary.log" 2>&1 || true
+	grep -q 'status: Accepted' "$zip.notary.log" \
+		|| die "notarization failed: $zip.notary.log (xcrun notarytool log <id> --keychain-profile $notary_profile)"
+	xcrun stapler staple "$app" || die "stapling failed"
+	# The zip again, now with the ticket, so Gatekeeper passes offline too.
+	rm -f "$zip"
+	ditto -c -k --keepParent "$app" "$zip"
+	spctl --assess --type execute "$app" || die "Gatekeeper rejects $app"
+	say "done: $zip, signed and notarized"
 }
 
 # ---------------------------------------------------------------- test
@@ -529,6 +573,6 @@ cmd_stop() {
 }
 
 case ${1:-} in
-	infra|setup|rdp|image|build|mac|test|dcv|status|stop) c=$1; shift; "cmd_$c" "$@" ;;
+	infra|setup|rdp|image|build|mac|sign|test|dcv|status|stop) c=$1; shift; "cmd_$c" "$@" ;;
 	*) sed -n '2,27p' "$0" | sed 's/^# \{0,1\}//'; exit 1 ;;
 esac

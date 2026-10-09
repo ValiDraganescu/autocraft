@@ -211,15 +211,27 @@ aws ec2 delete-snapshot --snapshot-id snap-…
 
 ## Signing the Mac build
 
-`build_release.sh mac` makes an unsigned `.app`. Gatekeeper stops an unsigned
-download, and the player has to right-click and choose Open. A clean first
-launch needs:
-- a **Developer ID Application** certificate (Apple Developer Program,
-  $99 a year; this Mac has only an Apple Development one);
-- `codesign --deep --options runtime` with it;
-- `xcrun notarytool submit --wait`, then `xcrun stapler staple`.
+Gatekeeper stops an unsigned download: the player has to right-click and
+choose Open. `build_release.sh mac` therefore ends with `sign`, which:
+1. Signs every Mach-O file in the `.app`, then the bundle, with the
+   **Developer ID Application** certificate in the keychain, hardened
+   runtime, a timestamp and no entitlements (the game needs none outside a
+   sandbox; Unreal's own `Unrestricted.entitlements` is empty too).
+2. Submits the zip to Apple with `xcrun notarytool submit --wait`.
+3. Staples the ticket to the `.app` and zips it again, so Gatekeeper passes
+   offline, then checks it with `spctl --assess`.
 
-Not scripted yet.
+Setup, once per Mac:
+- The certificate: Xcode → Settings → Accounts → the team → Manage
+  Certificates → + → Developer ID Application (the team's Account Holder).
+- The notary login: an app-specific password from account.apple.com, then
+  `xcrun notarytool store-credentials ringshadow` (Apple ID, team ID, that
+  password). `AUTOCRAFT_NOTARY_PROFILE` names another profile,
+  `AUTOCRAFT_SIGN_IDENTITY` another certificate.
+
+Without the certificate the zip is unsigned; without the profile it is
+signed but not notarized. `build_release.sh sign APP ZIP` signs an `.app`
+that is already packaged.
 
 ## Testing the packages
 
