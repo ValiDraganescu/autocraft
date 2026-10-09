@@ -74,9 +74,10 @@ try {
 	# the compiler that built it, from the Build Tools' redistributable folder.
 	# UAT looks in <dir>\Win64\x64\<any folder>.
 	$AppLocal = 'C:\build\applocal'
-	$Crt = Get-Item 'C:\Program Files*\Microsoft Visual Studio\*\*\VC\Redist\MSVC\*\x64\Microsoft.VC*.CRT' -ErrorAction SilentlyContinue |
+	$Vs = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" -products * -latest -property installationPath
+	$Crt = Get-Item "$Vs\VC\Redist\MSVC\*\x64\Microsoft.VC*.CRT" -ErrorAction SilentlyContinue |
 		Sort-Object { [version]($_.Parent.Parent.Name -replace '[^0-9.]', '') } | Select-Object -Last 1
-	if (-not $Crt) { throw 'no Visual C++ redistributable folder in the Build Tools (VC\Redist\MSVC)' }
+	if (-not $Crt) { throw "no Visual C++ redistributable folder in the Build Tools ($Vs\VC\Redist\MSVC)" }
 	if (Test-Path $AppLocal) { Remove-Item -Recurse -Force $AppLocal }
 	New-Item -ItemType Directory -Force "$AppLocal\Win64\x64\VC.CRT" | Out-Null
 	Copy-Item "$($Crt.FullName)\*.dll" "$AppLocal\Win64\x64\VC.CRT"
