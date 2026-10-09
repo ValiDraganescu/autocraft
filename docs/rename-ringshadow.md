@@ -182,7 +182,10 @@ regenerated anyway.
 
 ## G. The repo folder, the worktrees and the GitHub repo
 
-- **GitHub repo** `ValiDraganescu/autocraft` to `ValiDraganescu/ringshadow`:
+- **GitHub repo** `ValiDraganescu/autocraft` to `ValiDraganescu/ringshadow`
+  (done 2026-10-09: `gh repo rename`, the remote updated, the old repo and
+  release URLs answer 301 to the new ones; new posts, the skills and the
+  video end card use the new URL, posted files keep theirs):
   GitHub redirects the old URL for the web, `git clone` and `git push`, so
   every link in 12 files (the post replies and benchmark briefs that point at
   `/tree/main/.claude/skills/ringshadow-*` and `docs/*.md`, README, the

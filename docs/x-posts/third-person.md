@@ -16,7 +16,7 @@ The game staged and recorded this clip itself, hidden, from a few command-line f
 
 ## Reply
 
-The video skill that staged and cut this clip: github.com/ValiDraganescu/autocraft/tree/main/.claude/skills/ringshadow-video
+The video skill that staged and cut this clip: github.com/ValiDraganescu/ringshadow/tree/main/.claude/skills/ringshadow-video
 
 ## Notes
 

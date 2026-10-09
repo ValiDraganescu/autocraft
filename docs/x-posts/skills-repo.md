@@ -16,7 +16,7 @@ The other skills take concept art to a finished Unreal model, set the light lang
 
 ## Reply
 
-The skills the agents work from, video skill included: github.com/ValiDraganescu/autocraft/tree/main/.claude/skills
+The skills the agents work from, video skill included: github.com/ValiDraganescu/ringshadow/tree/main/.claude/skills
 
 ## Notes
 

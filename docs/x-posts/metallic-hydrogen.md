@@ -16,7 +16,7 @@ The game's only radio station runs an ad for Quicksilver Cola, pumped fresh from
 
 ## Reply
 
-The doc where the game's names are set, from the resources to the units: github.com/ValiDraganescu/autocraft/blob/main/docs/naming.md
+The doc where the game's names are set, from the resources to the units: github.com/ValiDraganescu/ringshadow/blob/main/docs/naming.md
 
 ## Notes
 

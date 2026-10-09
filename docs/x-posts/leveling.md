@@ -16,7 +16,7 @@ The Prospector is the worker that mines and builds, the dullest job on Ashfall R
 
 ## Reply
 
-How leveling works, with all 216 upgrades for the twelve kinds of unit: github.com/ValiDraganescu/autocraft/blob/main/docs/leveling.md
+How leveling works, with all 216 upgrades for the twelve kinds of unit: github.com/ValiDraganescu/ringshadow/blob/main/docs/leveling.md
 
 ## Notes
 

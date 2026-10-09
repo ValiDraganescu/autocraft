@@ -16,7 +16,7 @@ Before, every frame was saved as a PNG, then encoded. Now frames are read back f
 
 Every GIF in the README came from the game's video skill: staged moments of the real game, recorded hidden at a fixed 30 fps, with the game's own sound.
 
-github.com/ValiDraganescu/autocraft
+github.com/ValiDraganescu/ringshadow
 
 ## Notes
 

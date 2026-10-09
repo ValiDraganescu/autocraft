@@ -308,7 +308,7 @@ A playtest on Windows and Linux, then the first public release on GitHub.
 
 **On Windows or Linux? Reply with your GPU,** and I'll send you the first build.
 
-I'm building Ringshadow in public with AI agents, one day of work at a time. Follow along: github.com/ValiDraganescu/autocraft
+I'm building Ringshadow in public with AI agents, one day of work at a time. Follow along: github.com/ValiDraganescu/ringshadow
 
 <!--
 Sources (2026-10-08, UTC):

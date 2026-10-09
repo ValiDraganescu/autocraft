@@ -16,7 +16,7 @@ I played the Windows build on a cloud GPU at 160 to 173 fps. Nobody has played t
 
 ## Reply
 
-The release, with SHA256SUMS: github.com/ValiDraganescu/autocraft/releases/tag/v0.1.0
+The release, with SHA256SUMS: github.com/ValiDraganescu/ringshadow/releases/tag/v0.1.0
 The Windows zip doesn't carry the Visual C++ runtime yet; the release notes link Microsoft's installer.
 
 ## Notes

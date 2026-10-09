@@ -19,7 +19,7 @@ Sound on 🔊
 
 ## Reply
 
-The soundtrack, the station and the prompts behind the songs: github.com/ValiDraganescu/autocraft/blob/main/docs/music.md
+The soundtrack, the station and the prompts behind the songs: github.com/ValiDraganescu/ringshadow/blob/main/docs/music.md
 
 ## Notes
 

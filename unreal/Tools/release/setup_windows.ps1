@@ -81,7 +81,7 @@ foreach ($Dir in 'C:\build', 'C:\Program Files\Epic Games', $Vs) {
 $Repo = 'C:\build\autocraft'
 if (-not (Test-Path "$Repo\.git")) {
 	Write-Host 'clone the repo'
-	& $Git clone --quiet https://github.com/ValiDraganescu/autocraft.git $Repo
+	& $Git clone --quiet https://github.com/ValiDraganescu/ringshadow.git $Repo
 	if ($LASTEXITCODE -ne 0) { throw "git clone exited $LASTEXITCODE" }
 }
 

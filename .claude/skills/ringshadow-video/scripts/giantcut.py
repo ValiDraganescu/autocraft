@@ -98,7 +98,7 @@ def ending(line: str) -> Image.Image:
     bar(img, BASE - 150, "A real-time strategy game in Unreal Engine 5.", font("BarlowCondensed-ExtraBold.ttf", 64))
     shadowed(img, (X0 + 2, BASE - 30), line,
              font("BarlowCondensed-SemiBold.ttf", 52), ICE)
-    shadowed(img, (X0 + 2, BASE + 36), "github.com/ValiDraganescu/autocraft",
+    shadowed(img, (X0 + 2, BASE + 36), "github.com/ValiDraganescu/ringshadow",
              font("BarlowCondensed-SemiBold.ttf", 46), (89, 217, 255, 255))
     return img
 
