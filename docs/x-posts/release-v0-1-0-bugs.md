@@ -1,9 +1,9 @@
 ---
-status: wip
-date: 
+status: posted
+date: 2026-10-09
 angle: build
 video: video/renders/release-v0-1-0-bugs-x.mp4
-posted: 
+posted: https://x.com/escu__valentin/status/2108541138000847173
 ---
 
 ## Post
