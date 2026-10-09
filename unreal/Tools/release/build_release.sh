@@ -212,14 +212,27 @@ windows_base() {
 		--query Parameter.Value --output text
 }
 
-# The Administrator password (Windows makes it in the first minutes).
+# The Administrator password (Windows makes it in the first minutes). A
+# machine made from our own image (the tester) keeps the image's password
+# and AWS never publishes one, so after a few minutes it gets a fresh one
+# over SSM, kept in ~/.ssh for the later rdp and dcv calls.
 password() {
 	[ -r "$keyfile" ] || die "no $keyfile"
-	local pw=""
-	while [ -z "$pw" ]; do
+	local saved="$HOME/.ssh/ringshadow-$1.password"
+	[ -s "$saved" ] && { cat "$saved"; return; }
+	local pw="" tries=0
+	while [ -z "$pw" ] && [ $tries -lt 9 ]; do
 		pw=$(aws ec2 get-password-data --instance-id "$1" --priv-launch-key "$keyfile" --query PasswordData --output text)
-		[ -z "$pw" ] && { say "the password is not ready yet" >&2; sleep 20; }
+		[ -z "$pw" ] && { say "the password is not ready yet" >&2; sleep 20; tries=$((tries + 1)); }
 	done
+	if [ -z "$pw" ]; then
+		say "AWS has no password for $1; setting one" >&2
+		# Letters and digits only: nothing for PowerShell or JSON to quote.
+		pw="$(LC_ALL=C tr -dc 'A-Za-z0-9' </dev/urandom | head -c 20)Rs7"
+		run_ps "$1" 120 password "net user Administrator '$pw' | Out-Null" "exit \$LASTEXITCODE" >&2 \
+			|| die "could not set the password on $1"
+	fi
+	(umask 077; printf '%s' "$pw" > "$saved")
 	printf '%s' "$pw"
 }
 
