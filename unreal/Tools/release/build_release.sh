@@ -425,22 +425,27 @@ cmd_sign() {
 	local identity=${AUTOCRAFT_SIGN_IDENTITY:-$(security find-identity -v -p codesigning |
 		sed -n 's/.*"\(Developer ID Application: [^"]*\)".*/\1/p' | head -1)}
 	rm -f "$zip"
-	if [ -z "$identity" ]; then
-		ditto -c -k --keepParent "$app" "$zip"
-		say "done: $zip, unsigned (no Developer ID Application certificate in the keychain)"
-		return
-	fi
+	# Xcode signs the staged app ad hoc with the App Sandbox entitlement; the
+	# renamed Info.plist breaks that signature, and macOS kills a sandboxed app
+	# with a broken one at launch. Every path re-signs with no entitlements:
+	# ad hoc ("-") without the certificate.
+	local flags=(--force --timestamp --options runtime)
+	if [ -z "$identity" ]; then identity=-; flags=(--force); fi
 	say "signing with $identity"
 	# Inside out: every Mach-O file first, then the bundle (--deep is
 	# deprecated and skips files outside the code folders).
 	local f
 	while IFS= read -r f; do
 		[[ $(file -b "$f") == *Mach-O* ]] || continue
-		codesign --force --timestamp --options runtime --sign "$identity" "$f" || die "codesign $f"
+		codesign "${flags[@]}" --sign "$identity" "$f" || die "codesign $f"
 	done < <(find "$app/Contents" -type f \( -perm -u+x -o -name '*.dylib' -o -name '*.so' \))
-	codesign --force --timestamp --options runtime --sign "$identity" "$app" || die "codesign $app"
+	codesign "${flags[@]}" --sign "$identity" "$app" || die "codesign $app"
 	codesign --verify --deep --strict "$app" || die "the signature does not verify"
 	ditto -c -k --keepParent "$app" "$zip"
+	if [ "$identity" = - ]; then
+		say "done: $zip, unsigned: ad hoc (no Developer ID Application certificate in the keychain)"
+		return
+	fi
 	if ! xcrun notarytool history --keychain-profile "$notary_profile" >/dev/null 2>&1; then
 		say "done: $zip, signed, not notarized (no notarytool profile \"$notary_profile\": docs/builds.md, Signing the Mac build)"
 		return
