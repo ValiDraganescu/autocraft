@@ -26,6 +26,7 @@
 #include "HAL/PlatformProcess.h"
 #include "HAL/PlatformMisc.h"
 #include "HAL/PlatformTime.h"
+#include "Misc/App.h"
 #include "Misc/CommandLine.h"
 #include "Misc/Parse.h"
 #include "Misc/Paths.h"
@@ -266,7 +267,7 @@ void UAcGameFlowSubsystem::OnWorldBeginPlay(UWorld& InWorld)
 		}
 	}
 	else if (const AAcGameMode* RunMode = InWorld.GetAuthGameMode<AAcGameMode>(); !Test && !FParse::Param(Cmd, TEXT("AcNoHome"))
-		&& (FParse::Param(Cmd, TEXT("AcHome")) || (RunMode && RunMode->GetRunMode() == EAcRunMode::Game && !FParse::Param(Cmd, TEXT("unattended")))))
+		&& (FParse::Param(Cmd, TEXT("AcHome")) || FParse::Value(Cmd, TEXT("AcHomePlay="), HomePlayAfter) || (RunMode && RunMode->GetRunMode() == EAcRunMode::Game && !FParse::Param(Cmd, TEXT("unattended")))))
 	{
 		// The launcher: the home screen over the paused game (-AcHome for
 		// headless shots; -AcNoHome straight into the game).
@@ -311,10 +312,11 @@ void UAcGameFlowSubsystem::Tick(const float DeltaTime)
 		const UAcSimSubsystem* Sim = UAcSimSubsystem::Get(this);
 		if (Sim && Sim->IsRunning())
 		{
-			bHasGame = bHasGame || Sim->WasResumed();
+			bHasGame = bHasGame || Sim->WasResumed() || HomePlayAfter >= 0;
 			if (OpenMenu(EAcMenuMode::Home))
 			{
 				bHomeWhenReady = false;
+				HomeShownAt = FApp::GetCurrentTime();
 				if (FParse::Param(FCommandLine::Get(), TEXT("AcPauseMenu"))) Menu->SetMode(EAcMenuMode::Pause);
 				// -AcSettingsMenu: its Settings page (stills).
 				if (FParse::Param(FCommandLine::Get(), TEXT("AcSettingsMenu")))
@@ -323,6 +325,13 @@ void UAcGameFlowSubsystem::Tick(const float DeltaTime)
 				}
 			}
 		}
+	}
+	if (HomePlayAfter >= 0 && Menu && Menu->Mode() == EAcMenuMode::Home && FApp::GetCurrentTime() - HomeShownAt >= HomePlayAfter)
+	{
+		// -AcHomePlay: RESUME GAME, as a click on it would.
+		HomePlayAfter = -1;
+		UE_LOG(LogAutocraft, Log, TEXT("menu: -AcHomePlay presses RESUME GAME"));
+		OnMenuPick(EAcMenuAction::Resume);
 	}
 	if (Menu && Menu->Mode() == EAcMenuMode::Home)
 	{

@@ -318,6 +318,20 @@
       "seconds": 16,
       "music": false,
       "notes": "Dusk, third person: a Longbow drives up to the enemy base, anchors into artillery and shells the buildings, then the eject to the gas giant."
+    },
+    {
+      "name": "home-to-match",
+      "flags": [
+        "-AcHomePlay=7",
+        "-AcLauncherArtStart=3",
+        "-AcStage=12",
+        "-AcStageBuildings",
+        "-AcHour=10"
+      ],
+      "camera": "0:0,0,0;5.2:0,0,0;12:10,-6,45",
+      "seconds": 12,
+      "music": false,
+      "notes": "The home screen: the night-base key art with the gas giant, drifting (no pixel snapping since a9e3d2e), RESUME GAME pressed at 5 s of the clip (-AcHomePlay counts from the home screen, 2 s before recording starts), then the RTS view over a staged base, the camera easing over to its army."
     }
   ]
 }

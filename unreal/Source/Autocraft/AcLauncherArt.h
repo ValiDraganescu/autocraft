@@ -1,7 +1,8 @@
 // `FAcLauncherArt`: the key art behind the home screen. Every *.jpg / *.png in
 // `unreal/Content-src/launcher/` (sorted by name) becomes a texture, loaded
 // lazily the first time it is asked for and kept alive here (FGCObject).
-// `-AcLauncherArt=N` (1-based) pins image N for stills.
+// `-AcLauncherArt=N` (1-based) pins image N for stills; `-AcLauncherArtStart=N`
+// starts on image N and drifts on as in play (clips).
 #pragma once
 
 #include "CoreMinimal.h"

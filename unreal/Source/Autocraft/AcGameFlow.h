@@ -30,6 +30,9 @@
 //                               ok|FAILED`, then the run quits.
 //   -AcNewGameDialog[=MAP[,TEAMS]]  open the dialog at start (shots hold
 //                               until its preview is drawn).
+//   -AcHomePlay=S               open the home screen with the staged game as
+//                               the one to resume, and press RESUME GAME S
+//                               seconds after it shows (clips: home, then play).
 #pragma once
 
 #include "CoreMinimal.h"
@@ -101,6 +104,9 @@ private:
 	/// A game to resume from home: a saved one loaded, or one started here.
 	bool bHasGame = false;
 	bool bHomeWhenReady = false;
+	/// -AcHomePlay=S: press RESUME GAME this long after home shows (engine time); <0 off.
+	double HomePlayAfter = -1;
+	double HomeShownAt = 0;
 	void OnMenuPick(EAcMenuAction Action);
 	void RefreshMenuGame();
 	/// The game waits and the world takes no input while a dialog or menu is up.

@@ -5,6 +5,7 @@
 #include "AcSettings.h"
 #include "AcLauncherArt.h"
 
+#include "Misc/App.h"
 #include "Rendering/DrawElements.h"
 #include "Engine/Texture2D.h"
 #include "ImageCore.h"
@@ -354,7 +355,8 @@ namespace
 /// left shade, the vignette and the now-playing line.
 void SAcMenu::PaintArt(FSlateWindowElementList& Out, const int32 Layer, const FGeometry& G, const FVector2f View) const
 {
-	const double Now = FPlatformTime::Seconds();
+	// The engine's clock: real time in play, 1/30 s a frame in a fixed-step recording.
+	const double Now = FApp::GetCurrentTime();
 	if (ArtStart < 0) ArtStart = Now;
 	const bool bPinned = Art->Pinned() != INDEX_NONE;
 	const double E = bPinned ? 0.0 : Now - ArtStart;

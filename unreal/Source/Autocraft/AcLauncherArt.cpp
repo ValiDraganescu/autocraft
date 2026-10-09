@@ -25,7 +25,9 @@ FAcLauncherArt::FAcLauncherArt()
 	if (Files.IsEmpty()) return;
 	int32 N = 0;
 	if (FParse::Value(FCommandLine::Get(), TEXT("AcLauncherArt="), N) && N >= 1) PinnedIndex = (N - 1) % Files.Num();
-	StartIndex = PinnedIndex != INDEX_NONE ? PinnedIndex : FMath::RandRange(0, Files.Num() - 1);
+	int32 First = 0;
+	const bool bFirst = FParse::Value(FCommandLine::Get(), TEXT("AcLauncherArtStart="), First) && First >= 1;
+	StartIndex = PinnedIndex != INDEX_NONE ? PinnedIndex : bFirst ? (First - 1) % Files.Num() : FMath::RandRange(0, Files.Num() - 1);
 }
 
 FAcLauncherArt::FSlot* FAcLauncherArt::Load(const int32 I)

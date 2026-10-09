@@ -13,6 +13,10 @@
 4. The pull-out back to the gas giant, its last frame held under the end
    card.
 
+A clip without a pull-out (the home screen, the RTS view) leaves out --down:
+the opening card sits on the scene's first seconds and fades, and the end
+card comes up over the scene's last frame.
+
 Music under all of it, loudness -16 LUFS. --x also writes the X upload
 (2-pass x264, its rate set for 9.4 MB at any length) next to the output.
 
@@ -81,11 +85,11 @@ def opening(title: str) -> Image.Image:
     return img
 
 
-def ending() -> Image.Image:
+def ending(line: str) -> Image.Image:
     img = scrim()
     shadowed(img, (X0 - 6, BASE - 380), "RINGSHADOW", font("Exo2-Variable.ttf", 170, b"Black"), ICE)
     bar(img, BASE - 150, "A real-time strategy game in Unreal Engine 5.", font("BarlowCondensed-ExtraBold.ttf", 64))
-    shadowed(img, (X0 + 2, BASE - 30), "Drive any unit. Open source, public domain.",
+    shadowed(img, (X0 + 2, BASE - 30), line,
              font("BarlowCondensed-SemiBold.ttf", 52), ICE)
     shadowed(img, (X0 + 2, BASE + 36), "github.com/ValiDraganescu/autocraft",
              font("BarlowCondensed-SemiBold.ttf", 46), (89, 217, 255, 255))
@@ -104,7 +108,8 @@ def caption(s: str) -> Image.Image:
 def main() -> None:
     a = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     a.add_argument("src", type=Path, help="the recorded sim (with -AcPilotPullOut)")
-    a.add_argument("--down", required=True, help="S,E: the pull-out, from leaving the eye to the gas giant (clip s)")
+    a.add_argument("--down", help="S,E: the pull-out, from leaving the eye to the gas giant (clip s); "
+                   "leave it out for a clip without one: the card sits on the scene's start")
     a.add_argument("--end", type=float, required=True, help="where the scene ends (clip s), on the gas giant")
     a.add_argument("--start", type=float, default=0, help="where the scene starts (clip s): skips a take-over's first frames")
     a.add_argument("--title", required=True, help="the opening card's title, about 25 characters at most")
@@ -118,18 +123,24 @@ def main() -> None:
     a.add_argument("--hold", type=float, default=1.3, help="the opening frame held under the card")
     a.add_argument("--speed", type=float, default=2.0, help="the descent plays this much faster")
     a.add_argument("--tail", type=float, default=2.0, help="the last frame held under the end card")
+    a.add_argument("--end-line", default="Drive any unit. Open source, public domain.", help="the end card's line under the bar")
     a.add_argument("--out", type=Path, required=True)
     a.add_argument("--x", action="store_true", help="also write OUT-x.mp4 for the X upload")
     o = a.parse_args()
-    d0, d1 = (float(v) for v in o.down.split(","))
     xf = 0.35
-    a_len = o.hold + (d1 - d0) / o.speed
+    if o.down:
+        d0, d1 = (float(v) for v in o.down.split(","))
+        a_len = o.hold + (d1 - d0) / o.speed
+    else:
+        # No descent: B alone, the opening card over its first seconds.
+        xf = 0.0
+        a_len = 0.0
     b_len = o.end - o.start + o.tail
     total = a_len + b_len - xf
     card_at = o.end - o.start - 2.2
     tmp = Path(tempfile.mkdtemp(prefix="giantcut-"))
     opening(o.title).save(tmp / "open.png")
-    ending().save(tmp / "end.png")
+    ending(o.end_line).save(tmp / "end.png")
     caption(o.caption or "").save(tmp / "caption.png")
     c0, c1 = (float(v) for v in o.caption_at.split(","))
     music = REPO / f"unreal/Resources/Sounds/music/{o.music}.mp3"
@@ -148,19 +159,27 @@ def main() -> None:
         z = f"(1+{zf - 1}*({e})*({e})*(3-2*({e})))"
         zoom = (f"zoompan=z='{z}':x='clip({zx}-iw/zoom/2,0,iw-iw/zoom)':"
                 f"y='clip({zy}-ih/zoom/2,0,ih-ih/zoom)':d=1:s={W}x{H}:fps=30,")
+    if o.down:
+        part_a = (
+            # A: the descent, reversed and faster, its first frame held; the card fades as it lands.
+            f"[0:v]trim={d0}:{d1},setpts=PTS-STARTPTS,reverse,setpts=PTS/{o.speed},"
+            f"tpad=start_duration={o.hold}:start_mode=clone,fps=30,setsar=1[a0];"
+            f"[2:v]format=rgba,fade=t=out:st={a_len - 0.65}:d=0.45:alpha=1[oc];"
+            f"[a0][oc]overlay=0:0:shortest=1[a];")
+        opened, join = "[b1]", f"[a][b]xfade=transition=fade:duration={xf}:offset={a_len - xf},format=yuv420p[v];"
+    else:
+        part_a = f"[2:v]format=rgba,fade=t=out:st={o.hold}:d=0.45:alpha=1[oc];"
+        opened, join = "[bo]", "[b]format=yuv420p[v];"
     graph = (
-        # A: the descent, reversed and faster, its first frame held; the card fades as it lands.
-        f"[0:v]trim={d0}:{d1},setpts=PTS-STARTPTS,reverse,setpts=PTS/{o.speed},"
-        f"tpad=start_duration={o.hold}:start_mode=clone,fps=30,setsar=1[a0];"
-        f"[2:v]format=rgba,fade=t=out:st={a_len - 0.65}:d=0.45:alpha=1[oc];"
-        f"[a0][oc]overlay=0:0:shortest=1[a];"
+        part_a +
         # B: the scene to the gas giant, its last frame held; the end card fades in.
         f"[0:v]trim={o.start}:{o.end},setpts=PTS-STARTPTS,{zoom}tpad=stop_duration={o.tail}:stop_mode=clone,fps=30,setsar=1[b0];"
         f"[3:v]format=rgba,fade=t=in:st={card_at}:d=0.5:alpha=1[ec];"
         f"[4:v]format=rgba,fade=t=in:st={c0}:d=0.4:alpha=1,fade=t=out:st={c1 - 0.4}:d=0.4:alpha=1[cc];"
         f"[b0][cc]overlay=0:0:shortest=1[b1];"
-        f"[b1][ec]overlay=0:0:shortest=1,fade=t=out:st={b_len - 0.5}:d=0.5[b];"
-        f"[a][b]xfade=transition=fade:duration={xf}:offset={a_len - xf},format=yuv420p[v];"
+        + ("" if o.down else "[b1][oc]overlay=0:0:shortest=1[bo];") +
+        f"{opened}[ec]overlay=0:0:shortest=1,fade=t=out:st={b_len - 0.5}:d=0.5[b];"
+        + join +
         # The game's sound under the scene, the music under everything.
         f"[0:a]atrim={o.start}:{o.end},asetpts=PTS-STARTPTS,volume=2.0,afade=t=out:st={o.end - o.start - 0.6}:d=0.6,"
         f"adelay={int((a_len - xf) * 1000)}:all=1,apad=whole_dur={total}[g];"
