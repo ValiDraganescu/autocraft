@@ -44,9 +44,22 @@ gh release create v0.1.0 --prerelease --target <commit> --title "Ringshadow 0.1.
 
 The Windows symbols stay in S3. The first release, `v0.1.0` from `a9e3d2e`,
 went up on 2026-10-09: Windows and Linux 416 and 419 MB, the Mac 535 MB,
-signed and notarized. Build a release from a clean checkout (`git worktree
-add`) when other sessions have uncommitted work: `mac` packages the working
-tree.
+signed and notarized.
+
+The release build tree is the worktree `~/git/dev/autocraft-release`. Other
+sessions keep uncommitted work in `~/git/dev/autocraft`, and `mac` packages
+the working tree, so the Mac build runs from the worktree after a
+`git -C ~/git/dev/autocraft-release checkout --detach <commit>`. Its
+`unreal/Saved` and `Intermediate` stay between releases, so a release
+recompiles only what changed.
+
+**The version.** A release is named by its tag: tag `v0.1.1`, and
+`git describe` gives `0.1.1` (the `v` dropped), or `0.1.1-4-g<sha>` four
+commits later. It goes into each package's name. The Windows exe's Product
+version carries it (UBT's `-BuildVersion`; the File version stays the
+engine's 5.8.3). On the Mac it goes into `CFBundleShortVersionString` (`0.1.1`)
+and `CFBundleVersion` (`0.1.1`, or `0.1.1.4` past the tag). `--version 0.1.1`
+names a build before the tag exists.
 
 ## Files outside the cook
 
@@ -88,14 +101,23 @@ Mac package built here, played by hand, before any AWS time is spent.
 - **Account** 569854554192, CLI profile `ringshadow` (`aws login --profile
   ringshadow`; a session lasts about 12 hours). The script uses it by default.
   `AUTOCRAFT_AWS_PROFILE` picks another.
-- **Region** `eu-north-1` (Stockholm): everything here lives in it. The
-  organization's policy (SCP AdvancedModeRegionRestrictionSecurityControlPolicy,
-  `p-lunneq4k`, edited from the management account 687971795322) allows
-  eu-north-1 and, since 2026-10-09, all of us-east-1 too; us-west-2 only for a
-  few global services, every other region not at all. The script doesn't use
-  us-east-1 yet: its GPU quota was requested on 2026-10-09. The tester's driver
-  bucket in us-east-1 is public and read without credentials ("The Windows
-  tester").
+- **Region** `eu-north-1` (Stockholm): the bucket, the images and, by
+  default, the machines. The organization's policy (SCP
+  AdvancedModeRegionRestrictionSecurityControlPolicy, `p-lunneq4k`, edited
+  from the management account 687971795322) allows eu-north-1 and, since
+  2026-10-09, all of us-east-1 too; us-west-2 only for a few global services,
+  every other region not at all. The tester's driver bucket in us-east-1 is
+  public and read without credentials ("The Windows tester").
+- **us-east-1, the fallback** when Stockholm has no room (spot GPUs there are
+  often full): `build_release.sh --region us-east-1 <command>`. Its GPU
+  quota is the same 8 vCPU, on-demand and spot (granted 2026-10-09).
+  `--region us-east-1 infra` set it up on 2026-10-09: the security group, the
+  same key pair (imported from `~/.ssh/ringshadow-build.pem`) and copies of
+  the build and tester images (`ami-00786c2ee550bb2b1`,
+  `ami-0d99b06a6e3d80f32`). After `image` saves a new build image, run
+  `--region us-east-1 infra` again to copy it. The machines there still use
+  the Stockholm bucket: every S3 call names its region, and SSM writes its
+  output there too.
 - **Quotas** (2026-10-08): 32 vCPU of standard instances, on-demand and spot.
   That is one `c7i.8xlarge`, so the setup machine and a build cannot run at
   the same time. GPU (G and VT) instances: 8 vCPU, on-demand and spot
@@ -125,6 +147,9 @@ Spot prices in `eu-north-1` on 2026-10-08:
 | A month at 2 to 3 releases a week | At most $7–10 of machine time, $5.60 for the image and under $1 for S3 and the downloads: about $15. |
 | The one-time setup | The setup machine ran 3 hours on demand on 2026-10-08, the Windows build fixes included: about $9. |
 | `g6.2xlarge` (NVIDIA L4) for playtesting, Windows, spot | $0.47 an hour. |
+| The tester image's snapshot | 34 GB, about $1.70 a month. |
+| The us-east-1 copies of both images | 111 + 34 GB, about $7.30 a month, and about $2.90 once for the copy across regions. |
+| Linux tester (2026-10-09, eu-north-1) | `g5.2xlarge` (A10G) $1.29 an hour on demand, $0.33 spot; `g6.2xlarge` (L4) $0.20 spot. No Windows licence. |
 
 The times come from CloudTrail (`RunInstances`, `TerminateInstances`) and
 each build's `build.log`; the snapshot's size from `aws ec2
@@ -185,8 +210,12 @@ unreal/Tools/release/build_release.sh mac    # the Mac package, here
 2. Starts a spot `c7i.8xlarge` from the newest image and waits for SSM.
 3. Runs `build_windows.ps1`: fetch, check out the commit, then
    `RunUAT BuildCookRun` for Win64 and Linux (Shipping, pak, IoStore,
-   compressed, no debug files; the Windows package includes the
-   prerequisites installer).
+   compressed, no debug files). The Windows package carries the Visual C++
+   runtime next to the game's exe (UAT's app-local prerequisites: the DLLs
+   from the Build Tools' `VC\Redist\MSVC\<ver>\x64\Microsoft.VC143.CRT`,
+   found with `vswhere`), so a PC without the runtime starts it; the build
+   fails if `vcruntime140.dll` is not beside the exe. The runtime's installer
+   comes along too, in `Engine\Extras\Redist\en-us\vc_redist.x64.exe`.
 4. Zips each package and uploads the zips, a `manifest.txt` and `build.log`
    to `s3://ringshadow-builds-569854554192/builds/<version>/`.
 5. Downloads them to `unreal/Saved/Releases/<version>/` and sets the
@@ -194,7 +223,8 @@ unreal/Tools/release/build_release.sh mac    # the Mac package, here
 6. Terminates the machine, on failure too.
 
 Options:
-- `--version`: name the packages (default: `git describe` of the commit).
+- `--version`: the game's version and the packages' name (default:
+  `git describe` of the commit, without the `v`).
 - `--platforms Win64` or `--platforms Linux`: build only one.
 - `--config Development`: a build with logs and the console.
 - `--on-demand`: if spot capacity is short.
@@ -251,7 +281,7 @@ that is already packaged.
 
 The build machine has no GPU. A package is proven when someone plays it:
 - **Windows in AWS:** `build_release.sh test [VERSION]`, below.
-- **Linux in AWS:** not scripted yet (Ubuntu, the NVIDIA driver, DCV).
+- **Linux in AWS:** `build_release.sh test --linux [VERSION]`, below.
 - **Linux on real hardware:** a player on Ubuntu or Omarchy, by hand.
 
 ### The Windows tester
@@ -268,8 +298,12 @@ unreal/Tools/release/build_release.sh stop            # done
 about $0.47 an hour). Stockholm often has none free: `launch` tries every zone
 that offers the type, and the tester falls back to a `g5.2xlarge` (A10G) and
 then a `g4dn.2xlarge` (T4), all 8 vCPU and served by the same driver (on
-2026-10-08 only the A10G had room, on demand). It unpacks the package to `C:\Ringshadow`, runs its
-prerequisites installer, puts a shortcut on the desktop and opens a tunnel to
+2026-10-08 only the A10G had room, on demand). It unpacks the package to
+`C:\Ringshadow` and installs nothing else, as on a player's PC. It prints the
+exe's version, whether the machine has the Visual C++ runtime installed, and
+which `vcruntime140.dll` the game loads in a short run without a GPU
+(`-nullrhi`): the one beside the exe when the app-local runtime works. Then
+it puts a shortcut on the desktop and opens a tunnel to
 Amazon DCV, a remote desktop that streams what the GPU draws (plain remote
 desktop cannot show a 3D game well). Open `https://localhost:18443` in a
 browser, accept the machine's own certificate and sign in as Administrator
@@ -284,3 +318,42 @@ for its G instances, and DCV), reboots it and saves it as the image
 The driver comes from AWS's public bucket `ec2-windows-nvidia-drivers` in
 us-east-1, over plain HTTPS without credentials: a signed read would meet the
 organization's region policy (see AWS above).
+
+### The Linux tester
+
+```sh
+unreal/Tools/release/build_release.sh test --linux             # the newest Linux package
+unreal/Tools/release/build_release.sh test --linux 0.1.1 --on-demand
+unreal/Tools/release/build_release.sh --region us-east-1 test --linux
+```
+
+It starts the same GPU types from AWS's Ubuntu 24.04 image with the NVIDIA
+driver (`base-oss-nvidia-driver-gpu-ubuntu-24.04`, found through its SSM
+parameter in each region). That image has the driver, the driver's X module
+and Vulkan, but no X server. `setup_linux_tester.sh` adds one on every start
+(about 5 minutes; no image is saved):
+- Xorg on the GPU with a 1920x1080 virtual screen and no monitor
+  (`nvidia-xconfig --allow-empty-initial-configuration`).
+- Xfce, logged in as `ubuntu` by LightDM.
+- Amazon DCV sharing that screen as its console session.
+
+`stage` unpacks the package to `/home/ubuntu/Ringshadow` and puts a launcher
+on the desktop. Then it runs the game once, silent:
+- After a minute the game must still be running and on the GPU.
+- The script takes a picture of the screen and saves it to
+  `unreal/Saved/Releases/<version>/linux-home.png`.
+- It quits the game and opens the same DCV tunnel. Sign in as `ubuntu` with
+  the password it prints.
+
+The Shipping build writes no log, so the picture is the proof that the game
+reached the home screen.
+
+The first run, 0.1.1 on 2026-10-09, went to us-east-1 because Stockholm had
+no spot GPU free. On a spot `g6.2xlarge` (NVIDIA L4, driver 595.91), the
+setup took 1.5 minutes and staging 1.5 minutes. The game was still up and on
+the GPU after a minute, at the home screen, the first time the Linux build had
+run anywhere. The window's title still reads Autocraft, the project's name inside.
+The Windows tester ran the same day: the exe's Product version read 0.1.1,
+and the game loaded `vcruntime140.dll` from its own folder. That machine has
+the runtime installed, but the copy beside the exe comes first in Windows's
+search order.

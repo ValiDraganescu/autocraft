@@ -268,6 +268,14 @@ password() {
 	local saved="$HOME/.ssh/ringshadow-$1.password"
 	[ -s "$saved" ] && { cat "$saved"; return; }
 	local pw="" tries=0
+	if is_linux "$1"; then
+		# Ubuntu's user has none: one is set for DCV's sign-in.
+		pw="$(LC_ALL=C tr -dc 'A-Za-z0-9' </dev/urandom | head -c 20)Rs7"
+		run_sh "$1" 60 password "echo 'ubuntu:$pw' | chpasswd" >&2 || die "could not set the password on $1"
+		(umask 077; printf '%s' "$pw" > "$saved")
+		printf '%s' "$pw"
+		return
+	fi
 	while [ -z "$pw" ] && [ $tries -lt 9 ]; do
 		pw=$(aws ec2 get-password-data --instance-id "$1" --priv-launch-key "$keyfile" --query PasswordData --output text)
 		[ -z "$pw" ] && { say "the password is not ready yet" >&2; sleep 20; tries=$((tries + 1)); }
@@ -281,6 +289,10 @@ password() {
 	fi
 	(umask 077; printf '%s' "$pw" > "$saved")
 	printf '%s' "$pw"
+}
+
+is_linux() {
+	[ "$(aws ec2 describe-instances --instance-ids "$1" --query 'Reservations[0].Instances[0].PlatformDetails' --output text)" = Linux/UNIX ]
 }
 
 cmd_setup() {
@@ -522,9 +534,10 @@ cmd_sign() {
 # (setup_tester.ps1), then is saved as the tester image; later ones start
 # from that image.
 cmd_test() {
-	local version="" market=spot hours=4
+	local version="" market=spot hours=4 linux=0
 	while [ $# -gt 0 ]; do
 		case $1 in
+			--linux) linux=1; shift ;;
 			--on-demand) market=on-demand; shift ;;
 			--hours) hours=$2; shift 2 ;;
 			-*) die "unknown option $1" ;;
@@ -532,6 +545,7 @@ cmd_test() {
 		esac
 	done
 	cmd_infra >/dev/null
+	[ $linux = 1 ] && { test_linux "$version" "$market" "$hours"; return; }
 	local b; b=$(bucket)
 	[ -n "$version" ] || version=$(s3 ls "s3://$b/builds/" --recursive | grep -- '-windows\.zip$' | sort | tail -1 | awk '{print $4}' | cut -d/ -f2)
 	[ -n "$version" ] || die "no Windows package in s3://$b/builds/: build one first"
@@ -607,14 +621,78 @@ cmd_test() {
 	cmd_dcv "$id"
 }
 
+# The Linux tester: AWS's Ubuntu GPU image (NVIDIA driver included), the
+# desktop and DCV set up on every start (setup_linux_tester.sh, 5 minutes;
+# no saved image), VERSION's Linux package on the desktop. A first run of the
+# game, silent, must still be up and on the GPU after a minute; its picture
+# then lands in unreal/Saved/Releases/<version>/linux-home.png.
+test_linux() {
+	local version=$1 market=$2 hours=$3 b; b=$(bucket)
+	[ -n "$version" ] || version=$(s3 ls "s3://$b/builds/" --recursive | grep -- '-linux\.tar\.gz$' | sort | tail -1 | awk '{print $4}' | cut -d/ -f2)
+	[ -n "$version" ] || die "no Linux package in s3://$b/builds/: build one first"
+	local tgz="Ringshadow-$version-linux.tar.gz"
+	s3 ls "s3://$b/builds/$version/$tgz" >/dev/null || die "no s3://$b/builds/$version/$tgz"
+	# Windows makes the tar without executable bits; the Mac's fixed copy goes up.
+	local local_tgz="$releases/$version/$tgz"
+	[ -f "$local_tgz" ] && s3 cp --only-show-errors "$local_tgz" "s3://$b/builds/$version/$tgz"
+
+	local ami; ami=$(aws ssm get-parameter --name /aws/service/deeplearning/ami/x86_64/base-oss-nvidia-driver-gpu-ubuntu-24.04/latest/ami-id \
+		--query Parameter.Value --output text)
+	local id type rc
+	for type in $tester_types; do
+		say "launching a $market $type from Ubuntu 24.04 with the NVIDIA driver ($ami)"
+		rc=0; id=$(launch "$ami" "$type" tester "ringshadow-linux-tester-$version" "$market" "$tester_disk_gb") || rc=$?
+		[ $rc = 0 ] && break
+		[ $rc = 2 ] || die "launch failed"
+	done
+	[ $rc = 0 ] || die "no $market GPU machine has room in $AWS_REGION; try --on-demand or --region us-east-1"
+	say "Linux tester $id"
+	wait_ssm "$id"
+
+	s3 cp --only-show-errors "$here/setup_linux_tester.sh" "s3://$b/scripts/setup_linux_tester.sh"
+	run_sh "$id" 1800 linux-setup \
+		"set -e" \
+		"aws s3 cp --region $home_region --only-show-errors s3://$b/scripts/setup_linux_tester.sh /root/setup_linux_tester.sh" \
+		"bash /root/setup_linux_tester.sh" || die "setup failed; $id is still up (build_release.sh stop)"
+	ssm_output | grep -E '^(GPU|Vulkan|DCV):' || true
+
+	local shot="s3://$b/builds/$version/linux-home.png"
+	run_sh "$id" 900 stage \
+		"set -e" \
+		"aws s3 cp --region $home_region --only-show-errors s3://$b/builds/$version/$tgz /tmp/game.tar.gz" \
+		"rm -rf /home/ubuntu/Ringshadow" \
+		"tar -xzf /tmp/game.tar.gz -C /home/ubuntu" \
+		"chown -R ubuntu:ubuntu /home/ubuntu/Ringshadow" \
+		"mkdir -p /home/ubuntu/Desktop" \
+		"printf '[Desktop Entry]\\nType=Application\\nName=Ringshadow $version\\nExec=/home/ubuntu/Ringshadow/Autocraft.sh\\nPath=/home/ubuntu/Ringshadow\\nTerminal=false\\n' >/home/ubuntu/Desktop/ringshadow.desktop" \
+		"chmod 755 /home/ubuntu/Desktop/ringshadow.desktop" \
+		"chown -R ubuntu:ubuntu /home/ubuntu/Desktop" \
+		"export DISPLAY=:0 XAUTHORITY=/home/ubuntu/.Xauthority" \
+		"sudo -u ubuntu -E sh -c 'cd /home/ubuntu/Ringshadow && exec ./Autocraft.sh -nosound >/tmp/ringshadow-first-run.txt 2>&1' &" \
+		"sleep 60" \
+		"if pgrep -f Autocraft-Linux-Shipping >/dev/null; then echo 'game: up after 60 s'; else echo 'game: exited'; tail -30 /tmp/ringshadow-first-run.txt; fi" \
+		"echo \"on the GPU: \$(nvidia-smi | grep -c Autocraft || true) process\"" \
+		"sudo -u ubuntu -E import -window root /tmp/linux-home.png" \
+		"aws s3 cp --region $home_region --only-show-errors /tmp/linux-home.png $shot" \
+		"pkill -f Autocraft-Linux-Shipping || true" \
+		"shutdown -h +$((hours * 60)) 'Ringshadow tester: its $hours hours are up' 2>/dev/null || true" \
+		"exit 0" || die "staging failed; $id is still up (build_release.sh stop)"
+	ssm_output | grep -E '^(game|on the GPU):|Autocraft|rror' | head -40 || true
+	mkdir -p "$releases/$version"
+	s3 cp --only-show-errors "$shot" "$releases/$version/linux-home.png" && say "the home screen: $releases/$version/linux-home.png"
+	say "ready: $id has $version on its desktop; it is terminated in $hours h (build_release.sh stop ends it sooner)"
+	cmd_dcv "$id"
+}
+
 cmd_dcv() {
 	local id=${1:-$(running tester)}
 	[ "$id" = None ] && die "no tester running: build_release.sh test"
-	local pw; pw=$(password "$id")
+	local pw user=Administrator; pw=$(password "$id")
+	is_linux "$id" && user=ubuntu
 	echo
 	echo "  Open https://localhost:18443 in a browser (accept its own certificate),"
 	echo "  or the Amazon DCV client with localhost:18443."
-	echo "    User:     Administrator"
+	echo "    User:     $user"
 	echo "    Password: $pw"
 	echo
 	echo "  The tunnel stays open while this runs; Ctrl-C closes it (the machine runs on)."
