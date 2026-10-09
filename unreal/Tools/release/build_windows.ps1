@@ -74,7 +74,7 @@ try {
 	# the compiler that built it, from the Build Tools' redistributable folder.
 	# UAT looks in <dir>\Win64\x64\<any folder>.
 	$AppLocal = 'C:\build\applocal'
-	$Crt = Get-ChildItem 'C:\Program Files*\Microsoft Visual Studio\*\*\VC\Redist\MSVC\*\x64\Microsoft.VC*.CRT' -Directory -ErrorAction SilentlyContinue |
+	$Crt = Get-Item 'C:\Program Files*\Microsoft Visual Studio\*\*\VC\Redist\MSVC\*\x64\Microsoft.VC*.CRT' -ErrorAction SilentlyContinue |
 		Sort-Object { [version]($_.Parent.Parent.Name -replace '[^0-9.]', '') } | Select-Object -Last 1
 	if (-not $Crt) { throw 'no Visual C++ redistributable folder in the Build Tools (VC\Redist\MSVC)' }
 	if (Test-Path $AppLocal) { Remove-Item -Recurse -Force $AppLocal }
